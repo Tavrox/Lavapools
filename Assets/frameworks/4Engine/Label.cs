@@ -26,6 +26,17 @@ public class Label : MonoBehaviour {
 		GameEventManager.GameOver += GameOver;
 		GameEventManager.Respawn += Respawn;
 	}
+	
+	void Update()
+	{
+		if (GameEventManager.state == GameEventManager.GameState.GameOver)
+		{
+			if (Input.GetKey(KeyCode.KeypadEnter) || Input.GetKey(KeyCode.Space))
+			{
+				GameEventManager.TriggerRespawn();
+			}
+		}
+	}
 
 	void OnGUI()
 	{
@@ -59,27 +70,20 @@ public class Label : MonoBehaviour {
 			}
 		}
 	}
-	
-	private void OnMouseDown()
-	{
-		print ("clicked");
-		if (isRespawnBtn == true)
-		{
-			GameEventManager.TriggerRespawn();
-			print ("ok");
-		}
-	}
-	
+		
 	private void GameStart()
 	{
 		
 	}
 	private void GameOver()
 	{
-		
+	
 	}
 	private void Respawn()
 	{
-		
+		if (isRespawnBtn == true)
+		{
+			isActivated = false;
+		}
 	}
 }

@@ -32,8 +32,6 @@ public class Deadly : MonoBehaviour {
 		{
 			speed = _levMan.brickSpeed;
 			pos = gameObject.transform.position;
-			Debug.DrawRay(pos, direction, Color.cyan);
-			
 			if (pos.x == target.x && pos.y == target.y)
 			{
 				followWaypoints();
@@ -69,7 +67,7 @@ public class Deadly : MonoBehaviour {
 	
 	private void Respawn()
 	{
-		gameOver = false;
 		gameObject.transform.position = initPos;
+		gameOver = false;
 	}
 }

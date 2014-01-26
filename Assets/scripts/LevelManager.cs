@@ -5,6 +5,7 @@ using System.Collections.Generic;
 public class LevelManager : MonoBehaviour {
 
 	public float score = 0f;
+	public float bestScore = 0f;
 	public int fieldsCaptured = 0;
 	public int centSecondsElapsed;
 	public int SecondsElapsed;
@@ -15,6 +16,7 @@ public class LevelManager : MonoBehaviour {
 	public List<Waypoint> locationList = new List<Waypoint>();
 	
 	private Label scoreLabel;
+	private Label bestScoreLabel;
 	private Label besttimeLabel;
 	private Label fieldcapturedLabel;
 	private Label timeLabel;
@@ -31,6 +33,7 @@ public class LevelManager : MonoBehaviour {
 	
 		_player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
 		scoreLabel = GameObject.Find("UI/Score").GetComponent<Label>();
+		bestScoreLabel = GameObject.Find("UI/BestScore").GetComponent<Label>();
 		fieldcapturedLabel = GameObject.Find("UI/FieldsCaptured").GetComponent<Label>();
 		timeLabel = GameObject.Find("UI/Time").GetComponent<Label>();
 		besttimeLabel = GameObject.Find("UI/BestTime").GetComponent<Label>();
@@ -58,6 +61,13 @@ public class LevelManager : MonoBehaviour {
 
 		scoreLabel.text = score.ToString();
 		scoreLabel.text += " pts";
+		
+		if (score > bestScore)
+		{
+			bestScore = score;
+			bestScoreLabel.text = bestScore.ToString();
+			bestScoreLabel.text += " pts";
+		}
 	}
 	
 	public void updateScore()
@@ -91,16 +101,7 @@ public class LevelManager : MonoBehaviour {
 		_field.spawnWP = _wp;
 		_field.nextWP = _field.spawnWP.nextWP;
 		_field.transform.position = _field.spawnWP.transform.position;
-		
-		int res = Random.Range(0,1);
-		if (res == 0)
-		{
-			_field.capPoint = Fields.captureType.CapturePoint;
-		}
-		else
-		{
-			_field.capPoint = Fields.captureType.None;
-		}	
+		_field.capPoint = Fields.captureType.CapturePoint;
 	}
 	public void alimentFields()
 	{

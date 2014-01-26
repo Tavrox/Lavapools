@@ -175,7 +175,9 @@
             <filename>rock.png</filename>
             <filename>chainsaw.png</filename>
             <filename>bird.png</filename>
-            <filename>background.png</filename>
+            <filename>../prod/background.png</filename>
+            <filename>../prod/dead.png</filename>
+            <filename>capturing.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

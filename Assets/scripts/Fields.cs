@@ -50,9 +50,6 @@ public class Fields : MonoBehaviour {
 		pos = gameObject.transform.position;
 		pierce = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y+10);
 	
-		Debug.DrawRay(direction, pos, Color.red);
-		Debug.DrawRay(pos, pierce, Color.blue);
-	
 		Vector3 movingVec = new Vector3(0f,0f,0f);
 	
 		if (spr!=null && capPoint == captureType.CapturePoint && isCaptured == false)
@@ -78,6 +75,7 @@ public class Fields : MonoBehaviour {
 			isCaptured = true;
 			countCaptured = true;
 			_levMan.fieldsCaptured += 1;
+			spr.alpha = 1f;
 		}
 	}
 	
@@ -100,6 +98,7 @@ public class Fields : MonoBehaviour {
 		{
 			if (capScore < 100)
 			{
+				spr.frameName = "capturing";
 				capScore += 1;			
 			}
 		}
