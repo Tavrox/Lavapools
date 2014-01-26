@@ -31,7 +31,7 @@ public class Fields : MonoBehaviour {
 	void Start () {
 		pos = this.gameObject.transform.position;
 		spr = GetComponentInChildren<OTSprite>();
-		if (GameEventManager.state != GameEventManager.GameState.GameOver)
+		if (GameObject.FindGameObjectWithTag("Player") != null)
 		{
 			_player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
 		}
@@ -73,7 +73,7 @@ public class Fields : MonoBehaviour {
 			//Debug.Log(direction);
 			//Debug.Log(speed);
 		}
-		if (capScore == 100 && countCaptured == false)
+		if (capScore == 80 && countCaptured == false)
 		{
 			isCaptured = true;
 			countCaptured = true;

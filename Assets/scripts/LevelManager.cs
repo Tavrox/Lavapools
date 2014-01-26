@@ -10,6 +10,7 @@ public class LevelManager : MonoBehaviour {
 	public int SecondsElapsed;
 	public int bestTime;
 	public string timeString;
+	public float brickSpeed = 0.050f;
 	
 	public List<Waypoint> locationList = new List<Waypoint>();
 	
@@ -17,6 +18,9 @@ public class LevelManager : MonoBehaviour {
 	private Label besttimeLabel;
 	private Label fieldcapturedLabel;
 	private Label timeLabel;
+	private Label respawnLabel;
+	
+	private Player _player;
 
 	// Use this for initialization
 	void Start () {
@@ -25,14 +29,17 @@ public class LevelManager : MonoBehaviour {
 		GameEventManager.GameOver += GameOver;
 		GameEventManager.Respawn += Respawn;
 	
+		_player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
 		scoreLabel = GameObject.Find("UI/Score").GetComponent<Label>();
 		fieldcapturedLabel = GameObject.Find("UI/FieldsCaptured").GetComponent<Label>();
 		timeLabel = GameObject.Find("UI/Time").GetComponent<Label>();
 		besttimeLabel = GameObject.Find("UI/BestTime").GetComponent<Label>();
+		respawnLabel = GameObject.Find("UI/Respawn").GetComponent<Label>();
 	
 		InvokeRepeating("updateTime", 0f, 0.01f);
 		StartCoroutine("spawnFields");
 		InvokeRepeating("alimentFields", 10f, 8f);
+		InvokeRepeating("checkScore", 0, 10f);
 	
 	}
 	
@@ -41,6 +48,7 @@ public class LevelManager : MonoBehaviour {
 	
 		updateScore();
 		
+		Debug.LogWarning("GameState" + GameEventManager.state);
 		
 		timeLabel.text = SecondsElapsed.ToString();
 		timeLabel.text += ":";
@@ -49,11 +57,12 @@ public class LevelManager : MonoBehaviour {
 		fieldcapturedLabel.text = fieldsCaptured.ToString();
 
 		scoreLabel.text = score.ToString();
+		scoreLabel.text += " pts";
 	}
 	
 	public void updateScore()
 	{
-		score = (fieldsCaptured * 100f) + (SecondsElapsed * 5f);
+		score = (fieldsCaptured * 300f) + (SecondsElapsed * 5f);
 	}
 	public void updateTime()
 	{
@@ -69,7 +78,7 @@ public class LevelManager : MonoBehaviour {
 		}
 	}
 	public Waypoint pickRandomLoc()
-	{
+	{	
 		int _rand = Random.Range(0, 3);
 		return locationList[_rand];
 	}
@@ -98,6 +107,18 @@ public class LevelManager : MonoBehaviour {
 		respawnField();
 	}
 	
+	private void checkScore()
+	{
+		if (score > 1000)
+		{
+			brickSpeed += 0.015f;
+		}
+		if (score > 1500)
+		{
+			brickSpeed += 0.020f;
+		}
+	}
+	
 	IEnumerator spawnFields()
 	{
 		yield return new WaitForSeconds(4f);
@@ -106,16 +127,26 @@ public class LevelManager : MonoBehaviour {
 	
 	private void GameStart()
 	{
-		
+		brickSpeed = 0.050f;
+		respawnLabel.isActivated = false;
 	}
 	
 	private void GameOver()
 	{
-		
+		respawnLabel.isActivated = true;
+		CancelInvoke("updateTime");
 	}
 	
 	private void Respawn()
 	{
+		brickSpeed = 0.050f;
+		InvokeRepeating("updateTime", 0f, 0.01f);
+		respawnLabel.isActivated = false;
+		_player.enabled = true;
+		score = 0f;
+		fieldsCaptured = 0;
+		centSecondsElapsed = 0;
+		SecondsElapsed = 0;
 	
 	}
 }

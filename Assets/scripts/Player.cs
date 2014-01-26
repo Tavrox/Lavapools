@@ -37,7 +37,7 @@ public class Player : MonoBehaviour {
 		
 		if (OnPlatforms ==0)
 		{
-			Destroy (gameObject);
+			GameEventManager.TriggerGameOver();
 		}
 
 		if (Input.GetKey (KeyCode.RightArrow)) 
@@ -85,17 +85,16 @@ public class Player : MonoBehaviour {
 	
 	private void GameStart()
 	{
-	
+		enabled = true;
 	}
 	
 	private void GameOver()
 	{
-	
+		enabled = false;
 	}
 	
 	private void Respawn()
 	{
 		gameObject.transform.position = startPos;
-		print ("omg");
 	}
 }

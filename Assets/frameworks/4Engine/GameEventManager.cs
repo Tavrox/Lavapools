@@ -34,7 +34,7 @@ public static class GameEventManager {
 	}
 	
 	public static void TriggerRespawn(){
-		if(Respawn != null && state != GameState.GameOver)
+		if(Respawn != null && state != GameState.Live)
 		{
 			Debug.LogWarning("RESPAWN");
 			state = GameState.Live;

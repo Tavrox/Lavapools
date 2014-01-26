@@ -56,10 +56,23 @@
                 <key>sourceSize</key>
                 <string>{89,57}</string>
             </dict>
+            <key>dead.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{207,602},{275,117}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{275,117}}</string>
+                <key>sourceSize</key>
+                <string>{275,117}</string>
+            </dict>
             <key>field.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{207,602},{114,114}}</string>
+                <string>{{484,602},{114,114}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -72,7 +85,7 @@
             <key>player.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{323,602},{22,43}}</string>
+                <string>{{600,602},{22,43}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -85,7 +98,7 @@
             <key>rock.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{347,602},{138,139}}</string>
+                <string>{{624,602},{138,139}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -98,7 +111,7 @@
             <key>timer.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{487,602},{203,200}}</string>
+                <string>{{764,602},{203,200}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -144,7 +157,7 @@
             <key>size</key>
             <string>{1024,1024}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:dd5442990886745a0b4c42cbd242a94c:75f033b9ba45f26cb3c85a0f34f2706d:ef7663426bf705b25566a93aef3a1571$</string>
+            <string>$TexturePacker:SmartUpdate:4315b5ab0e7484235dd02e8e66328352:b8609d730751d1b70b652c0abae2c2a3:ef7663426bf705b25566a93aef3a1571$</string>
             <key>textureFileName</key>
             <string>spritesheet.png</string>
         </dict>

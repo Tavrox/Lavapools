@@ -173,9 +173,9 @@
             <filename>uncaptured.png</filename>
             <filename>captured.png</filename>
             <filename>rock.png</filename>
-            <filename>../prod/background.png</filename>
             <filename>chainsaw.png</filename>
             <filename>bird.png</filename>
+            <filename>background.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

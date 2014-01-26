@@ -12,4 +12,13 @@ public class Waypoint : MonoBehaviour {
 	}
 	public wpTypeList wpType;
 	public Waypoint nextWP;
+	
+	void OnTriggerEnter(Collider _other)
+	{
+		if (_other.GetComponent<Deadly>() != null)
+		{
+			_other.GetComponent<Deadly>().followWaypoints();
+		}
+	
+	}
 }
