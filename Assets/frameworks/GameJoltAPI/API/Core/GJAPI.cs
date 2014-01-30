@@ -887,13 +887,13 @@ public class GJAPI : MonoBehaviour
 		{
 		case LogType.Log:
 		default:
-			Debug.Log ("GJAPI: " + message);
+//			Debug.Log ("GJAPI: " + message);
 			break;
 		case LogType.Warning:
-			Debug.LogWarning ("GJAPI: " + message);
+//			Debug.LogWarning ("GJAPI: " + message);
 			break;
 		case LogType.Error:
-			Debug.LogError ("GJAPI: " + message);
+//			Debug.LogError ("GJAPI: " + message);
 			break;
 		}
 	}

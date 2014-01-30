@@ -18,6 +18,7 @@ public class Label : MonoBehaviour {
 	private float offsetY = -580f;
 	public bool isRespawnBtn = false;
 	public bool isActivated;
+	private int _depth;
 	
 	void Start()
 	{
@@ -44,6 +45,7 @@ public class Label : MonoBehaviour {
 		GUI.skin = skin;
 		if (isActivated)
 		{
+			GUI.depth = Mathf.RoundToInt(transform.position.z);
 			switch (typeList)
 			{
 				case (type.Box) :
@@ -53,18 +55,18 @@ public class Label : MonoBehaviour {
 					GUI.Box(new Rect(point.x - offsetX, Screen.currentResolution.height - point.y  + offsetY, 200, 200), text);
 					break;
 				}
-				case (type.Button) :
-				{
-					skin.button.normal.textColor = color;
-					skin.button.fontSize = size;
-					GUI.Button(new Rect(point.x - offsetX, Screen.currentResolution.height - point.y  + offsetY, 200, 200), text);
-					break;
-				}
 				case (type.Label) :
 				{
 					skin.label.normal.textColor = color;
 					skin.label.fontSize = size;
 					GUI.Label(new Rect(point.x - offsetX, Screen.currentResolution.height - point.y + offsetY , 200, 200), text);
+					break;
+				}
+				case (type.Button) :
+				{
+					skin.button.normal.textColor = color;
+					skin.button.fontSize = size;
+					GUI.Button(new Rect(point.x - offsetX, Screen.currentResolution.height - point.y  + offsetY, 200, 200), text);
 					break;
 				}
 			}
