@@ -32,11 +32,11 @@ public class LevelManager : MonoBehaviour {
 		GameEventManager.Respawn += Respawn;
 	
 		_player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
-		scoreLabel = GameObject.Find("UI/Score").GetComponent<Label>();
-		bestScoreLabel = GameObject.Find("UI/BestScore").GetComponent<Label>();
-		fieldcapturedLabel = GameObject.Find("UI/FieldsCaptured").GetComponent<Label>();
-		timeLabel = GameObject.Find("UI/Time").GetComponent<Label>();
-		besttimeLabel = GameObject.Find("UI/BestTime").GetComponent<Label>();
+		scoreLabel = GameObject.Find("UI/Ingame/Score").GetComponent<Label>();
+		bestScoreLabel = GameObject.Find("UI/Ingame/BestScore").GetComponent<Label>();
+		fieldcapturedLabel = GameObject.Find("UI/Ingame/FieldsCaptured").GetComponent<Label>();
+		timeLabel = GameObject.Find("UI/Ingame/Time").GetComponent<Label>();
+		besttimeLabel = GameObject.Find("UI/Ingame/BestTime").GetComponent<Label>();
 		respawnLabel = GameObject.Find("UI/Respawn").GetComponent<Label>();
 	
 		InvokeRepeating("updateTime", 0f, 0.01f);
@@ -51,7 +51,7 @@ public class LevelManager : MonoBehaviour {
 	
 		updateScore();
 		
-		Debug.LogWarning("GameState" + GameEventManager.state);
+//		Debug.LogWarning("GameState" + GameEventManager.state);
 		
 		timeLabel.text = SecondsElapsed.ToString();
 		timeLabel.text += ":";
