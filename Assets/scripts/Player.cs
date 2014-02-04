@@ -13,6 +13,7 @@ public class Player : MonoBehaviour {
 	public int OnPlatforms;
 	private Vector3 startPos;
 	private OTSprite spr;
+	private Vector2 originalSize;
 	
 	private RaycastHit hitInfo; //infos de collision
 	private Ray detectTargetLeft, detectTargetRight; //point de départ, direction
@@ -24,6 +25,7 @@ public class Player : MonoBehaviour {
 		{
 			spr = GetComponentInChildren<OTSprite>();
 			spr.alpha = 1f;
+			originalSize = spr.size;
 		}
 		
 		GameEventManager.GameStart += GameStart;
@@ -92,18 +94,21 @@ public class Player : MonoBehaviour {
 	private void GameStart()
 	{
 		enabled = true;
-		spr.alpha = 1f;
+		new OTTween(spr, 0.5f).Tween("alpha", 1f);
+		new OTTween(spr, 0.5f).Tween("size", new Vector2(originalSize.x,originalSize.y));
 	}
 	
 	private void GameOver()
 	{
 		enabled = false;
-		spr.alpha = 0f;
+		new OTTween(spr, 0.5f).Tween("alpha", 0f);
+		new OTTween(spr, 0.5f).Tween("size", new Vector2(0.25f,0.25f));
 	}
 	
 	private void Respawn()
 	{
 		gameObject.transform.position = startPos;
-		spr.alpha = 1f;
+		new OTTween(spr, 0.5f).Tween("alpha", 1f);
+		new OTTween(spr, 0.5f).Tween("size", new Vector2(originalSize.x,originalSize.y));
 	}
 }

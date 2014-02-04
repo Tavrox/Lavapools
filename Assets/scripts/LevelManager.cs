@@ -18,7 +18,6 @@ public class LevelManager : MonoBehaviour {
 	private Label scoreLabel;
 	private Label bestScoreLabel;
 	private Label besttimeLabel;
-	private Label fieldcapturedLabel;
 	private Label timeLabel;
 	private Label respawnLabel;
 	
@@ -34,7 +33,6 @@ public class LevelManager : MonoBehaviour {
 		_player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
 		scoreLabel = GameObject.Find("UI/Ingame/Score").GetComponent<Label>();
 		bestScoreLabel = GameObject.Find("UI/Ingame/BestScore").GetComponent<Label>();
-		fieldcapturedLabel = GameObject.Find("UI/Ingame/FieldsCaptured").GetComponent<Label>();
 		timeLabel = GameObject.Find("UI/Ingame/Time").GetComponent<Label>();
 		besttimeLabel = GameObject.Find("UI/Ingame/BestTime").GetComponent<Label>();
 		respawnLabel = GameObject.Find("UI/Respawn").GetComponent<Label>();
@@ -57,7 +55,6 @@ public class LevelManager : MonoBehaviour {
 		timeLabel.text += ":";
 		timeLabel.text += centSecondsElapsed.ToString();
 		besttimeLabel.text = bestTime.ToString();
-		fieldcapturedLabel.text = fieldsCaptured.ToString();
 
 		scoreLabel.text = score.ToString();
 		scoreLabel.text += " pts";
