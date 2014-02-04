@@ -54,15 +54,15 @@ public class Fields : MonoBehaviour {
 	
 		if (spr!=null && capPoint == captureType.CapturePoint && isCaptured == false)
 		{
-			spr.frameName = "uncaptured";
+//			spr.frameName = "uncaptured";
 		}
 		if (spr!=null && capPoint == captureType.None)
 		{
-			spr.frameName = "field";
+//			spr.frameName = "field";
 		}
 		if (spr!=null && capPoint == captureType.CapturePoint && isCaptured)
 		{
-			spr.frameName = "captured";
+//			spr.frameName = "captured";
 		}
 		if (this.gameObject.transform.position != randomTarget)
 		{
@@ -98,7 +98,7 @@ public class Fields : MonoBehaviour {
 		{
 			if (capScore < 100)
 			{
-				spr.frameName = "capturing";
+//				spr.frameName = "capturing";
 				capScore += 1;			
 			}
 		}
