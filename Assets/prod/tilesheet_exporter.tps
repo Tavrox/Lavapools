@@ -149,16 +149,16 @@
         <key>fileList</key>
         <array>
             <filename>player.png</filename>
-            <filename>rock.png</filename>
-            <filename>ui.png</filename>
-            <filename>uncaptured.png</filename>
             <filename>background.png</filename>
             <filename>bird.png</filename>
-            <filename>captured.png</filename>
-            <filename>capturing.png</filename>
             <filename>chainsaw.png</filename>
-            <filename>field.png</filename>
             <filename>ground.png</filename>
+            <filename>pan_scoring.png</filename>
+            <filename>plateform_0.png</filename>
+            <filename>plateform_1.png</filename>
+            <filename>plateform_2.png</filename>
+            <filename>plateform_3.png</filename>
+            <filename>plateform_4.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

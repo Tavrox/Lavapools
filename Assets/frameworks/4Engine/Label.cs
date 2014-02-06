@@ -14,7 +14,7 @@ public class Label : MonoBehaviour {
 		Box
 	};
 	public type typeList;
-	private float offsetX = 215f;
+	private float offsetX = 100f;
 	private float offsetY = -580f;
 	public bool isRespawnBtn = false;
 	public bool isActivated;
