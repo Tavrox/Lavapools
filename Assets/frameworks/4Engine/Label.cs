@@ -8,6 +8,7 @@ public class Label : UIThing {
 	public GUISkin skin;
 	public int size = 10;
 	public Color color;
+	private Color initColor;
 	public enum type
 	{
 		Button,
@@ -19,7 +20,6 @@ public class Label : UIThing {
 	private float offsetX = 100f;
 	private float offsetY = -580f;
 	private int _depth;
-	private Color initColor;
 
 	public bool isRespawnBtn = false;
 	public bool isActivated;
@@ -27,13 +27,9 @@ public class Label : UIThing {
 
 	public void Start()
 	{
-		initColor = color;
-		
-		if(isNotif)
-		{initColor = Color.white;}
-
 		if (isNotif)
 		{
+			initColor = Color.white;
 			color = Color.clear;
 		}
 		
@@ -89,11 +85,6 @@ public class Label : UIThing {
 	public void makeFadeIn()
 	{
 		new OTTween(this, 1f).Tween("color", initColor);
-	}
-
-	public void makeFadePingPong()
-	{
-		new OTTween(this, 1f).Tween("color", initColor).PingPong();
 	}
 		
 	public void GameStart()

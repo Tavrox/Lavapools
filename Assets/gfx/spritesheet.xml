@@ -95,88 +95,23 @@
                 <key>sourceSize</key>
                 <string>{212,94}</string>
             </dict>
-            <key>plateform_0.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{222,1084},{116,113}}</string>
-                <key>offset</key>
-                <string>{0,0}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{116,113}}</string>
-                <key>sourceSize</key>
-                <string>{116,113}</string>
-            </dict>
-            <key>plateform_1.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{343,1084},{116,113}}</string>
-                <key>offset</key>
-                <string>{0,0}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{116,113}}</string>
-                <key>sourceSize</key>
-                <string>{116,113}</string>
-            </dict>
-            <key>plateform_2.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{464,1084},{116,113}}</string>
-                <key>offset</key>
-                <string>{0,0}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{116,113}}</string>
-                <key>sourceSize</key>
-                <string>{116,113}</string>
-            </dict>
-            <key>plateform_3.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{585,1084},{116,113}}</string>
-                <key>offset</key>
-                <string>{0,0}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{116,113}}</string>
-                <key>sourceSize</key>
-                <string>{116,113}</string>
-            </dict>
-            <key>plateform_4.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{706,1084},{116,113}}</string>
-                <key>offset</key>
-                <string>{0,0}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{116,113}}</string>
-                <key>sourceSize</key>
-                <string>{116,113}</string>
-            </dict>
             <key>player.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{827,1084},{64,67}}</string>
+                <string>{{222,1084},{58,59}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{64,67}}</string>
+                <string>{{0,0},{58,59}}</string>
                 <key>sourceSize</key>
-                <string>{64,67}</string>
+                <string>{58,59}</string>
             </dict>
             <key>sq.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{896,1084},{1,1}}</string>
+                <string>{{285,1084},{1,1}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -189,7 +124,7 @@
             <key>stat_player.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{5,1202},{517,49}}</string>
+                <string>{{291,1084},{517,49}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -198,6 +133,19 @@
                 <string>{{0,0},{517,49}}</string>
                 <key>sourceSize</key>
                 <string>{517,49}</string>
+            </dict>
+            <key>title.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{5,1183},{610,110}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{610,110}}</string>
+                <key>sourceSize</key>
+                <string>{610,110}</string>
             </dict>
         </dict>
         <key>metadata</key>
@@ -209,7 +157,7 @@
             <key>size</key>
             <string>{1024,2048}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:177b1ff439b87d4667710d3b8cac9868:1/1$</string>
+            <string>$TexturePacker:SmartUpdate:84ec730f5451e0c72c0261f3f9786993:1/1$</string>
             <key>textureFileName</key>
             <string>spritesheet.png</string>
         </dict>

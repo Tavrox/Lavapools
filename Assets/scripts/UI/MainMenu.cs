@@ -5,9 +5,10 @@ using System.Collections.Generic;
 public class MainMenu : MonoBehaviour {
 	
 	private List<GameObject> listMenus;
-	private GameObject IngameUI;
-	private GameObject LeaderboardUI;
-	private GameObject RespawnUI;
+	public GameObject IngameUI;
+	public GameObject LeaderboardUI;
+	public GameObject RespawnUI;
+	public GameObject Logo;
 
 	// Use this for initialization
 	void Awake () {
@@ -19,7 +20,7 @@ public class MainMenu : MonoBehaviour {
 		IngameUI = FETool.findWithinChildren(this.gameObject, "Ingame");
 		LeaderboardUI = FETool.findWithinChildren(this.gameObject, "Leaderboard");
 		RespawnUI = FETool.findWithinChildren(this.gameObject, "Respawn");
-
+		Logo = FETool.findWithinChildren(this.gameObject, "Logo");
 
 	}
 

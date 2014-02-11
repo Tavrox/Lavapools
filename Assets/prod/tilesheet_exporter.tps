@@ -154,15 +154,11 @@
             <filename>chainsaw.png</filename>
             <filename>ground.png</filename>
             <filename>pan_scoring.png</filename>
-            <filename>plateform_0.png</filename>
-            <filename>plateform_1.png</filename>
-            <filename>plateform_2.png</filename>
-            <filename>plateform_3.png</filename>
-            <filename>plateform_4.png</filename>
             <filename>pan_timing.png</filename>
             <filename>pan_leaderboard.png</filename>
             <filename>stat_player.png</filename>
             <filename>sq.png</filename>
+            <filename>title.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

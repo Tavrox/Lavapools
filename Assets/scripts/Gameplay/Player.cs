@@ -53,7 +53,7 @@ public class Player : MonoBehaviour {
 	
 		Vector3 mod = new Vector3(0f,0f,0f);
 		pos = gameObject.transform.position;
-		print ("Platforms" + OnPlatforms);
+//		print ("Platforms" + OnPlatforms);
 		
 		if (OnPlatforms == 0 )
 		{
@@ -100,7 +100,14 @@ public class Player : MonoBehaviour {
 
 	public void triggerNotification()
 	{
-		_notif.makeFadePingPong();
+		_notif.makeFadeIn();
+		StartCoroutine(WaitFadeSec(3f));
+	}
+
+	IEnumerator WaitFadeSec(float _time)
+	{
+		yield return new WaitForSeconds(_time);
+		_notif.makeFadeOut();
 	}
 	
 	private void GameStart()

@@ -8,39 +8,47 @@ public class PhpLeaderboards : MonoBehaviour
 	public string addScoreURL = "http://4edges-games.com/games/lavapools/log.php?"; //be sure to add a ? to your url
 	public string highscoreURL = "http://4edges-games.com/games/lavapools/display.php";
 	public List<UserLeaderboard> ListUser;
-	private List<LBEntry> ListEntries;
+	public List<LBEntry> ListEntries;
 	private int lbLength =  6;
 	
-	void Start()
+	void Awake()
 	{
+//		print ("Php Lead started");
 		ListUser = new List<UserLeaderboard>();
 		ListEntries = new List<LBEntry>();
-//		ScriptableObject.CreateInstance("UserLeaderboard");
 		for (int i = 0 ; i <= 14 ; i++)
 		{
 			ListUser.Add(ScriptableObject.CreateInstance("UserLeaderboard") as UserLeaderboard);
 		}
 		for (int i = 1 ; i <= 15 ; i++)
 		{
-			GameObject _newEntry = Instantiate(Resources.Load("UI/LBEntry")) as GameObject;
-			_newEntry.gameObject.transform.parent = transform;
-			_newEntry.name = i.ToString();
-
-			LBEntry _entry = _newEntry.GetComponent<LBEntry>();
-			_entry.Rank = i.ToString();
+			ListEntries.Add(FETool.findWithinChildren(gameObject, i.ToString()).GetComponent<LBEntry>());
 		}
 		StartCoroutine(GetScores());
 	}
-
-
- 	private void updateScores()
+	
+	void OnEnable()
 	{
-
+//		print ("Enabled");
+//
+//		print (ListUser.Count);
+//		print (ListEntries.Count);
+		updateScores(ref ListUser, ref ListEntries);
+//		print (ListUser.Count);
+//		print (ListEntries.Count);
 	}
 
-	private void gatherScores()
+ 	private void updateScores(ref List<UserLeaderboard> _listLB,ref List<LBEntry> _listEntries)
 	{
-
+		for (int i = 0 ; i <= 2 ; i++)
+		{
+//			print (_listEntries.Count);
+//			print (_listLB[i].ranking.ToString());
+			_listEntries[i].Rank = _listLB[i].ranking.ToString();
+			_listEntries[i].Score = _listLB[i].userBestScore.ToString();
+			_listEntries[i].UserName = _listLB[i].userName;
+		}
+//		print ("Scores updated");
 	}
 	
 	// remember to use StartCoroutine when calling this function!
@@ -77,13 +85,13 @@ public class PhpLeaderboards : MonoBehaviour
 		else
 		{
 			string[] entries = hs_get.text.Split(']');
-			Debug.Log ("Number of Entries = " + entries.Length);
+//			Debug.Log ("Number of Entries = " + entries.Length);
 			for (int i = 0; i < entries.Length -1 ; i++)
 			{
 				ListUser[i].ranking = i;
 				ListUser[i].userName = entries[i].Split('|')[0];
-				ListUser[i].userBestScore = int.Parse(entries[i].Split('|')[1]);		
-//				print (user + score);
+				ListUser[i].userBestScore = int.Parse(entries[i].Split('|')[1]);	
+//				print (ListUser[i].ranking + ListUser[i].userName + ListUser[i].userBestScore);
 			}
 		}
 	}

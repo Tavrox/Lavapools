@@ -31,7 +31,8 @@ public class LevelBrick : MonoBehaviour {
 		_levMan = GameObject.Find("LevelManager").GetComponent<LevelManager>();
 		_bricksSpeed = _levMan.TuningDocument._dicoBricks;
 
-		
+		initPos = gameObject.transform.position;
+
 		GameEventManager.GameStart += GameStart;
 		GameEventManager.GameOver += GameOver;
 		GameEventManager.Respawn += Respawn;
@@ -59,7 +60,7 @@ public class LevelBrick : MonoBehaviour {
 	
 	private void Respawn()
 	{
-//		gameObject.transform.position = initPos;
+		gameObject.transform.position = initPos;
 //		print (initPos);
 //		enabled = true;
 	}

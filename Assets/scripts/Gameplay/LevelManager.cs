@@ -5,6 +5,9 @@ using System.Collections.Generic;
 public class LevelManager : MonoBehaviour {
 
 	public LPTuning TuningDocument;
+	
+	public static GameEventManager.GameState GAMESTATE;
+	public GameEventManager.GameState _EditorState ;
 
 	public float score = 0f;
 	public float bestScore = 0f;
@@ -23,16 +26,23 @@ public class LevelManager : MonoBehaviour {
 	private Label besttimeLabel;
 	private Label timeLabel;
 	private Label respawnLabel;
+
 	
 	private Player _player;
+	public PlayerProfile _profile;
 
 	// Use this for initialization
 	void Awake () {
+
 		_player 	= GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
 	
 		GameEventManager.GameStart += GameStart;
 		GameEventManager.GameOver += GameOver;
 		GameEventManager.Respawn += Respawn;
+
+		GAMESTATE = _EditorState;
+
+		_profile = ScriptableObject.CreateInstance("PlayerProfile") as PlayerProfile;
 
 		GameEventManager.TriggerGameStart(gameObject.name);
 
@@ -43,7 +53,21 @@ public class LevelManager : MonoBehaviour {
 		//		respawnLabel = GameObject.Find("UI/Respawn/RespawnText").GetComponent<Label>();
 		TuningDocument = FETool.setupDoc();
 		TuningDocument.initScript();
-	
+
+		switch (GAMESTATE)
+		{
+		case GameEventManager.GameState.Live :
+		{
+			GameEventManager.TriggerGameStart(name);
+			break;
+		}	
+		case GameEventManager.GameState.GameOver :
+		{
+			GameEventManager.TriggerGameOver(name);
+			break;
+		}	
+		}
+
 		InvokeRepeating("updateTime", 0f, 0.01f);
 		StartCoroutine("spawnFields");
 		InvokeRepeating("alimentFields", 10f, 8f);
@@ -57,7 +81,7 @@ public class LevelManager : MonoBehaviour {
 		updateScore();
 
 		
-		if (GameEventManager.state == GameEventManager.GameState.GameOver)
+		if (GAMESTATE == GameEventManager.GameState.GameOver)
 		{
 			if (Input.GetKey(KeyCode.KeypadEnter) || Input.GetKey(KeyCode.Space))
 			{

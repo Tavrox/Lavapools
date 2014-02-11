@@ -24,6 +24,11 @@ public class Fields : LevelBrick {
 	// Use this for initialization
 	void Start () {
 		base.Start();
+		
+		GameEventManager.GameStart += GameStart;
+		GameEventManager.GameOver += GameOver;
+		GameEventManager.Respawn += Respawn;
+
 		spr = GetComponentInChildren<OTSprite>();
 
 		if (spawnWP != null && nextWP != null)
@@ -97,10 +102,6 @@ public class Fields : LevelBrick {
 	}
 	public void OnTriggerEnter(Collider _other)
 	{
-		if (_other.CompareTag("Rock"))
-		{
-			destroyField();
-		}
 		if (_other.CompareTag("Player"))
 		{
 			_player.OnPlatforms += 1;
@@ -112,5 +113,20 @@ public class Fields : LevelBrick {
 		{
 			_player.OnPlatforms -= 1;
 		}
+	}
+
+	private void GameStart()
+	{
+		
+	}
+	
+	private void GameOver()
+	{
+		
+	}
+
+	private void Respawn()
+	{
+		DestroyImmediate(this.gameObject);
 	}
 }

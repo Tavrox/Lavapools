@@ -6,17 +6,32 @@ public class PatrolBrick : LevelBrick {
 
 	public List<Waypoint> waypoints;
 	public Waypoint currentWP;
-	
+
+	private Waypoint initWp;
+	private List<Waypoint> initWaypoints;
+
 	// Use this for initialization
 	public void Start () {
 
 		base.Start();
+		
+		GameEventManager.GameStart += GameStart;
+		GameEventManager.GameOver += GameOver;
+		GameEventManager.Respawn += Respawn;
 
-		initPos = gameObject.transform.position;
+
+		initWp = currentWP;
+		initWaypoints = waypoints;
+
+		setupTarget();
+//		followWaypoints();
+	}
+
+	private void setupTarget()
+	{
 		pos = gameObject.transform.position;
 		target = currentWP.nextWP.transform.position;
 		direction = (target - pos).normalized;
-		followWaypoints();
 	}
 	
 	// Update is called once per frame
@@ -64,5 +79,9 @@ public class PatrolBrick : LevelBrick {
 	private void Respawn()
 	{
 		gameObject.transform.position = initPos;
+		currentWP = initWp;
+		initWaypoints = waypoints;
+		setupTarget();
+		print ("resp");
 	}
 }
