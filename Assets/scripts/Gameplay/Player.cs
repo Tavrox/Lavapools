@@ -16,7 +16,7 @@ public class Player : MonoBehaviour {
 	private Vector3 startPos;
 	private OTSprite spr;
 	private Vector2 originalSize;
-	private Notification _notif;
+	private Label _notif;
 
 	private UserLeaderboard _playerSheet;
 
@@ -44,7 +44,7 @@ public class Player : MonoBehaviour {
 		GameEventManager.GameOver += GameOver;
 		GameEventManager.Respawn += Respawn;
 	
-		_notif = GetComponentInChildren<Notification>();
+		_notif = GetComponentInChildren<Label>();
 		startPos = gameObject.transform.position;
 	}
 	
@@ -100,8 +100,7 @@ public class Player : MonoBehaviour {
 
 	public void triggerNotification()
 	{
-		new OTTween(_notif, 0.5f).Tween("Color", Color.white).PingPong();
-		print ("ok");
+		_notif.makeFadePingPong();
 	}
 	
 	private void GameStart()

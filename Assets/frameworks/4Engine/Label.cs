@@ -15,14 +15,27 @@ public class Label : UIThing {
 		Box
 	};
 	public type typeList;
+
 	private float offsetX = 100f;
 	private float offsetY = -580f;
+	private int _depth;
+	private Color initColor;
+
 	public bool isRespawnBtn = false;
 	public bool isActivated;
-	private int _depth;
+	public bool isNotif;
 
 	public void Start()
 	{
+		initColor = color;
+		
+		if(isNotif)
+		{initColor = Color.white;}
+
+		if (isNotif)
+		{
+			color = Color.clear;
+		}
 		
 		GameEventManager.GameStart += GameStart;
 		GameEventManager.GameOver += GameOver;
@@ -66,6 +79,21 @@ public class Label : UIThing {
 				}
 			}
 		}
+	}
+
+	public void makeFadeOut()
+	{
+		new OTTween(this, 1f).Tween("color", Color.clear);
+	}
+
+	public void makeFadeIn()
+	{
+		new OTTween(this, 1f).Tween("color", initColor);
+	}
+
+	public void makeFadePingPong()
+	{
+		new OTTween(this, 1f).Tween("color", initColor).PingPong();
 	}
 		
 	public void GameStart()
