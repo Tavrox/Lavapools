@@ -2,19 +2,23 @@
 using System.Collections;
 
 public class Player : MonoBehaviour {
+	
+	[HideInInspector] public LevelManager _levMan;
+	[HideInInspector] public LPTuning TuningDocument;
+	[HideInInspector] public int OnPlatforms;
 
 	private float speed = 0.1f;
-	public bool safe = true;
 	private RaycastHit hit;
 	private Vector3 pos;
 	private int layer;
 	private int layerMask;
 	private Bounds rect;
-	public int OnPlatforms;
 	private Vector3 startPos;
 	private OTSprite spr;
 	private Vector2 originalSize;
-	private Label notification;
+	private Notification _notif;
+
+	private UserLeaderboard _playerSheet;
 
 	public string playerName;
 	
@@ -30,12 +34,17 @@ public class Player : MonoBehaviour {
 			spr.alpha = 1f;
 			originalSize = spr.size;
 		}
+		_levMan = GameObject.Find("LevelManager").GetComponent<LevelManager>();
+		_playerSheet = ScriptableObject.CreateInstance("UserLeaderboard") as UserLeaderboard;
+		_playerSheet.name = playerName;
+		TuningDocument = _levMan.TuningDocument;
+		speed = TuningDocument.Player_Speed;
 		
 		GameEventManager.GameStart += GameStart;
 		GameEventManager.GameOver += GameOver;
 		GameEventManager.Respawn += Respawn;
 	
-		notification = GetComponentInChildren<Label>();
+		_notif = GetComponentInChildren<Notification>();
 		startPos = gameObject.transform.position;
 	}
 	
@@ -44,6 +53,7 @@ public class Player : MonoBehaviour {
 	
 		Vector3 mod = new Vector3(0f,0f,0f);
 		pos = gameObject.transform.position;
+		print ("Platforms" + OnPlatforms);
 		
 		if (OnPlatforms == 0 )
 		{
@@ -85,31 +95,34 @@ public class Player : MonoBehaviour {
 		{
 			mod.x =0f;
 		}
-		
-		if (Input.GetKey (KeyCode.A)) 
-		{
-			GameEventManager.TriggerRespawn();
-		}
-		this.gameObject.transform.position += mod;
+		this.gameObject.transform.position += mod * Time.deltaTime;
 	}
 
 	public void triggerNotification()
 	{
-		new OTTween(notification, 0.5f).Tween("Color", Color.white).PingPong();
+		new OTTween(_notif, 0.5f).Tween("Color", Color.white).PingPong();
+		print ("ok");
 	}
 	
 	private void GameStart()
 	{
-		enabled = true;
 		new OTTween(spr, 0.5f).Tween("alpha", 1f);
 		new OTTween(spr, 0.5f).Tween("size", new Vector2(originalSize.x,originalSize.y));
+		OnPlatforms = 0;
 	}
 	
 	private void GameOver()
 	{
-		enabled = false;
-		new OTTween(spr, 0.5f).Tween("alpha", 0f);
-		new OTTween(spr, 0.5f).Tween("size", new Vector2(0.25f,0.25f));
+		if (FEDebug.GodMode != true)
+		{
+			new OTTween(spr, 0.5f).Tween("alpha", 0f);
+			new OTTween(spr, 0.5f).Tween("size", new Vector2(0.25f,0.25f));
+			OnPlatforms = 0;
+		}
+		else
+		{
+			Debug.Log("God Mode is activated");
+		}
 	}
 	
 	private void Respawn()
@@ -117,5 +130,6 @@ public class Player : MonoBehaviour {
 		gameObject.transform.position = startPos;
 		new OTTween(spr, 0.5f).Tween("alpha", 1f);
 		new OTTween(spr, 0.5f).Tween("size", new Vector2(originalSize.x,originalSize.y));
+		OnPlatforms = 0;
 	}
 }

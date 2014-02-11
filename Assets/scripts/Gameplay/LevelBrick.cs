@@ -13,12 +13,12 @@ public class LevelBrick : MonoBehaviour {
 	};
 	public typeList type;
 	public float speed;
+
 	[HideInInspector] public Vector3 direction;
 	[HideInInspector] public Vector3 target;
 	[HideInInspector] public Vector3 pos;
 	[HideInInspector] public Vector3 initPos;
 	[HideInInspector] public LevelManager _levMan;
-	[HideInInspector] public LPTuning TuningDocument;
 	public Dictionary<LevelBrick.typeList, float> _bricksSpeed = new Dictionary<LevelBrick.typeList, float>();
 	public int brickId;
 	[HideInInspector] public Player _player;
@@ -29,8 +29,12 @@ public class LevelBrick : MonoBehaviour {
 
 		_player = GameObject.Find("Player").GetComponent<Player>();
 		_levMan = GameObject.Find("LevelManager").GetComponent<LevelManager>();
-		TuningDocument = _levMan.TuningDocument;
-		_bricksSpeed = TuningDocument._dicoBricks;
+		_bricksSpeed = _levMan.TuningDocument._dicoBricks;
+
+		
+		GameEventManager.GameStart += GameStart;
+		GameEventManager.GameOver += GameOver;
+		GameEventManager.Respawn += Respawn;
 
 		speed = getSpeed(this, _bricksSpeed);
 	}
@@ -40,5 +44,23 @@ public class LevelBrick : MonoBehaviour {
 		float res = 0f;
 		res = _dico[_brick.type];
 		return res;
+	}
+
+	private void GameStart()
+	{
+//		initPos = gameObject.transform.position;
+//		enabled = true;
+	}
+	
+	private void GameOver()
+	{
+//		enabled = false;
+	}
+	
+	private void Respawn()
+	{
+//		gameObject.transform.position = initPos;
+//		print (initPos);
+//		enabled = true;
 	}
 }

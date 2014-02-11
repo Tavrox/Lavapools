@@ -159,6 +159,10 @@
             <filename>plateform_2.png</filename>
             <filename>plateform_3.png</filename>
             <filename>plateform_4.png</filename>
+            <filename>pan_timing.png</filename>
+            <filename>pan_leaderboard.png</filename>
+            <filename>stat_player.png</filename>
+            <filename>sq.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

@@ -9,7 +9,7 @@ public class Procedural : MonoBehaviour {
 	// Use this for initialization
 	void Awake () {
 		_levMan = GameObject.Find("LevelManager").GetComponent<LevelManager>();
-		InvokeRepeating("checkScore", 0f, 3f);
+//		InvokeRepeating("checkScore", 0f, 3f);
 	
 	}
 

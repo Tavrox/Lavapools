@@ -15,13 +15,21 @@ public class LPTuning : ScriptableObject {
 	public int Leaderboard_Number = 15;
 	public Dictionary<LevelBrick.typeList, float> _dicoBricks = new Dictionary<LevelBrick.typeList, float>();
 
+	public Color ColPlayer;
+	public Color ColRank;
+	public Color ColScore;
+
 
 	// Use this for initialization
 	public void initScript () {
 		_dicoBricks.Add(LevelBrick.typeList.Bird, Bird_Speed);
 		_dicoBricks.Add(LevelBrick.typeList.Fields, Fields_Speed);
 		_dicoBricks.Add(LevelBrick.typeList.Chainsaw, Chainsaw_Speed);	
-		_dicoBricks.Add(LevelBrick.typeList.ImmovableGround, Immovable_Speed);	
+		_dicoBricks.Add(LevelBrick.typeList.ImmovableGround, Immovable_Speed);
+
+		ColPlayer = Color.cyan;
+		ColRank = Color.white;
+		ColScore = Color.yellow;
 	}
 
 	public float setupSpeed(LevelBrick _brick)

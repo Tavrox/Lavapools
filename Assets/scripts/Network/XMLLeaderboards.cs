@@ -20,32 +20,32 @@ public class XMLLeaderboards : MonoBehaviour {
 		url = "http://4edges-games.com/games/lavapools/leaderboard.xml";
 		www = new WWW(url);
 		yield return www;
-
-		XmlWriter _writer = XmlWriter.Create("lol.xml");
-		_writer.WriteComment("prout man");
-
-		scoreLines = new Label[10];
-		scoreLines = GetComponentsInChildren<Label>();
-		if (www.error == null && www.isDone)
-		{
-			xmlDoc = new XmlDocument();
-			xmlDoc.LoadXml(www.text);
-		
-			xmlDoc.CreateElement("lol");
-			_writer.WriteRaw("OMAGAD");
-			xmlDoc.Save(_writer);
-
-			scoreNodes = xmlDoc.SelectNodes("leaderboard/mode");
-			writeInLeaderboard(xmlDoc, scoreNodes);
-			listLb = getUsersData(scoreNodes);
-			InvokeRepeating("updateLb", 1f, 30f);
-			sortLeaderboard(ref listLb, lbLength);
-			displayLeaderboard(listLb, ref scoreLines);
-		}
-		else
-		{
-			print (www.error);
-		}
+//
+//		XmlWriter _writer = XmlWriter.Create("lol.xml");
+//		_writer.WriteComment("prout man");
+//
+//		scoreLines = new Label[10];
+//		scoreLines = GetComponentsInChildren<Label>();
+//		if (www.error == null && www.isDone)
+//		{
+//			xmlDoc = new XmlDocument();
+//			xmlDoc.LoadXml(www.text);
+//		
+//			xmlDoc.CreateElement("lol");
+//			_writer.WriteRaw("OMAGAD");
+//			xmlDoc.Save(_writer);
+//
+//			scoreNodes = xmlDoc.SelectNodes("leaderboard/mode");
+//			writeInLeaderboard(xmlDoc, scoreNodes);
+//			listLb = getUsersData(scoreNodes);
+//			InvokeRepeating("updateLb", 1f, 30f);
+//			sortLeaderboard(ref listLb, lbLength);
+//			displayLeaderboard(listLb, ref scoreLines);
+//		}
+//		else
+//		{
+//			print (www.error);
+//		}
 //		_scoreNodes = xmlDoc.SelectNodes("dialogs/dialog");
 //		_scoreNodes = xmlDoc.SelectNodes("dialogs/dialog");
 	}
@@ -58,30 +58,30 @@ public class XMLLeaderboards : MonoBehaviour {
 	public List<UserLeaderboard> getUsersData(XmlNodeList _nodelist)
 	{
 		List<UserLeaderboard> listUser = new List<UserLeaderboard>();
-		foreach (XmlNode node in _nodelist)
-		{
-			foreach (XmlNode _childNode in node.ChildNodes)
-			{
-//				UserLeaderboard _usr = new UserLeaderboard();
-				UserLeaderboard _usr = (UserLeaderboard)ScriptableObject.CreateInstance("UserLeaderboard");
-				
-				_usr.name 		= 			_childNode.SelectSingleNode("name").InnerText;
-				_usr.userID 	= int.Parse(_childNode.Attributes.GetNamedItem("id").Value);
-				_usr.userName	= 			_childNode.SelectSingleNode("name").InnerText;
-				_usr.userScore 	= int.Parse(_childNode.SelectSingleNode("score").InnerText);
-				_usr.timestamp 	= 			_childNode.SelectSingleNode("timestamp").InnerText;
-				if (node.Attributes.GetNamedItem("type").Value == GameModes.gameTypeList.Arcade.ToString())
-				{
-					_usr.typeReg = GameModes.gameTypeList.Arcade;
-				}
-				if (node.Attributes.GetNamedItem("type").Value == GameModes.gameTypeList.Story.ToString())
-				{
-					_usr.typeReg = GameModes.gameTypeList.Story;
-				}
-
-				listUser.Add(_usr);
-			}
-		}
+//		foreach (XmlNode node in _nodelist)
+//		{
+//			foreach (XmlNode _childNode in node.ChildNodes)
+//			{
+////				UserLeaderboard _usr = new UserLeaderboard();
+//				UserLeaderboard _usr = (UserLeaderboard)ScriptableObject.CreateInstance("UserLeaderboard");
+//				
+//				_usr.name 		= 			_childNode.SelectSingleNode("name").InnerText;
+//				_usr.userID 	= int.Parse(_childNode.Attributes.GetNamedItem("id").Value);
+//				_usr.userName	= 			_childNode.SelectSingleNode("name").InnerText;
+//				_usr.userBestScore 	= int.Parse(_childNode.SelectSingleNode("score").InnerText);
+//				_usr.timestamp 	= 			_childNode.SelectSingleNode("timestamp").InnerText;
+//				if (node.Attributes.GetNamedItem("type").Value == GameModes.gameTypeList.Arcade.ToString())
+//				{
+//					_usr.typeReg = GameModes.gameTypeList.Arcade;
+//				}
+//				if (node.Attributes.GetNamedItem("type").Value == GameModes.gameTypeList.Story.ToString())
+//				{
+//					_usr.typeReg = GameModes.gameTypeList.Story;
+//				}
+//
+//				listUser.Add(_usr);
+//			}
+//		}
 		return listUser;
 	}
 
@@ -94,7 +94,7 @@ public class XMLLeaderboards : MonoBehaviour {
 		}
 		for (int i = 0; i <= _lengthLb - 1; i++)
 		{
-			_lines[i].text = _listLb[i].ranking + " - " + _listLb[i].userName + " - " + _listLb[i].userScore;
+			_lines[i].text = _listLb[i].ranking + " - " + _listLb[i].userName + " - " + _listLb[i].userBestScore;
 		}
 	}
 
@@ -104,8 +104,8 @@ public class XMLLeaderboards : MonoBehaviour {
 
 		_listLb.Sort(delegate (UserLeaderboard x, UserLeaderboard y)
      	{
-			if (x.userScore > y.userScore) return -1;
-			if (x.userScore < y.userScore) return 1;
+			if (x.userBestScore > y.userBestScore) return -1;
+			if (x.userBestScore < y.userBestScore) return 1;
 			else return 0;
 		});
 

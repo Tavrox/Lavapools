@@ -7,14 +7,40 @@ public class PhpLeaderboards : MonoBehaviour
 	private string secretKey = "lavapools014.."; // Edit this value and make sure it's the same as the one stored on the server
 	public string addScoreURL = "http://4edges-games.com/games/lavapools/log.php?"; //be sure to add a ? to your url
 	public string highscoreURL = "http://4edges-games.com/games/lavapools/display.php";
-	public List<UserLeaderboard> listLb;
-	private Label[] scoreLines;
+	public List<UserLeaderboard> ListUser;
+	private List<LBEntry> ListEntries;
 	private int lbLength =  6;
 	
 	void Start()
 	{
+		ListUser = new List<UserLeaderboard>();
+		ListEntries = new List<LBEntry>();
+//		ScriptableObject.CreateInstance("UserLeaderboard");
+		for (int i = 0 ; i <= 14 ; i++)
+		{
+			ListUser.Add(ScriptableObject.CreateInstance("UserLeaderboard") as UserLeaderboard);
+		}
+		for (int i = 1 ; i <= 15 ; i++)
+		{
+			GameObject _newEntry = Instantiate(Resources.Load("UI/LBEntry")) as GameObject;
+			_newEntry.gameObject.transform.parent = transform;
+			_newEntry.name = i.ToString();
 
+			LBEntry _entry = _newEntry.GetComponent<LBEntry>();
+			_entry.Rank = i.ToString();
+		}
 		StartCoroutine(GetScores());
+	}
+
+
+ 	private void updateScores()
+	{
+
+	}
+
+	private void gatherScores()
+	{
+
 	}
 	
 	// remember to use StartCoroutine when calling this function!
@@ -50,28 +76,26 @@ public class PhpLeaderboards : MonoBehaviour
 		}
 		else
 		{
-			string[] line = hs_get.text.Split("|"[0]);
-			foreach (string _char in line)
+			string[] entries = hs_get.text.Split(']');
+			Debug.Log ("Number of Entries = " + entries.Length);
+			for (int i = 0; i < entries.Length -1 ; i++)
 			{
-				string result = "" +_char;
-				string[] user = result.Split("/"[0]);
-				foreach (string __char in user)
-				{
-
-				}
+				ListUser[i].ranking = i;
+				ListUser[i].userName = entries[i].Split('|')[0];
+				ListUser[i].userBestScore = int.Parse(entries[i].Split('|')[1]);		
+//				print (user + score);
 			}
-			FETool.findWithinChildren(this.gameObject, "Score01").GetComponent<Label>().text = hs_get.text; // this is a GUIText that will display the scores in game.
 		}
 	}
-
+	
 	public void sortLeaderboard(ref List<UserLeaderboard> _listLb, int length)
 	{
 		length = lbLength;
 		
 		_listLb.Sort(delegate (UserLeaderboard x, UserLeaderboard y)
 		             {
-			if (x.userScore > y.userScore) return -1;
-			if (x.userScore < y.userScore) return 1;
+			if (x.userBestScore > y.userBestScore) return -1;
+			if (x.userBestScore < y.userBestScore) return 1;
 			else return 0;
 		});
 		
@@ -94,7 +118,7 @@ public class PhpLeaderboards : MonoBehaviour
 		}
 		for (int i = 0; i <= _lengthLb - 1; i++)
 		{
-			_lines[i].text = _listLb[i].ranking + " - " + _listLb[i].userName + " - " + _listLb[i].userScore;
+			_lines[i].text = _listLb[i].ranking + " - " + _listLb[i].userName + " - " + _listLb[i].userBestScore;
 		}
 	}
 	

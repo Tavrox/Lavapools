@@ -2,7 +2,8 @@
 using System.Collections;
 [ExecuteInEditMode]
 
-public class Label : MonoBehaviour {
+public class Label : UIThing {
+
 	public string text = "Label";
 	public GUISkin skin;
 	public int size = 10;
@@ -19,8 +20,8 @@ public class Label : MonoBehaviour {
 	public bool isRespawnBtn = false;
 	public bool isActivated;
 	private int _depth;
-	
-	void Start()
+
+	public void Start()
 	{
 		
 		GameEventManager.GameStart += GameStart;
@@ -30,13 +31,7 @@ public class Label : MonoBehaviour {
 	
 	void Update()
 	{
-		if (GameEventManager.state == GameEventManager.GameState.GameOver)
-		{
-			if (Input.GetKey(KeyCode.KeypadEnter) || Input.GetKey(KeyCode.Space))
-			{
-				GameEventManager.TriggerRespawn();
-			}
-		}
+
 	}
 
 	void OnGUI()
@@ -58,7 +53,7 @@ public class Label : MonoBehaviour {
 				case (type.Label) :
 				{
 					skin.label.normal.textColor = color;
-					skin.label.fontSize = size;
+					this.skin.label.fontSize = size;
 					GUI.Label(new Rect(point.x - offsetX, Screen.currentResolution.height - point.y + offsetY , 200, 200), text);
 					break;
 				}
@@ -73,15 +68,15 @@ public class Label : MonoBehaviour {
 		}
 	}
 		
-	private void GameStart()
+	public void GameStart()
 	{
 		
 	}
-	private void GameOver()
+	public void GameOver()
 	{
 	
 	}
-	private void Respawn()
+	public void Respawn()
 	{
 		if (isRespawnBtn == true)
 		{

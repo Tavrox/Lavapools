@@ -11,21 +11,20 @@ public class MainMenu : MonoBehaviour {
 
 	// Use this for initialization
 	void Awake () {
+		
+		GameEventManager.GameStart += GameStart;
+		GameEventManager.GameOver += GameOver;
+		GameEventManager.Respawn += Respawn;
 
 		IngameUI = FETool.findWithinChildren(this.gameObject, "Ingame");
 		LeaderboardUI = FETool.findWithinChildren(this.gameObject, "Leaderboard");
 		RespawnUI = FETool.findWithinChildren(this.gameObject, "Respawn");
 
-		LeaderboardUI.gameObject.SetActive(false);
-		RespawnUI.gameObject.SetActive(false);
 
 	}
 
 	void Start()
 	{
-		
-//		LeaderboardUI.gameObject.SetActive(true);
-//		RespawnUI.gameObject.SetActive(true);
 
 	}
 
@@ -53,5 +52,35 @@ public class MainMenu : MonoBehaviour {
 		}
 		*/
 		return childrenList;
+	}
+
+	public void MakeFadeOut(UIThing _thing)
+	{
+		StartCoroutine(CoFadeOut(_thing));
+	}
+
+	IEnumerator CoFadeOut(UIThing _thing)
+	{
+		yield return new WaitForSeconds(2f);
+		_thing.gameObject.SetActive(false);
+	}
+
+	private void GameStart()
+	{
+		LeaderboardUI.gameObject.SetActive(false);
+		RespawnUI.gameObject.SetActive(false);
+	}
+	
+	private void GameOver()
+	{
+		
+		LeaderboardUI.gameObject.SetActive(true);
+		RespawnUI.gameObject.SetActive(true);
+	}
+	
+	private void Respawn()
+	{
+		LeaderboardUI.gameObject.SetActive(false);
+		RespawnUI.gameObject.SetActive(false);
 	}
 }

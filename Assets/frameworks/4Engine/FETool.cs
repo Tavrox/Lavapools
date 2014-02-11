@@ -3,12 +3,21 @@ using System.Collections;
 
 public class FETool : MonoBehaviour {
 
+	public static LPTuning TuningDoc;
+
+	public static LPTuning setupDoc()
+	{
+		TuningDoc = Resources.Load("LPTuning") as LPTuning;
+		return TuningDoc;
+	}
+
+
 	public static GameObject findWithinChildren(GameObject _go, string _fetch)
 	{
 		GameObject result = GameObject.Find(_go.name + "/" + _fetch);
 		if (result == null)
 		{Debug.LogWarning("The object "+  _fetch + " couldn't be found.");
-			return new GameObject(_fetch + "NOTFOUND");
+			return new GameObject(_fetch + "NOT FOUND" + "CALLER IS " + _go.name);
 		}
 		return result;
 	}
@@ -68,7 +77,7 @@ public class FETool : MonoBehaviour {
 		System.Text.UTF8Encoding ue = new System.Text.UTF8Encoding();
 		byte[] bytes = ue.GetBytes(strToEncrypt);
 		
-		// encrypt bytes
+		// encrypt bytess
 		System.Security.Cryptography.MD5CryptoServiceProvider md5 = new System.Security.Cryptography.MD5CryptoServiceProvider();
 		byte[] hashBytes = md5.ComputeHash(bytes);
 		
@@ -82,6 +91,5 @@ public class FETool : MonoBehaviour {
 		
 		return hashString.PadLeft(32, '0');
 	}
-
 
 }

@@ -8,7 +8,8 @@ public class SubMenu : MonoBehaviour {
 	{
 		Ingame,
 		Leaderboards,
-		Levels
+		Levels,
+		Respawn
 	}
 	public submenus subMenuList;
 	[HideInInspector] public List<GameObject> menuThings;
@@ -26,6 +27,23 @@ public class SubMenu : MonoBehaviour {
 
 	void OnEnable()
 	{
+		switch (subMenuList)
+		{
+		case (submenus.Ingame):
+		{
+			break;
+		}
+		case (submenus.Leaderboards):
+		{
+			break;
+		}
+		case (submenus.Respawn):
+		{
+			break;
+		}
+
+
+		}
 //		print (name + "Enabled");
 	}
 

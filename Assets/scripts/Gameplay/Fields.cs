@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Fields : PatrolBrick {
+public class Fields : LevelBrick {
 
 	public enum captureType
 	{
@@ -25,6 +25,7 @@ public class Fields : PatrolBrick {
 	void Start () {
 		base.Start();
 		spr = GetComponentInChildren<OTSprite>();
+
 		if (spawnWP != null && nextWP != null)
 		{
 			target = nextWP.transform.position;
@@ -42,7 +43,7 @@ public class Fields : PatrolBrick {
 	
 		Vector3 movingVec = new Vector3(0f,0f,0f);
 	
-		if (spr!=null && capPoint == captureType.CapturePoint && isCaptured == false)
+		if (spr!=null && isCaptured == false)
 		{
 //			spr.frameName = "uncaptured";
 		}
@@ -50,7 +51,7 @@ public class Fields : PatrolBrick {
 		{
 //			spr.frameName = "field";
 		}
-		if (spr!=null && capPoint == captureType.CapturePoint && isCaptured)
+		if (spr!=null && isCaptured == true)
 		{
 //			spr.frameName = "captured";
 		}

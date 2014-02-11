@@ -28,18 +28,20 @@ public class LevelManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Awake () {
+		_player 	= GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
 	
 		GameEventManager.GameStart += GameStart;
 		GameEventManager.GameOver += GameOver;
 		GameEventManager.Respawn += Respawn;
 
-		_player 	= GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+		GameEventManager.TriggerGameStart(gameObject.name);
+
 		scoreLabel 	= GameObject.Find("UI/Ingame/ScoreDisplayParent/Score").GetComponent<Label>();
 		bestScoreLabel = GameObject.Find("UI/Ingame/ScoreDisplayParent/BestScore").GetComponent<Label>();
 		timeLabel = GameObject.Find("UI/Ingame/TimeDisplayParent/Time").GetComponent<Label>();
 		besttimeLabel = GameObject.Find("UI/Ingame/TimeDisplayParent/BestTime").GetComponent<Label>();
-//		respawnLabel = GameObject.Find("UI/Respawn/RespawnText").GetComponent<Label>();
-		TuningDocument = Resources.Load("Editor/LPTuning") as LPTuning;
+		//		respawnLabel = GameObject.Find("UI/Respawn/RespawnText").GetComponent<Label>();
+		TuningDocument = FETool.setupDoc();
 		TuningDocument.initScript();
 	
 		InvokeRepeating("updateTime", 0f, 0.01f);
@@ -53,6 +55,15 @@ public class LevelManager : MonoBehaviour {
 	void Update () {
 	
 		updateScore();
+
+		
+		if (GameEventManager.state == GameEventManager.GameState.GameOver)
+		{
+			if (Input.GetKey(KeyCode.KeypadEnter) || Input.GetKey(KeyCode.Space))
+			{
+				GameEventManager.TriggerRespawn(gameObject.name);
+			}
+		}
 		
 //		Debug.LogWarning("GameState" + GameEventManager.state);
 		
@@ -107,7 +118,10 @@ public class LevelManager : MonoBehaviour {
 	}
 	public void alimentFields()
 	{
-		respawnField();
+		if (GameEventManager.gameOver != true)
+		{
+			respawnField();
+		}
 	}
 	
 	private void checkScore()
@@ -131,12 +145,14 @@ public class LevelManager : MonoBehaviour {
 	private void GameStart()
 	{
 		brickSpeed = 0.050f;
+		_player.gameObject.SetActive(true);
 //		respawnLabel.isActivated = false;
 	}
 	
 	private void GameOver()
 	{
-//		respawnLabel.isActivated = true;
+		//		respawnLabel.isActivated = true;
+		_player.gameObject.SetActive(false);
 		CancelInvoke("updateTime");
 	}
 	
@@ -145,7 +161,7 @@ public class LevelManager : MonoBehaviour {
 		brickSpeed = 2.50f;
 		InvokeRepeating("updateTime", 0f, 0.01f);
 //		respawnLabel.isActivated = false;
-		_player.enabled = true;
+		_player.gameObject.SetActive(true);
 		score = 0f;
 		fieldsCaptured = 0;
 		centSecondsElapsed = 0;
