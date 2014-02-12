@@ -22,7 +22,7 @@
         <key>dataFormat</key>
         <string>cocos2d</string>
         <key>textureFileName</key>
-        <filename>../gfx/player.png</filename>
+        <filename>../gfx/bird.png</filename>
         <key>flipPVR</key>
         <false/>
         <key>ditherType</key>
@@ -111,7 +111,7 @@
             <enum type="AndEngine::MagFilter">MagLinear</enum>
         </struct>
         <key>dataFileName</key>
-        <filename>../gfx/player.xml</filename>
+        <filename>../gfx/bird.xml</filename>
         <key>multiPack</key>
         <false/>
         <key>mainExtension</key>
@@ -147,7 +147,20 @@
             <false/>
         </struct>
         <key>fileList</key>
-        <array/>
+        <array>
+            <filename>ptero06flight.png</filename>
+            <filename>ptero07flight.png</filename>
+            <filename>ptero08flight.png</filename>
+            <filename>ptero09flight.png</filename>
+            <filename>ptero10flight.png</filename>
+            <filename>ptero11flight.png</filename>
+            <filename>ptero00flight.png</filename>
+            <filename>ptero01flight.png</filename>
+            <filename>ptero02flight.png</filename>
+            <filename>ptero03flight.png</filename>
+            <filename>ptero04flight.png</filename>
+            <filename>ptero05flight.png</filename>
+        </array>
         <key>ignoreFileList</key>
         <array/>
         <key>replaceList</key>

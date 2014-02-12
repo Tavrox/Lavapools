@@ -19,15 +19,16 @@ public class PatrolBrick : LevelBrick {
 		GameEventManager.GameOver += GameOver;
 		GameEventManager.Respawn += Respawn;
 
-
+	}
+	
+	
+	public void saveWaypoints()
+	{
 		initWp = currentWP;
 		initWaypoints = waypoints;
-
-		setupTarget();
-//		followWaypoints();
 	}
 
-	private void setupTarget()
+	public void setupTarget()
 	{
 		pos = gameObject.transform.position;
 		target = currentWP.nextWP.transform.position;

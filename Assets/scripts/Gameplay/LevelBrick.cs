@@ -20,14 +20,21 @@ public class LevelBrick : MonoBehaviour {
 	[HideInInspector] public Vector3 initPos;
 	[HideInInspector] public LevelManager _levMan;
 	public Dictionary<LevelBrick.typeList, float> _bricksSpeed = new Dictionary<LevelBrick.typeList, float>();
-	public int brickId;
+	[HideInInspector] public int brickId;
 	[HideInInspector] public Player _player;
 
 	public void Start()
 	{
-		gameObject.name += brickId;
+		if (gameObject.name.Contains("/"))
+		{
+			brickId = int.Parse(gameObject.name.Split('/')[1]);
+			print (brickId);
+		}
 
-		_player = GameObject.Find("Player").GetComponent<Player>();
+		if (GameObject.Find("Player").GetComponent<Player>() != null)
+		{
+			_player = GameObject.Find("Player").GetComponent<Player>();
+		}
 		_levMan = GameObject.Find("LevelManager").GetComponent<LevelManager>();
 		_bricksSpeed = _levMan.TuningDocument._dicoBricks;
 

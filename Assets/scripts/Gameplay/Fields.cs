@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Fields : LevelBrick {
+public class Fields : PatrolBrick {
 
 	public enum captureType
 	{
@@ -20,6 +20,8 @@ public class Fields : LevelBrick {
 	private Vector3 randomTarget = new Vector3(0f,0f,0f);
 	private int capScore;
 
+	private FieldAnims _anims;
+
 
 	// Use this for initialization
 	void Start () {
@@ -29,15 +31,10 @@ public class Fields : LevelBrick {
 		GameEventManager.GameOver += GameOver;
 		GameEventManager.Respawn += Respawn;
 
-		spr = GetComponentInChildren<OTSprite>();
+		_anims = gameObject.AddComponent<FieldAnims>();
 
-		if (spawnWP != null && nextWP != null)
-		{
-			target = nextWP.transform.position;
-			direction = (target - pos).normalized;
-			Destroy(gameObject, 8f);
-		}
 		_levMan = GameObject.Find("LevelManager").GetComponent<LevelManager>();
+		setupTarget();
 		//InvokeRepeating("changeTarget", 3f, 6f);
 	}
 	
@@ -47,24 +44,11 @@ public class Fields : LevelBrick {
 		pierce = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y+10);
 	
 		Vector3 movingVec = new Vector3(0f,0f,0f);
-	
-		if (spr!=null && isCaptured == false)
-		{
-//			spr.frameName = "uncaptured";
-		}
-		if (spr!=null && capPoint == captureType.None)
-		{
-//			spr.frameName = "field";
-		}
-		if (spr!=null && isCaptured == true)
-		{
-//			spr.frameName = "captured";
-		}
+
 		if (this.gameObject.transform.position != randomTarget)
 		{
 			gameObject.transform.position += new Vector3 ( speed * direction.x * Time.deltaTime, speed * direction.y * Time.deltaTime, 0f);
-			//Debug.Log(direction);
-			//Debug.Log(speed);
+
 		}
 		if (capScore == 80 && countCaptured == false)
 		{
@@ -80,13 +64,6 @@ public class Fields : LevelBrick {
 	{
 		randomTarget = _levMan.pickRandomLoc().gameObject.transform.position;
 		direction = (gameObject.transform.position - randomTarget).normalized;
-	}
-	
-	public void destroyField()
-	{
-		new OTTween(spr, 3f).Tween("size",  new Vector2(0f,0f));
-		Destroy(this.gameObject, 3f);
-		_levMan.respawnField();
 	}
 	
 	public void OnTriggerStay(Collider _other)

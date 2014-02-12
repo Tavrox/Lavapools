@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-[ExecuteInEditMode]
+//[ExecuteInEditMode]
 
 public class LBEntry : UIThing {
 

@@ -12,6 +12,14 @@ public class Waypoint : MonoBehaviour {
 	}
 	public wpTypeList wpType;
 	public Waypoint nextWP;
+	public LevelBrick.typeList BrickType;
+//	public LevelBrick.type BrickType;
+	public string OwnerID;
+
+	void Start()
+	{
+		GameObject.Find("LevelManager/LevelBricks/Bricks" + BrickType.ToString()+ OwnerID);
+	}
 	
 	void OnTriggerEnter(Collider _other)
 	{

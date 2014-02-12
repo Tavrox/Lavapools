@@ -17,6 +17,14 @@ public class Player : MonoBehaviour {
 	private OTSprite spr;
 	private Vector2 originalSize;
 	private Label _notif;
+	private PlayerAnims _anims;
+
+	[HideInInspector] public enum playerState
+	{
+		Walk,
+		Static
+	};
+	[HideInInspector] public playerState _state;
 
 	private UserLeaderboard _playerSheet;
 
@@ -43,8 +51,12 @@ public class Player : MonoBehaviour {
 		GameEventManager.GameStart += GameStart;
 		GameEventManager.GameOver += GameOver;
 		GameEventManager.Respawn += Respawn;
+
+		_anims = gameObject.AddComponent<PlayerAnims>() as PlayerAnims;
+
 	
 		_notif = GetComponentInChildren<Label>();
+		_notif.text = "+" + TuningDocument.CapturePoint_Score.ToString();
 		startPos = gameObject.transform.position;
 	}
 	
@@ -63,37 +75,45 @@ public class Player : MonoBehaviour {
 		if (Input.GetKey (KeyCode.RightArrow)) 
 		{
 			mod.x += speed;
+			_anims.playAnimation("walk");
 		}
 		else if (Input.GetKeyUp (KeyCode.RightArrow)) 
 		{
 			mod.x =0f;
+			_anims.playAnimation("static");
 		}
 		
 		if (Input.GetKey (KeyCode.UpArrow)) 
 		{
 			mod.y += speed;
+			_anims.playAnimation("walk");
 		}
 		else if (Input.GetKeyUp (KeyCode.UpArrow)) 
 		{
 			mod.y = 0f;
+			_anims.playAnimation("static");
 		}
 		
 		if (Input.GetKey (KeyCode.LeftArrow)) 
 		{
 			mod.x -= speed;
+			_anims.playAnimation("walk");
 		}
 		else if (Input.GetKeyUp (KeyCode.LeftArrow)) 
 		{
 			mod.x =0f;
+			_anims.playAnimation("static");
 		}
 		
 		if (Input.GetKey (KeyCode.DownArrow)) 
 		{
 			mod.y -= speed;
+			_anims.playAnimation("walk");
 		}
 		else if (Input.GetKeyUp (KeyCode.DownArrow)) 
 		{
 			mod.x =0f;
+			_anims.playAnimation("static");
 		}
 		this.gameObject.transform.position += mod * Time.deltaTime;
 	}

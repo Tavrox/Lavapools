@@ -5,10 +5,10 @@ using System.Collections.Generic;
 public class MainMenu : MonoBehaviour {
 	
 	private List<GameObject> listMenus;
-	public GameObject IngameUI;
-	public GameObject LeaderboardUI;
-	public GameObject RespawnUI;
-	public GameObject Logo;
+	[HideInInspector] public GameObject IngameUI;
+	[HideInInspector] public GameObject LeaderboardUI;
+	[HideInInspector] public GameObject RespawnUI;
+	[HideInInspector] public GameObject Logo;
 
 	// Use this for initialization
 	void Awake () {
@@ -69,19 +69,19 @@ public class MainMenu : MonoBehaviour {
 	private void GameStart()
 	{
 		LeaderboardUI.gameObject.SetActive(false);
+		Logo.gameObject.SetActive(false);
 		RespawnUI.gameObject.SetActive(false);
 	}
 	
 	private void GameOver()
 	{
-		
-		LeaderboardUI.gameObject.SetActive(true);
+//		LeaderboardUI.gameObject.SetActive(true);
 		RespawnUI.gameObject.SetActive(true);
 	}
 	
 	private void Respawn()
 	{
-		LeaderboardUI.gameObject.SetActive(false);
+//		LeaderboardUI.gameObject.SetActive(false);
 		RespawnUI.gameObject.SetActive(false);
 	}
 }

@@ -16,9 +16,9 @@ public static class GameEventManager {
 	
 	public static void TriggerGameStart(string _trigger)
 	{
-		if(GameStart != null && LevelManager.GAMESTATE != GameState.Live)
+		if(GameStart != null)
 		{
-			Debug.LogWarning("GAMESTART"  + _trigger);
+			Debug.LogWarning("GAMESTART "  + _trigger);
 			gameOver = false;
 			LevelManager.GAMESTATE = GameState.Live;
 			GameStart();

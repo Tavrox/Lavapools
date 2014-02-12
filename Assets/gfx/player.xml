@@ -85,7 +85,7 @@
             <key>player06static.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{68,69},{58,59}}</string>
+                <string>{{68,5},{58,59}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -98,7 +98,7 @@
             <key>player07walk.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{131,69},{58,59}}</string>
+                <string>{{68,69},{58,59}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -111,7 +111,7 @@
             <key>player08walk.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{131,69},{58,59}}</string>
+                <string>{{68,69},{58,59}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -124,7 +124,7 @@
             <key>player09walk.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{5,133},{58,59}}</string>
+                <string>{{131,69},{58,59}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -137,7 +137,7 @@
             <key>player10walk.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{68,133},{58,59}}</string>
+                <string>{{5,133},{58,59}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -150,7 +150,7 @@
             <key>player11walk.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{131,133},{58,59}}</string>
+                <string>{{68,133},{58,59}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -163,7 +163,7 @@
             <key>player12walk.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{68,133},{58,59}}</string>
+                <string>{{5,133},{58,59}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -176,7 +176,7 @@
             <key>player13walk.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{131,69},{58,59}}</string>
+                <string>{{68,69},{58,59}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -196,7 +196,7 @@
             <key>size</key>
             <string>{256,256}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:3c32befe1b0a3b470cebaa7940187ff7:1/1$</string>
+            <string>$TexturePacker:SmartUpdate:7670a54c481eaf9cccc6eff99660044a:1/1$</string>
             <key>textureFileName</key>
             <string>player.png</string>
         </dict>

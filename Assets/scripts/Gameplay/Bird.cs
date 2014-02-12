@@ -7,5 +7,8 @@ public class Bird : PatrolBrick {
 	{
 		base.Start();
 		
+		setupTarget();
+		saveWaypoints();
+		
 	}
 }
