@@ -75,45 +75,45 @@ public class Player : MonoBehaviour {
 		if (Input.GetKey (KeyCode.RightArrow)) 
 		{
 			mod.x += speed;
-			_anims.playAnimation("walk");
+			_anims.playAnimation(_anims._WALK);
 		}
 		else if (Input.GetKeyUp (KeyCode.RightArrow)) 
 		{
 			mod.x =0f;
-			_anims.playAnimation("static");
+			_anims.playAnimation(_anims._STATIC);
 		}
 		
 		if (Input.GetKey (KeyCode.UpArrow)) 
 		{
 			mod.y += speed;
-			_anims.playAnimation("walk");
+			_anims.playAnimation(_anims._WALK);
 		}
 		else if (Input.GetKeyUp (KeyCode.UpArrow)) 
 		{
 			mod.y = 0f;
-			_anims.playAnimation("static");
+			_anims.playAnimation(_anims._STATIC);
 		}
 		
 		if (Input.GetKey (KeyCode.LeftArrow)) 
 		{
 			mod.x -= speed;
-			_anims.playAnimation("walk");
+			_anims.playAnimation(_anims._WALK);
 		}
 		else if (Input.GetKeyUp (KeyCode.LeftArrow)) 
 		{
 			mod.x =0f;
-			_anims.playAnimation("static");
+			_anims.playAnimation(_anims._STATIC);
 		}
 		
 		if (Input.GetKey (KeyCode.DownArrow)) 
 		{
 			mod.y -= speed;
-			_anims.playAnimation("walk");
+			_anims.playAnimation(_anims._WALK);
 		}
 		else if (Input.GetKeyUp (KeyCode.DownArrow)) 
 		{
 			mod.x =0f;
-			_anims.playAnimation("static");
+			_anims.playAnimation(_anims._STATIC);
 		}
 		this.gameObject.transform.position += mod * Time.deltaTime;
 	}

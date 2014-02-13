@@ -3,22 +3,16 @@ using System.Collections;
 
 public class Fields : PatrolBrick {
 
-	public enum captureType
-	{
-		CapturePoint,
-		None,
-		Static
-	};
-	public captureType capPoint = captureType.None;
 	public bool isCaptured;
+	public enum fieldState
+	{
+		Uncaptured,
+		Capturing,
+		Captured
+	};
+	private fieldState state;
 	public bool countCaptured;
-	public Waypoint spawnWP;
-	public Waypoint nextWP;
-	private OTSprite spr;
-	private bool isDestroying;
-	private Vector3 pierce;
-	private Vector3 randomTarget = new Vector3(0f,0f,0f);
-	private int capScore;
+	private float capScore;
 
 	private FieldAnims _anims;
 
@@ -31,49 +25,70 @@ public class Fields : PatrolBrick {
 		GameEventManager.GameOver += GameOver;
 		GameEventManager.Respawn += Respawn;
 
-		_anims = gameObject.AddComponent<FieldAnims>();
-
 		_levMan = GameObject.Find("LevelManager").GetComponent<LevelManager>();
+
+		currentWP = _levMan.pickRandomLoc();
+		gameObject.transform.position = currentWP.transform.position;
+
+		_anims = gameObject.AddComponent<FieldAnims>();
+		_anims.Start();
+
 		setupTarget();
-		//InvokeRepeating("changeTarget", 3f, 6f);
+		Destroy(gameObject, 8f);
+		InvokeRepeating("CheckState", 0f, 0.1f);
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		pos = gameObject.transform.position;
-		pierce = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y+10);
-	
-		Vector3 movingVec = new Vector3(0f,0f,0f);
+		gameObject.transform.position += new Vector3 ( speed * direction.x * Time.deltaTime, speed * direction.y * Time.deltaTime, 0f);
+		Debug.DrawRay(pos, direction);
+		print ("Entered Update");
 
-		if (this.gameObject.transform.position != randomTarget)
+		if (capScore >= 80f && countCaptured == false)
 		{
-			gameObject.transform.position += new Vector3 ( speed * direction.x * Time.deltaTime, speed * direction.y * Time.deltaTime, 0f);
-
-		}
-		if (capScore == 80 && countCaptured == false)
-		{
+			state = fieldState.Captured;
 			isCaptured = true;
 			_player.triggerNotification();
 			countCaptured = true;
 			_levMan.fieldsCaptured += 1;
-			spr.alpha = 1f;
+			print (state);
+			print ("Point Captured");
 		}
 	}
-	
-	public void changeTarget()
+
+	public void CheckState()
 	{
-		randomTarget = _levMan.pickRandomLoc().gameObject.transform.position;
-		direction = (gameObject.transform.position - randomTarget).normalized;
+		print ("Entered Repeating");
+		switch (state)
+		{
+		case fieldState.Uncaptured :
+		{
+			_anims.playAnimation(_anims._UNCAPTURED);
+			break;
+		}
+		case fieldState.Capturing :
+		{
+			_anims.playAnimation(_anims._CAPTURING, 0.2f);
+			break;
+		}
+		case fieldState.Captured :
+		{
+			_anims.playAnimation(_anims._CAPTURED);
+			print ("Playing Captured Anim");
+			break;
+		}
+		}
 	}
-	
+
 	public void OnTriggerStay(Collider _other)
 	{
-		if (_other.CompareTag("Player") && capPoint == captureType.CapturePoint)
+		if (_other.CompareTag("Player") && isCaptured != true)
 		{
-			if (capScore < 100)
+			state = fieldState.Capturing;
+			if (capScore < 100f)
 			{
-//				spr.frameName = "capturing";
-				capScore += 1;			
+				capScore += 1f * _levMan.TuningDocument.CaptureSpeed;			
 			}
 		}
 	}

@@ -1,15 +1,21 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class FieldAnims : MonoBehaviour {
+public class FieldAnims : FEAnims {
+	
+	public OTAnimationFrameset _UNCAPTURED;
+	public OTAnimationFrameset _CAPTURED;
+	public OTAnimationFrameset _CAPTURING;
 
 	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
+	public void Start () {
+
+		_animations = GameObject.Find("Frameworks/OT/Animations/plateform").GetComponent<OTAnimation>();
+		_animSprite = GetComponentInChildren<OTAnimatingSprite>();
+
+		_UNCAPTURED = _animations.GetFrameset("uncaptured");
+		_CAPTURED = _animations.GetFrameset("captured");
+		_CAPTURING = _animations.GetFrameset("capturing");
 	
 	}
 }

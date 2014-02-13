@@ -10,8 +10,9 @@ public class LPTuning : ScriptableObject {
 	public float Chainsaw_Speed = 3f;
 	public float Fields_Speed = 3f;
 	public float Immovable_Speed = 0f;
-
+	
 	public float CapturePoint_Score = 600f;
+	public float CaptureSpeed = 1f;
 	public float ScoreOverTime = 5f;
 	public int Leaderboard_Number = 15;
 	public Dictionary<LevelBrick.typeList, float> _dicoBricks = new Dictionary<LevelBrick.typeList, float>();
@@ -20,6 +21,7 @@ public class LPTuning : ScriptableObject {
 	public Color ColRank;
 	public Color ColScore;
 
+	public List<float> scoreSteps;
 
 	// Use this for initialization
 	public void initScript () {

@@ -2,12 +2,18 @@
 using System.Collections;
 using UnityEditor;
 
-public class FETuning {
+public class FEAssetCreator {
 
 	[MenuItem("Assets/Create/Tuning")]
 	public static void CreateAsset ()
 	{
 		ScriptableObjectUtility.CreateAsset<LPTuning>();
 	}
+	[MenuItem("Assets/Create/ProceduralSteps")]
+	public static void CreateStep ()
+	{
+		ScriptableObjectUtility.CreateAsset<ProceduralSteps>();
+	}
+
 
 }

@@ -6,8 +6,8 @@ public class PlayerAnims : MonoBehaviour {
 	private OTAnimation _animations;
 	private OTAnimatingSprite _animSprite;
 
-	private OTAnimationFrameset _STATIC;
-	private OTAnimationFrameset _WALK;
+	public OTAnimationFrameset _STATIC;
+	public OTAnimationFrameset _WALK;
 
 
 	// Use this for initialization
@@ -19,12 +19,11 @@ public class PlayerAnims : MonoBehaviour {
 		_WALK = _animations.GetFrameset("walk");
 	}
 
-	public void playAnimation(string _anim)
+	public void playAnimation(OTAnimationFrameset _anim)
 	{
-		if (_animSprite.animationFrameset != _anim)
+		if (_animSprite.animationFrameset != _anim.name)
 		{
-			_animSprite.animationFrameset = _anim;
+			_animSprite.animationFrameset = _anim.name;
 		}
-
 	}
 }

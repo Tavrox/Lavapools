@@ -13,8 +13,7 @@ public class Waypoint : MonoBehaviour {
 	public wpTypeList wpType;
 	public Waypoint nextWP;
 	public LevelBrick.typeList BrickType;
-//	public LevelBrick.type BrickType;
-	public string OwnerID;
+	private string OwnerID;
 
 	void Start()
 	{
@@ -25,7 +24,15 @@ public class Waypoint : MonoBehaviour {
 	{
 		if (_other.GetComponent<PatrolBrick>() != null)
 		{
-			_other.GetComponent<PatrolBrick>().followWaypoints();
+			if (_other.GetComponent<LevelBrick>().type == BrickType)
+			{
+				_other.GetComponent<PatrolBrick>().followWaypoints();
+				_other.GetComponent<PatrolBrick>().brickBounce();
+				if (_other.GetComponent<LevelBrick>().type == LevelBrick.typeList.Fields)
+				{
+//					Destroy(_other.gameObject);
+				}
+			}
 		}
 	}
 }

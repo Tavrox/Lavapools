@@ -4,19 +4,18 @@ using System.Collections.Generic;
 
 public class LevelManager : MonoBehaviour {
 
-	public LPTuning TuningDocument;
+	[HideInInspector] public LPTuning TuningDocument;
 	
-	public static GameEventManager.GameState GAMESTATE;
+	[HideInInspector] public static GameEventManager.GameState GAMESTATE;
 	public GameEventManager.GameState _EditorState ;
 
-	public float score = 0f;
-	public float bestScore = 0f;
-	public int fieldsCaptured = 0;
-	public int centSecondsElapsed;
-	public int SecondsElapsed;
-	public int bestTime;
-	public string timeString;
-	public float brickSpeed = 2.50f;
+	[HideInInspector] public float score = 0f;
+	[HideInInspector] public float bestScore = 0f;
+	[HideInInspector] public int fieldsCaptured = 0;
+	[HideInInspector] public int centSecondsElapsed;
+	[HideInInspector] public int SecondsElapsed;
+	[HideInInspector] public int bestTime;
+	[HideInInspector] public string timeString;
 	public int levelID;
 
 	public List<Waypoint> locationList = new List<Waypoint>();
@@ -30,7 +29,7 @@ public class LevelManager : MonoBehaviour {
 
 	
 	private Player _player;
-	public PlayerProfile _profile;
+	[HideInInspector] public PlayerProfile _profile;
 
 	// Use this for initialization
 	void Awake () {
@@ -58,14 +57,11 @@ public class LevelManager : MonoBehaviour {
 
 	void Start()
 	{
-		
-		
 		switch (GAMESTATE)
 		{
 		case GameEventManager.GameState.Live :
 		{
 			GameEventManager.TriggerGameStart(name);
-			print ("ok bro");
 			break;
 		}	
 		case GameEventManager.GameState.GameOver :
@@ -74,12 +70,9 @@ public class LevelManager : MonoBehaviour {
 			break;
 		}	
 		}
-		
 		InvokeRepeating("updateTime", 0f, 0.01f);
 		StartCoroutine("spawnFields");
 		InvokeRepeating("alimentFields", 10f, 8f);
-		InvokeRepeating("checkScore", 0, 10f);
-
 	}
 	
 	// Update is called once per frame
@@ -142,10 +135,8 @@ public class LevelManager : MonoBehaviour {
 		_newField.transform.parent = GameObject.Find("LevelManager/LevelBricks/Bricks").gameObject.transform;
 		Fields _field = _newField.GetComponent<Fields>();
 		Waypoint _wp = pickRandomLoc();
-		_field.spawnWP = _wp;
-		_field.nextWP = _field.spawnWP.nextWP;
-		_field.transform.position = _field.spawnWP.transform.position;
-		_field.capPoint = Fields.captureType.CapturePoint;
+		_field.currentWP = _wp;
+		_field.transform.position = _field.currentWP.transform.position;
 	}
 	public void alimentFields()
 	{
@@ -154,23 +145,20 @@ public class LevelManager : MonoBehaviour {
 			respawnField();
 		}
 	}
-	
-	private void checkScore()
+
+	public void enableBrick(int _brickID)
 	{
-		if (score > 1000)
-		{
-			brickSpeed += 0.015f;
-		}
-		if (score > 1500)
-		{
-			brickSpeed += 0.020f;
-		}
+
 	}
+
 	
 	IEnumerator spawnFields()
 	{
 		yield return new WaitForSeconds(4f);
-		respawnField();
+		if (FEDebug.spawnsFieldsBool != true)
+		{
+			respawnField();
+		}
 	}
 	
 	private void GameStart()
@@ -186,7 +174,6 @@ public class LevelManager : MonoBehaviour {
 	
 	private void Respawn()
 	{
-		brickSpeed = 2.50f;
 		InvokeRepeating("updateTime", 0f, 0.01f);
 		_player.gameObject.SetActive(true);
 		score = 0f;

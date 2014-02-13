@@ -59,12 +59,17 @@ public class PatrolBrick : LevelBrick {
 	
 	public void followWaypoints()
 	{
-		if (currentWP != null && pos != null)
+		if (currentWP != null && pos != null && type != typeList.Fields)
 		{
 			currentWP = currentWP.nextWP;
 			target = currentWP.nextWP.transform.position;
 			direction = (target - pos).normalized;
 		}
+	}
+
+	public void brickBounce()
+	{
+		_soundList[0].playSound();
 	}
 	
 	private void GameStart()
@@ -79,10 +84,12 @@ public class PatrolBrick : LevelBrick {
 	
 	private void Respawn()
 	{
-		gameObject.transform.position = initPos;
-		currentWP = initWp;
-		initWaypoints = waypoints;
-		setupTarget();
-		print ("resp");
+		if (gameObject != null)
+		{
+			gameObject.transform.position = initPos;
+			currentWP = initWp;
+			initWaypoints = waypoints;
+			setupTarget();
+		}
 	}
 }
