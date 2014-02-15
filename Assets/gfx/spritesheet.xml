@@ -56,10 +56,23 @@
                 <key>sourceSize</key>
                 <string>{754,450}</string>
             </dict>
+            <key>ground1.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{5,1065},{759,449}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{759,449}}</string>
+                <key>sourceSize</key>
+                <string>{759,449}</string>
+            </dict>
             <key>pan_leaderboard.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{5,1065},{636,151}}</string>
+                <string>{{5,1519},{636,151}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -72,7 +85,7 @@
             <key>pan_scoring.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{646,1065},{212,94}}</string>
+                <string>{{646,1519},{212,94}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -85,7 +98,7 @@
             <key>pan_timing.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{5,1221},{212,94}}</string>
+                <string>{{5,1675},{212,94}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -98,7 +111,7 @@
             <key>player.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{222,1221},{58,59}}</string>
+                <string>{{222,1675},{58,59}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -111,7 +124,7 @@
             <key>sq.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{285,1221},{1,1}}</string>
+                <string>{{285,1675},{1,1}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -124,7 +137,7 @@
             <key>stat_player.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{291,1221},{517,49}}</string>
+                <string>{{291,1675},{517,49}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -137,7 +150,7 @@
             <key>title.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{5,1320},{610,110}}</string>
+                <string>{{5,1774},{610,110}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -157,7 +170,7 @@
             <key>size</key>
             <string>{1024,2048}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:df47ada94dd62888c9afb5c4bc71433d:1/1$</string>
+            <string>$TexturePacker:SmartUpdate:72a00f64c0a8e112ee11d9bf6e88a895:1/1$</string>
             <key>textureFileName</key>
             <string>spritesheet.png</string>
         </dict>

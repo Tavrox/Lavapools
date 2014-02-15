@@ -17,8 +17,10 @@ public class LevelManager : MonoBehaviour {
 	[HideInInspector] public int bestTime;
 	[HideInInspector] public string timeString;
 	public int levelID;
+	public LevelTools tools;
 
 	public List<Waypoint> locationList = new List<Waypoint>();
+	public List<WaypointManager> waypointsMan = new List<WaypointManager>();
 	
 	private Label scoreLabel;
 	private Label bestScoreLabel;
@@ -26,7 +28,7 @@ public class LevelManager : MonoBehaviour {
 	private Label timeLabel;
 	private Label respawnLabel;
 	private MainMenu menuManager;
-
+	private bool fieldSpawning;
 	
 	private Player _player;
 	[HideInInspector] public PlayerProfile _profile;
@@ -34,21 +36,27 @@ public class LevelManager : MonoBehaviour {
 	// Use this for initialization
 	void Awake () {
 
-		_player 	= GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
-	
+		_player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
 		GameEventManager.GameStart += GameStart;
 		GameEventManager.GameOver += GameOver;
 		GameEventManager.Respawn += Respawn;
-
 		GAMESTATE = _EditorState;
-
 		_profile = ScriptableObject.CreateInstance("PlayerProfile") as PlayerProfile;
 
 		scoreLabel 	= GameObject.Find("UI/Ingame/ScoreDisplayParent/Score").GetComponent<Label>();
 		bestScoreLabel = GameObject.Find("UI/Ingame/ScoreDisplayParent/BestScore").GetComponent<Label>();
 		timeLabel = GameObject.Find("UI/Ingame/TimeDisplayParent/Time").GetComponent<Label>();
 		besttimeLabel = GameObject.Find("UI/Ingame/TimeDisplayParent/BestTime").GetComponent<Label>();
-		//		respawnLabel = GameObject.Find("UI/Respawn/RespawnText").GetComponent<Label>();
+
+		tools = gameObject.AddComponent<LevelTools>();
+		tools._levMan = this;
+
+//		WaypointManager[] waypointsManagers = FETool.findWithinChildren(this.gameObject, "Waypoints").GetComponentsInChildren<WaypointManager>();
+//		foreach (WaypointManager wpm in waypointsManagers)
+//		{
+//			waypointsMan.Add(wpm);
+//		}
+
 		menuManager = GameObject.Find("UI").GetComponent<MainMenu>();
 		TuningDocument = FETool.setupDoc();
 		TuningDocument.initScript();
@@ -71,8 +79,8 @@ public class LevelManager : MonoBehaviour {
 		}	
 		}
 		InvokeRepeating("updateTime", 0f, 0.01f);
-		StartCoroutine("spawnFields");
 		InvokeRepeating("alimentFields", 10f, 8f);
+		StartCoroutine("spawnFields");
 	}
 	
 	// Update is called once per frame
@@ -98,6 +106,11 @@ public class LevelManager : MonoBehaviour {
 
 		scoreLabel.text = score.ToString();
 		scoreLabel.text += " pts";
+
+		if (fieldSpawning != true)
+		{
+//			InvokeRepeating("alimentFields", 10f, 8f);
+		}
 		
 		if (score > bestScore)
 		{
@@ -124,43 +137,27 @@ public class LevelManager : MonoBehaviour {
 			bestTime = SecondsElapsed;
 		}
 	}
-	public Waypoint pickRandomLoc()
-	{	
-		int _rand = Random.Range(0, 3);
-		return locationList[_rand];
-	}
-	public void respawnField()
-	{
-		GameObject _newField = Instantiate(Resources.Load("Bricks/Fields")) as GameObject;
-		_newField.transform.parent = GameObject.Find("LevelManager/LevelBricks/Bricks").gameObject.transform;
-		Fields _field = _newField.GetComponent<Fields>();
-		Waypoint _wp = pickRandomLoc();
-		_field.currentWP = _wp;
-		_field.transform.position = _field.currentWP.transform.position;
-	}
+
 	public void alimentFields()
 	{
 		if (GameEventManager.gameOver != true)
 		{
-			respawnField();
+			tools.respawnField();
 		}
 	}
 
-	public void enableBrick(int _brickID)
-	{
-
-	}
-
-	
+	#region Enumerator
 	IEnumerator spawnFields()
 	{
 		yield return new WaitForSeconds(4f);
 		if (FEDebug.spawnsFieldsBool != true)
 		{
-			respawnField();
+			tools.respawnField();
 		}
 	}
-	
+	#endregion
+
+	#region Events
 	private void GameStart()
 	{
 		_player.gameObject.SetActive(true);
@@ -182,4 +179,5 @@ public class LevelManager : MonoBehaviour {
 		SecondsElapsed = 0;
 	
 	}
+	#endregion
 }

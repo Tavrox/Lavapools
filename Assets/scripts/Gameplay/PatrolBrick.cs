@@ -10,14 +10,23 @@ public class PatrolBrick : LevelBrick {
 	private Waypoint initWp;
 	private List<Waypoint> initWaypoints;
 
+	public bool logTimecode;
+
 	// Use this for initialization
 	public void Start () {
 
 		base.Start();
+
+		if (currentWP == null)
+		{
+			Debug.Log("The brick "+gameObject.name+" has no wp");
+		}
 		
 		GameEventManager.GameStart += GameStart;
 		GameEventManager.GameOver += GameOver;
 		GameEventManager.Respawn += Respawn;
+
+		InvokeRepeating("StepUpdate", 0f, _levMan.TuningDocument.GLOBAL_speed);
 
 	}
 	
@@ -36,16 +45,12 @@ public class PatrolBrick : LevelBrick {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void StepUpdate () {
 		
 		if (GameEventManager.gameOver != true)
 		{
 			pos = gameObject.transform.position;
-			if (pos.x == target.x && pos.y == target.y)
-			{
-				followWaypoints();
-			}
-			gameObject.transform.position += new Vector3 ( speed * direction.x * Time.deltaTime, speed * direction.y* Time.deltaTime, 0f);
+			gameObject.transform.position += new Vector3 ( speed * FETool.Round( direction.x, 2), speed * FETool.Round( direction.y, 2) , 0f);
 		}
 	}
 	
@@ -57,7 +62,7 @@ public class PatrolBrick : LevelBrick {
 		}
 	}
 	
-	public void followWaypoints()
+	public void GoToWaypoint(Waypoint _wp)
 	{
 		if (currentWP != null && pos != null && type != typeList.Fields)
 		{
@@ -69,7 +74,10 @@ public class PatrolBrick : LevelBrick {
 
 	public void brickBounce()
 	{
-		_soundList[0].playSound();
+		if (logTimecode == true)
+		{
+			_soundList[0].playSound(brickId);
+		}
 	}
 	
 	private void GameStart()

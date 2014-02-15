@@ -6,25 +6,28 @@ using System.Diagnostics;
 public class Procedural : MonoBehaviour {
 
 	private LevelManager _levMan;
-	[HideInInspector] public ProceduralSteps _CURRENTSTEP;
 	private List<ProceduralSteps> _listSteps;
+
+	private LevelSetup SETUP;
+
+	[HideInInspector] public ProceduralSteps _CURRENTSTEP;
 
 
 	// Use this for initialization
 	void Awake () 
 	{
+		string path = "Procedural/Level" + Application.loadedLevelName+"/";
 		_levMan = GameObject.Find("LevelManager").GetComponent<LevelManager>();
 		_listSteps = new List<ProceduralSteps>();
 		LPTuning TuningDoc = _levMan.TuningDocument;
 
-		for (int i = 0 ; i < TuningDoc.scoreSteps.Count; i++)
+		SETUP = Resources.Load(path + "Setup") as LevelSetup;
+
+		for (int i = 1; i <= SETUP.numberOfSteps ; i++)
 		{
-			ProceduralSteps _step = ScriptableObject.CreateInstance("ProceduralSteps") as ProceduralSteps;
-			_step.condition = ProceduralSteps.conditionEnum.Score;
-			_step.ScoreCondition = TuningDoc.scoreSteps[i];
-			_step.priority = i+1;
-			_listSteps.Add(_step);
+			_listSteps.Add( Resources.Load( path + i) as ProceduralSteps);
 		}
+
 		_CURRENTSTEP = _listSteps[0];
 		InvokeRepeating("checkScore", 0f, 1f);
 	}
@@ -33,12 +36,31 @@ public class Procedural : MonoBehaviour {
 	{
 		foreach (ProceduralSteps _step in _listSteps)
 		{
-			if ( _step.priority > _CURRENTSTEP.priority)
+			if ( _step.priority > _CURRENTSTEP.priority && _step.ScoreCondition < _levMan.score)
 			{
-//				_CURRENTSTEP = 
+				_CURRENTSTEP = _step;
 			}
 
 		}
+	}
 
+	private List<ProceduralSteps> loadSteps(int _levelID)
+	{
+		List<ProceduralSteps> _list = new List<ProceduralSteps>();
+		switch (_levelID)
+		{
+			case 1 :
+			{
+
+			break;
+			}
+			case 2 :
+			{
+				
+			break;
+			}
+
+		}
+		return _list;
 	}
 }

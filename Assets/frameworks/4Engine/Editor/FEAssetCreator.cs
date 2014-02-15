@@ -14,6 +14,10 @@ public class FEAssetCreator {
 	{
 		ScriptableObjectUtility.CreateAsset<ProceduralSteps>();
 	}
-
+	[MenuItem("Assets/Create/Levels")]
+	public static void CreateLevelSetup ()
+	{
+		ScriptableObjectUtility.CreateAsset<LevelSetup>();
+	}
 
 }

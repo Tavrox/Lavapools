@@ -33,6 +33,13 @@ public class FESound : MonoBehaviour {
 			MasterAudio.PlaySound(SoundGroup.name, Volume, Pitch, Delay);
 		}
 	}
+	public void playSound(int id)
+	{
+		if (SoundGroup != null)
+		{
+			MasterAudio.PlaySound(SoundGroup.name, Volume, Pitch, Delay, id.ToString());
+		}
+	}
 	public void playSound(bool _isOneShot)
 	{
 		if (SoundGroup != null && playOnce != true)

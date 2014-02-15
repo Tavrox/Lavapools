@@ -75,9 +75,6 @@ public class LevelBrick : MonoBehaviour {
 	
 	private void Respawn()
 	{
-		if (this.gameObject != null)
-		{
-			gameObject.transform.position = initPos;
-		}
+		gameObject.transform.position = initPos;
 	}
 }

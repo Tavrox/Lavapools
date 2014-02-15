@@ -5,9 +5,12 @@ public class FEDebug : MonoBehaviour {
 
 	public static bool testMode = false;
 	public static bool GodMode = false;
+	public static bool spawnsFieldsBool = true;
+	public static bool logTimecodeBool = false;
+
 	public bool God;
-	public static bool spawnsFieldsBool;
 	public bool spawnsFields;
+	public bool logTimecode;
 
 	void OnGUI()
 	{
@@ -27,6 +30,15 @@ public class FEDebug : MonoBehaviour {
 		else
 		{
 			spawnsFieldsBool = false;
+		}
+
+		if (logTimecode == true)
+		{
+			logTimecodeBool = true;
+		}
+		else
+		{
+			logTimecodeBool = false;
 		}
 	}
 

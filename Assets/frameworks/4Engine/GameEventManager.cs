@@ -18,7 +18,7 @@ public static class GameEventManager {
 	{
 		if(GameStart != null)
 		{
-			Debug.LogWarning("GAMESTART "  + _trigger);
+//			Debug.LogWarning("GAMESTART "  + _trigger);
 			gameOver = false;
 			LevelManager.GAMESTATE = GameState.Live;
 			GameStart();
@@ -29,7 +29,7 @@ public static class GameEventManager {
 	{
 		if(GameOver != null && LevelManager.GAMESTATE != GameState.GameOver && FEDebug.GodMode != true)
 		{
-			Debug.LogWarning("GAMEOVER "+ _killer);
+//			Debug.LogWarning("GAMEOVER "+ _killer);
 			gameOver = true;
 			LevelManager.GAMESTATE = GameState.GameOver;
 			GameOver();
@@ -39,7 +39,7 @@ public static class GameEventManager {
 	public static void TriggerRespawn(string _trigger){
 		if(Respawn != null && LevelManager.GAMESTATE != GameState.Live)
 		{
-			Debug.LogWarning("RESPAWN" + _trigger);
+//			Debug.LogWarning("RESPAWN" + _trigger);
 			gameOver = false;
 			LevelManager.GAMESTATE = GameState.Live;
 			Respawn();

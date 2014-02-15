@@ -159,6 +159,7 @@
             <filename>stat_player.png</filename>
             <filename>sq.png</filename>
             <filename>title.png</filename>
+            <filename>ground1.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

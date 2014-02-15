@@ -10,6 +10,13 @@ public class FETool : MonoBehaviour {
 		TuningDoc = Resources.Load("LPTuning") as LPTuning;
 		return TuningDoc;
 	}
+	public static void TriggerObject(GameObject _obj, bool _state)
+	{
+		if (_obj != null)
+		{
+			_obj.SetActive(_state);
+		}
+	}
 
 
 	public static GameObject findWithinChildren(GameObject _go, string _fetch)
@@ -90,6 +97,12 @@ public class FETool : MonoBehaviour {
 		}
 		
 		return hashString.PadLeft(32, '0');
+	}
+
+	public static float Round(float value, int digits)
+	{
+		float mult = Mathf.Pow (10.0f, (float) digits);
+		return Mathf.Round(value * mult) / mult;
 	}
 
 }

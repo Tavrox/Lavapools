@@ -9,6 +9,7 @@ public class MainMenu : MonoBehaviour {
 	[HideInInspector] public GameObject LeaderboardUI;
 	[HideInInspector] public GameObject RespawnUI;
 	[HideInInspector] public GameObject Logo;
+	[HideInInspector] public GameObject LevelLabel;
 
 	// Use this for initialization
 	void Awake () {
@@ -21,6 +22,7 @@ public class MainMenu : MonoBehaviour {
 		LeaderboardUI = FETool.findWithinChildren(this.gameObject, "Leaderboard");
 		RespawnUI = FETool.findWithinChildren(this.gameObject, "Respawn");
 		Logo = FETool.findWithinChildren(this.gameObject, "Logo");
+		LevelLabel = FETool.findWithinChildren(this.gameObject, "LevelLabel");
 
 	}
 
@@ -68,20 +70,23 @@ public class MainMenu : MonoBehaviour {
 
 	private void GameStart()
 	{
-		LeaderboardUI.gameObject.SetActive(false);
-		Logo.gameObject.SetActive(false);
-		RespawnUI.gameObject.SetActive(false);
+		FETool.TriggerObject(Logo, false);
+		FETool.TriggerObject(LeaderboardUI, false);
+		FETool.TriggerObject(RespawnUI, false);
+//		RespawnUI.gameObject.SetActive(false);
+//		LeaderboardUI.gameObject.SetActive(false);
+//		Logo.gameObject.SetActive(false);
 	}
 	
 	private void GameOver()
 	{
-//		LeaderboardUI.gameObject.SetActive(true);
-		RespawnUI.gameObject.SetActive(true);
+		//		LeaderboardUI.gameObject.SetActive(true);
+		FETool.TriggerObject(RespawnUI, true);
 	}
 	
 	private void Respawn()
 	{
-//		LeaderboardUI.gameObject.SetActive(false);
-		RespawnUI.gameObject.SetActive(false);
+		//		LeaderboardUI.gameObject.SetActive(false);
+		FETool.TriggerObject(RespawnUI, false);
 	}
 }

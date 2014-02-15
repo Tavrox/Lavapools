@@ -27,7 +27,7 @@ public class Fields : PatrolBrick {
 
 		_levMan = GameObject.Find("LevelManager").GetComponent<LevelManager>();
 
-		currentWP = _levMan.pickRandomLoc();
+		currentWP = _levMan.tools.pickRandomLoc(_levMan.locationList);
 		gameObject.transform.position = currentWP.transform.position;
 
 		_anims = gameObject.AddComponent<FieldAnims>();
@@ -35,15 +35,21 @@ public class Fields : PatrolBrick {
 
 		setupTarget();
 		Destroy(gameObject, 8f);
+//		InvokeRepeating("StepUpdate", 0f, _levMan.TuningDocument.GLOBAL_speed);
 		InvokeRepeating("CheckState", 0f, 0.1f);
+
+	}
+
+	void Update()
+	{
+
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void StepUpdate () {
 		pos = gameObject.transform.position;
-		gameObject.transform.position += new Vector3 ( speed * direction.x * Time.deltaTime, speed * direction.y * Time.deltaTime, 0f);
+		gameObject.transform.position += new Vector3 ( speed * FETool.Round( direction.x, 2), speed * FETool.Round( direction.y, 2) , 0f);
 		Debug.DrawRay(pos, direction);
-		print ("Entered Update");
 
 		if (capScore >= 80f && countCaptured == false)
 		{
@@ -52,14 +58,11 @@ public class Fields : PatrolBrick {
 			_player.triggerNotification();
 			countCaptured = true;
 			_levMan.fieldsCaptured += 1;
-			print (state);
-			print ("Point Captured");
 		}
 	}
 
 	public void CheckState()
 	{
-		print ("Entered Repeating");
 		switch (state)
 		{
 		case fieldState.Uncaptured :
@@ -75,7 +78,6 @@ public class Fields : PatrolBrick {
 		case fieldState.Captured :
 		{
 			_anims.playAnimation(_anims._CAPTURED);
-			print ("Playing Captured Anim");
 			break;
 		}
 		}
@@ -92,6 +94,7 @@ public class Fields : PatrolBrick {
 			}
 		}
 	}
+
 	public void OnTriggerEnter(Collider _other)
 	{
 		if (_other.CompareTag("Player"))
