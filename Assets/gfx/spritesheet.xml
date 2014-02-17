@@ -85,20 +85,20 @@
             <key>pan_scoring.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{646,1519},{212,94}}</string>
+                <string>{{5,1675},{800,50}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{212,94}}</string>
+                <string>{{0,0},{800,50}}</string>
                 <key>sourceSize</key>
-                <string>{212,94}</string>
+                <string>{800,50}</string>
             </dict>
             <key>pan_timing.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{5,1675},{212,94}}</string>
+                <string>{{5,1730},{212,94}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -111,7 +111,7 @@
             <key>player.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{222,1675},{58,59}}</string>
+                <string>{{222,1730},{58,59}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -124,7 +124,7 @@
             <key>sq.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{285,1675},{1,1}}</string>
+                <string>{{285,1730},{1,1}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -137,7 +137,7 @@
             <key>stat_player.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{291,1675},{517,49}}</string>
+                <string>{{291,1730},{517,49}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -150,7 +150,7 @@
             <key>title.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{5,1774},{610,110}}</string>
+                <string>{{5,1829},{610,110}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -170,7 +170,7 @@
             <key>size</key>
             <string>{1024,2048}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:72a00f64c0a8e112ee11d9bf6e88a895:1/1$</string>
+            <string>$TexturePacker:SmartUpdate:7b3f03985324c5652ba596e5a6a0eebc:1/1$</string>
             <key>textureFileName</key>
             <string>spritesheet.png</string>
         </dict>

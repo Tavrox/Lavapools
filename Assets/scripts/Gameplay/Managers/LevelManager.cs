@@ -28,6 +28,7 @@ public class LevelManager : MonoBehaviour {
 	private Label besttimeLabel;
 	private Label timeLabel;
 	private Label respawnLabel;
+
 	private MainMenu menuManager;
 	private FieldManager fieldMan;
 	

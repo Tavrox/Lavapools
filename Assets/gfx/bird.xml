@@ -20,7 +20,7 @@
             <key>ptero01flight.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{5,5},{48,69}}</string>
+                <string>{{58,5},{48,69}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -33,7 +33,7 @@
             <key>ptero02flight.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{5,5},{48,69}}</string>
+                <string>{{5,79},{48,69}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -46,111 +46,7 @@
             <key>ptero03flight.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{5,79},{48,69}}</string>
-                <key>offset</key>
-                <string>{0,0}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{48,69}}</string>
-                <key>sourceSize</key>
-                <string>{48,69}</string>
-            </dict>
-            <key>ptero04flight.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{5,79},{48,69}}</string>
-                <key>offset</key>
-                <string>{0,0}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{48,69}}</string>
-                <key>sourceSize</key>
-                <string>{48,69}</string>
-            </dict>
-            <key>ptero05flight.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{5,79},{48,69}}</string>
-                <key>offset</key>
-                <string>{0,0}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{48,69}}</string>
-                <key>sourceSize</key>
-                <string>{48,69}</string>
-            </dict>
-            <key>ptero06flight.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{5,153},{48,69}}</string>
-                <key>offset</key>
-                <string>{0,0}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{48,69}}</string>
-                <key>sourceSize</key>
-                <string>{48,69}</string>
-            </dict>
-            <key>ptero07flight.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{5,153},{48,69}}</string>
-                <key>offset</key>
-                <string>{0,0}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{48,69}}</string>
-                <key>sourceSize</key>
-                <string>{48,69}</string>
-            </dict>
-            <key>ptero08flight.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{5,153},{48,69}}</string>
-                <key>offset</key>
-                <string>{0,0}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{48,69}}</string>
-                <key>sourceSize</key>
-                <string>{48,69}</string>
-            </dict>
-            <key>ptero09flight.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{5,79},{48,69}}</string>
-                <key>offset</key>
-                <string>{0,0}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{48,69}}</string>
-                <key>sourceSize</key>
-                <string>{48,69}</string>
-            </dict>
-            <key>ptero10flight.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{5,79},{48,69}}</string>
-                <key>offset</key>
-                <string>{0,0}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{48,69}}</string>
-                <key>sourceSize</key>
-                <string>{48,69}</string>
-            </dict>
-            <key>ptero11flight.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{5,79},{48,69}}</string>
+                <string>{{58,79},{48,69}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -168,9 +64,9 @@
             <key>realTextureFileName</key>
             <string>bird.png</string>
             <key>size</key>
-            <string>{64,256}</string>
+            <string>{128,256}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:9b2ea9e2b5df9a0b3f51f6e78d70aea0:1/1$</string>
+            <string>$TexturePacker:SmartUpdate:fa553ce9f5dfcbf96c80aa62547640f1:1/1$</string>
             <key>textureFileName</key>
             <string>bird.png</string>
         </dict>

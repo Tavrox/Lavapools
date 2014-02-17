@@ -4,6 +4,9 @@ using System.Collections;
 public class UIThing : MonoBehaviour {
 
 	private OTSprite spr;
+
+	private Label lab;
+
 	private OTAnimatingSprite animSpr;
 	
 	void Start()
@@ -15,6 +18,10 @@ public class UIThing : MonoBehaviour {
 		if (GetComponentInChildren<OTAnimatingSprite>() != null)
 		{
 			animSpr = GetComponentInChildren<OTAnimatingSprite>();
+		}
+		if (GetComponent<Label>() != null)
+		{
+			lab = GetComponentInChildren<Label>();
 		}
 	}
 
@@ -37,6 +44,4 @@ public class UIThing : MonoBehaviour {
 			new OTTween(spr, _time).Tween("alpha", _alpha);
 		}
 	}
-
-
 }

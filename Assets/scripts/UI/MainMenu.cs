@@ -5,11 +5,10 @@ using System.Collections.Generic;
 public class MainMenu : MonoBehaviour {
 	
 	private List<GameObject> listMenus;
-	[HideInInspector] public GameObject IngameUI;
-	[HideInInspector] public GameObject LeaderboardUI;
-	[HideInInspector] public GameObject RespawnUI;
-	[HideInInspector] public GameObject Logo;
-	[HideInInspector] public GameObject LevelLabel;
+
+	[HideInInspector] public IngameUI _IngameUI;
+	[HideInInspector] public GameOverUI _GameOverUI;
+	[HideInInspector] public EntryUI _EntryUI;
 
 	// Use this for initialization
 	void Awake () {
@@ -18,11 +17,9 @@ public class MainMenu : MonoBehaviour {
 		GameEventManager.GameOver += GameOver;
 		GameEventManager.Respawn += Respawn;
 
-		IngameUI = FETool.findWithinChildren(this.gameObject, "Ingame");
-		LeaderboardUI = FETool.findWithinChildren(this.gameObject, "Leaderboard");
-		RespawnUI = FETool.findWithinChildren(this.gameObject, "Respawn");
-		Logo = FETool.findWithinChildren(this.gameObject, "Logo");
-		LevelLabel = FETool.findWithinChildren(this.gameObject, "LevelLabel");
+		_IngameUI = FETool.findWithinChildren(this.gameObject, "Ingame").GetComponent<IngameUI>();
+		_GameOverUI = FETool.findWithinChildren(this.gameObject, "GameOver").GetComponent<GameOverUI>();
+		_EntryUI = FETool.findWithinChildren(this.gameObject, "EntryMenu").GetComponent<EntryUI>();
 
 	}
 
@@ -70,23 +67,16 @@ public class MainMenu : MonoBehaviour {
 
 	private void GameStart()
 	{
-		FETool.TriggerObject(Logo, false);
-		FETool.TriggerObject(LeaderboardUI, false);
-		FETool.TriggerObject(RespawnUI, false);
-//		RespawnUI.gameObject.SetActive(false);
-//		LeaderboardUI.gameObject.SetActive(false);
-//		Logo.gameObject.SetActive(false);
+
 	}
 	
 	private void GameOver()
 	{
-		//		LeaderboardUI.gameObject.SetActive(true);
-		FETool.TriggerObject(RespawnUI, true);
+
 	}
 	
 	private void Respawn()
 	{
-		//		LeaderboardUI.gameObject.SetActive(false);
-		FETool.TriggerObject(RespawnUI, false);
+
 	}
 }

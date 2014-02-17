@@ -8,7 +8,7 @@ public class Label : UIThing {
 	public GUISkin skin;
 	public int size = 10;
 	public Color color;
-	private Color initColor;
+	public Color initColor;
 	public enum type
 	{
 		Button,
