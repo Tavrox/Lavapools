@@ -149,8 +149,6 @@
         <key>fileList</key>
         <array>
             <filename>plateform07static.png</filename>
-            <filename>plateform08static.png</filename>
-            <filename>plateform09static.png</filename>
             <filename>plateform01static.png</filename>
             <filename>plateform02static.png</filename>
             <filename>plateform03static.png</filename>

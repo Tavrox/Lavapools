@@ -11,7 +11,7 @@ public class MainMenu : MonoBehaviour {
 	[HideInInspector] public EntryUI _EntryUI;
 
 	// Use this for initialization
-	void Awake () {
+	public void Setup () {
 		
 		GameEventManager.GameStart += GameStart;
 		GameEventManager.GameOver += GameOver;
@@ -21,16 +21,9 @@ public class MainMenu : MonoBehaviour {
 		_GameOverUI = FETool.findWithinChildren(this.gameObject, "GameOver").GetComponent<GameOverUI>();
 		_EntryUI = FETool.findWithinChildren(this.gameObject, "EntryMenu").GetComponent<EntryUI>();
 
-	}
-
-	void Start()
-	{
-
-	}
-
-	
-	public void swapToMenu()
-	{
+		_IngameUI.Setup();
+		_GameOverUI.Setup();
+		_EntryUI.Setup();
 
 	}
 

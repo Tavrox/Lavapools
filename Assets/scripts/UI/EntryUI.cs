@@ -4,7 +4,7 @@ using System.Collections;
 public class EntryUI : SubMenu {
 
 	// Use this for initialization
-	public void Start () 
+	public void Setup () 
 	{
 		GameEventManager.GameStart += GameStart;
 		GameEventManager.GameOver += GameOver;

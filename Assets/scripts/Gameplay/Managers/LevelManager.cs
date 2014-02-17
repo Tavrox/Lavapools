@@ -16,18 +16,12 @@ public class LevelManager : MonoBehaviour {
 	[HideInInspector] public int SecondsElapsed;
 	[HideInInspector] public int bestTime;
 	[HideInInspector] public string timeString;
-	public int levelID;
 	[HideInInspector] public LevelTools tools;
 	[HideInInspector] public Procedural proc;
+	public int levelID;
 
 	[HideInInspector] public List<WaypointManager> waypointsMan = new List<WaypointManager>();
 	[HideInInspector] public BricksManager bricksMan;
-	
-	private Label scoreLabel;
-	private Label bestScoreLabel;
-	private Label besttimeLabel;
-	private Label timeLabel;
-	private Label respawnLabel;
 
 	private MainMenu menuManager;
 	private FieldManager fieldMan;
@@ -47,11 +41,6 @@ public class LevelManager : MonoBehaviour {
 		
 		TuningDocument = FETool.setupDoc();
 		TuningDocument.initScript();
-
-		scoreLabel 	= GameObject.Find("UI/Ingame/ScoreDisplayParent/Score").GetComponent<Label>();
-		bestScoreLabel = GameObject.Find("UI/Ingame/ScoreDisplayParent/BestScore").GetComponent<Label>();
-		timeLabel = GameObject.Find("UI/Ingame/TimeDisplayParent/Time").GetComponent<Label>();
-		besttimeLabel = GameObject.Find("UI/Ingame/TimeDisplayParent/BestTime").GetComponent<Label>();
 
 		proc = gameObject.AddComponent<Procedural>();
 		proc._levMan = this;
@@ -76,6 +65,7 @@ public class LevelManager : MonoBehaviour {
 		}
 
 		menuManager = GameObject.Find("UI").GetComponent<MainMenu>();
+		menuManager.Setup();
 		
 		proc.triggerStep(proc._listSteps[0]);
 	
@@ -104,7 +94,6 @@ public class LevelManager : MonoBehaviour {
 	void Update () {
 	
 		updateScore();
-
 		
 		if (GAMESTATE == GameEventManager.GameState.GameOver)
 		{
@@ -113,22 +102,12 @@ public class LevelManager : MonoBehaviour {
 				GameEventManager.TriggerRespawn(gameObject.name);
 			}
 		}
-		
-//		Debug.LogWarning("GameState" + GameEventManager.state);
-		
-		timeLabel.text = SecondsElapsed.ToString();
-		timeLabel.text += ":";
-		timeLabel.text += centSecondsElapsed.ToString();
-		besttimeLabel.text = bestTime.ToString();
-
-		scoreLabel.text = score.ToString();
-		scoreLabel.text += " pts";
+		menuManager._IngameUI.Score.text = score.ToString();
 		
 		if (score > bestScore)
 		{
 			bestScore = score;
-			bestScoreLabel.text = bestScore.ToString();
-			bestScoreLabel.text += " pts";
+			menuManager._IngameUI.BestScore.text = bestScore.ToString();
 		}
 	}
 	

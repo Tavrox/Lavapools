@@ -7,48 +7,9 @@ public class SubMenu : MonoBehaviour {
 	public enum submenus
 	{
 		Ingame,
-		Leaderboards,
-		Levels,
-		Respawn
+		GameOver,
+		EntryMenu
 	}
 	public submenus subMenuList;
 	[HideInInspector] public List<GameObject> menuThings;
-
-	// Use this for initialization
-	void Start () {
-
-//		GameObject[] _thingArray = GetComponentsInChildren<GameObject>();
-//		foreach (GameObject _thing in _thingArray)
-//		{
-//			menuThings.Add(_thing);
-//			Debug.Log(_thing.name);
-//		}	
-	}
-
-	void OnEnable()
-	{
-		switch (subMenuList)
-		{
-		case (submenus.Ingame):
-		{
-			break;
-		}
-		case (submenus.Leaderboards):
-		{
-			break;
-		}
-		case (submenus.Respawn):
-		{
-			break;
-		}
-
-
-		}
-//		print (name + "Enabled");
-	}
-
-	void OnDisable()
-	{
-//		print (name + "disabled");
-	}
 }
