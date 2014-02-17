@@ -14,10 +14,16 @@ public class FEAssetCreator {
 	{
 		ScriptableObjectUtility.CreateAsset<ProceduralSteps>();
 	}
-	[MenuItem("Assets/Create/Levels")]
+	[MenuItem("Assets/Create/LevelSetup")]
 	public static void CreateLevelSetup ()
 	{
 		ScriptableObjectUtility.CreateAsset<LevelSetup>();
 	}
+	[MenuItem("Assets/Create/BrickInfo")]
+	public static void CreateBrickInfo ()
+	{
+		ScriptableObjectUtility.CreateAsset<BrickInfo>();
+	}
+
 
 }

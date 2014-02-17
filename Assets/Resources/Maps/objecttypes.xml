@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objecttypes>
+ <objecttype name="Bird" color="#a0a0a4"/>
+ <objecttype name="BirdWp" color="#a0a0a4"/>
+ <objecttype name="Chainsaw" color="#a0a0a4"/>
+ <objecttype name="ChainsawWp" color="#a0a0a4"/>
+ <objecttype name="FieldWp" color="#a40000"/>
+</objecttypes>

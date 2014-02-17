@@ -107,6 +107,7 @@ public class Fields : PatrolBrick {
 		if (_other.CompareTag("Player"))
 		{
 			_player.OnPlatforms -= 1;
+			_anims.playAnimation(_anims._UNCAPTURED);
 		}
 	}
 

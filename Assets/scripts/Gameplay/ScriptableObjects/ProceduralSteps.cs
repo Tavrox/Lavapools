@@ -25,6 +25,7 @@ public class ProceduralSteps : ScriptableObject {
 	public conditionEnum condition;
 	public float ScoreCondition;
 	public float TimerCondition;
-	public List<int> BricksToEnable;
-	public List<int> BricksToDisable;
+	public List<string> BricksEnabled;
+	public List<string> BricksDisabled;
+	public List<string> WaypointsToInvert;
 }

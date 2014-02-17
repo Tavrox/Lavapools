@@ -75,6 +75,8 @@ public class LevelManager : MonoBehaviour {
 		}
 
 		menuManager = GameObject.Find("UI").GetComponent<MainMenu>();
+		
+		proc.triggerStep(proc._listSteps[0]);
 	
 	}
 

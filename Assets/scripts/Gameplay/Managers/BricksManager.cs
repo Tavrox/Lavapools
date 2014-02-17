@@ -8,7 +8,6 @@ public class BricksManager : MonoBehaviour {
 	
 	// Use this for initialization
 	public void Setup () {
-
 		LevelBrick[] bricksArray = GetComponentsInChildren<LevelBrick>();
 		foreach (LevelBrick _brick in bricksArray)
 		{
@@ -18,7 +17,11 @@ public class BricksManager : MonoBehaviour {
 				_brick.GetComponent<PatrolBrick>().Setup();
 			}
 		}
-	
+	}
+
+	public void findBrick()
+	{
+
 	}
 
 }

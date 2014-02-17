@@ -42,4 +42,19 @@ public class FEDebug : MonoBehaviour {
 		}
 	}
 
+	void Update()
+	{
+		if (Input.GetKeyDown(KeyCode.A))
+		{
+			if (GodMode == true)
+			{
+				GodMode = false;
+			}
+			else
+			{
+				GodMode = true;
+			}
+		}
+	}
+
 }

@@ -21,7 +21,7 @@ public class PatrolBrick : LevelBrick {
 		{
 			Debug.Log("The brick "+gameObject.name+" has no wp");
 		}
-		
+
 		GameEventManager.GameStart += GameStart;
 		GameEventManager.GameOver += GameOver;
 		GameEventManager.Respawn += Respawn;
@@ -60,7 +60,7 @@ public class PatrolBrick : LevelBrick {
 		if (GameEventManager.gameOver != true)
 		{
 			pos = gameObject.transform.position;
-			gameObject.transform.position += new Vector3 ( speed * FETool.Round( direction.x, 1), speed * FETool.Round( direction.y, 1) , 0f);
+			gameObject.transform.position += new Vector3 ( speed * FETool.Round( direction.x, 2), speed * FETool.Round( direction.y, 2) , 0f);
 		}
 	}
 	
@@ -103,7 +103,7 @@ public class PatrolBrick : LevelBrick {
 	
 	private void Respawn()
 	{
-		if (gameObject != null)
+		if (gameObject != null && enabled == true)
 		{
 			gameObject.transform.position = initPos;
 			currentWP = initWp;

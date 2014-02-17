@@ -10,7 +10,7 @@ public static class GameEventManager {
 	{
 		Live,
 		GameOver,
-		Pause
+		MainMenu
 	};
 	public static bool gameOver = false;
 	

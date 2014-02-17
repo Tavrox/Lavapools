@@ -11,22 +11,17 @@ public class LevelTools : MonoBehaviour {
 		
 	}
 	
-	public void disableBirck (LevelBrick.typeList _type)
+	public void disableBrick (string _brickToEnable)
 	{
 		
 	}
-	
-	public void disableBrick (List<LevelBrick> _brickList)
-	{
-		
-	}
-	
-	public void enableTypeOfBrick(LevelBrick.typeList _type)
-	{
-		
-	}
-	
+
 	public void enableBrick (LevelBrick _brickToEnable)
+	{
+		
+	}
+
+	public void enableBrick (string _brickToEnable)
 	{
 		
 	}

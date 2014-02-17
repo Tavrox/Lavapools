@@ -19,7 +19,7 @@ public class LevelBrick : MonoBehaviour {
 	[HideInInspector] public Vector3 pos;
 	[HideInInspector] public Vector3 initPos;
 	public LevelManager _levMan;
-	[HideInInspector] public int brickId;
+	public int brickId;
 	[HideInInspector] public Player _player;
 	[HideInInspector] public List<FESound> _soundList = new List<FESound>();
 
@@ -63,6 +63,21 @@ public class LevelBrick : MonoBehaviour {
 		return res;
 	}
 
+	public void enableBrick()
+	{
+		Debug.Log("Enabled "+ gameObject.name);
+		float initspeed = getSpeed(this, _bricksSpeed);
+		new OTTween(this, 0.5f).Tween("speed", initspeed );
+//		enabled = true;
+	}
+
+	public void disableBrick()
+	{
+		Debug.Log("Disabled "+ gameObject.name);
+		new OTTween(this, 0.5f).Tween("speed", 0f);
+//		enabled = false;
+	}
+
 	private void GameStart()
 	{
 
@@ -75,6 +90,9 @@ public class LevelBrick : MonoBehaviour {
 	
 	private void Respawn()
 	{
-		gameObject.transform.position = initPos;
+		if (type != typeList.Fields)
+		{
+			gameObject.transform.position = initPos;
+		}
 	}
 }
