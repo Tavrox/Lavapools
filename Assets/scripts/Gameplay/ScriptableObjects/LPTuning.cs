@@ -16,14 +16,14 @@ public class LPTuning : ScriptableObject {
 	public float CapturePoint_Score = 600f;
 	public float CaptureSpeed = 1f;
 	public float ScoreOverTime = 5f;
+	public float SpawnFrequency = 5f;
+	public float DelayBeforeSpawn = 5f;
 	public int Leaderboard_Number = 15;
 	public Dictionary<LevelBrick.typeList, float> _dicoBricks = new Dictionary<LevelBrick.typeList, float>();
 
 	public Color ColPlayer;
 	public Color ColRank;
 	public Color ColScore;
-
-	public List<float> scoreSteps;
 
 	// Use this for initialization
 	public void initScript () {

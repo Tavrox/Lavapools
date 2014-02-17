@@ -27,7 +27,6 @@ public class MenuThing : MonoBehaviour {
 		{
 			InvokeRepeating("animateItem", 0f, 2.5f);
 		}
-	
 	}
 
 	private void OnMouseDown()

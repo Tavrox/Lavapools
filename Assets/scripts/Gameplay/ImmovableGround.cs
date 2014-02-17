@@ -6,7 +6,7 @@ public class ImmovableGround : LevelBrick {
 	// Use this for initialization
 	void Start () {
 
-		base.Start();
+		base.Setup();
 	
 	}
 

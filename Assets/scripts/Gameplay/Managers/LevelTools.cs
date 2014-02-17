@@ -31,19 +31,25 @@ public class LevelTools : MonoBehaviour {
 		
 	}
 
-	public void respawnField()
+	public void fetchWaypoints(LevelBrick.typeList _type)
 	{
-		GameObject _newField = Instantiate(Resources.Load("Bricks/Fields")) as GameObject;
-		_newField.transform.parent = GameObject.Find("LevelManager/LevelBricks/Bricks").gameObject.transform;
-		Fields _field = _newField.GetComponent<Fields>();
-		Waypoint _wp = pickRandomLoc(_levMan.locationList);
-		_field.currentWP = _wp;
-		_field.transform.position = _field.currentWP.transform.position;
+
 	}
-	
-	public Waypoint pickRandomLoc(List<Waypoint> _list)
-	{	
-		int rand = Random.Range(0, 3);
-		return _list[rand];
+
+	public WaypointManager findWpManager(LevelBrick.typeList _type)
+	{
+		WaypointManager res = null;
+		res = _levMan.waypointsMan.Find( delegate(WaypointManager obj) 
+		{
+			if (_type == LevelBrick.typeList.Fields)
+			{
+				return obj.GetComponent<FieldManager>() == true;
+			}
+			else
+			{
+				return obj.relatedBrick.type == _type;
+			}
+		});
+		return res;
 	}
 }

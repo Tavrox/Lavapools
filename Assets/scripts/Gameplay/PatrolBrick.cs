@@ -4,19 +4,19 @@ using System.Collections.Generic;
 
 public class PatrolBrick : LevelBrick {
 
-	public List<Waypoint> waypoints;
+	public WaypointManager brickPath;
+	public string brickPathId;
 	public Waypoint currentWP;
 
 	private Waypoint initWp;
-	private List<Waypoint> initWaypoints;
+	private WaypointManager initPath;
 
-	public bool logTimecode;
+	public bool debug;
 
 	// Use this for initialization
-	public void Start () {
+	public void Setup () {
 
-		base.Start();
-
+		base.Setup();
 		if (currentWP == null)
 		{
 			Debug.Log("The brick "+gameObject.name+" has no wp");
@@ -26,6 +26,16 @@ public class PatrolBrick : LevelBrick {
 		GameEventManager.GameOver += GameOver;
 		GameEventManager.Respawn += Respawn;
 
+		if (brickPath != null)
+		{
+			brickPath.relatedBrick = this;
+			brickPathId = brickPath.id;
+		}
+		else
+		{
+			Debug.Log("The path of "+gameObject.name+" is missing.");
+		}
+
 		InvokeRepeating("StepUpdate", 0f, _levMan.TuningDocument.GLOBAL_speed);
 
 	}
@@ -34,7 +44,7 @@ public class PatrolBrick : LevelBrick {
 	public void saveWaypoints()
 	{
 		initWp = currentWP;
-		initWaypoints = waypoints;
+		initPath = brickPath;
 	}
 
 	public void setupTarget()
@@ -46,11 +56,11 @@ public class PatrolBrick : LevelBrick {
 	
 	// Update is called once per frame
 	void StepUpdate () {
-		
+			
 		if (GameEventManager.gameOver != true)
 		{
 			pos = gameObject.transform.position;
-			gameObject.transform.position += new Vector3 ( speed * FETool.Round( direction.x, 2), speed * FETool.Round( direction.y, 2) , 0f);
+			gameObject.transform.position += new Vector3 ( speed * FETool.Round( direction.x, 1), speed * FETool.Round( direction.y, 1) , 0f);
 		}
 	}
 	
@@ -60,6 +70,7 @@ public class PatrolBrick : LevelBrick {
 		{
 			GameEventManager.TriggerGameOver(gameObject.name);
 		}
+//		print (_oth.gameObject.name);
 	}
 	
 	public void GoToWaypoint(Waypoint _wp)
@@ -74,7 +85,7 @@ public class PatrolBrick : LevelBrick {
 
 	public void brickBounce()
 	{
-		if (logTimecode == true)
+		if (type != typeList.Fields)
 		{
 			_soundList[0].playSound(brickId);
 		}
@@ -96,7 +107,7 @@ public class PatrolBrick : LevelBrick {
 		{
 			gameObject.transform.position = initPos;
 			currentWP = initWp;
-			initWaypoints = waypoints;
+			initPath = brickPath;
 			setupTarget();
 		}
 	}

@@ -19,7 +19,7 @@ public class Fields : PatrolBrick {
 
 	// Use this for initialization
 	void Start () {
-		base.Start();
+		base.Setup();
 		
 		GameEventManager.GameStart += GameStart;
 		GameEventManager.GameOver += GameOver;
@@ -27,7 +27,7 @@ public class Fields : PatrolBrick {
 
 		_levMan = GameObject.Find("LevelManager").GetComponent<LevelManager>();
 
-		currentWP = _levMan.tools.pickRandomLoc(_levMan.locationList);
+//		currentWP = _levMan.tools.pickRandomLoc(_levMan.locationList);
 		gameObject.transform.position = currentWP.transform.position;
 
 		_anims = gameObject.AddComponent<FieldAnims>();
@@ -122,6 +122,6 @@ public class Fields : PatrolBrick {
 
 	private void Respawn()
 	{
-		DestroyImmediate(this.gameObject);
+		
 	}
 }

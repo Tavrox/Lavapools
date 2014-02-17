@@ -5,10 +5,15 @@ public class Bird : PatrolBrick {
 
 	public void Start () 
 	{
-		base.Start();
+		base.Setup();
 		
 		setupTarget();
 		saveWaypoints();
 		
+	}
+
+	public void turnToward(GameObject _target)
+	{
+
 	}
 }

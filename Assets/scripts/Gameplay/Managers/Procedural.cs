@@ -1,20 +1,17 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics;
 
 public class Procedural : MonoBehaviour {
 
-	private LevelManager _levMan;
-	private List<ProceduralSteps> _listSteps;
-
-	private LevelSetup SETUP;
-
+	[HideInInspector] public LevelManager _levMan;
 	[HideInInspector] public ProceduralSteps _CURRENTSTEP;
 
+	private List<ProceduralSteps> _listSteps;
+	private LevelSetup SETUP;
 
 	// Use this for initialization
-	void Awake () 
+	public void Setup () 
 	{
 		string path = "Procedural/Level" + Application.loadedLevelName+"/";
 		_levMan = GameObject.Find("LevelManager").GetComponent<LevelManager>();
@@ -34,6 +31,7 @@ public class Procedural : MonoBehaviour {
 
 	private void checkScore()
 	{
+		Debug.LogWarning(""+_CURRENTSTEP+"");
 		foreach (ProceduralSteps _step in _listSteps)
 		{
 			if ( _step.priority > _CURRENTSTEP.priority && _step.ScoreCondition < _levMan.score)
@@ -51,7 +49,7 @@ public class Procedural : MonoBehaviour {
 		{
 			case 1 :
 			{
-
+			print ("olol");
 			break;
 			}
 			case 2 :

@@ -18,14 +18,14 @@ public class LevelBrick : MonoBehaviour {
 	[HideInInspector] public Vector3 target;
 	[HideInInspector] public Vector3 pos;
 	[HideInInspector] public Vector3 initPos;
-	[HideInInspector] public LevelManager _levMan;
+	public LevelManager _levMan;
 	[HideInInspector] public int brickId;
 	[HideInInspector] public Player _player;
 	[HideInInspector] public List<FESound> _soundList = new List<FESound>();
 
 	public Dictionary<LevelBrick.typeList, float> _bricksSpeed = new Dictionary<LevelBrick.typeList, float>();
 
-	public void Start()
+	public void Setup()
 	{
 		if (gameObject.name.Contains("/"))
 		{

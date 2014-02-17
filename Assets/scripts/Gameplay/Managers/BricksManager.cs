@@ -5,15 +5,18 @@ using System.Collections.Generic;
 public class BricksManager : MonoBehaviour {
 	
 	public List<LevelBrick> BricksList = new List<LevelBrick>();
-
-
+	
 	// Use this for initialization
-	void Start () {
+	public void Setup () {
 
 		LevelBrick[] bricksArray = GetComponentsInChildren<LevelBrick>();
 		foreach (LevelBrick _brick in bricksArray)
 		{
 			BricksList.Add(_brick);
+			if (_brick.GetComponent<PatrolBrick>() != null)
+			{
+				_brick.GetComponent<PatrolBrick>().Setup();
+			}
 		}
 	
 	}
