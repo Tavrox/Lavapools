@@ -9,8 +9,7 @@ public class ProceduralSteps : ScriptableObject {
 	{
 		Noobcrab,
 		Crabbish,
-		Crabstructor,
-		Hardcrabore
+		SuperHexacrab
 	}
 	public Difficulty levelLabel;
 	public int stepID;
@@ -25,6 +24,7 @@ public class ProceduralSteps : ScriptableObject {
 	public conditionEnum condition;
 	public float ScoreCondition;
 	public float TimerCondition;
+	public float SpeedMultiplier = 1f;
 	public List<string> BricksEnabled;
 	public List<string> BricksDisabled;
 	public List<string> WaypointsToInvert;

@@ -7,7 +7,8 @@ public class Player : MonoBehaviour {
 	[HideInInspector] public LPTuning TuningDocument;
 	[HideInInspector] public int OnPlatforms;
 
-	private float speed = 0.1f;
+	public float speed = 0.1f;
+	public float initSpeed;
 	private RaycastHit hit;
 	private Vector3 pos;
 	private int layer;
@@ -16,7 +17,7 @@ public class Player : MonoBehaviour {
 	private Vector3 startPos;
 	private OTSprite spr;
 	private Vector2 originalSize;
-	private Label _notif;
+	private Notification _notif;
 	private PlayerAnims _anims;
 
 	[HideInInspector] public enum playerState
@@ -47,6 +48,7 @@ public class Player : MonoBehaviour {
 		_playerSheet.name = playerName;
 		TuningDocument = _levMan.TuningDocument;
 		speed = TuningDocument.Player_Speed;
+		initSpeed = speed;
 		
 		GameEventManager.GameStart += GameStart;
 		GameEventManager.GameOver += GameOver;
@@ -55,8 +57,8 @@ public class Player : MonoBehaviour {
 		_anims = gameObject.AddComponent<PlayerAnims>() as PlayerAnims;
 
 	
-		_notif = GetComponentInChildren<Label>();
-		_notif.text = "+" + TuningDocument.CapturePoint_Score.ToString();
+		_notif = GetComponentInChildren<Notification>();
+
 		startPos = gameObject.transform.position;
 	}
 	
@@ -66,62 +68,66 @@ public class Player : MonoBehaviour {
 		Vector3 mod = new Vector3(0f,0f,0f);
 		pos = gameObject.transform.position;
 //		print ("Platforms" + OnPlatforms);
-		
-		if (OnPlatforms == 0 )
-		{
-			GameEventManager.TriggerGameOver(gameObject.name);
-		}
 
-		if (Input.GetKey (KeyCode.RightArrow)) 
+		if (LevelManager.GAMESTATE == GameEventManager.GameState.Live )
 		{
-			mod.x += speed;
-			_anims.playAnimation(_anims._WALK);
+			if (OnPlatforms == 0 )
+			{
+				GameEventManager.TriggerGameOver(gameObject.name);
+			}
+
+			if (Input.GetKey (KeyCode.RightArrow)) 
+			{
+				mod.x += speed;
+				_anims.playAnimation(_anims._WALK);
+			}
+			else if (Input.GetKeyUp (KeyCode.RightArrow)) 
+			{
+				mod.x =0f;
+				_anims.playAnimation(_anims._STATIC);
+			}
+			
+			if (Input.GetKey (KeyCode.UpArrow)) 
+			{
+				mod.y += speed;
+				_anims.playAnimation(_anims._WALK);
+			}
+			else if (Input.GetKeyUp (KeyCode.UpArrow)) 
+			{
+				mod.y = 0f;
+				_anims.playAnimation(_anims._STATIC);
+			}
+			
+			if (Input.GetKey (KeyCode.LeftArrow)) 
+			{
+				mod.x -= speed;
+				_anims.playAnimation(_anims._WALK);
+			}
+			else if (Input.GetKeyUp (KeyCode.LeftArrow)) 
+			{
+				mod.x =0f;
+				_anims.playAnimation(_anims._STATIC);
+			}
+			
+			if (Input.GetKey (KeyCode.DownArrow)) 
+			{
+				mod.y -= speed;
+				_anims.playAnimation(_anims._WALK);
+			}
+			else if (Input.GetKeyUp (KeyCode.DownArrow)) 
+			{
+				mod.x =0f;
+				_anims.playAnimation(_anims._STATIC);
+			}
+			this.gameObject.transform.position += mod * Time.deltaTime;
 		}
-		else if (Input.GetKeyUp (KeyCode.RightArrow)) 
-		{
-			mod.x =0f;
-			_anims.playAnimation(_anims._STATIC);
-		}
-		
-		if (Input.GetKey (KeyCode.UpArrow)) 
-		{
-			mod.y += speed;
-			_anims.playAnimation(_anims._WALK);
-		}
-		else if (Input.GetKeyUp (KeyCode.UpArrow)) 
-		{
-			mod.y = 0f;
-			_anims.playAnimation(_anims._STATIC);
-		}
-		
-		if (Input.GetKey (KeyCode.LeftArrow)) 
-		{
-			mod.x -= speed;
-			_anims.playAnimation(_anims._WALK);
-		}
-		else if (Input.GetKeyUp (KeyCode.LeftArrow)) 
-		{
-			mod.x =0f;
-			_anims.playAnimation(_anims._STATIC);
-		}
-		
-		if (Input.GetKey (KeyCode.DownArrow)) 
-		{
-			mod.y -= speed;
-			_anims.playAnimation(_anims._WALK);
-		}
-		else if (Input.GetKeyUp (KeyCode.DownArrow)) 
-		{
-			mod.x =0f;
-			_anims.playAnimation(_anims._STATIC);
-		}
-		this.gameObject.transform.position += mod * Time.deltaTime;
 	}
 
 	public void triggerNotification()
 	{
+		_notif.text = "+" + TuningDocument.CapturePoint_Score.ToString();
 		_notif.makeFadeIn();
-		StartCoroutine(WaitFadeSec(3f));
+		StartCoroutine(WaitFadeSec(2f));
 	}
 
 	IEnumerator WaitFadeSec(float _time)
@@ -132,30 +138,29 @@ public class Player : MonoBehaviour {
 	
 	private void GameStart()
 	{
+		speed = initSpeed;
 		new OTTween(spr, 0.5f).Tween("alpha", 1f);
 		new OTTween(spr, 0.5f).Tween("size", new Vector2(originalSize.x,originalSize.y));
+		_notif.makeFadeOut();
 		OnPlatforms = 0;
 	}
 	
 	private void GameOver()
 	{
-		if (FEDebug.GodMode != true)
-		{
-			new OTTween(spr, 0.5f).Tween("alpha", 0f);
-			new OTTween(spr, 0.5f).Tween("size", new Vector2(0.25f,0.25f));
-			OnPlatforms = 0;
-		}
-		else
-		{
-			Debug.Log("God Mode is activated");
-		}
+		speed = initSpeed;
+		new OTTween(spr, 0.5f).Tween("alpha", 0f);
+		new OTTween(spr, 0.5f).Tween("size", new Vector2(0.25f,0.25f));
+		_notif.makeFadeOut();
+		OnPlatforms = 0;
 	}
 	
 	private void Respawn()
 	{
+		speed = initSpeed;
 		gameObject.transform.position = startPos;
 		new OTTween(spr, 0.5f).Tween("alpha", 1f);
 		new OTTween(spr, 0.5f).Tween("size", new Vector2(originalSize.x,originalSize.y));
+		_notif.makeFadeOut();
 		OnPlatforms = 0;
 	}
 }

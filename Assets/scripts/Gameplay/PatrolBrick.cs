@@ -49,9 +49,12 @@ public class PatrolBrick : LevelBrick {
 
 	public void setupTarget()
 	{
-		pos = gameObject.transform.position;
-		target = currentWP.nextWP.transform.position;
-		direction = (target - pos).normalized;
+		if (currentWP != null)
+		{
+			pos = gameObject.transform.position;
+			target = currentWP.nextWP.transform.position;
+			direction = (target - pos).normalized;
+		}
 	}
 	
 	// Update is called once per frame
@@ -66,7 +69,7 @@ public class PatrolBrick : LevelBrick {
 	
 	void OnTriggerEnter(Collider _oth)
 	{
-		if (_oth.CompareTag("Player"))
+		if (_oth.CompareTag("Player") && LevelManager.GAMESTATE != GameEventManager.GameState.MainMenu)
 		{
 			GameEventManager.TriggerGameOver(gameObject.name);
 		}
@@ -103,7 +106,7 @@ public class PatrolBrick : LevelBrick {
 	
 	private void Respawn()
 	{
-		if (gameObject != null && enabled == true)
+		if (this != null && enabled == true)
 		{
 			gameObject.transform.position = initPos;
 			currentWP = initWp;

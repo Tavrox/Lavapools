@@ -1,20 +1,56 @@
 ﻿using UnityEngine;
 using System.Collections;
-[ExecuteInEditMode]
 
-public class UserInput : MonoBehaviour {
+public class UserInput : TextUI {
 
-	public string playerName;
-	private float offsetX = 100f;
-	private float offsetY = -580f;
-	public GUISkin skin;
-	public Color color;
+	private string initTxt;
+	private bool hasFocus = false;
+	private Vector3 mousePos;
+	private BoxCollider _bx;
+	private Rect _rec;
 
-	void OnGUI()
+	void Start()
 	{
-		Vector3 point = Camera.main.WorldToScreenPoint(transform.position);
-		GUI.skin = skin;
-		skin.textField.normal.textColor = color;
-		playerName = GUI.TextField(new Rect(point.x - offsetX, Screen.currentResolution.height - point.y  + offsetY, 200, 200), playerName);
+		initTxt = "YourName";
+		_bx = GetComponent<BoxCollider>();
+		_rec = new Rect(gameObject.transform.position.x - _bx.size.x, gameObject.transform.position.y - _bx.size.y,5f,5f) ;
+	}
+
+	void Update()
+	{
+		_mesh.text = text;
+		_mesh.color = color;
+		mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+		if (mousePos.x < _rec.xMax && mousePos.x > _rec.xMin && mousePos.y > _rec.yMin && mousePos.y < _rec.xMax && Input.GetMouseButtonDown(0))
+		{
+			hasFocus = true;
+		}
+		else if (Input.GetMouseButtonDown(0))
+		{
+			hasFocus = false;
+		}
+		if (hasFocus)
+		{
+			color = Color.white;
+			if (Input.inputString == "\b")
+			{
+				print ("Remove");
+				if (text.Length >0)
+				{
+					text = text.Remove(text.Length-1);
+				}
+			}
+			else
+			{
+				if (text.Length < 10)
+				{
+					text += Input.inputString;
+				}
+			}
+		}
+		else
+		{
+			color = Color.red;
+		}
 	}
 }

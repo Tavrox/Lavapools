@@ -5,7 +5,7 @@ public class UIThing : MonoBehaviour {
 
 	private OTSprite spr;
 
-	private Label lab;
+	private TextUI lab;
 
 	private OTAnimatingSprite animSpr;
 	
@@ -19,9 +19,9 @@ public class UIThing : MonoBehaviour {
 		{
 			animSpr = GetComponentInChildren<OTAnimatingSprite>();
 		}
-		if (GetComponent<Label>() != null)
+		if (GetComponent<TextUI>() != null)
 		{
-			lab = GetComponentInChildren<Label>();
+			lab = GetComponentInChildren<TextUI>();
 		}
 	}
 

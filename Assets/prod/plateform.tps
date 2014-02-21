@@ -155,6 +155,7 @@
             <filename>plateform04static.png</filename>
             <filename>plateform05static.png</filename>
             <filename>plateform06static.png</filename>
+            <filename>plateform00static.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

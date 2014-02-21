@@ -13,15 +13,22 @@ public class LevelBrick : MonoBehaviour {
 	};
 	public typeList type;
 	public float speed;
+	public float initSpeed;
+	public LevelManager _levMan;
+	public int brickId;
+
+	private OTAnimatingSprite animSpr;
+	private BoxCollider coll;
+	public bool invisible = false;
 
 	[HideInInspector] public Vector3 direction;
 	[HideInInspector] public Vector3 target;
 	[HideInInspector] public Vector3 pos;
 	[HideInInspector] public Vector3 initPos;
-	public LevelManager _levMan;
-	public int brickId;
 	[HideInInspector] public Player _player;
 	[HideInInspector] public List<FESound> _soundList = new List<FESound>();
+
+
 
 	public Dictionary<LevelBrick.typeList, float> _bricksSpeed = new Dictionary<LevelBrick.typeList, float>();
 
@@ -54,6 +61,12 @@ public class LevelBrick : MonoBehaviour {
 		GameEventManager.Respawn += Respawn;
 
 		speed = getSpeed(this, _bricksSpeed);
+		initSpeed = speed;
+
+		if (GetComponentInChildren<OTAnimatingSprite>() != null)
+		{
+			animSpr = GetComponentInChildren<OTAnimatingSprite>();
+		}
 	}
 
 	public float getSpeed(LevelBrick _brick, Dictionary<LevelBrick.typeList, float> _dico)
@@ -65,22 +78,31 @@ public class LevelBrick : MonoBehaviour {
 
 	public void enableBrick()
 	{
-		Debug.Log("Enabled "+ gameObject.name);
 		float initspeed = getSpeed(this, _bricksSpeed);
-		new OTTween(this, 0.5f).Tween("speed", initspeed );
+//		speed = initspeed;
 //		enabled = true;
+		new OTTween(this, 0.5f).Tween("speed", initspeed );
+//		new OTTween(animSpr, _levMan.TuningDocument.timeBeforeActivation).Tween("alpha", 1f );
+//		StartCoroutine("triggerCollider");
 	}
 
 	public void disableBrick()
 	{
-		Debug.Log("Disabled "+ gameObject.name);
-		new OTTween(this, 0.5f).Tween("speed", 0f);
-//		enabled = false;
+		speed = 0;
+//		animSpr.alpha = 0f;
+//		invisible = true;
+	}
+
+	IEnumerator triggerCollider()
+	{
+		yield return new WaitForSeconds(_levMan.TuningDocument.timeBeforeActivation);
+		invisible = false;
 	}
 
 	private void GameStart()
 	{
-
+		speed = 0f;
+		new OTTween(this, 0.5f).Tween("speed", initSpeed );
 	}
 	
 	private void GameOver()

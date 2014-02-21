@@ -13,6 +13,7 @@ public class Fields : PatrolBrick {
 	private fieldState state;
 	public bool countCaptured;
 	private float capScore;
+	public bool isStatic = false;
 
 	private FieldAnims _anims;
 
@@ -28,13 +29,18 @@ public class Fields : PatrolBrick {
 		_levMan = GameObject.Find("LevelManager").GetComponent<LevelManager>();
 
 //		currentWP = _levMan.tools.pickRandomLoc(_levMan.locationList);
-		gameObject.transform.position = currentWP.transform.position;
-
+		if (isStatic != true)
+		{
+			gameObject.transform.position = currentWP.transform.position;
+		}
 		_anims = gameObject.AddComponent<FieldAnims>();
 		_anims.Start();
 
 		setupTarget();
-		Destroy(gameObject, 8f);
+		if (isStatic != true)
+		{
+			Destroy(gameObject, 8f);
+		}
 //		InvokeRepeating("StepUpdate", 0f, _levMan.TuningDocument.GLOBAL_speed);
 		InvokeRepeating("CheckState", 0f, 0.1f);
 
@@ -106,8 +112,12 @@ public class Fields : PatrolBrick {
 	{
 		if (_other.CompareTag("Player"))
 		{
+			if (isCaptured != true)
+			{
+			capScore = 0f;
+			state = fieldState.Uncaptured;
+			}
 			_player.OnPlatforms -= 1;
-			_anims.playAnimation(_anims._UNCAPTURED);
 		}
 	}
 
@@ -123,6 +133,6 @@ public class Fields : PatrolBrick {
 
 	private void Respawn()
 	{
-		
+
 	}
 }

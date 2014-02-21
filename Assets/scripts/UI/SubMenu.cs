@@ -12,4 +12,10 @@ public class SubMenu : MonoBehaviour {
 	}
 	public submenus subMenuList;
 	[HideInInspector] public List<GameObject> menuThings;
+	public MainMenu _menuMan;
+
+	public void SetupSub(MainMenu _menu)
+	{
+		_menuMan = _menu;
+	}
 }

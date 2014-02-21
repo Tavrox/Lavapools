@@ -5,13 +5,16 @@ using System.Collections.Generic;
 public class MainMenu : MonoBehaviour {
 	
 	private List<GameObject> listMenus;
+	public LevelManager _levman;
 
 	[HideInInspector] public IngameUI _IngameUI;
 	[HideInInspector] public GameOverUI _GameOverUI;
 	[HideInInspector] public EntryUI _EntryUI;
 
 	// Use this for initialization
-	public void Setup () {
+	public void Setup (LevelManager _lm) {
+
+		_levman = _lm;
 		
 		GameEventManager.GameStart += GameStart;
 		GameEventManager.GameOver += GameOver;
@@ -21,11 +24,15 @@ public class MainMenu : MonoBehaviour {
 		_GameOverUI = FETool.findWithinChildren(this.gameObject, "GameOver").GetComponent<GameOverUI>();
 		_EntryUI = FETool.findWithinChildren(this.gameObject, "EntryMenu").GetComponent<EntryUI>();
 
+		_IngameUI.SetupSub(this);
 		_IngameUI.Setup();
+		_GameOverUI.SetupSub(this);
 		_GameOverUI.Setup();
+		_EntryUI.SetupSub(this);
 		_EntryUI.Setup();
 
 	}
+
 
 	private List<GameObject> buildChildrenList()
 	{
@@ -56,6 +63,12 @@ public class MainMenu : MonoBehaviour {
 	{
 		yield return new WaitForSeconds(2f);
 		_thing.gameObject.SetActive(false);
+	}
+
+	public void changeLevelLabel(ProceduralSteps _step)
+	{
+		_IngameUI.LevelTxt.text = "" + _step.levelLabel + " / " + _step.stepID;
+
 	}
 
 	private void GameStart()

@@ -23,11 +23,13 @@ public class LevelManager : MonoBehaviour {
 	[HideInInspector] public List<WaypointManager> waypointsMan = new List<WaypointManager>();
 	[HideInInspector] public BricksManager bricksMan;
 
-	private MainMenu menuManager;
+	public MainMenu menuManager;
 	private FieldManager fieldMan;
+	private Fields spawningField;
 	
-	private Player _player;
+	public Player _player;
 	[HideInInspector] public PlayerProfile _profile;
+
 
 	// Use this for initialization
 	void Awake () {
@@ -36,7 +38,9 @@ public class LevelManager : MonoBehaviour {
 		GameEventManager.GameStart += GameStart;
 		GameEventManager.GameOver += GameOver;
 		GameEventManager.Respawn += Respawn;
+
 		GAMESTATE = _EditorState;
+
 		_profile = ScriptableObject.CreateInstance("PlayerProfile") as PlayerProfile;
 		
 		TuningDocument = FETool.setupDoc();
@@ -65,26 +69,27 @@ public class LevelManager : MonoBehaviour {
 		}
 
 		menuManager = GameObject.Find("UI").GetComponent<MainMenu>();
-		menuManager.Setup();
+		menuManager.Setup(this);
 		
 		proc.triggerStep(proc._listSteps[0]);
+		Setup();
 	
 	}
 
-	void Start()
+	void Setup()
 	{
-		switch (GAMESTATE)
+
+		if (GAMESTATE == GameEventManager.GameState.MainMenu)
 		{
-		case GameEventManager.GameState.Live :
+			GameEventManager.TriggerGameStart("LM", true);
+		}
+		if (GAMESTATE == GameEventManager.GameState.GameOver)
 		{
-			GameEventManager.TriggerGameStart(name);
-			break;
-		}	
-		case GameEventManager.GameState.GameOver :
+			GameEventManager.TriggerGameOver("LM", true);
+		}
+		if (GAMESTATE == GameEventManager.GameState.Live)
 		{
-			GameEventManager.TriggerGameOver(name);
-			break;
-		}	
+			GameEventManager.TriggerRespawn("LM", true);
 		}
 		InvokeRepeating("updateTime", 0f, 0.01f);
 		InvokeRepeating("spawnFields", TuningDocument.DelayBeforeSpawn, TuningDocument.SpawnFrequency);
@@ -99,6 +104,7 @@ public class LevelManager : MonoBehaviour {
 		{
 			if (Input.GetKey(KeyCode.KeypadEnter) || Input.GetKey(KeyCode.Space))
 			{
+				menuManager._GameOverUI._lb.SendScore(_player.playerName, score);
 				GameEventManager.TriggerRespawn(gameObject.name);
 			}
 		}
@@ -133,7 +139,7 @@ public class LevelManager : MonoBehaviour {
 	{
 		if (GameEventManager.gameOver != true )
 		{
-			fieldMan.respawnField();
+			spawningField = fieldMan.respawnField();
 //			fieldSpawning = true;
 		}
 	}
@@ -141,18 +147,24 @@ public class LevelManager : MonoBehaviour {
 	#region Events
 	private void GameStart()
 	{
-		_player.gameObject.SetActive(true);
+//		_player.gameObject.SetActive(false);
 	}
 	
 	private void GameOver()
 	{
 		_player.gameObject.SetActive(false);
+		if (spawningField != null)
+		{
+			Destroy(spawningField.gameObject);
+		}
 		CancelInvoke("updateTime");
+		CancelInvoke("spawnFields");
 	}
 	
 	private void Respawn()
 	{
 		InvokeRepeating("updateTime", 0f, 0.01f);
+		InvokeRepeating("spawnFields", TuningDocument.DelayBeforeSpawn, TuningDocument.SpawnFrequency);
 		_player.gameObject.SetActive(true);
 		score = 0f;
 		fieldsCaptured = 0;

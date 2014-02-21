@@ -19,6 +19,7 @@ public class LPTuning : ScriptableObject {
 	public float SpawnFrequency = 5f;
 	public float DelayBeforeSpawn = 5f;
 	public int Leaderboard_Number = 15;
+	public float timeBeforeActivation = 3f;
 	public Dictionary<LevelBrick.typeList, float> _dicoBricks = new Dictionary<LevelBrick.typeList, float>();
 
 	public Color ColPlayer;

@@ -11,7 +11,7 @@ public class XMLLeaderboards : MonoBehaviour {
 	private string url;
 	private WWW www;
 	public List<UserLeaderboard> listLb;
-	private Label[] scoreLines;
+	private TextUI[] scoreLines;
 	private int lbLength =  6;
 
 	// Use this for initialization
@@ -85,7 +85,7 @@ public class XMLLeaderboards : MonoBehaviour {
 		return listUser;
 	}
 
-	public void displayLeaderboard(List<UserLeaderboard> _listLb, ref Label[] _lines)
+	public void displayLeaderboard(List<UserLeaderboard> _listLb, ref TextUI[] _lines)
 	{
 		int _lengthLb = lbLength;
 		if (_listLb.Count < _lengthLb )

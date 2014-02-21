@@ -28,21 +28,12 @@ public class Procedural : MonoBehaviour {
 		}
 
 		_CURRENTSTEP = _listSteps[0];
-		InvokeRepeating("checkScore", 0f, 1f);
-		if (debug)
-		{
-			InvokeRepeating("printDebug", 0f, 5f);
-		}
-	}
-
-	private void printDebug()
-	{
-//		Debug.Log(_CURRENTSTEP);
+		InvokeRepeating("checkScore", 0f, 0.5f);
 	}
 
 	private void checkScore()
 	{
-		Debug.LogWarning(""+_CURRENTSTEP+"");
+//		Debug.LogWarning(""+_CURRENTSTEP+"");
 		foreach (ProceduralSteps _step in _listSteps)
 		{
 			if ( _step.priority > _CURRENTSTEP.priority)
@@ -71,7 +62,7 @@ public class Procedural : MonoBehaviour {
 	public void triggerStep(ProceduralSteps _step)
 	{
 		_CURRENTSTEP = _step;
-		Debug.Log ("Triggered" + _CURRENTSTEP.stepID);
+//		Debug.Log ("Triggered STEP" + _CURRENTSTEP.stepID);
 		foreach (string _lb in _step.BricksDisabled)
 		{
 			if (_step.BricksDisabled != null)
@@ -86,6 +77,16 @@ public class Procedural : MonoBehaviour {
 				_levMan.bricksMan.BricksList.Find ((LevelBrick obj) => obj.name == _lb).enableBrick();
 			}	
 		}
+		foreach (LevelBrick _brick in _levMan.bricksMan.BricksList)
+		{
+			if (_brick.speed > 0)
+			{
+				_brick.speed = _brick.speed * _step.SpeedMultiplier;
+			}
+			_brick.initSpeed = _brick.initSpeed * _step.SpeedMultiplier;
+		}
+		_levMan._player.speed = _levMan._player.speed * _step.SpeedMultiplier;
+		_levMan.menuManager.changeLevelLabel(_CURRENTSTEP);
 	}
 
 	private List<ProceduralSteps> loadSteps(int _levelID)
@@ -103,7 +104,6 @@ public class Procedural : MonoBehaviour {
 				
 			break;
 			}
-
 		}
 		return _list;
 	}
