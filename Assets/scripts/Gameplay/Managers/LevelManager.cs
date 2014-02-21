@@ -106,7 +106,10 @@ public class LevelManager : MonoBehaviour {
 			{
 				if (score == bestScore && score != 0)
 				{
-					menuManager._GameOverUI._lb.SendScore(_player.playerName, score);
+					string name = _player.playerName.Replace("%0d", "");
+					print ("1"+name);
+					print ("2"+_player.playerName);
+					menuManager._GameOverUI._lb.SendScore(name, score);
 				}
 				GameEventManager.TriggerRespawn(gameObject.name);
 			}

@@ -12,10 +12,9 @@ public class UserInput : TextUI {
 
 	void Start()
 	{
-		initTxt = "YourNa";
+		initTxt = "_NAME_";
 		_bx = GetComponent<BoxCollider>();
 		_rec = new Rect(gameObject.transform.position.x - _bx.size.x, gameObject.transform.position.y - _bx.size.y,5f,5f) ;
-		InvokeRepeating("RainbowInput", 0f, 0.1f);
 	}
 
 	void Update()
@@ -25,6 +24,11 @@ public class UserInput : TextUI {
 		mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 		if (mousePos.x < _rec.xMax && mousePos.x > _rec.xMin && mousePos.y > _rec.yMin && mousePos.y < _rec.xMax)
 		{
+			if (blinking != true)
+			{
+				blinking = true;
+				BlinkName();
+			}
 			if (Input.GetMouseButtonDown(0))
 			{
 				hasFocus = true;
@@ -37,7 +41,12 @@ public class UserInput : TextUI {
 		}
 		if (hasFocus == true)
 		{
-			CancelInvoke("RainbowInput");
+			if (blinking != true)
+			{
+				text = "_";
+				blinking = true;
+				BlinkName();
+			}
 			if (Input.inputString == "\b")
 			{
 				if (text.Length > 0)
@@ -47,27 +56,26 @@ public class UserInput : TextUI {
 			}
 			else
 			{
-				if (text.Length < 8 && Input.inputString != "<" && Input.inputString != ">" && Input.inputString != "$" && Input.inputString != "*" && Input.inputString != "."  && Input.inputString != " " )
+				if (text.Length < 8 && Input.inputString != "<" && Input.inputString != ">" 
+				    && Input.inputString != "$" && Input.inputString != "*"
+				    && Input.inputString != "."  && Input.inputString != " "
+				    && Input.inputString != "\n" && Input.inputString != "%0d"
+				    && Input.inputString != "\r")
 				{
+//					print ("[" + Input.inputString + "]");
 					text += Input.inputString;
 				}
 			}
 		}
 		else
 		{
+			blinking = false;
 			color = LevelManager.TuningDocument.ColPlayer;
-			InvokeRepeating("RainbowInput", 0f, 0.1f);
 		}
 	}
 
-	private void RainbowInput()
+	private void BlinkName()
 	{
-		Color[] _col = new Color[4];
-		_col[0] = Color.yellow;
-		_col[1] = Color.green;
-		_col[2] = Color.red;
-		_col[3] = Color.blue;
-		color = _col[Random.Range(0, 3)];
+		new OTTween(this, 1f).Tween("color", new Color(200f, 200f, 200f, 0.2f)).PingPong();
 	}
-
 }

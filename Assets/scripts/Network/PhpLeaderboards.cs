@@ -60,7 +60,7 @@ public class PhpLeaderboards : MonoBehaviour
 //		string hash = "";
 		int prse = Mathf.RoundToInt(score);
 		string post_url = addScoreURL + "?name=" + WWW.EscapeURL(name) + "&score=" + prse.ToString() + "&hash=" + hash;
-//		print (post_url);
+		print (post_url);
 		
 		// Post the URL to the site and create a download object to get the result.
 		WWW hs_post = new WWW(post_url);

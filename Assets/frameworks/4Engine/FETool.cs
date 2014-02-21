@@ -7,7 +7,7 @@ public class FETool : MonoBehaviour {
 
 	public static LPTuning setupDoc()
 	{
-		TuningDoc = Resources.Load("LPTuning") as LPTuning;
+		TuningDoc = Instantiate(Resources.Load("LPTuning")) as LPTuning;
 		return TuningDoc;
 	}
 	public static void TriggerObject(GameObject _obj, bool _state)

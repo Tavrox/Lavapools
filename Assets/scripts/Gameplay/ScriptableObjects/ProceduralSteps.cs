@@ -25,6 +25,7 @@ public class ProceduralSteps : ScriptableObject {
 	public float ScoreCondition;
 	public float TimerCondition;
 	public float SpeedMultiplier = 1f;
+	public float PlatformValueMultiplier = 1f;
 	public List<string> BricksEnabled;
 	public List<string> BricksDisabled;
 	public List<string> WaypointsToInvert;
