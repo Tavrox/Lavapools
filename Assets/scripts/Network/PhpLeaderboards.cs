@@ -13,11 +13,10 @@ public class PhpLeaderboards : MonoBehaviour
 	
 	void Awake()
 	{
-		//		print ("Php Lead started");
-		GameEventManager.GameOver += GameOver;
+		GameEventManager.Respawn += Respawn;
 		ListUser = new List<UserLeaderboard>();
 		ListEntries = new List<LBEntry>();
-		for (int i = 0 ; i <= 14 ; i++)
+		for (int i = 0 ; i <= 14 ; i++) 
 		{
 			ListUser.Add(ScriptableObject.CreateInstance("UserLeaderboard") as UserLeaderboard);
 		}
@@ -32,6 +31,7 @@ public class PhpLeaderboards : MonoBehaviour
 	
 	public void GatherScores()
 	{
+		StartCoroutine(GetScores());
 		updateScores(ref ListUser, ref ListEntries);
 	}
 
@@ -60,7 +60,7 @@ public class PhpLeaderboards : MonoBehaviour
 //		string hash = "";
 		int prse = Mathf.RoundToInt(score);
 		string post_url = addScoreURL + "?name=" + WWW.EscapeURL(name) + "&score=" + prse.ToString() + "&hash=" + hash;
-		print (post_url);
+//		print (post_url);
 		
 		// Post the URL to the site and create a download object to get the result.
 		WWW hs_post = new WWW(post_url);
@@ -90,7 +90,6 @@ public class PhpLeaderboards : MonoBehaviour
 		else
 		{
 			string[] entries = hs_get.text.Split(']');
-			Debug.Log ("Number of Entries = " + entries.Length);
 			for (int i = 0; i < entries.Length -1 ; i++)
 			{
 				ListUser[i].ranking = i+1;
@@ -101,7 +100,7 @@ public class PhpLeaderboards : MonoBehaviour
 		}
 	}
 
-	private void GameOver()
+	private void Respawn()
 	{
 		GatherScores();
 	}

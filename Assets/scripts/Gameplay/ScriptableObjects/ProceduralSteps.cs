@@ -9,6 +9,8 @@ public class ProceduralSteps : ScriptableObject {
 	{
 		Noobcrab,
 		Crabbish,
+		Hardcrabore,
+		Crabmaster, 
 		SuperHexacrab
 	}
 	public Difficulty levelLabel;
@@ -29,4 +31,5 @@ public class ProceduralSteps : ScriptableObject {
 	public List<string> BricksEnabled;
 	public List<string> BricksDisabled;
 	public List<string> WaypointsToInvert;
+	public bool PlayMusic;
 }

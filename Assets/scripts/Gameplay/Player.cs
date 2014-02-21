@@ -69,9 +69,10 @@ public class Player : MonoBehaviour {
 
 		if (LevelManager.GAMESTATE == GameEventManager.GameState.Live )
 		{
-			if (OnPlatforms == 0 )
+			if (OnPlatforms == 0)
 			{
 				GameEventManager.TriggerGameOver(gameObject.name);
+//				MasterAudio.PlaySound("Enviro");
 			}
 
 			if (Input.GetKey (KeyCode.RightArrow)) 

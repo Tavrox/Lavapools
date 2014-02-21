@@ -79,18 +79,12 @@ public class LevelBrick : MonoBehaviour {
 	public void enableBrick()
 	{
 		float initspeed = getSpeed(this, _bricksSpeed);
-//		speed = initspeed;
-//		enabled = true;
 		new OTTween(this, 0.5f).Tween("speed", initspeed );
-//		new OTTween(animSpr, _levMan.TuningDocument.timeBeforeActivation).Tween("alpha", 1f );
-//		StartCoroutine("triggerCollider");
 	}
 
 	public void disableBrick()
 	{
 		speed = 0;
-//		animSpr.alpha = 0f;
-//		invisible = true;
 	}
 
 	IEnumerator triggerCollider()

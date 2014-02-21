@@ -25,6 +25,7 @@ public class LPTuning : ScriptableObject {
 	public Color ColPlayer;
 	public Color ColRank;
 	public Color ColScore;
+	public Color ColInput;
 
 	// Use this for initialization
 	public void initScript () {

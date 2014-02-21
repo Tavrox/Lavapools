@@ -71,6 +71,7 @@ public class PatrolBrick : LevelBrick {
 	{
 		if (_oth.CompareTag("Player") && LevelManager.GAMESTATE != GameEventManager.GameState.MainMenu)
 		{
+			MasterAudio.PlaySound(type.ToString());
 			GameEventManager.TriggerGameOver(gameObject.name);
 		}
 //		print (_oth.gameObject.name);
@@ -88,10 +89,7 @@ public class PatrolBrick : LevelBrick {
 
 	public void brickBounce()
 	{
-		if (type != typeList.Fields)
-		{
-			_soundList[0].playSound(brickId);
-		}
+
 	}
 	
 	private void GameStart()

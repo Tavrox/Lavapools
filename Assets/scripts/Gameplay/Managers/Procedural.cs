@@ -18,6 +18,7 @@ public class Procedural : MonoBehaviour {
 		_levMan = GameObject.Find("LevelManager").GetComponent<LevelManager>();
 		_listSteps = new List<ProceduralSteps>();
 		GameEventManager.Respawn += Respawn;
+		GameEventManager.GameOver += GameOver;
 
 		SETUP = Resources.Load(path + "Setup") as LevelSetup;
 
@@ -27,7 +28,6 @@ public class Procedural : MonoBehaviour {
 		}
 
 		_CURRENTSTEP = _listSteps[0];
-		InvokeRepeating("checkScore", 0f, 0.5f);
 	}
 
 	private void checkScore()
@@ -86,6 +86,22 @@ public class Procedural : MonoBehaviour {
 		}
 		_levMan._player.speed = _levMan._player.speed * _step.SpeedMultiplier;
 		_levMan.menuManager.changeLevelLabel(_CURRENTSTEP);
+		if (_step.levelLabel != ProceduralSteps.Difficulty.Noobcrab)
+		{
+			MasterAudio.PlaySound("Steps", 1f, 1f,0f, _step.levelLabel.ToString());
+		}
+		if (_step.levelLabel == ProceduralSteps.Difficulty.Noobcrab && _step.PlayMusic == true)
+		{
+			MasterAudio.TriggerPlaylistClip("Step_1");
+		}
+		if (_step.levelLabel == ProceduralSteps.Difficulty.Crabbish && _step.PlayMusic == true)
+		{
+			MasterAudio.TriggerPlaylistClip("Step_2");
+		}
+		if (_step.levelLabel == ProceduralSteps.Difficulty.Crabmaster && _step.PlayMusic == true)
+		{
+			MasterAudio.TriggerPlaylistClip("Step_3");
+		}
 	}
 
 	private List<ProceduralSteps> loadSteps(int _levelID)
@@ -107,8 +123,15 @@ public class Procedural : MonoBehaviour {
 		return _list;
 	}
 
+	private void GameOver()
+	{
+		CancelInvoke("checkScore");
+	}
+
 	private void Respawn()
 	{
 		triggerStep(_listSteps[0]);
+		InvokeRepeating("checkScore", 0f, 1f);
+//		MasterAudio.TriggerPlaylistClip("Step_1");
 	}
 }
