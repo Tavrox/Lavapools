@@ -9,7 +9,7 @@ public class PhpLeaderboards : MonoBehaviour
 	public string highscoreURL = "http://4edges-games.com/games/lavapools/display.php";
 	public List<UserLeaderboard> ListUser;
 	public List<LBEntry> ListEntries;
-	private int lbLength =  6;
+	private int lbLength =  15;
 	
 	void Awake()
 	{
@@ -37,7 +37,7 @@ public class PhpLeaderboards : MonoBehaviour
 
  	private void updateScores(ref List<UserLeaderboard> _listLB,ref List<LBEntry> _listEntries)
 	{
-		for (int i = 0 ; i <= 2 ; i++)
+		for (int i = 0 ; i <= 14 ; i++)
 		{
 			_listEntries[i].Setup();
 			_listEntries[i].UpdateScore(_listLB[i].ranking.ToString(), _listLB[i].userBestScore.ToString(), _listLB[i].userName);
@@ -60,7 +60,7 @@ public class PhpLeaderboards : MonoBehaviour
 //		string hash = "";
 		int prse = Mathf.RoundToInt(score);
 		string post_url = addScoreURL + "?name=" + WWW.EscapeURL(name) + "&score=" + prse.ToString() + "&hash=" + hash;
-		print (post_url);
+//		print (post_url);
 		
 		// Post the URL to the site and create a download object to get the result.
 		WWW hs_post = new WWW(post_url);
@@ -72,7 +72,7 @@ public class PhpLeaderboards : MonoBehaviour
 		}
 		else
 		{
-			print ("Record envoye" + name +" "+ score);
+			print ("Record envoye" + name +""+ score);
 		}
 	}
 	
@@ -90,10 +90,10 @@ public class PhpLeaderboards : MonoBehaviour
 		else
 		{
 			string[] entries = hs_get.text.Split(']');
-//			Debug.Log ("Number of Entries = " + entries.Length);
+			Debug.Log ("Number of Entries = " + entries.Length);
 			for (int i = 0; i < entries.Length -1 ; i++)
 			{
-				ListUser[i].ranking = i;
+				ListUser[i].ranking = i+1;
 				ListUser[i].userName = entries[i].Split('|')[0];
 				ListUser[i].userBestScore = int.Parse(entries[i].Split('|')[1]);
 

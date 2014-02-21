@@ -36,7 +36,7 @@ public class PatrolBrick : LevelBrick {
 			Debug.Log("The path of "+gameObject.name+" is missing.");
 		}
 
-		InvokeRepeating("StepUpdate", 0f, _levMan.TuningDocument.GLOBAL_speed);
+		InvokeRepeating("StepUpdate", 0f, LevelManager.TuningDocument.GLOBAL_speed);
 
 	}
 	

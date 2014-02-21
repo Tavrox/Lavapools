@@ -17,7 +17,6 @@ public class Procedural : MonoBehaviour {
 		string path = "Procedural/Level" + Application.loadedLevelName+"/";
 		_levMan = GameObject.Find("LevelManager").GetComponent<LevelManager>();
 		_listSteps = new List<ProceduralSteps>();
-		LPTuning TuningDoc = _levMan.TuningDocument;
 		GameEventManager.Respawn += Respawn;
 
 		SETUP = Resources.Load(path + "Setup") as LevelSetup;

@@ -96,7 +96,7 @@ public class Fields : PatrolBrick {
 			state = fieldState.Capturing;
 			if (capScore < 100f)
 			{
-				capScore += 1f * _levMan.TuningDocument.CaptureSpeed;			
+				capScore += 1f * LevelManager.TuningDocument.CaptureSpeed;			
 			}
 		}
 	}

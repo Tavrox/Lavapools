@@ -43,7 +43,7 @@ public class LevelBrick : MonoBehaviour {
 			_player = GameObject.Find("Player").GetComponent<Player>();
 		}
 		_levMan = GameObject.Find("LevelManager").GetComponent<LevelManager>();
-		_bricksSpeed = _levMan.TuningDocument._dicoBricks;
+		_bricksSpeed = LevelManager.TuningDocument._dicoBricks;
 
 		initPos = gameObject.transform.position;
 
@@ -95,7 +95,7 @@ public class LevelBrick : MonoBehaviour {
 
 	IEnumerator triggerCollider()
 	{
-		yield return new WaitForSeconds(_levMan.TuningDocument.timeBeforeActivation);
+		yield return new WaitForSeconds(LevelManager.TuningDocument.timeBeforeActivation);
 		invisible = false;
 	}
 

@@ -4,13 +4,13 @@ using System.Collections.Generic;
 
 public class LevelManager : MonoBehaviour {
 
-	[HideInInspector] public LPTuning TuningDocument;
+	[HideInInspector] public static LPTuning TuningDocument;
 	
 	[HideInInspector] public static GameEventManager.GameState GAMESTATE;
 	public GameEventManager.GameState _EditorState ;
 
 	[HideInInspector] public float score = 0f;
-	[HideInInspector] public float bestScore = 0f;
+	public float bestScore = 0f;
 	[HideInInspector] public int fieldsCaptured = 0;
 	[HideInInspector] public int centSecondsElapsed;
 	[HideInInspector] public int SecondsElapsed;
@@ -104,7 +104,10 @@ public class LevelManager : MonoBehaviour {
 		{
 			if (Input.GetKey(KeyCode.KeypadEnter) || Input.GetKey(KeyCode.Space))
 			{
-				menuManager._GameOverUI._lb.SendScore(_player.playerName, score);
+				if (score == bestScore && score != 0)
+				{
+					menuManager._GameOverUI._lb.SendScore(_player.playerName, score);
+				}
 				GameEventManager.TriggerRespawn(gameObject.name);
 			}
 		}
@@ -115,6 +118,7 @@ public class LevelManager : MonoBehaviour {
 			bestScore = score;
 			menuManager._IngameUI.BestScore.text = bestScore.ToString();
 		}
+		_player.playerName = menuManager._GameOverUI._RespawnUI._playerInput.text;
 	}
 	
 	public void updateScore()

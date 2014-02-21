@@ -46,7 +46,7 @@ public class Player : MonoBehaviour {
 		_levMan = GameObject.Find("LevelManager").GetComponent<LevelManager>();
 		_playerSheet = ScriptableObject.CreateInstance("UserLeaderboard") as UserLeaderboard;
 		_playerSheet.name = playerName;
-		TuningDocument = _levMan.TuningDocument;
+		TuningDocument = LevelManager.TuningDocument;
 		speed = TuningDocument.Player_Speed;
 		initSpeed = speed;
 		
@@ -55,8 +55,6 @@ public class Player : MonoBehaviour {
 		GameEventManager.Respawn += Respawn;
 
 		_anims = gameObject.AddComponent<PlayerAnims>() as PlayerAnims;
-
-	
 		_notif = GetComponentInChildren<Notification>();
 
 		startPos = gameObject.transform.position;
