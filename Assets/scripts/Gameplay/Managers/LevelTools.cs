@@ -47,4 +47,9 @@ public class LevelTools : MonoBehaviour {
 		});
 		return res;
 	}
+
+	public void CollectObject(Collectible _thing)
+	{
+		_levMan.CollectibleGathered.Add(_thing);
+	}
 }

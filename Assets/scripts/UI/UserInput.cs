@@ -43,7 +43,7 @@ public class UserInput : TextUI {
 			{
 				color.a = 1f;
 			}
-			if (Input.anyKey == true && text == "_NAME_")
+			if (Input.anyKey == true && text == "_NAME_" && Input.GetKey(KeyCode.Space) != true  && Input.GetKey(KeyCode.Return) != true)
 			{
 				text = "";
 				CancelInvoke("switchColor");

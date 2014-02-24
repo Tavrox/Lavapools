@@ -36,8 +36,6 @@ public class PatrolBrick : LevelBrick {
 			Debug.Log("The path of "+gameObject.name+" is missing.");
 		}
 
-		InvokeRepeating("StepUpdate", 0f, LevelManager.TuningDocument.GLOBAL_speed);
-
 	}
 	
 	
@@ -58,7 +56,7 @@ public class PatrolBrick : LevelBrick {
 	}
 	
 	// Update is called once per frame
-	void StepUpdate () {
+	void Update () {
 			
 		if (GameEventManager.gameOver != true)
 		{

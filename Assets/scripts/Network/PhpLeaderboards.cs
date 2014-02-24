@@ -72,7 +72,7 @@ public class PhpLeaderboards : MonoBehaviour
 		}
 		else
 		{
-			print ("Record envoye" + name +""+ score);
+			print ("Record envoyé [" + name +"]["+ score+"]");
 		}
 	}
 	

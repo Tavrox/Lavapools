@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public class LevelManager : MonoBehaviour {
 
-	[HideInInspector] public static LPTuning TuningDocument;
+	public static LPTuning TuningDocument;
 	
 	[HideInInspector] public static GameEventManager.GameState GAMESTATE;
 	public GameEventManager.GameState _EditorState ;
@@ -14,7 +14,9 @@ public class LevelManager : MonoBehaviour {
 	[HideInInspector] public int fieldsCaptured = 0;
 	[HideInInspector] public int centSecondsElapsed;
 	[HideInInspector] public int SecondsElapsed;
+	[HideInInspector] public int OvertimeScoreElapsed;
 	[HideInInspector] public int bestTime;
+	[HideInInspector] public List<Collectible> CollectibleGathered = new List<Collectible>();
 	[HideInInspector] public string timeString;
 	[HideInInspector] public LevelTools tools;
 	[HideInInspector] public Procedural proc;
@@ -70,6 +72,8 @@ public class LevelManager : MonoBehaviour {
 
 		menuManager = GameObject.Find("UI").GetComponent<MainMenu>();
 		menuManager.Setup(this);
+
+		InvokeRepeating("UpdateScoreOverTime", 0f, 0.1f);
 		
 		proc.triggerStep(proc._listSteps[0]);
 		Setup();
@@ -102,13 +106,11 @@ public class LevelManager : MonoBehaviour {
 		
 		if (GAMESTATE == GameEventManager.GameState.GameOver)
 		{
-			if (Input.GetKey(KeyCode.KeypadEnter) || Input.GetKey(KeyCode.Space))
+			if (Input.GetKey(KeyCode.Return))
 			{
 				if (score == bestScore && score != 0)
 				{
 					string name = _player.playerName.Replace("%0d", "");
-					print ("1"+name);
-					print ("2"+_player.playerName);
 					menuManager._GameOverUI._lb.SendScore(name, score);
 				}
 				GameEventManager.TriggerRespawn(gameObject.name);
@@ -122,12 +124,27 @@ public class LevelManager : MonoBehaviour {
 			menuManager._IngameUI.BestScore.text = bestScore.ToString();
 		}
 		_player.playerName = menuManager._GameOverUI._RespawnUI._playerInput.text;
+
 	}
 	
 	public void updateScore()
 	{
-		score = (fieldsCaptured * TuningDocument.CapturePoint_Score) + (SecondsElapsed * TuningDocument.ScoreOverTime);
+		int sumCollectible = 0;
+		foreach (Collectible _obj in CollectibleGathered)
+		{
+			sumCollectible += _obj.value;
+		}
+		score = 
+			(fieldsCaptured * TuningDocument.CapturePoint_Score) 
+			+ (OvertimeScoreElapsed * TuningDocument.ScoreOverTime)
+			+ sumCollectible;
 	}
+
+	private void UpdateScoreOverTime()
+	{
+		OvertimeScoreElapsed += 1;
+	}
+
 	public void updateTime()
 	{
 		centSecondsElapsed += 1;
@@ -147,7 +164,6 @@ public class LevelManager : MonoBehaviour {
 		if (GameEventManager.gameOver != true )
 		{
 			spawningField = fieldMan.respawnField();
-//			fieldSpawning = true;
 		}
 	}
 
@@ -166,10 +182,13 @@ public class LevelManager : MonoBehaviour {
 		}
 		CancelInvoke("updateTime");
 		CancelInvoke("spawnFields");
+		CancelInvoke("UpdateScoreOverTime");
 	}
 	
 	private void Respawn()
 	{
+		OvertimeScoreElapsed = 0;
+		InvokeRepeating("UpdateScoreOverTime", 0f, 0.1f);
 		InvokeRepeating("updateTime", 0f, 0.01f);
 		InvokeRepeating("spawnFields", TuningDocument.DelayBeforeSpawn, TuningDocument.SpawnFrequency);
 		_player.gameObject.SetActive(true);

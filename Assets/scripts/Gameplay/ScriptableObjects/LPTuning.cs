@@ -5,9 +5,8 @@ using System;
 
 public class LPTuning : ScriptableObject {
 
-	public float GLOBAL_speed = 0.0125f;
-	
 	public float Player_Speed = 3f;
+	public Vector2 Player_Friction;
 	public float Bird_Speed = 3f;
 	public float Chainsaw_Speed = 3f;
 	public float Fields_Speed = 3f;
@@ -20,6 +19,8 @@ public class LPTuning : ScriptableObject {
 	public float DelayBeforeSpawn = 5f;
 	public int Leaderboard_Number = 15;
 	public float timeBeforeActivation = 3f;
+	public int BigGem_Value = 500;
+	public int TinyGem_Value = 100;
 	public Dictionary<LevelBrick.typeList, float> _dicoBricks = new Dictionary<LevelBrick.typeList, float>();
 
 	public Color ColPlayer;

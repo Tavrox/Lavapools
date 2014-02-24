@@ -6,7 +6,6 @@ public class Waypoint : MonoBehaviour {
 
 	public Waypoint nextWP;
 	public bool activated = true;
-	public bool makeSound = true;
 	
 	[HideInInspector] public WaypointManager linkedManager;
 
@@ -26,10 +25,6 @@ public class Waypoint : MonoBehaviour {
 			{
 				if (_collBrick.type == linkedManager.relatedBrick.type && _collBrick.brickPathId == linkedManager.id)
 				{
-					if (makeSound == true)
-					{
-						_collBrick.brickBounce();
-					}
 					_collBrick.GoToWaypoint(linkedManager.findNextWaypoint(this));
 				}
 			}

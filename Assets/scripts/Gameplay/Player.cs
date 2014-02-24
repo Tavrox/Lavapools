@@ -15,6 +15,8 @@ public class Player : MonoBehaviour {
 	private int layerMask;
 	private Bounds rect;
 	private Vector3 startPos;
+	private Vector3 friction;
+	private Vector3 mod = new Vector3(0f,0f,0f);
 	private OTSprite spr;
 	private Vector2 originalSize;
 	private Notification _notif;
@@ -53,17 +55,17 @@ public class Player : MonoBehaviour {
 		GameEventManager.GameStart += GameStart;
 		GameEventManager.GameOver += GameOver;
 		GameEventManager.Respawn += Respawn;
-
+		 
 		_anims = gameObject.AddComponent<PlayerAnims>() as PlayerAnims;
 		_notif = GetComponentInChildren<Notification>();
 
 		startPos = gameObject.transform.position;
+		friction = new Vector3(0.5f,0.5f,0f);
 	}
 	
 	// Update is called once per frame
 	void Update () {	
 	
-		Vector3 mod = new Vector3(0f,0f,0f);
 		pos = gameObject.transform.position;
 //		print ("Platforms" + OnPlatforms);
 
@@ -82,7 +84,7 @@ public class Player : MonoBehaviour {
 			}
 			else if (Input.GetKeyUp (KeyCode.RightArrow)) 
 			{
-				mod.x =0f;
+				mod.x = 10f;
 				_anims.playAnimation(_anims._STATIC);
 			}
 			
@@ -93,7 +95,7 @@ public class Player : MonoBehaviour {
 			}
 			else if (Input.GetKeyUp (KeyCode.UpArrow)) 
 			{
-				mod.y = 0f;
+				mod.y = 10f;
 				_anims.playAnimation(_anims._STATIC);
 			}
 			
@@ -104,7 +106,7 @@ public class Player : MonoBehaviour {
 			}
 			else if (Input.GetKeyUp (KeyCode.LeftArrow)) 
 			{
-				mod.x =0f;
+				mod.x = -10f;
 				_anims.playAnimation(_anims._STATIC);
 			}
 			
@@ -115,9 +117,11 @@ public class Player : MonoBehaviour {
 			}
 			else if (Input.GetKeyUp (KeyCode.DownArrow)) 
 			{
-				mod.x =0f;
+				mod.y = -10f;
 				_anims.playAnimation(_anims._STATIC);
 			}
+			mod.x *= friction.x;
+			mod.y *= friction.y;
 			this.gameObject.transform.position += mod * Time.deltaTime;
 		}
 	}

@@ -29,6 +29,30 @@
 </data>
  </layer>
  <objectgroup name="LevelBricks" width="32" height="24">
-  <object x="225" y="125" width="175" height="175"/>
+  <object x="325" y="175" width="25" height="25"/>
+ </objectgroup>
+ <objectgroup name="Procedural_step1" width="32" height="24"/>
+ <objectgroup name="Procedural_step2" width="32" height="24">
+  <properties>
+   <property name="ChooseBetweenID" value="35/52/10"/>
+  </properties>
+  <object name="1" type="ProcStep" x="0" y="0" width="25" height="25">
+   <properties>
+    <property name="InvertWPM" value=""/>
+    <property name="Kick" value=""/>
+    <property name="KickRandom" value=""/>
+    <property name="Trigger" value=""/>
+    <property name="TriggerRandom" value=""/>
+   </properties>
+  </object>
+  <object name="2" type="ProcStep" x="50" y="0" width="25" height="25">
+   <properties>
+    <property name="InvertWPM" value=""/>
+    <property name="Kick" value=""/>
+    <property name="KickRandom" value=""/>
+    <property name="Trigger" value=""/>
+    <property name="TriggerRandom" value=""/>
+   </properties>
+  </object>
  </objectgroup>
 </map>

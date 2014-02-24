@@ -67,7 +67,7 @@ public class MainMenu : MonoBehaviour {
 
 	public void changeLevelLabel(ProceduralSteps _step)
 	{
-		_IngameUI.LevelTxt.text = "" + _step.levelLabel + " / " + _step.stepID;
+		_IngameUI.LevelTxt.text = "" + _step.levelLabel + "";
 
 	}
 
