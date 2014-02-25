@@ -21,6 +21,7 @@ public class LPTuning : ScriptableObject {
 	public float timeBeforeActivation = 3f;
 	public int BigGem_Value = 500;
 	public int TinyGem_Value = 100;
+	public float TinyGem_SpawnRate = 5f;
 	public Dictionary<LevelBrick.typeList, float> _dicoBricks = new Dictionary<LevelBrick.typeList, float>();
 
 	public Color ColPlayer;

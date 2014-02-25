@@ -150,16 +150,15 @@
         <array>
             <filename>player.png</filename>
             <filename>background.png</filename>
-            <filename>bird.png</filename>
             <filename>chainsaw.png</filename>
             <filename>ground.png</filename>
             <filename>pan_scoring.png</filename>
-            <filename>pan_timing.png</filename>
             <filename>pan_leaderboard.png</filename>
             <filename>stat_player.png</filename>
             <filename>sq.png</filename>
             <filename>title.png</filename>
             <filename>ground1.png</filename>
+            <filename>BigGem.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

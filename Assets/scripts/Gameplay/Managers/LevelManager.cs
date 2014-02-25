@@ -10,33 +10,36 @@ public class LevelManager : MonoBehaviour {
 	public GameEventManager.GameState _EditorState ;
 
 	[HideInInspector] public float score = 0f;
-	public float bestScore = 0f;
 	[HideInInspector] public int fieldsCaptured = 0;
 	[HideInInspector] public int centSecondsElapsed;
 	[HideInInspector] public int SecondsElapsed;
 	[HideInInspector] public int OvertimeScoreElapsed;
 	[HideInInspector] public int bestTime;
-	[HideInInspector] public List<Collectible> CollectibleGathered = new List<Collectible>();
 	[HideInInspector] public string timeString;
-	[HideInInspector] public LevelTools tools;
-	[HideInInspector] public Procedural proc;
+	public float bestScore = 0f;
 	public int levelID;
 
 	[HideInInspector] public List<WaypointManager> waypointsMan = new List<WaypointManager>();
 	[HideInInspector] public BricksManager bricksMan;
 
+	
+	[HideInInspector] public List<Collectible> CollectibleGathered = new List<Collectible>();
+	[HideInInspector] public List<CollectiblePlaces> collecPlaces = new List<CollectiblePlaces>();
+	[HideInInspector] public bool GemHasSpawned = false;
+	
+	[HideInInspector] public LevelTools tools;
+	[HideInInspector] public Procedural proc;
 	public MainMenu menuManager;
 	private FieldManager fieldMan;
 	private Fields spawningField;
 	
-	public Player _player;
 	[HideInInspector] public PlayerProfile _profile;
+	public Player _player;
 
 
 	// Use this for initialization
 	void Awake () {
 
-		_player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
 		GameEventManager.GameStart += GameStart;
 		GameEventManager.GameOver += GameOver;
 		GameEventManager.Respawn += Respawn;
@@ -44,7 +47,10 @@ public class LevelManager : MonoBehaviour {
 		GAMESTATE = _EditorState;
 
 		_profile = ScriptableObject.CreateInstance("PlayerProfile") as PlayerProfile;
-		
+
+		_player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+//		_player.Setup();
+
 		TuningDocument = FETool.setupDoc();
 		TuningDocument.initScript();
 
@@ -70,14 +76,18 @@ public class LevelManager : MonoBehaviour {
 			}
 		}
 
+		CollectiblePlaces[] collecPla = FETool.findWithinChildren(this.gameObject, "Enviro/CollectiblePlaces").GetComponentsInChildren<CollectiblePlaces>();
+		foreach (CollectiblePlaces cpl in collecPla)
+		{
+			collecPlaces.Add(cpl);
+//			cpl.Setup(this);
+		}
+
 		menuManager = GameObject.Find("UI").GetComponent<MainMenu>();
 		menuManager.Setup(this);
 
-		InvokeRepeating("UpdateScoreOverTime", 0f, 0.1f);
-		
 		proc.triggerStep(proc._listSteps[0]);
 		Setup();
-	
 	}
 
 	void Setup()
@@ -96,7 +106,9 @@ public class LevelManager : MonoBehaviour {
 			GameEventManager.TriggerRespawn("LM", true);
 		}
 		InvokeRepeating("updateTime", 0f, 0.01f);
+		InvokeRepeating("UpdateScoreOverTime", 0f, 0.1f);
 		InvokeRepeating("spawnFields", TuningDocument.DelayBeforeSpawn, TuningDocument.SpawnFrequency);
+		InvokeRepeating("spawnGem", 3f, TuningDocument.TinyGem_SpawnRate);
 	}
 
 	// Update is called once per frame
@@ -147,16 +159,42 @@ public class LevelManager : MonoBehaviour {
 
 	public void updateTime()
 	{
-		centSecondsElapsed += 1;
-		if (centSecondsElapsed == 100)
+		if (GAMESTATE == GameEventManager.GameState.Live)
 		{
-			centSecondsElapsed = 0;
-			SecondsElapsed +=1;
+			centSecondsElapsed += 1;
+			if (centSecondsElapsed == 100)
+			{
+				centSecondsElapsed = 0;
+				SecondsElapsed +=1;
+			}
+			if (SecondsElapsed > bestTime)
+			{
+				bestTime = SecondsElapsed;
+			}
 		}
-		if (SecondsElapsed > bestTime)
+	}
+
+	public void spawnGem ()
+	{
+		List<CollectiblePlaces> _list = collecPlaces;
+		int randomPick = Random.Range(0, _list.Count-1);
+		foreach (CollectiblePlaces _pl in _list)
 		{
-			bestTime = SecondsElapsed;
+			if (_pl.occupied == true)
+			{
+				GemHasSpawned = true;
+				break;
+			}
+			else
+			{
+				GemHasSpawned = false;
+			}
 		}
+		if (GemHasSpawned == false)
+		{
+			_list[randomPick].Spawn(this);
+		}
+
 	}
 
 	public void spawnFields()

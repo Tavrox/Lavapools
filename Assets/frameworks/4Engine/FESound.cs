@@ -68,14 +68,14 @@ public class FESound : MonoBehaviour {
 	{
 		if (SoundGroup != null)
 		{
-			PlaySoundResult _psr = MasterAudio.PlaySound(SoundGroup.name + "_L", Volume, Pitch, Delay);
+			MasterAudio.PlaySound(SoundGroup.name + "_L", Volume, Pitch, Delay);
 		}
 	}
 	public void playRightSound()
 	{
 		if (SoundGroup != null)
 		{
-			PlaySoundResult _psr = MasterAudio.PlaySound(SoundGroup.name + "_R" , Volume, Pitch, Delay);
+			MasterAudio.PlaySound(SoundGroup.name + "_R" , Volume, Pitch, Delay);
 		}
 	}
 	public void playDistancedSound(string _var = null)

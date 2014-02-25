@@ -31,6 +31,7 @@ public static class GameEventManager {
 		{
 //			Debug.LogWarning("GAMEOVER "+ _killer);
 			gameOver = true;
+			Debug.DebugBreak();
 			LevelManager.GAMESTATE = GameState.GameOver;
 			GameOver();
 		}

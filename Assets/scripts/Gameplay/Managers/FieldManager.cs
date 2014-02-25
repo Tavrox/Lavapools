@@ -7,7 +7,7 @@ public class FieldManager : WaypointManager {
 
 	public Fields respawnField()
 	{
-		GameObject _newField = Instantiate(Resources.Load("Bricks/Fields")) as GameObject;
+		GameObject _newField = Instantiate(Resources.Load("Bricks/Environment/Fields")) as GameObject;
 		_newField.transform.parent = GameObject.Find("LevelManager/LevelBricks/Bricks").gameObject.transform;
 		GameObject spawner = new GameObject("Fields");
 		spawner.transform.parent = _newField.transform;

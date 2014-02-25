@@ -5,6 +5,12 @@ using System.Collections.Generic;
 public class Waypoint : MonoBehaviour {
 
 	public Waypoint nextWP;
+	public enum TypeList
+	{
+		Initial,
+		Normal
+	};
+	public TypeList WPType;
 	public bool activated = true;
 	
 	[HideInInspector] public WaypointManager linkedManager;

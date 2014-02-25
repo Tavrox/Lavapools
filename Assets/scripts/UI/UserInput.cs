@@ -14,6 +14,7 @@ public class UserInput : TextUI {
 	private Color _col2;
 	private float smallDelay = 1.25f;
 	private bool canModify = false;
+	private bool writing = false;
 
 	void Start()
 	{
@@ -33,6 +34,7 @@ public class UserInput : TextUI {
 		_mesh.text = text;
 		_mesh.color = color;
 		mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+		writing = false;
 		if (LevelManager.GAMESTATE == GameEventManager.GameState.GameOver && canModify == true)
 		{
 			if (mousePos.x < _rec.xMax && mousePos.x > _rec.xMin && mousePos.y > _rec.yMin && mousePos.y < _rec.xMax)
@@ -43,9 +45,15 @@ public class UserInput : TextUI {
 			{
 				color.a = 1f;
 			}
+			if (text == "" || text == " " )
+			{
+				writing = false;
+				StartCoroutine("ReprintDefault");
+			}
 			if (Input.anyKey == true && text == "_NAME_" && Input.GetKey(KeyCode.Space) != true  && Input.GetKey(KeyCode.Return) != true)
 			{
 				text = "";
+				color = _col1;
 				CancelInvoke("switchColor");
 			}
 
@@ -63,6 +71,7 @@ public class UserInput : TextUI {
 				    && Input.inputString != "."  && Input.inputString != " "
 				    && Input.inputString != "\n" && Input.inputString != "\r")
 				{
+					writing = true;
 					text += Input.inputString;
 					text.Replace(" ", "_");
 				}
@@ -100,8 +109,17 @@ public class UserInput : TextUI {
 		canModify = true;
 	}
 
+	IEnumerator ReprintDefault()
+	{
+		yield return new WaitForSeconds(smallDelay);
+		if (writing == false)
+		{
+			text = "_NAME";
+		}
+	}
+
 	private void BlinkName()
 	{
-		new OTTween(this, 1f).Tween("color", new Color(200f, 200f, 200f, 0.2f)).PingPong();
+		new OTTween(this, 1f).Tween("color", LevelManager.TuningDocument.ColInput).PingPong();
 	}
 }

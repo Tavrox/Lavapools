@@ -7,7 +7,11 @@ public class FETool : MonoBehaviour {
 
 	public static LPTuning setupDoc()
 	{
-		TuningDoc = Instantiate(Resources.Load("LPTuning")) as LPTuning;
+		TuningDoc = Instantiate(Resources.Load("Procedural/LPTuning")) as LPTuning;
+		if (TuningDoc == null)
+		{
+			Debug.LogError("LP_Tuning hasn't been found");
+		}
 		return TuningDoc;
 	}
 	public static void TriggerObject(GameObject _obj, bool _state)
@@ -23,7 +27,8 @@ public class FETool : MonoBehaviour {
 	{
 		GameObject result = GameObject.Find(_go.name + "/" + _fetch);
 		if (result == null)
-		{Debug.LogWarning("The object "+  _fetch + " couldn't be found.");
+		{
+			Debug.LogWarning("The object "+  _fetch + " couldn't be found.");
 			return null;
 		}
 		return result;
