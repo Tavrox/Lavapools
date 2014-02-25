@@ -12,17 +12,13 @@ public class CollectiblePlaces : MonoBehaviour {
 		{
 		case Collectible.ListCollectible.TinyGem :
 		{
-			GameObject gemObj = Instantiate(Resources.Load("Bricks/Environment/BigGem")) as GameObject;
+			GameObject gemObj = Instantiate(Resources.Load("Bricks/Environment/TinyGem")) as GameObject;
 			BigGem _gem = gemObj.GetComponent<BigGem>();
 			_gem.Setup(_lm);
 			gemObj.transform.parent = gameObject.transform;
 			gemObj.transform.position = gameObject.transform.position;
+			_gem.value = LevelManager.TuningDocument.TinyGem_Value;
 			_gem._relatedPlace = this;
-			break;
-		}
-		case Collectible.ListCollectible.BigGem :
-		{
-			
 			break;
 		}
 		}

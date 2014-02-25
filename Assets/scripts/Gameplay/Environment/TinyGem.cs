@@ -4,12 +4,19 @@ using System.Collections;
 public class TinyGem : MonoBehaviour {
 
 	// Use this for initialization
-	void Start () {
-	
+	public void Setup (LevelManager _lm) 
+	{
+		base.Setup(_lm);
+		Pop();
 	}
 	
-	// Update is called once per frame
-	void Update () {
-	
+	void OnTriggerEnter(Collider _other)
+	{
+		if (_other.CompareTag("Player"))
+		{
+			_levMan.tools.CollectObject(this);
+			_relatedPlace.occupied = false;
+			Vanish();
+		}
 	}
 }

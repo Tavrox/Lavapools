@@ -14,6 +14,14 @@ public class ProceduralSteps : ScriptableObject {
 		SuperHexacrab
 	}
 	public Difficulty levelLabel;
+	public enum MusicList
+	{
+		None,
+		Noobcrab,
+		Hardcrabore,
+		SuperHexacrab
+	};
+	public MusicList Music_To_Play;
 	public int stepID;
 	public int priority;
 	public enum conditionEnum

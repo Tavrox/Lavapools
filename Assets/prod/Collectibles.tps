@@ -22,7 +22,7 @@
         <key>dataFormat</key>
         <string>cocos2d</string>
         <key>textureFileName</key>
-        <filename>../gfx/spritesheet.png</filename>
+        <filename>../gfx/collectibles.png</filename>
         <key>flipPVR</key>
         <false/>
         <key>ditherType</key>
@@ -111,7 +111,7 @@
             <enum type="AndEngine::MagFilter">MagLinear</enum>
         </struct>
         <key>dataFileName</key>
-        <filename>../gfx/spritesheet.xml</filename>
+        <filename>../gfx/collectibles.xml</filename>
         <key>multiPack</key>
         <false/>
         <key>mainExtension</key>
@@ -148,18 +148,18 @@
         </struct>
         <key>fileList</key>
         <array>
-            <filename>player.png</filename>
-            <filename>background.png</filename>
-            <filename>chainsaw.png</filename>
-            <filename>ground.png</filename>
-            <filename>pan_scoring.png</filename>
-            <filename>pan_leaderboard.png</filename>
-            <filename>stat_player.png</filename>
-            <filename>sq.png</filename>
-            <filename>title.png</filename>
-            <filename>ground1.png</filename>
-            <filename>bighotel.png</filename>
+            <filename>biggem00bounce.png</filename>
+            <filename>biggem01bounce.png</filename>
+            <filename>biggem02bounce.png</filename>
+            <filename>biggem03bounce.png</filename>
+            <filename>biggem04bounce.png</filename>
+            <filename>tinygem03bounce.png</filename>
+            <filename>tinygem04bounce.png</filename>
+            <filename>tinygem00bounce.png</filename>
+            <filename>tinygem01bounce.png</filename>
+            <filename>tinygem02bounce.png</filename>
             <filename>tinyhotel.png</filename>
+            <filename>bighotel.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>
