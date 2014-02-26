@@ -156,10 +156,6 @@
             <filename>player05static.png</filename>
             <filename>player06walk.png</filename>
             <filename>player07walk.png</filename>
-            <filename>player08walk.png</filename>
-            <filename>player09walk.png</filename>
-            <filename>player10walk.png</filename>
-            <filename>player11walk.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

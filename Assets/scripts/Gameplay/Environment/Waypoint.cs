@@ -11,6 +11,7 @@ public class Waypoint : MonoBehaviour {
 		Normal
 	};
 	public TypeList WPType;
+	public int id;
 	public bool activated = true;
 	
 	[HideInInspector] public WaypointManager linkedManager;
@@ -18,6 +19,7 @@ public class Waypoint : MonoBehaviour {
 	public void Setup()
 	{
 		linkedManager = transform.parent.GetComponent<WaypointManager>();
+		id = int.Parse(name);
 		name = transform.parent.name + "/ID/" + name;
 		// nextWP = linkedManager.findNextWaypoint(this); SHOULD WORK DAFUCK.
 	}
@@ -29,6 +31,7 @@ public class Waypoint : MonoBehaviour {
 			PatrolBrick _collBrick = _other.GetComponent<PatrolBrick>();
 			if (_collBrick.type != LevelBrick.typeList.Fields)
 			{
+//				print (linkedManager);
 				if (_collBrick.type == linkedManager.relatedBrick.type && _collBrick.brickPathId == linkedManager.id)
 				{
 					_collBrick.GoToWaypoint(linkedManager.findNextWaypoint(this));

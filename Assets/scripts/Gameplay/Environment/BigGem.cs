@@ -7,15 +7,18 @@ public class BigGem : Collectible {
 	public void Setup (LevelManager _lm) 
 	{
 		base.Setup(_lm);
-		Pop();
+		_spr.alpha = 1f;
+		_animSpr.animationFrameset = "BigGemBounce";
+		_animSpr.PlayLoop("BigGemBounce");
+		value = LevelManager.TuningDocument.BigGem_Value;
 	}
 	
 	void OnTriggerEnter(Collider _other)
 	{
 		if (_other.CompareTag("Player"))
 		{
+			gameObject.transform.parent = GameObject.Find("LevelManager/GarbagePool").gameObject.transform.parent;
 			_levMan.tools.CollectObject(this);
-			_relatedPlace.occupied = false;
 			Vanish();
 		}
 	}

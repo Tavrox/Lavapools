@@ -13,8 +13,8 @@ public class Collectible : MonoBehaviour {
 	public LevelManager _levMan;
 	public CollectiblePlaces _relatedPlace;
 	public bool picked = false;
-	private OTSprite _spr;
-	private OTSprite _animSpr;
+	public OTSprite _spr;
+	public OTAnimatingSprite _animSpr;
 
 	// Use this for initialization
 	public void Setup (LevelManager lm) {
@@ -51,14 +51,14 @@ public class Collectible : MonoBehaviour {
 			picked = true;
 			if (_spr != null)
 			{
-				new OTTween(_spr, 1f).Tween("alpha", 0f).Wait(2f);
+				new OTTween(_spr, 1f).Tween("alpha", 0f).Wait(1f);
 				new OTTween(_spr, 0.5f, OTEasing.BackOut).Tween("depth", -15f);
 				new OTTween(gameObject.transform, 1.5f, OTEasing.BackOut).Tween("localScale", new Vector3(1.5f, 1.5f, 1f)).PingPong();
 				new OTTween(gameObject.transform, 1.5f, OTEasing.BackIn).Tween("position", new Vector3(0f,5.5f,0f));
 			}
 			if (_animSpr != null)
 			{
-				new OTTween(_animSpr, 1f).Tween("alpha", 0f).Wait(2f);
+				new OTTween(_animSpr, 1f).Tween("alpha", 0f).Wait(1f);
 				new OTTween(_animSpr, 0.5f, OTEasing.BackOut).Tween("depth", -15f);
 				new OTTween(gameObject.transform, 1.5f, OTEasing.BackOut).Tween("localScale", new Vector3(1.5f, 1.5f, 1f)).PingPong();
 				new OTTween(gameObject.transform, 1.5f, OTEasing.BackIn).Tween("position", new Vector3(0f,5.5f,0f));

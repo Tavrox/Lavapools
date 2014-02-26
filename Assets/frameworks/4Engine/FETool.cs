@@ -7,7 +7,7 @@ public class FETool : MonoBehaviour {
 
 	public static LPTuning setupDoc()
 	{
-		TuningDoc = Instantiate(Resources.Load("Procedural/LPTuning")) as LPTuning;
+		TuningDoc = Instantiate(Resources.Load("Tuning/Global")) as LPTuning;
 		if (TuningDoc == null)
 		{
 			Debug.LogError("LP_Tuning hasn't been found");

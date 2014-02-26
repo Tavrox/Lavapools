@@ -51,5 +51,12 @@ public class LevelTools : MonoBehaviour {
 	public void CollectObject(Collectible _thing)
 	{
 		_levMan.CollectibleGathered.Add(_thing);
+		_levMan.collecSum += _thing.value;
+		_levMan._player.triggerNotification(_thing.value);
+	}
+
+	public void UnlockLevel(LevelInfo _lvl)
+	{
+
 	}
 }

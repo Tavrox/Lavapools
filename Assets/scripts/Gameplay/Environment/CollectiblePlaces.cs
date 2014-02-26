@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEditor;
 
 public class CollectiblePlaces : MonoBehaviour {
 
@@ -12,8 +13,9 @@ public class CollectiblePlaces : MonoBehaviour {
 		{
 		case Collectible.ListCollectible.TinyGem :
 		{
-			GameObject gemObj = Instantiate(Resources.Load("Bricks/Environment/TinyGem")) as GameObject;
-			BigGem _gem = gemObj.GetComponent<BigGem>();
+
+			GameObject gemObj = PrefabUtility.InstantiatePrefab(Resources.Load("Bricks/Environment/TinyGem")) as GameObject;
+			TinyGem _gem = gemObj.GetComponent<TinyGem>();
 			_gem.Setup(_lm);
 			gemObj.transform.parent = gameObject.transform;
 			gemObj.transform.position = gameObject.transform.position;

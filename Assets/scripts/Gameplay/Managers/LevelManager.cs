@@ -26,6 +26,7 @@ public class LevelManager : MonoBehaviour {
 	[HideInInspector] public List<Collectible> CollectibleGathered = new List<Collectible>();
 	[HideInInspector] public List<CollectiblePlaces> collecPlaces = new List<CollectiblePlaces>();
 	[HideInInspector] public bool GemHasSpawned = false;
+	[HideInInspector] public float collecSum = 0f;
 	
 	[HideInInspector] public LevelTools tools;
 	[HideInInspector] public Procedural proc;
@@ -141,15 +142,10 @@ public class LevelManager : MonoBehaviour {
 	
 	public void updateScore()
 	{
-		int sumCollectible = 0;
-		foreach (Collectible _obj in CollectibleGathered)
-		{
-			sumCollectible += _obj.value;
-		}
 		score = 
 			(fieldsCaptured * TuningDocument.CapturePoint_Score) 
 			+ (OvertimeScoreElapsed * TuningDocument.ScoreOverTime)
-			+ sumCollectible;
+			+ collecSum;
 	}
 
 	private void UpdateScoreOverTime()

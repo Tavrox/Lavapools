@@ -102,6 +102,10 @@ public class Procedural : MonoBehaviour {
 		{
 			MasterAudio.TriggerPlaylistClip("Step_3");
 		}
+		if (_step.LevelToUnlock != null)
+		{
+			_levMan.tools.UnlockLevel(_step.LevelToUnlock);
+		}
 	}
 
 	private List<ProceduralSteps> loadSteps(int _levelID)

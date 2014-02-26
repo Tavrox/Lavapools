@@ -32,36 +32,27 @@ public class Fields : PatrolBrick {
 		if (isStatic != true)
 		{
 			gameObject.transform.position = currentWP.transform.position;
+			Destroy(gameObject, 12f);
 		}
 		_anims = gameObject.AddComponent<FieldAnims>();
 		_anims.Start();
 
 		setupTarget();
-		if (isStatic != true)
-		{
-			Destroy(gameObject, 8f);
-		}
-//		InvokeRepeating("StepUpdate", 0f, _levMan.TuningDocument.GLOBAL_speed);
 		InvokeRepeating("CheckState", 0f, 0.1f);
 
 	}
 
 	void Update()
 	{
-
-	}
-	
-	// Update is called once per frame
-	void StepUpdate () {
 		pos = gameObject.transform.position;
 		gameObject.transform.position += new Vector3 ( speed * FETool.Round( direction.x, 2), speed * FETool.Round( direction.y, 2) , 0f);
 		Debug.DrawRay(pos, direction);
-
+		
 		if (capScore >= 80f && countCaptured == false)
 		{
 			state = fieldState.Captured;
 			isCaptured = true;
-			_player.triggerNotification();
+			_player.triggerNotification(LevelManager.TuningDocument.CapturePoint_Score);
 			countCaptured = true;
 			_levMan.fieldsCaptured += 1;
 		}

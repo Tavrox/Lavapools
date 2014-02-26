@@ -40,4 +40,5 @@ public class ProceduralSteps : ScriptableObject {
 	public List<string> BricksDisabled;
 	public List<string> WaypointsToInvert;
 	public bool PlayMusic;
+	public LevelInfo LevelToUnlock;
 }

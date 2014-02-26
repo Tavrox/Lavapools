@@ -5,18 +5,16 @@ using System.Collections.Generic;
 public class WaypointManager : MonoBehaviour {
 	
 	[HideInInspector] public string id;
-	[HideInInspector] public List<Waypoint> relatedWaypoints = new List<Waypoint>();
+	public List<Waypoint> relatedWaypoints = new List<Waypoint>();
 	[HideInInspector] public Waypoint lastWp;
 	[HideInInspector] public LevelBrick relatedBrick;
 	[HideInInspector] public LevelManager _levMan;
 
 	public void Setup(LevelManager man)
 	{
-		Waypoint[] _childWP = GetComponentsInChildren<Waypoint>();
-		foreach (Waypoint wp in _childWP)
+		if (relatedWaypoints.Count == 0)
 		{
-			relatedWaypoints.Add(wp);
-			wp.Setup();
+			relatedWaypoints = GetWpList();
 		}
 		lastWp = relatedWaypoints[relatedWaypoints.Count-1];
 		id = gameObject.name.Split('/')[1];
@@ -43,9 +41,25 @@ public class WaypointManager : MonoBehaviour {
 
 	}
 
+	public List<Waypoint> GetWpList()
+	{
+		Waypoint[] _childWP = GetComponentsInChildren<Waypoint>();
+		foreach (Waypoint wp in _childWP)
+		{
+			relatedWaypoints.Add(wp);
+			wp.Setup();
+		}
+		relatedWaypoints.Sort(delegate (Waypoint x, Waypoint y)
+		{
+			if (x.id < y.id) return -1;
+			if (x.id > y.id) return 1;
+			else return 0;
+		});
+		return (relatedWaypoints);
+	}
+
 	public Waypoint pickRandomWP()
 	{
 		return relatedWaypoints[Random.Range(0,relatedWaypoints.Count)];
-	}
-	
+	}	
 }

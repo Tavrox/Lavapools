@@ -130,9 +130,9 @@ public class Player : MonoBehaviour {
 		}
 	}
 
-	public void triggerNotification()
+	public void triggerNotification(float _value)
 	{
-		_notif.text = "+" + TuningDocument.CapturePoint_Score.ToString();
+		_notif.text = "+" + _value.ToString();
 		_notif.makeFadeIn();
 		StartCoroutine(WaitFadeSec(2f));
 	}

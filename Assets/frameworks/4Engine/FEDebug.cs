@@ -3,7 +3,6 @@ using System.Collections;
 
 public class FEDebug : MonoBehaviour {
 
-	public static bool testMode = false;
 	public static bool GodMode = false;
 	public static bool spawnsFieldsBool = true;
 	public static bool logTimecodeBool = false;

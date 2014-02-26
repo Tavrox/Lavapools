@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using UnityEditor;
 
@@ -23,6 +23,16 @@ public class FEAssetCreator {
 	public static void CreateBrickInfo ()
 	{
 		ScriptableObjectUtility.CreateAsset<BrickInfo>();
+	}
+	[MenuItem("Assets/Create/DepthTuning")]
+	public static void CreateDepthTuning ()
+	{
+		ScriptableObjectUtility.CreateAsset<DepthTuning>();
+	}
+	[MenuItem("Assets/Create/LevelInfo")]
+	public static void CreateLevelInfo ()
+	{
+		ScriptableObjectUtility.CreateAsset<LevelInfo>();
 	}
 
 

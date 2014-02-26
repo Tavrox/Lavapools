@@ -1,13 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class TinyGem : MonoBehaviour {
+public class TinyGem : Collectible {
 
 	// Use this for initialization
 	public void Setup (LevelManager _lm) 
 	{
 		base.Setup(_lm);
 		Pop();
+		value = LevelManager.TuningDocument.BigGem_Value;
 	}
 	
 	void OnTriggerEnter(Collider _other)
