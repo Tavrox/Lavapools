@@ -108,6 +108,58 @@
                 <key>sourceSize</key>
                 <string>{68,59}</string>
             </dict>
+            <key>player08walk.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{5,133},{68,59}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{68,59}}</string>
+                <key>sourceSize</key>
+                <string>{68,59}</string>
+            </dict>
+            <key>player09walk.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{78,133},{68,59}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{68,59}}</string>
+                <key>sourceSize</key>
+                <string>{68,59}</string>
+            </dict>
+            <key>player10walk.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{151,133},{68,59}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{68,59}}</string>
+                <key>sourceSize</key>
+                <string>{68,59}</string>
+            </dict>
+            <key>player11walk.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{5,197},{68,59}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{68,59}}</string>
+                <key>sourceSize</key>
+                <string>{68,59}</string>
+            </dict>
         </dict>
         <key>metadata</key>
         <dict>
@@ -116,9 +168,9 @@
             <key>realTextureFileName</key>
             <string>player.png</string>
             <key>size</key>
-            <string>{256,256}</string>
+            <string>{256,512}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:37ec31c337c86a2a3af6f4e032cb345b:1/1$</string>
+            <string>$TexturePacker:SmartUpdate:ac0dd4fc46edf74239f4237f44425c98:1/1$</string>
             <key>textureFileName</key>
             <string>player.png</string>
         </dict>

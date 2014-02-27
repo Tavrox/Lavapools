@@ -84,23 +84,25 @@ public class Procedural : MonoBehaviour {
 			}
 			_brick.initSpeed = _brick.initSpeed * _step.SpeedMultiplier;
 		}
+		foreach (string _wpm in _step.WaypointsToInvert)
+		{
+			if (_step.WaypointsToInvert != null)
+			{
+				WaypointManager man = _levMan.waypointsMan.Find((WaypointManager obj) => obj.name == _wpm);
+				man.invertWaypoints();
+				print (man);
+				man.relatedBrick.GetComponent<PatrolBrick>().setupTarget();
+			}	
+		}
 		_levMan._player.speed = _levMan._player.speed * _step.SpeedMultiplier;
 		_levMan.menuManager.changeLevelLabel(_CURRENTSTEP);
 		if (_step.levelLabel != ProceduralSteps.Difficulty.Noobcrab)
 		{
 			MasterAudio.PlaySound("Steps", 1f, 1f,0f, _step.levelLabel.ToString());
 		}
-		if (_step.levelLabel == ProceduralSteps.Difficulty.Noobcrab && _step.PlayMusic == true)
+		if (_step.Music_To_Play != ProceduralSteps.MusicList.None)
 		{
-			MasterAudio.TriggerPlaylistClip("Step_1");
-		}
-		if (_step.levelLabel == ProceduralSteps.Difficulty.Crabbish && _step.PlayMusic == true)
-		{
-			MasterAudio.TriggerPlaylistClip("Step_2");
-		}
-		if (_step.levelLabel == ProceduralSteps.Difficulty.Crabmaster && _step.PlayMusic == true)
-		{
-			MasterAudio.TriggerPlaylistClip("Step_3");
+			MasterAudio.TriggerPlaylistClip(_step.Music_To_Play.ToString());
 		}
 		if (_step.LevelToUnlock != null)
 		{

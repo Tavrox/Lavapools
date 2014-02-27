@@ -3,6 +3,7 @@ using System.Collections;
 
 public class Fields : PatrolBrick {
 
+	[HideInInspector]
 	public bool isCaptured;
 	public enum fieldState
 	{
@@ -11,6 +12,7 @@ public class Fields : PatrolBrick {
 		Captured
 	};
 	private fieldState state;
+	[HideInInspector]
 	public bool countCaptured;
 	private float capScore;
 	public bool isStatic = false;

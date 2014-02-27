@@ -67,6 +67,7 @@ public class LevelBrick : MonoBehaviour {
 		{
 			animSpr = GetComponentInChildren<OTAnimatingSprite>();
 		}
+		
 	}
 
 	public float getSpeed(LevelBrick _brick, Dictionary<LevelBrick.typeList, float> _dico)

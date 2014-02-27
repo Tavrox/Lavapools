@@ -6,7 +6,7 @@ public class LevelManager : MonoBehaviour {
 
 	public static LPTuning TuningDocument;
 	
-	[HideInInspector] public static GameEventManager.GameState GAMESTATE;
+	public static GameEventManager.GameState GAMESTATE;
 	public GameEventManager.GameState _EditorState ;
 
 	[HideInInspector] public float score = 0f;
@@ -63,9 +63,6 @@ public class LevelManager : MonoBehaviour {
 		tools._levMan = this;
 		levelID = int.Parse(Application.loadedLevelName);
 
-		bricksMan = FETool.findWithinChildren(this.gameObject, "LevelBricks/Bricks").GetComponent<BricksManager>();
-		bricksMan.Setup();
-
 		WaypointManager[] waypointsManagers = FETool.findWithinChildren(this.gameObject, "LevelBricks/Waypoints").GetComponentsInChildren<WaypointManager>();
 		foreach (WaypointManager wpm in waypointsManagers)
 		{
@@ -76,6 +73,9 @@ public class LevelManager : MonoBehaviour {
 				fieldMan = wpm.GetComponent<FieldManager>();
 			}
 		}
+
+		bricksMan = FETool.findWithinChildren(this.gameObject, "LevelBricks/Bricks").GetComponent<BricksManager>();
+		bricksMan.Setup();
 
 		CollectiblePlaces[] collecPla = FETool.findWithinChildren(this.gameObject, "Enviro/CollectiblePlaces").GetComponentsInChildren<CollectiblePlaces>();
 		foreach (CollectiblePlaces cpl in collecPla)
@@ -116,7 +116,7 @@ public class LevelManager : MonoBehaviour {
 	void Update () {
 	
 		updateScore();
-		
+
 		if (GAMESTATE == GameEventManager.GameState.GameOver)
 		{
 			if (Input.GetKey(KeyCode.Return))
@@ -204,7 +204,7 @@ public class LevelManager : MonoBehaviour {
 	#region Events
 	private void GameStart()
 	{
-//		_player.gameObject.SetActive(false);
+
 	}
 	
 	private void GameOver()
@@ -230,6 +230,8 @@ public class LevelManager : MonoBehaviour {
 		fieldsCaptured = 0;
 		centSecondsElapsed = 0;
 		SecondsElapsed = 0;
+		collecSum = 0;
+		CollectibleGathered.Clear();
 	
 	}
 	#endregion

@@ -38,7 +38,8 @@ public class ProceduralSteps : ScriptableObject {
 	public float PlatformValueMultiplier = 1f;
 	public List<string> BricksEnabled;
 	public List<string> BricksDisabled;
+	public List<string> BrickToRandomlySwapWPM;
 	public List<string> WaypointsToInvert;
-	public bool PlayMusic;
 	public LevelInfo LevelToUnlock;
+	public bool beenTriggered = false;
 }

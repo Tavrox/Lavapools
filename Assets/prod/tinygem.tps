@@ -22,7 +22,7 @@
         <key>dataFormat</key>
         <string>cocos2d</string>
         <key>textureFileName</key>
-        <filename>../gfx/collectibles.png</filename>
+        <filename>../gfx/tinygem.png</filename>
         <key>flipPVR</key>
         <false/>
         <key>ditherType</key>
@@ -111,7 +111,7 @@
             <enum type="AndEngine::MagFilter">MagLinear</enum>
         </struct>
         <key>dataFileName</key>
-        <filename>../gfx/collectibles.xml</filename>
+        <filename>../gfx/tinygem.xml</filename>
         <key>multiPack</key>
         <false/>
         <key>mainExtension</key>
@@ -148,18 +148,31 @@
         </struct>
         <key>fileList</key>
         <array>
-            <filename>biggem00bounce.png</filename>
-            <filename>biggem01bounce.png</filename>
-            <filename>biggem02bounce.png</filename>
-            <filename>biggem03bounce.png</filename>
-            <filename>biggem04bounce.png</filename>
-            <filename>tinygem03bounce.png</filename>
-            <filename>tinygem04bounce.png</filename>
-            <filename>tinygem00bounce.png</filename>
+            <filename>TinyGem20bounce.png</filename>
+            <filename>TinyGem21bounce.png</filename>
+            <filename>TinyGem22bounce.png</filename>
+            <filename>TinyGem23bounce.png</filename>
+            <filename>TinyGem24bounce.png</filename>
+            <filename>TinyGem25bounce.png</filename>
             <filename>tinygem01bounce.png</filename>
             <filename>tinygem02bounce.png</filename>
-            <filename>tinyhotel.png</filename>
-            <filename>bighotel.png</filename>
+            <filename>tinygem03bounce.png</filename>
+            <filename>tinygem04bounce.png</filename>
+            <filename>TinyGem05bounce.png</filename>
+            <filename>TinyGem06bounce.png</filename>
+            <filename>TinyGem07bounce.png</filename>
+            <filename>TinyGem08bounce.png</filename>
+            <filename>TinyGem09bounce.png</filename>
+            <filename>TinyGem10bounce.png</filename>
+            <filename>TinyGem11bounce.png</filename>
+            <filename>TinyGem12bounce.png</filename>
+            <filename>TinyGem13bounce.png</filename>
+            <filename>TinyGem14bounce.png</filename>
+            <filename>TinyGem15bounce.png</filename>
+            <filename>TinyGem16bounce.png</filename>
+            <filename>TinyGem17bounce.png</filename>
+            <filename>TinyGem18bounce.png</filename>
+            <filename>TinyGem19bounce.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

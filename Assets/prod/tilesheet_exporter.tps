@@ -160,6 +160,7 @@
             <filename>ground1.png</filename>
             <filename>bighotel.png</filename>
             <filename>tinyhotel.png</filename>
+            <filename>entrypanel.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

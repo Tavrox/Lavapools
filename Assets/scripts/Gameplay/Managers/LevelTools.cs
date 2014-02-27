@@ -47,6 +47,11 @@ public class LevelTools : MonoBehaviour {
 		});
 		return res;
 	}
+	public WaypointManager pickRandomWP(LevelBrick.typeList _type)
+	{
+		List<WaypointManager> _wpm  = _levMan.waypointsMan.FindAll((WaypointManager obj) => obj.type == _type);
+		return _wpm[Random.Range(0,_wpm.Count)];
+	}
 
 	public void CollectObject(Collectible _thing)
 	{

@@ -5,7 +5,9 @@ using System.Collections.Generic;
 public class PatrolBrick : LevelBrick {
 
 	public WaypointManager brickPath;
+	[HideInInspector]
 	public string brickPathId;
+	[HideInInspector]
 	public Waypoint currentWP;
 
 	private Waypoint initWp;
@@ -14,31 +16,15 @@ public class PatrolBrick : LevelBrick {
 	public bool debug;
 
 	// Use this for initialization
-	public void Setup () {
-
+	public void Setup () 
+	{
 		base.Setup();
-		if (currentWP == null)
-		{
-			Debug.Log("The brick "+gameObject.name+" has no wp");
-		}
 
 		GameEventManager.GameStart += GameStart;
 		GameEventManager.GameOver += GameOver;
 		GameEventManager.Respawn += Respawn;
-
-		if (brickPath != null)
-		{
-			brickPath.relatedBrick = this;
-			brickPathId = brickPath.id;
-		}
-		else
-		{
-			Debug.Log("The path of "+gameObject.name+" is missing.");
-		}
-
 	}
-	
-	
+
 	public void saveWaypoints()
 	{
 		initWp = currentWP;
@@ -104,8 +90,8 @@ public class PatrolBrick : LevelBrick {
 	{
 		if (this != null && enabled == true)
 		{
-			gameObject.transform.position = initPos;
-			currentWP = initWp;
+			currentWP = brickPath.pickRandomWP();
+			transform.position = brickPath.findNextWaypoint(currentWP).transform.position;
 			initPath = brickPath;
 			setupTarget();
 		}

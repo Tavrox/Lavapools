@@ -9,12 +9,17 @@ public class BricksManager : MonoBehaviour {
 	// Use this for initialization
 	public void Setup () {
 		LevelBrick[] bricksArray = GetComponentsInChildren<LevelBrick>();
+		BricksList.Clear();
 		foreach (LevelBrick _brick in bricksArray)
 		{
 			BricksList.Add(_brick);
-			if (_brick.GetComponent<PatrolBrick>() != null)
+			if (_brick.GetComponent<Bird>() != null)
 			{
-				_brick.GetComponent<PatrolBrick>().Setup();
+				_brick.GetComponent<Bird>().Setup();
+			}
+			if (_brick.GetComponent<Chainsaw>() != null)
+			{
+				_brick.GetComponent<Chainsaw>().Setup();
 			}
 		}
 	}

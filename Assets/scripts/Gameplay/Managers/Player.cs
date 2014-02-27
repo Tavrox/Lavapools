@@ -22,8 +22,6 @@ public class Player : MonoBehaviour {
 	private Notification _notif;
 	private PlayerAnims _anims;
 
-	public bool CanDie = false;
-
 	[HideInInspector] public enum playerState
 	{
 		Walk,
@@ -63,8 +61,6 @@ public class Player : MonoBehaviour {
 
 		startPos = gameObject.transform.position;
 		friction = new Vector3(0.5f,0.5f,0f);
-		CanDie = true;
-//		StartCoroutine("EnableDeath");
 	}
 	
 	// Update is called once per frame
@@ -75,7 +71,7 @@ public class Player : MonoBehaviour {
 
 		if (LevelManager.GAMESTATE == GameEventManager.GameState.Live )
 		{
-			if (OnPlatforms <= 0 && CanDie == true)
+			if (OnPlatforms <= 0)
 			{
 				GameEventManager.TriggerGameOver(gameObject.name);
 				MasterAudio.PlaySound("Enviro");
@@ -143,12 +139,6 @@ public class Player : MonoBehaviour {
 		_notif.makeFadeOut();
 	}
 
-	IEnumerator EnableDeath()
-	{
-		yield return new WaitForSeconds(0.1f);
-		CanDie = true;
-	}
-	
 	private void GameStart()
 	{
 		speed = initSpeed;
