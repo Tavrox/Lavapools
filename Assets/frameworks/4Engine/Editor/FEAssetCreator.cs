@@ -34,6 +34,12 @@ public class FEAssetCreator {
 	{
 		ScriptableObjectUtility.CreateAsset<LevelInfo>();
 	}
+	[MenuItem("Assets/Create/GameSetup")]
+	public static void CreateGameSetup ()
+	{
+		ScriptableObjectUtility.CreateAsset<GameSetup>();
+	}
+
 
 
 }
