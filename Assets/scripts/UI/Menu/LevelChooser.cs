@@ -40,9 +40,6 @@ public class LevelChooser : MonoBehaviour {
 		_btnLeft.Setup(this, LevelChooserButton.DirectionList.Left);
 		_btnRight.Setup(this, LevelChooserButton.DirectionList.Right);
 		currThumb = Thumbs[0];
-
-
-
 	}
 
 	public void SwipeThumbnail(LevelChooserButton.DirectionList _dir)

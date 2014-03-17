@@ -39,6 +39,11 @@ public class FEAssetCreator {
 	{
 		ScriptableObjectUtility.CreateAsset<GameSetup>();
 	}
+	[MenuItem("Assets/Create/DialogSheet")]
+	public static void CreateDialogSheet ()
+	{
+		ScriptableObjectUtility.CreateAsset<GameSetup>();
+	}
 
 
 
