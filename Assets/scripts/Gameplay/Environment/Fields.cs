@@ -33,8 +33,8 @@ public class Fields : PatrolBrick {
 //		currentWP = _levMan.tools.pickRandomLoc(_levMan.locationList);
 		if (isStatic != true)
 		{
-			gameObject.transform.position = currentWP.transform.position;
-			Destroy(gameObject, 12f);
+			gameObject.transform.parent.transform.position = currentWP.transform.position;
+			Destroy(gameObject.transform.parent.gameObject, 12f);
 		}
 		_anims = gameObject.AddComponent<FieldAnims>();
 		_anims.Start();
@@ -46,18 +46,20 @@ public class Fields : PatrolBrick {
 
 	void Update()
 	{
-		pos = gameObject.transform.position;
-		gameObject.transform.position += new Vector3 ( speed * FETool.Round( direction.x, 2), speed * FETool.Round( direction.y, 2) , 0f);
+		pos = gameObject.transform.parent.transform.position;
+		gameObject.transform.parent.transform.position += new Vector3 ( speed * FETool.Round( direction.x, 2), speed * FETool.Round( direction.y, 2) , 0f);
 		Debug.DrawRay(pos, direction);
-		
+
+		/*
 		if (capScore >= 80f && countCaptured == false)
 		{
 			state = fieldState.Captured;
 			isCaptured = true;
-			_player.triggerNotification(LevelManager.TuningDocument.CapturePoint_Score);
 			countCaptured = true;
 			_levMan.fieldsCaptured += 1;
 		}
+		*/
+	
 	}
 
 	public void CheckState()
@@ -71,7 +73,7 @@ public class Fields : PatrolBrick {
 		}
 		case fieldState.Capturing :
 		{
-			_anims.playAnimation(_anims._CAPTURING, 0.2f);
+			_anims.playAnimation(_anims._CAPTURING, 0.075f);
 			break;
 		}
 		case fieldState.Captured :
@@ -84,6 +86,7 @@ public class Fields : PatrolBrick {
 
 	public void OnTriggerStay(Collider _other)
 	{
+		/* CAPTURE DEACTIVATED
 		if (_other.CompareTag("Player") && isCaptured != true)
 		{
 			state = fieldState.Capturing;
@@ -92,6 +95,7 @@ public class Fields : PatrolBrick {
 				capScore += 1f * LevelManager.TuningDocument.CaptureSpeed;			
 			}
 		}
+		*/
 	}
 
 	public void OnTriggerEnter(Collider _other)

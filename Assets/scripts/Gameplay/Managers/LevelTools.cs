@@ -5,6 +5,14 @@ using System.Collections.Generic;
 public class LevelTools : MonoBehaviour {
 
 	public LevelManager _levMan;
+	public enum KillerList
+	{
+		Lava,
+		Chainsaw,
+		Bird,
+		GameBorders,
+		LevelManager
+	};
 	
 	public void disableBrick (LevelBrick _brickToEnable)
 	{

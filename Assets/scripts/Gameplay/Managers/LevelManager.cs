@@ -4,22 +4,27 @@ using System.Collections.Generic;
 
 public class LevelManager : MonoBehaviour {
 
-	public static LPTuning TuningDocument;
+	public static LPTuning GlobTuning;
+	public static LevelSetup LocalTuning;
+	[HideInInspector] public InputManager InputMan;
 	
 	public static GameEventManager.GameState GAMESTATE;
 	public GameEventManager.GameState _EditorState ;
+	public GameSetup.LevelList NAME;
 
 	[HideInInspector] public float score = 0f;
+	[HideInInspector] public int gemCounter = 0;
 	[HideInInspector] public int fieldsCaptured = 0;
 	[HideInInspector] public int centSecondsElapsed;
 	[HideInInspector] public int SecondsElapsed;
 	[HideInInspector] public int OvertimeScoreElapsed;
 	[HideInInspector] public int bestTime;
 	[HideInInspector] public string timeString;
+	[HideInInspector] public LevelTools.KillerList killer;
 	public float bestScore = 0f;
-	public int levelID;
 
-	[HideInInspector] public List<WaypointManager> waypointsMan = new List<WaypointManager>();
+
+	public List<WaypointManager> waypointsMan = new List<WaypointManager>();
 	[HideInInspector] public BricksManager bricksMan;
 
 	
@@ -50,10 +55,11 @@ public class LevelManager : MonoBehaviour {
 		_profile = ScriptableObject.CreateInstance("PlayerProfile") as PlayerProfile;
 
 		_player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
-//		_player.Setup();
-
-		TuningDocument = FETool.setupDoc();
-		TuningDocument.initScript();
+		
+		GlobTuning = Instantiate(Resources.Load("Tuning/Global")) as LPTuning;
+		LocalTuning = Instantiate(Resources.Load("Procedural/" + NAME + "/Setup")) as LevelSetup;
+		LocalTuning.initScript();
+		InputMan = Resources.Load("Tuning/InputManager") as InputManager;
 
 		proc = gameObject.AddComponent<Procedural>();
 		proc._levMan = this;
@@ -61,7 +67,6 @@ public class LevelManager : MonoBehaviour {
 
 		tools = gameObject.AddComponent<LevelTools>();
 		tools._levMan = this;
-		levelID = int.Parse(Application.loadedLevelName);
 
 		WaypointManager[] waypointsManagers = FETool.findWithinChildren(this.gameObject, "LevelBricks/Waypoints").GetComponentsInChildren<WaypointManager>();
 		foreach (WaypointManager wpm in waypointsManagers)
@@ -81,13 +86,16 @@ public class LevelManager : MonoBehaviour {
 		foreach (CollectiblePlaces cpl in collecPla)
 		{
 			collecPlaces.Add(cpl);
-//			cpl.Setup(this);
+			cpl.Spawn(this);
 		}
 
 		menuManager = GameObject.Find("UI").GetComponent<MainMenu>();
 		menuManager.Setup(this);
 
+		managerChecker();
+
 		proc.triggerStep(proc._listSteps[0]);
+		_player.Setup();
 		Setup();
 	}
 
@@ -100,7 +108,7 @@ public class LevelManager : MonoBehaviour {
 		}
 		if (GAMESTATE == GameEventManager.GameState.GameOver)
 		{
-			GameEventManager.TriggerGameOver("LM", true);
+			GameEventManager.TriggerGameOver(LevelTools.KillerList.LevelManager, true);
 		}
 		if (GAMESTATE == GameEventManager.GameState.Live)
 		{
@@ -108,8 +116,7 @@ public class LevelManager : MonoBehaviour {
 		}
 		InvokeRepeating("updateTime", 0f, 0.01f);
 		InvokeRepeating("UpdateScoreOverTime", 0f, 0.1f);
-		InvokeRepeating("spawnFields", TuningDocument.DelayBeforeSpawn, TuningDocument.SpawnFrequency);
-		InvokeRepeating("spawnGem", 3f, TuningDocument.TinyGem_SpawnRate);
+//		InvokeRepeating("spawnFields", LocalTuning.Fields_DelaySpawn, LocalTuning.Fields_FrequencySpawn);
 	}
 
 	// Update is called once per frame
@@ -119,7 +126,7 @@ public class LevelManager : MonoBehaviour {
 
 		if (GAMESTATE == GameEventManager.GameState.GameOver)
 		{
-			if (Input.GetKey(KeyCode.Return))
+			if (Input.GetKey(InputMan.KeyEnter) || Input.GetButton(InputMan.EnterButton))
 			{
 				if (score == bestScore && score != 0)
 				{
@@ -142,10 +149,7 @@ public class LevelManager : MonoBehaviour {
 	
 	public void updateScore()
 	{
-		score = 
-			(fieldsCaptured * TuningDocument.CapturePoint_Score) 
-			+ (OvertimeScoreElapsed * TuningDocument.ScoreOverTime)
-			+ collecSum;
+		score = collecSum;
 	}
 
 	private void UpdateScoreOverTime()
@@ -170,34 +174,30 @@ public class LevelManager : MonoBehaviour {
 		}
 	}
 
-	public void spawnGem ()
+	public void triggerSpawnGem(CollectiblePlaces _place)
 	{
-		List<CollectiblePlaces> _list = collecPlaces;
-		int randomPick = Random.Range(0, _list.Count-1);
-		foreach (CollectiblePlaces _pl in _list)
-		{
-			if (_pl.occupied == true)
-			{
-				GemHasSpawned = true;
-				break;
-			}
-			else
-			{
-				GemHasSpawned = false;
-			}
-		}
-		if (GemHasSpawned == false)
-		{
-			_list[randomPick].Spawn(this);
-		}
+		StartCoroutine(delayedSpawnGem(_place));
+	}
 
+	IEnumerator delayedSpawnGem(CollectiblePlaces _place)
+	{
+		yield return new WaitForSeconds(LocalTuning.Gem_SpawnRate);
+		_place.Spawn(this);
 	}
 
 	public void spawnFields()
 	{
 		if (GameEventManager.gameOver != true )
 		{
-			spawningField = fieldMan.respawnField();
+//			spawningField = fieldMan.respawnField();
+		}
+	}
+
+	private void managerChecker()
+	{
+		if (Application.loadedLevelName != NAME.ToString() || waypointsMan == null || _player == null)
+		{
+			Debug.Log("LevMan bad setup");
 		}
 	}
 
@@ -212,7 +212,7 @@ public class LevelManager : MonoBehaviour {
 		_player.gameObject.SetActive(false);
 		if (spawningField != null)
 		{
-			Destroy(spawningField.gameObject);
+			Destroy(spawningField.gameObject.transform.parent.gameObject);
 		}
 		CancelInvoke("updateTime");
 		CancelInvoke("spawnFields");
@@ -224,7 +224,7 @@ public class LevelManager : MonoBehaviour {
 		OvertimeScoreElapsed = 0;
 		InvokeRepeating("UpdateScoreOverTime", 0f, 0.1f);
 		InvokeRepeating("updateTime", 0f, 0.01f);
-		InvokeRepeating("spawnFields", TuningDocument.DelayBeforeSpawn, TuningDocument.SpawnFrequency);
+		InvokeRepeating("spawnFields", LocalTuning.Fields_DelaySpawn, LocalTuning.Fields_FrequencySpawn);
 		_player.gameObject.SetActive(true);
 		score = 0f;
 		fieldsCaptured = 0;
@@ -232,6 +232,10 @@ public class LevelManager : MonoBehaviour {
 		SecondsElapsed = 0;
 		collecSum = 0;
 		CollectibleGathered.Clear();
+		foreach (CollectiblePlaces cpl in collecPlaces)
+		{
+			cpl.Spawn(this);
+		}
 	
 	}
 	#endregion

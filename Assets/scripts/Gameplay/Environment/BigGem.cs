@@ -10,7 +10,7 @@ public class BigGem : Collectible {
 		_spr.alpha = 1f;
 		_animSpr.animationFrameset = "BigGemBounce";
 		_animSpr.PlayLoop("BigGemBounce");
-		value = LevelManager.TuningDocument.BigGem_Value;
+//		value = LevelManager..BigGem_Value;
 	}
 	
 	void OnTriggerEnter(Collider _other)

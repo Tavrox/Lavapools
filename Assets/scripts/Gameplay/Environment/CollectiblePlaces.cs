@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using System.Collections;
-using UnityEditor;
 
 public class CollectiblePlaces : MonoBehaviour {
 
@@ -9,22 +8,25 @@ public class CollectiblePlaces : MonoBehaviour {
 
 	public void Spawn(LevelManager _lm)
 	{
-		switch (_placeType)
+		if (occupied == false)
 		{
-		case Collectible.ListCollectible.TinyGem :
-		{
+			switch (_placeType)
+			{
+			case Collectible.ListCollectible.TinyGem :
+			{
 
-			GameObject gemObj = PrefabUtility.InstantiatePrefab(Resources.Load("Bricks/Environment/TinyGem")) as GameObject;
-			TinyGem _gem = gemObj.GetComponent<TinyGem>();
-			_gem.Setup(_lm);
-			gemObj.transform.parent = gameObject.transform;
-			gemObj.transform.position = gameObject.transform.position;
-			_gem.value = LevelManager.TuningDocument.TinyGem_Value;
-			_gem._relatedPlace = this;
-			break;
+				GameObject gemObj = Instantiate(Resources.Load("Bricks/Environment/TinyGem")) as GameObject;
+				TinyGem _gem = gemObj.GetComponent<TinyGem>();
+				_gem.Setup(_lm, this);
+				gemObj.transform.parent = gameObject.transform;
+				gemObj.transform.position = gameObject.transform.position;
+				_gem.value = LevelManager.GlobTuning.Gem_Value;
+				_gem._relatedPlace = this;
+				break;
+			}
+			}
+			occupied = true;
 		}
-		}
-		occupied = true;
 //		Debug.Log("Gem has spawned at " + gameObject.name);
 	}
 }

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-//[ExecuteInEditMode]
+[ExecuteInEditMode]
 
 public class TextUI : MonoBehaviour {
 
@@ -17,6 +17,7 @@ public class TextUI : MonoBehaviour {
 	
 	void Update()
 	{
+		text = text.Replace("/n", "\n");
 		_mesh.text = text;
 		_mesh.color = color;
 	}
@@ -29,5 +30,11 @@ public class TextUI : MonoBehaviour {
 	public void makeFadeIn()
 	{
 		new OTTween(this, 0.4f).Tween("color", initColor);
+	}
+
+	public void Format()
+	{
+		print ("fu");
+		text = text.Replace("/n", "\n");
 	}
 }

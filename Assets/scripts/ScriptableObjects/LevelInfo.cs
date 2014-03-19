@@ -1,10 +1,11 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class LevelInfo : ScriptableObject {
-
-	public GameSetup.LevelList Name;
+	
+	public int levelID;
+	public GameSetup.LevelList LvlName;
 	public float player_best_score;
-	public float player_best_time;
-	public bool unlocked;
+	public bool locked;
+
 }

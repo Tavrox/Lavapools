@@ -4,10 +4,10 @@ using System.Collections;
 public class Player : MonoBehaviour {
 	
 	[HideInInspector] public LevelManager _levMan;
-	[HideInInspector] public LPTuning TuningDocument;
-	[HideInInspector] public int OnPlatforms;
+	[HideInInspector] public InputManager InputMan;
+	public int OnPlatforms;
 
-	public float speed = 0.1f;
+	public float speed;
 	public float initSpeed;
 	private RaycastHit hit;
 	private Vector3 pos;
@@ -31,13 +31,13 @@ public class Player : MonoBehaviour {
 
 	private UserLeaderboard _playerSheet;
 
-	public string playerName;
+	[HideInInspector] public string playerName;
 	
 	private RaycastHit hitInfo; //infos de collision
 	private Ray detectTargetLeft, detectTargetRight; //point de départ, direction
 	
 	// Use this for initialization
-	void Start () {
+	public void Setup () {
 		
 		if (GetComponentInChildren<OTSprite>() != null)
 		{
@@ -48,9 +48,10 @@ public class Player : MonoBehaviour {
 		_levMan = GameObject.Find("LevelManager").GetComponent<LevelManager>();
 		_playerSheet = ScriptableObject.CreateInstance("UserLeaderboard") as UserLeaderboard;
 		_playerSheet.name = playerName;
-		TuningDocument = LevelManager.TuningDocument;
-		speed = TuningDocument.Player_Speed;
+
+		speed = LevelManager.LocalTuning.Player_Speed;
 		initSpeed = speed;
+		InputMan = Resources.Load("Tuning/InputManager") as InputManager;
 		
 		GameEventManager.GameStart += GameStart;
 		GameEventManager.GameOver += GameOver;
@@ -60,7 +61,8 @@ public class Player : MonoBehaviour {
 		_notif = GetComponentInChildren<Notification>();
 
 		startPos = gameObject.transform.position;
-		friction = new Vector3(0.5f,0.5f,0f);
+		friction.x = LevelManager.GlobTuning.Player_Friction.x;
+		friction.y = LevelManager.GlobTuning.Player_Friction.y;
 	}
 	
 	// Update is called once per frame
@@ -73,56 +75,82 @@ public class Player : MonoBehaviour {
 		{
 			if (OnPlatforms <= 0)
 			{
-				GameEventManager.TriggerGameOver(gameObject.name);
+				GameEventManager.TriggerGameOver(LevelTools.KillerList.Lava);
 				MasterAudio.PlaySound("Enviro");
 			}
-
-			if (Input.GetKey (KeyCode.RightArrow)) 
-			{
-				mod.x += speed;
-				_anims.playAnimation(_anims._WALK);
-			}
-			else if (Input.GetKeyUp (KeyCode.RightArrow)) 
-			{
-				mod.x = 10f;
-				_anims.playAnimation(_anims._STATIC);
-			}
-			
-			if (Input.GetKey (KeyCode.UpArrow)) 
-			{
-				mod.y += speed;
-				_anims.playAnimation(_anims._WALK);
-			}
-			else if (Input.GetKeyUp (KeyCode.UpArrow)) 
-			{
-				mod.y = 10f;
-				_anims.playAnimation(_anims._STATIC);
-			}
-			
-			if (Input.GetKey (KeyCode.LeftArrow)) 
-			{
-				mod.x -= speed;
-				_anims.playAnimation(_anims._WALK);
-			}
-			else if (Input.GetKeyUp (KeyCode.LeftArrow)) 
-			{
-				mod.x = -10f;
-				_anims.playAnimation(_anims._STATIC);
-			}
-			
-			if (Input.GetKey (KeyCode.DownArrow)) 
-			{
-				mod.y -= speed;
-				_anims.playAnimation(_anims._WALK);
-			}
-			else if (Input.GetKeyUp (KeyCode.DownArrow)) 
-			{
-				mod.y = -10f;
-				_anims.playAnimation(_anims._STATIC);
-			}
+			KeyInput();
+			XboxInput();
 			mod.x *= friction.x;
 			mod.y *= friction.y;
 			this.gameObject.transform.position += mod * Time.deltaTime;
+		}
+	}
+
+	private void KeyInput()
+	{
+		if (Input.GetKey (InputMan.KeyRight)) 
+		{
+			mod.x += speed;
+			_anims.playAnimation(_anims._WALK);
+		}
+		else if (Input.GetKeyUp (InputMan.KeyRight)) 
+		{
+			mod.x = 10f;
+			_anims.playAnimation(_anims._STATIC);
+		}
+		
+		if (Input.GetKey (InputMan.KeyUp)) 
+		{
+			mod.y += speed;
+			_anims.playAnimation(_anims._WALK);
+		}
+		else if (Input.GetKeyUp (InputMan.KeyUp)) 
+		{
+			mod.y = 10f;
+			_anims.playAnimation(_anims._STATIC);
+		}
+		
+		if (Input.GetKey (InputMan.KeyLeft)) 
+		{
+			mod.x -= speed;
+			_anims.playAnimation(_anims._WALK);
+		}
+		else if (Input.GetKeyUp (InputMan.KeyLeft)) 
+		{
+			mod.x = -10f;
+			_anims.playAnimation(_anims._STATIC);
+		}
+		
+		if (Input.GetKey (InputMan.KeyDown)) 
+		{
+			mod.y -= speed;
+			_anims.playAnimation(_anims._WALK);
+		}
+		else if (Input.GetKeyUp (InputMan.KeyDown)) 
+		{
+			mod.y = -10f;
+			_anims.playAnimation(_anims._STATIC);
+		}
+	}
+
+	private void XboxInput()
+	{
+		if(Input.GetAxisRaw("X axis") > InputMan.X_AxisPos_Sensibility)
+		{
+			mod.x -= speed;
+		}
+		if(Input.GetAxisRaw("X axis") < InputMan.X_AxisNeg_Sensibility)
+		{
+			mod.x += speed;
+		}
+		
+		if(Input.GetAxisRaw("Y axis") > InputMan.Y_AxisPos_Sensibility)
+		{
+			mod.y += speed;
+		}
+		if(Input.GetAxisRaw("Y axis") < InputMan.Y_AxisNeg_Sensibility)
+		{
+			mod.y -= speed;
 		}
 	}
 
@@ -164,6 +192,6 @@ public class Player : MonoBehaviour {
 		new OTTween(spr, 0.5f).Tween("alpha", 1f);
 		new OTTween(spr, 0.5f).Tween("size", new Vector2(originalSize.x,originalSize.y));
 		_notif.makeFadeOut();
-		OnPlatforms = 0;
+//		OnPlatforms = 0;
 	}
 }

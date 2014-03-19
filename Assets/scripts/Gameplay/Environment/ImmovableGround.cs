@@ -1,12 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class ImmovableGround : LevelBrick {
+public class ImmovableGround : MonoBehaviour {
+	
+	private Player _player;
 
 	// Use this for initialization
-	void Start () {
-
-		base.Setup();
+	void Start () 
+	{
+		_player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
 	
 	}
 

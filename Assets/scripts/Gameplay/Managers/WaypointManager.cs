@@ -6,11 +6,11 @@ public class WaypointManager : MonoBehaviour {
 	
 	[HideInInspector] public LevelManager _levMan;
 
-	public string id;
-	public LevelBrick.typeList type;
-	public LevelBrick relatedBrick;
+	[HideInInspector] public string id;
+	[HideInInspector] public LevelBrick.typeList type;
+	[HideInInspector] public LevelBrick relatedBrick;
 	public List<Waypoint> relatedWaypoints = new List<Waypoint>();
-	public Waypoint lastWp;
+	[HideInInspector] public Waypoint lastWp;
 	public bool inverted = false;
 
 	public void Setup(LevelManager man)
@@ -22,11 +22,10 @@ public class WaypointManager : MonoBehaviour {
 
 	void Update()
 	{
-		if (Input.GetKey(KeyCode.A))
+		if (Input.GetKeyDown(KeyCode.A))
 		{
 			invertWaypoints();
 		}
-
 	}
 
 	public Waypoint findNextWaypoint( Waypoint _wpSource)
@@ -82,7 +81,7 @@ public class WaypointManager : MonoBehaviour {
 		}
 		if (relatedBrick != null)
 		{
-			relatedBrick.GetComponent<PatrolBrick>().setupTarget();
+//			relatedBrick.GetComponent<PatrolBrick>().setupTarget();
 		}
 //		Debug.Log ("The waypoints of " + gameObject.name + "have been inverted");
 	}

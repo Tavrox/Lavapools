@@ -4,56 +4,52 @@ using System.Collections.Generic;
 
 public class LevelThumbnail : MonoBehaviour
 {
-	private OTSprite _preview;
-	public GameSetup.LevelList name;
+	private OTSprite Preview;
+	public OTSprite Locker;
+	public PhpLeaderboards tinyLeaderboard;
+
+	public GameSetup.LevelList nameLv;
 	public bool isStartSlot = false;
 	public bool isEndSlot = false;
+	public bool Locked = false;
+	public LevelInfo Info;
 
-	public void Setup(GameSetup.LevelList _set)
+	public void Setup(GameSetup.LevelList _set, bool _isLocked)
 	{
-		name = _set;
-	}
-
-	public LevelThumbnail FindThumbAround(List<LevelThumbnail> _listTh, LevelThumbnail _thumb)
-	{
-		LevelThumbnail res = null;
-		LevelThumbnail lastThumb = _listTh[_listTh.Count-1];
-
-		if (_thumb.name != lastThumb.name)
+		nameLv = _set;
+		Locked = _isLocked;
+		Info = Instantiate(Resources.Load("Tuning/Levels/" +  nameLv.ToString())) as LevelInfo;
+		gameObject.name = _set.ToString();
+		Locker = FETool.findWithinChildren(gameObject, "Lock").GetComponentInChildren<OTSprite>();
+		if (Locked == true)
 		{
-			int nextThumb = _listTh.FindIndex(th => th.name == _thumb.name);
-			res = _listTh[nextThumb+1];
+			Locker.alpha = 1f;
 		}
 		else
 		{
-			res = _listTh[0];
+			Locker.alpha = 0f;
 		}
-		if (res == null)
-		{
-			Debug.LogError("Thumb not found");
-		}
-		return res;
 	}
-	public LevelThumbnail findPreviousWaypoints(List<LevelThumbnail> _listTh, LevelThumbnail _thumb)
+
+	public LevelThumbnail FindThumbAround(List<LevelThumbnail> _listTh, LevelThumbnail _thumb, LevelChooserButton.DirectionList _dir)
 	{
 		LevelThumbnail res = null;
 		LevelThumbnail lastThumb = _listTh[_listTh.Count-1];
-		
-		if (_thumb.name != lastThumb.name)
+
+		int nextThumb = _listTh.FindIndex(th => th.name == _thumb.name);
+		if (_dir == LevelChooserButton.DirectionList.Left)
 		{
-			int nextThumb = _listTh.FindIndex(th => th.name == _thumb.name);
 			res = _listTh[nextThumb-1];
 		}
 		else
 		{
-			res = _listTh[0];
+			res = _listTh[nextThumb+1];
 		}
+
 		if (res == null)
 		{
 			Debug.LogError("Thumb not found");
 		}
 		return res;
-	}
-	
-	
+	}	
 }

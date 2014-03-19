@@ -17,6 +17,19 @@
                 <key>sourceSize</key>
                 <string>{1400,800}</string>
             </dict>
+            <key>illustration_crab.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{5,810},{1280,1024}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{1280,1024}}</string>
+                <key>sourceSize</key>
+                <string>{1280,1024}</string>
+            </dict>
         </dict>
         <key>metadata</key>
         <dict>
@@ -25,9 +38,9 @@
             <key>realTextureFileName</key>
             <string>scenery.png</string>
             <key>size</key>
-            <string>{2048,1024}</string>
+            <string>{2048,2048}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:f3cb85d1aed43e79666536a489a1fe04:d561436618da9e2ac0d5869a34216c55:0012f9b3fd1a2d7aab5544ab75ee3789$</string>
+            <string>$TexturePacker:SmartUpdate:9872f11680185be6f63f606efea07062:ce2b0fc6007da6413facf0b9b03463a6:0012f9b3fd1a2d7aab5544ab75ee3789$</string>
             <key>textureFileName</key>
             <string>scenery.png</string>
         </dict>

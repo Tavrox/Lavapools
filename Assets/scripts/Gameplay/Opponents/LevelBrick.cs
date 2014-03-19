@@ -9,27 +9,20 @@ public class LevelBrick : MonoBehaviour {
 		Bird, 
 		Fields,
 		Chainsaw,
-		ImmovableGround
 	};
 	public typeList type;
 	public float speed;
 	public float initSpeed;
-	public LevelManager _levMan;
-	public int brickId;
-
-	private OTAnimatingSprite animSpr;
-	private BoxCollider coll;
-	public bool invisible = false;
-
+	[HideInInspector] public LevelManager _levMan;
+	[HideInInspector] public int brickId;
 	[HideInInspector] public Vector3 direction;
 	[HideInInspector] public Vector3 target;
 	[HideInInspector] public Vector3 pos;
 	[HideInInspector] public Vector3 initPos;
 	[HideInInspector] public Player _player;
 	[HideInInspector] public List<FESound> _soundList = new List<FESound>();
-
-
-
+	
+	private OTAnimatingSprite animSpr;
 	public Dictionary<LevelBrick.typeList, float> _bricksSpeed = new Dictionary<LevelBrick.typeList, float>();
 
 	public void Setup()
@@ -43,7 +36,8 @@ public class LevelBrick : MonoBehaviour {
 			_player = GameObject.Find("Player").GetComponent<Player>();
 		}
 		_levMan = GameObject.Find("LevelManager").GetComponent<LevelManager>();
-		_bricksSpeed = LevelManager.TuningDocument._dicoBricks;
+		_bricksSpeed = LevelManager.LocalTuning._dicoBricks;
+		
 
 		initPos = gameObject.transform.position;
 
@@ -73,6 +67,7 @@ public class LevelBrick : MonoBehaviour {
 	public float getSpeed(LevelBrick _brick, Dictionary<LevelBrick.typeList, float> _dico)
 	{
 		float res = 0f;
+//		print (_brick);
 		res = _dico[_brick.type];
 		return res;
 	}
@@ -86,12 +81,6 @@ public class LevelBrick : MonoBehaviour {
 	public void disableBrick()
 	{
 		speed = 0;
-	}
-
-	IEnumerator triggerCollider()
-	{
-		yield return new WaitForSeconds(LevelManager.TuningDocument.timeBeforeActivation);
-		invisible = false;
 	}
 
 	private void GameStart()

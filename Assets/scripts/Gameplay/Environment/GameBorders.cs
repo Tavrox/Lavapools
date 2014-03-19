@@ -7,7 +7,7 @@ public class GameBorders : MonoBehaviour {
 	{
 		if (_other.CompareTag("Player"))
 		{
-			GameEventManager.TriggerGameOver("GameBorder");
+			GameEventManager.TriggerGameOver(LevelTools.KillerList.GameBorders);
 		}
 	}
 }

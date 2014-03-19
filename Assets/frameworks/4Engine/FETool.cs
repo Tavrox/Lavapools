@@ -28,7 +28,7 @@ public class FETool : MonoBehaviour {
 		GameObject result = GameObject.Find(_go.name + "/" + _fetch);
 		if (result == null)
 		{
-			Debug.LogWarning("The object "+  _fetch + " couldn't be found.");
+			Debug.LogWarning(_go + " seeks BUG " +  _fetch);
 			return null;
 		}
 		return result;
@@ -109,5 +109,12 @@ public class FETool : MonoBehaviour {
 		float mult = Mathf.Pow (10.0f, (float) digits);
 		return Mathf.Round(value * mult) / mult;
 	}
+	public static float RoundToQuarter(float value)
+	{
+		float mult = Mathf.Round(value*4)/4f;
+		return mult;
+	}
+
+
 
 }

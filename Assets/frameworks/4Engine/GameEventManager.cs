@@ -25,7 +25,7 @@ public static class GameEventManager {
 		}
 	}
 
-	public static void TriggerGameOver(string _killer, bool forced = false)
+	public static void TriggerGameOver(LevelTools.KillerList _killer, bool forced = false)
 	{
 		if(GameOver != null && LevelManager.GAMESTATE != GameState.GameOver && FEDebug.GodMode != true)
 		{
@@ -37,7 +37,8 @@ public static class GameEventManager {
 		}
 	}
 	
-	public static void TriggerRespawn(string _trigger, bool forced = false){
+	public static void TriggerRespawn(string _trigger, bool forced = false)
+	{
 		if(Respawn != null)
 		{
 			Debug.LogWarning("RESPAWN " + _trigger);

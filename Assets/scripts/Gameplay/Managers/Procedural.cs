@@ -6,22 +6,21 @@ public class Procedural : MonoBehaviour {
 
 	[HideInInspector] public LevelManager _levMan;
 	[HideInInspector] public ProceduralSteps _CURRENTSTEP;
-	public bool debug = true;
+	[HideInInspector] public bool debug = true;
 
-	public List<ProceduralSteps> _listSteps;
+	[HideInInspector] public List<ProceduralSteps> _listSteps;
 	private LevelSetup SETUP;
 
 	// Use this for initialization
 	public void Setup () 
 	{
-		string path = "Procedural/Level" + Application.loadedLevelName+"/";
+		string path = "Procedural/" + _levMan.NAME + "/";
 		_levMan = GameObject.Find("LevelManager").GetComponent<LevelManager>();
 		_listSteps = new List<ProceduralSteps>();
 		GameEventManager.Respawn += Respawn;
 		GameEventManager.GameOver += GameOver;
 
 		SETUP = Resources.Load(path + "Setup") as LevelSetup;
-
 		for (int i = 1; i <= SETUP.numberOfSteps ; i++)
 		{
 			_listSteps.Add( Resources.Load( path + i) as ProceduralSteps);
@@ -35,7 +34,7 @@ public class Procedural : MonoBehaviour {
 //		Debug.LogWarning(""+_CURRENTSTEP+"");
 		foreach (ProceduralSteps _step in _listSteps)
 		{
-			if ( _step.priority > _CURRENTSTEP.priority)
+			if ( _step.stepID > _CURRENTSTEP.stepID)
 			{
 				if (_step.condition == ProceduralSteps.conditionEnum.Score && _step.ScoreCondition < _levMan.score)
 				{
@@ -49,10 +48,6 @@ public class Procedural : MonoBehaviour {
 				{
 					break;
 				}
-//				foreach (WaypointManager wpm in _step.WaypointsToInvert)
-//				{
-//					wpm.invertWaypoints(); // FUNC TO DO
-//				}
 			}
 
 		}
@@ -90,8 +85,7 @@ public class Procedural : MonoBehaviour {
 			{
 				WaypointManager man = _levMan.waypointsMan.Find((WaypointManager obj) => obj.name == _wpm);
 				man.invertWaypoints();
-				print (man);
-				man.relatedBrick.GetComponent<PatrolBrick>().setupTarget();
+//				man.relatedBrick.GetComponent<PatrolBrick>().setupTarget();
 			}	
 		}
 		_levMan._player.speed = _levMan._player.speed * _step.SpeedMultiplier;
@@ -108,25 +102,6 @@ public class Procedural : MonoBehaviour {
 		{
 			_levMan.tools.UnlockLevel(_step.LevelToUnlock);
 		}
-	}
-
-	private List<ProceduralSteps> loadSteps(int _levelID)
-	{
-		List<ProceduralSteps> _list = new List<ProceduralSteps>();
-		switch (_levelID)
-		{
-			case 1 :
-			{
-			print ("olol");
-			break;
-			}
-			case 2 :
-			{
-				
-			break;
-			}
-		}
-		return _list;
 	}
 
 	private void GameOver()

@@ -4,47 +4,24 @@ using System.Collections.Generic;
 using System;
 
 public class LPTuning : ScriptableObject {
-
-	public float Player_Speed = 3f;
-	public Vector2 Player_Friction;
-	public float Bird_Speed = 3f;
-	public float Chainsaw_Speed = 3f;
-	public float Fields_Speed = 3f;
-	public float Immovable_Speed = 0f;
 	
-	public float CapturePoint_Score = 600f;
-	public float CaptureSpeed = 1f;
-	public float ScoreOverTime = 5f;
-	public float SpawnFrequency = 5f;
-	public float DelayBeforeSpawn = 5f;
-	public int Leaderboard_Number = 15;
-	public float timeBeforeActivation = 3f;
-	public int BigGem_Value = 500;
-	public int TinyGem_Value = 100;
-	public float TinyGem_SpawnRate = 5f;
-	public Dictionary<LevelBrick.typeList, float> _dicoBricks = new Dictionary<LevelBrick.typeList, float>();
+	public Vector2 Player_Friction;
+	public int Gem_Value = 1;
 
 	public Color ColPlayer;
 	public Color ColRank;
 	public Color ColScore;
 	public Color ColInput;
 
-	// Use this for initialization
-	public void initScript () {
-		_dicoBricks.Add(LevelBrick.typeList.Bird, Bird_Speed);
-		_dicoBricks.Add(LevelBrick.typeList.Fields, Fields_Speed);
-		_dicoBricks.Add(LevelBrick.typeList.Chainsaw, Chainsaw_Speed);	
-		_dicoBricks.Add(LevelBrick.typeList.ImmovableGround, Immovable_Speed);
+	[HideInInspector] public float Immovable_Speed = 0f;	
+	[HideInInspector] public float CapturePoint_Score = 600f;
+	[HideInInspector] public float CaptureSpeed = 1f;
+	[HideInInspector] public float ScoreOverTime = 5f;
 
-		ColPlayer = Color.cyan;
-		ColRank = Color.white;
-		ColScore = Color.yellow;
-	}
-
-	public float setupSpeed(LevelBrick _brick)
+	public enum LevelNames
 	{
-		float res = 0f;
-		res = _dicoBricks[_brick.type];
-		return res;
+		Vesuvio,
+		Grensdalur,
+		Etna
 	}
 }

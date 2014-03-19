@@ -42,7 +42,12 @@ public class FEAssetCreator {
 	[MenuItem("Assets/Create/DialogSheet")]
 	public static void CreateDialogSheet ()
 	{
-		ScriptableObjectUtility.CreateAsset<GameSetup>();
+		ScriptableObjectUtility.CreateAsset<DialogSheet>();
+	}
+	[MenuItem("Assets/Create/PlayerProfile")]
+	public static void CreatePlayerProfile ()
+	{
+		ScriptableObjectUtility.CreateAsset<PlayerProfile>();
 	}
 
 

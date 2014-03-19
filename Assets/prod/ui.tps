@@ -175,21 +175,32 @@
         </struct>
         <key>fileList</key>
         <array>
-            <filename>pan_scoring.png</filename>
-            <filename>pan_leaderboard.png</filename>
-            <filename>stat_player.png</filename>
-            <filename>sq.png</filename>
-            <filename>title.png</filename>
-            <filename>entrypanel.png</filename>
-            <filename>btnFB.png</filename>
-            <filename>btnTW.png</filename>
-            <filename>tileLvlSelect.png</filename>
-            <filename>lvlSelectleft.png</filename>
-            <filename>lvlSelectright.png</filename>
-            <filename>panLvlTitle.png</filename>
+            <filename>ui/bighotel.png</filename>
+            <filename>ui/btnClose.png</filename>
+            <filename>ui/btnFB.png</filename>
+            <filename>ui/btnGetFull.png</filename>
+            <filename>ui/btnOk_cancel.png</filename>
+            <filename>ui/btnPad.png</filename>
+            <filename>ui/btnPlay.png</filename>
+            <filename>ui/btnTW.png</filename>
+            <filename>ui/entrypanel.png</filename>
+            <filename>ui/lock.png</filename>
+            <filename>ui/lvlSelectleft.png</filename>
+            <filename>ui/lvlSelectright.png</filename>
+            <filename>ui/pan_credits.png</filename>
+            <filename>ui/pan_leaderboard.png</filename>
+            <filename>ui/pan_leaderboard_title.png</filename>
+            <filename>ui/pan_ok_pad.png</filename>
+            <filename>ui/pan_scoring.png</filename>
+            <filename>ui/pan_version.png</filename>
+            <filename>ui/panLvlTitle.png</filename>
+            <filename>ui/sq.png</filename>
+            <filename>ui/stat_player.png</filename>
             <filename>ui/thumb_etna.png</filename>
             <filename>ui/thumb_grensdalur.png</filename>
             <filename>ui/thumb_vesuvio.png</filename>
+            <filename>ui/tileLvlSelect.png</filename>
+            <filename>ui/title.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

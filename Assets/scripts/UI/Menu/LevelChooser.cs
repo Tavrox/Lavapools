@@ -8,15 +8,18 @@ public class LevelChooser : MonoBehaviour {
 	private LevelChooserButton _btnLeft;
 	private LevelChooserButton _btnRight;
 	private GameSetup SETUP;
+	private PlayerData PLAYERDATA;
 
 	private GameObject ThumbGO;
 	private List<LevelThumbnail> Thumbs =  new List<LevelThumbnail>();
 
 	private LevelThumbnail currThumb;
+	private Vector3 gapThumbs = new Vector3(20f, -1f, -10f);
 	
 	public void Setup () 
 	{
 		SETUP = MainTitleUI.getSetup();
+		PLAYERDATA = GameObject.FindGameObjectWithTag("PlayerData").GetComponent<PlayerData>();
 		ThumbGO = new GameObject("Thumbnails");
 		ThumbGO.transform.parent = gameObject.transform;
 		levelName = FETool.findWithinChildren(gameObject, "LevelTitle/LevelName").GetComponent<TextUI>();
@@ -24,14 +27,14 @@ public class LevelChooser : MonoBehaviour {
 		_btnRight = FETool.findWithinChildren(gameObject, "SelectRight").GetComponent<LevelChooserButton>();
 
 		Thumbs.Clear();
-		foreach (GameSetup.LevelList _lvl in SETUP.ActivatedLevels)
+		foreach (LevelInfo _lvl in PLAYERDATA.PROFILE.ActivatedLevels)
 		{
 			LevelThumbnail _th = CreateThumbnail(_lvl);
 			Thumbs.Add(_th);
 		}
 		for (int j = 0; j < Thumbs.Count ; j++)
 		{
-			Thumbs[j].gameObject.transform.position = new Vector3(j * 13.625f, -1f, -10f);
+			Thumbs[j].gameObject.transform.position = new Vector3(j * gapThumbs.x, gapThumbs.y, gapThumbs.z);
 		}
 
 		Thumbs[0].isStartSlot = true;
@@ -40,27 +43,46 @@ public class LevelChooser : MonoBehaviour {
 		_btnLeft.Setup(this, LevelChooserButton.DirectionList.Left);
 		_btnRight.Setup(this, LevelChooserButton.DirectionList.Right);
 		currThumb = Thumbs[0];
+		checkCurrThumb();
 	}
 
-	public void SwipeThumbnail(LevelChooserButton.DirectionList _dir)
+	public void SwipeThumbnail(LevelChooserButton _btn)
 	{
-		Vector3 mod = new Vector3 (13.625f, 0f, 0f);
-		if (_dir == LevelChooserButton.DirectionList.Left)
+		Vector3 mod = new Vector3 (20f, 0f, 0f);
+		if (_btn.direction == LevelChooserButton.DirectionList.Left)
 		{
-			new OTTween(ThumbGO.transform, 0.8f, OTEasing.BounceOut).Tween("position", ThumbGO.transform.position + mod);
+			new OTTween(ThumbGO.transform, _btn.twDuration, OTEasing.BounceOut).Tween("position", ThumbGO.transform.position + mod);
 		}
 		else
 		{
-			new OTTween(ThumbGO.transform, 0.8f, OTEasing.BounceOut).Tween("position", ThumbGO.transform.position - mod);
+			new OTTween(ThumbGO.transform, _btn.twDuration, OTEasing.BounceOut).Tween("position", ThumbGO.transform.position - mod);
+		}
+		currThumb = currThumb.FindThumbAround(Thumbs, currThumb, _btn.direction);
+		levelName.text = currThumb.nameLv.ToString();
+		checkCurrThumb();
+	}
+
+	private void checkCurrThumb()
+	{
+		_btnLeft.TriggerBtn(true);
+		_btnRight.TriggerBtn(true);
+
+		if (currThumb.isStartSlot == true)
+		{
+			_btnLeft.TriggerBtn(false);
+		}
+		if (currThumb.isEndSlot == true)
+		{
+			_btnRight.TriggerBtn(false);
 		}
 	}
 
-	public LevelThumbnail CreateThumbnail(GameSetup.LevelList _name)
+	public LevelThumbnail CreateThumbnail(LevelInfo _info)
 	{
 		GameObject _thumb = Instantiate(Resources.Load("Tools/Thumb")) as GameObject;
 		LevelThumbnail _lvl = _thumb.AddComponent<LevelThumbnail>();
-		_lvl.Setup( _name);
 		_thumb.transform.parent = ThumbGO.transform;
+		_lvl.Setup(_info.LvlName, _info.locked);
 		return _lvl;
 	}
 

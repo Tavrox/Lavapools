@@ -11,13 +11,12 @@ public class Waypoint : MonoBehaviour {
 		Switchpoint
 	};
 	public TypeList WPType;
-//	[HideInInspector]
-	public int id;
-//	[HideInInspector]s
-	public bool activated = true;
-//	[HideInInspector]
+	[HideInInspector] public int id;
+	[HideInInspector] public bool activated = true;
 	public Waypoint nextWP;
-	public WaypointManager linkedManager;
+	[HideInInspector] public WaypointManager linkedManager;
+	public bool passedUpon = false;
+	public BoxCollider colli;
 
 	public void Setup()
 	{
@@ -34,8 +33,10 @@ public class Waypoint : MonoBehaviour {
 
 	void OnTriggerEnter(Collider _other)
 	{
-		if (activated && _other.GetComponent<PatrolBrick>() != null)
+		if (activated && _other.GetComponent<PatrolBrick>() != null && passedUpon == false)
 		{
+			passedUpon = true;
+			StartCoroutine("delayRetrigger");
 			PatrolBrick _collBrick = _other.GetComponent<PatrolBrick>();
 //			print ("[" + _collBrick.type + " VS " + LevelBrick.typeList.Fields + "]");
 
@@ -46,10 +47,22 @@ public class Waypoint : MonoBehaviour {
 //				{
 					if (_collBrick.type == linkedManager.relatedBrick.type && _collBrick.brickPathId == linkedManager.id)
 					{
-						_collBrick.GoToWaypoint(linkedManager.findNextWaypoint(this));
+						_collBrick.GoToWaypoint(nextWP);
 					}
 //				}
 			}
 		}
+	}
+
+	IEnumerator delayRetrigger()
+	{
+		yield return new WaitForSeconds(2f);
+		passedUpon = false;
+	}
+
+	public void setupCollider(Vector3 resize)
+	{
+		BoxCollider _coll = GetComponent<BoxCollider>();
+		_coll.size = resize;
 	}
 }

@@ -21,8 +21,8 @@ public class UserInput : TextUI {
 		initTxt = "_NAME_";
 		_bx = GetComponent<BoxCollider>();
 		_rec = new Rect(gameObject.transform.position.x - _bx.size.x, gameObject.transform.position.y - _bx.size.y,5f,5f) ;
-		_col1 = LevelManager.TuningDocument.ColRank;
-		_col2 = LevelManager.TuningDocument.ColInput;
+		_col1 = LevelManager.GlobTuning.ColRank;
+		_col2 = LevelManager.GlobTuning.ColInput;
 		color = _col1;
 		GameEventManager.GameOver += GameOver;
 		GameEventManager.Respawn += Respawn;
@@ -120,6 +120,6 @@ public class UserInput : TextUI {
 
 	private void BlinkName()
 	{
-		new OTTween(this, 1f).Tween("color", LevelManager.TuningDocument.ColInput).PingPong();
+		new OTTween(this, 1f).Tween("color", LevelManager.GlobTuning.ColInput).PingPong();
 	}
 }

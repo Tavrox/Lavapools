@@ -11,9 +11,16 @@ public class GameSetup : ScriptableObject {
 		Vesuvio,
 		None
 	};
+	public enum languageList
+	{
+		Francais,
+		English
+	};
 	public Vector2 GameSize;
 	public float OrthelloSize;
-	public List<LevelList> ActivatedLevels = new List<LevelList>();
 	public string gameversion;
 	public DialogSheet Dialogs;
+	public string twitter_url;
+	public string facebook_url;
+	public string website_url;
 }
