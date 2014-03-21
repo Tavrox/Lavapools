@@ -6,13 +6,16 @@ public class LevelManager : MonoBehaviour {
 
 	public static LPTuning GlobTuning;
 	public static LevelSetup LocalTuning;
-	[HideInInspector] public InputManager InputMan;
-	
+	public static LevelInfo CurrentLevelInfo;
 	public static GameEventManager.GameState GAMESTATE;
+
 	public GameEventManager.GameState _EditorState ;
 	public GameSetup.LevelList NAME;
 
+	[HideInInspector] public bool GemHasSpawned = false;
 	[HideInInspector] public float score = 0f;
+	[HideInInspector] public float bestScore = 0f;
+	[HideInInspector] public float collecSum = 0f;
 	[HideInInspector] public int gemCounter = 0;
 	[HideInInspector] public int fieldsCaptured = 0;
 	[HideInInspector] public int centSecondsElapsed;
@@ -20,27 +23,23 @@ public class LevelManager : MonoBehaviour {
 	[HideInInspector] public int OvertimeScoreElapsed;
 	[HideInInspector] public int bestTime;
 	[HideInInspector] public string timeString;
-	[HideInInspector] public LevelTools.KillerList killer;
-	public float bestScore = 0f;
-
-
-	public List<WaypointManager> waypointsMan = new List<WaypointManager>();
 	[HideInInspector] public BricksManager bricksMan;
-
-	
+	[HideInInspector] public List<WaypointManager> waypointsMan = new List<WaypointManager>();
 	[HideInInspector] public List<Collectible> CollectibleGathered = new List<Collectible>();
 	[HideInInspector] public List<CollectiblePlaces> collecPlaces = new List<CollectiblePlaces>();
-	[HideInInspector] public bool GemHasSpawned = false;
-	[HideInInspector] public float collecSum = 0f;
-	
 	[HideInInspector] public LevelTools tools;
+	[HideInInspector] public LevelTools.KillerList killer;
 	[HideInInspector] public Procedural proc;
-	public MainMenu menuManager;
+	[HideInInspector] public MainMenu menuManager;
+	[HideInInspector] public PlayerProfile _profile;
+	[HideInInspector] public InputManager InputMan;
+	[HideInInspector] public Player _player;
+	
 	private FieldManager fieldMan;
 	private Fields spawningField;
-	
-	[HideInInspector] public PlayerProfile _profile;
-	public Player _player;
+
+	public SpaceGate Gate;
+
 
 
 	// Use this for initialization
@@ -60,6 +59,7 @@ public class LevelManager : MonoBehaviour {
 		LocalTuning = Instantiate(Resources.Load("Procedural/" + NAME + "/Setup")) as LevelSetup;
 		LocalTuning.initScript();
 		InputMan = Resources.Load("Tuning/InputManager") as InputManager;
+		CurrentLevelInfo = Instantiate(Resources.Load("Tuning/Levels/" + NAME)) as LevelInfo;
 
 		proc = gameObject.AddComponent<Procedural>();
 		proc._levMan = this;
@@ -88,6 +88,8 @@ public class LevelManager : MonoBehaviour {
 			collecPlaces.Add(cpl);
 			cpl.Spawn(this);
 		}
+		Gate = GameObject.FindGameObjectWithTag("SpaceGate").GetComponent<SpaceGate>();
+		Gate.Setup();
 
 		menuManager = GameObject.Find("UI").GetComponent<MainMenu>();
 		menuManager.Setup(this);

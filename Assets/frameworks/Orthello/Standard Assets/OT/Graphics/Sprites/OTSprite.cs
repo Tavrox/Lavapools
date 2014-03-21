@@ -1320,7 +1320,7 @@ public class OTSprite : OTObject
 
 	public void ResizeOT()
 	{
-		float ratioUnity = 0.013328125f;
+		float ratioUnity = 0.013333333333333f;
 		OTSprite[] allSprites = GameObject.FindObjectsOfType(typeof(OTSprite)) as OTSprite[];
 		foreach (OTSprite _spr in allSprites)
 		{
@@ -1329,6 +1329,16 @@ public class OTSprite : OTObject
 			_spr.gameObject.transform.localScale = new Vector3(sx * ratioUnity , sy * ratioUnity, 0f);
 
 		}
+		/*
+		OTAnimatingSprite[] allAnim = GameObject.FindObjectsOfType(typeof(OTAnimatingSprite)) as OTAnimatingSprite[];
+		foreach (OTAnimatingSprite _spr in allAnim)
+		{
+			float sx = _spr.spriteContainer.GetFrame(_spr.frameIndex).size.x;
+			float sy = _spr.spriteContainer.GetFrame(_spr.frameIndex).size.y;
+			_spr.gameObject.transform.localScale = new Vector3(sx * ratioUnity , sy * ratioUnity, 0f);
+		}
+		*/
 	}
+
 }
 

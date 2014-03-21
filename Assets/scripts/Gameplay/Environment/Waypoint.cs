@@ -17,6 +17,7 @@ public class Waypoint : MonoBehaviour {
 	[HideInInspector] public WaypointManager linkedManager;
 	public bool passedUpon = false;
 	public BoxCollider colli;
+	public float Resizer;
 
 	public void Setup()
 	{
@@ -35,8 +36,6 @@ public class Waypoint : MonoBehaviour {
 	{
 		if (activated && _other.GetComponent<PatrolBrick>() != null && passedUpon == false)
 		{
-			passedUpon = true;
-			StartCoroutine("delayRetrigger");
 			PatrolBrick _collBrick = _other.GetComponent<PatrolBrick>();
 //			print ("[" + _collBrick.type + " VS " + LevelBrick.typeList.Fields + "]");
 
@@ -47,6 +46,8 @@ public class Waypoint : MonoBehaviour {
 //				{
 					if (_collBrick.type == linkedManager.relatedBrick.type && _collBrick.brickPathId == linkedManager.id)
 					{
+						passedUpon = true;
+						StartCoroutine("delayRetrigger");
 						_collBrick.GoToWaypoint(nextWP);
 					}
 //				}
@@ -56,7 +57,7 @@ public class Waypoint : MonoBehaviour {
 
 	IEnumerator delayRetrigger()
 	{
-		yield return new WaitForSeconds(2f);
+		yield return new WaitForSeconds(5f);
 		passedUpon = false;
 	}
 

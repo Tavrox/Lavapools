@@ -4,6 +4,7 @@ using System.Collections;
 
 public class TextUI : MonoBehaviour {
 
+	public GameSetup SETUP;
 	public TextMesh _mesh;
 	public string text;
 	public Color initColor;
@@ -11,6 +12,7 @@ public class TextUI : MonoBehaviour {
 
 	public void Awake()
 	{
+		SETUP = Resources.Load("Tuning/GameSetup") as GameSetup;
 		_mesh = GetComponent<TextMesh>();
 		initColor = color;
 	}

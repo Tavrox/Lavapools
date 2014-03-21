@@ -14,7 +14,7 @@ public class LevelChooser : MonoBehaviour {
 	private List<LevelThumbnail> Thumbs =  new List<LevelThumbnail>();
 
 	private LevelThumbnail currThumb;
-	private Vector3 gapThumbs = new Vector3(20f, -1f, -10f);
+	private Vector3 gapThumbs = new Vector3(20f, 0f, -10f);
 	
 	public void Setup () 
 	{
@@ -22,6 +22,7 @@ public class LevelChooser : MonoBehaviour {
 		PLAYERDATA = GameObject.FindGameObjectWithTag("PlayerData").GetComponent<PlayerData>();
 		ThumbGO = new GameObject("Thumbnails");
 		ThumbGO.transform.parent = gameObject.transform;
+		ThumbGO.transform.localPosition = new Vector3(0f,0f,0f);
 		levelName = FETool.findWithinChildren(gameObject, "LevelTitle/LevelName").GetComponent<TextUI>();
 		_btnLeft = FETool.findWithinChildren(gameObject, "SelectLeft").GetComponent<LevelChooserButton>();
 		_btnRight = FETool.findWithinChildren(gameObject, "SelectRight").GetComponent<LevelChooserButton>();
@@ -34,7 +35,8 @@ public class LevelChooser : MonoBehaviour {
 		}
 		for (int j = 0; j < Thumbs.Count ; j++)
 		{
-			Thumbs[j].gameObject.transform.position = new Vector3(j * gapThumbs.x, gapThumbs.y, gapThumbs.z);
+//			Thumbs[j].gameObject.transform.localPosition = new Vector3(0f,0f,0f);
+			Thumbs[j].gameObject.transform.localPosition = new Vector3(j * gapThumbs.x, 0f, gapThumbs.z);
 		}
 
 		Thumbs[0].isStartSlot = true;
@@ -83,6 +85,7 @@ public class LevelChooser : MonoBehaviour {
 		LevelThumbnail _lvl = _thumb.AddComponent<LevelThumbnail>();
 		_thumb.transform.parent = ThumbGO.transform;
 		_lvl.Setup(_info.LvlName, _info.locked);
+		_thumb.gameObject.transform.localPosition = new Vector3(0f,0f, 0f);
 		return _lvl;
 	}
 

@@ -25,7 +25,6 @@ public class Procedural : MonoBehaviour {
 		{
 			_listSteps.Add( Resources.Load( path + i) as ProceduralSteps);
 		}
-
 		_CURRENTSTEP = _listSteps[0];
 	}
 

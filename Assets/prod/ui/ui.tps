@@ -197,6 +197,9 @@
             <filename>logo_4edges.png</filename>
             <filename>pan_version.png</filename>
             <filename>pan_credits.png</filename>
+            <filename>thumb_vesuvio.png</filename>
+            <filename>thumb_etna.png</filename>
+            <filename>thumb_grensdalur.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

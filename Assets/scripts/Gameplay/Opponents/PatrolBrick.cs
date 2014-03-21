@@ -6,7 +6,7 @@ public class PatrolBrick : LevelBrick {
 
 	[HideInInspector] public string brickPathId;
 	[HideInInspector] public Waypoint currentWP;
-	[HideInInspector] public bool debug;
+	public bool debug;
 	public WaypointManager brickPath;
 
 	private Waypoint initWp;
@@ -42,7 +42,7 @@ public class PatrolBrick : LevelBrick {
 		{
 			pos = gameObject.transform.position;
 			target = currentWP.nextWP.transform.position;
-			direction = (target - pos).normalized;
+			direction = Vector3.Normalize(target - pos);
 		}
 	}
 
@@ -51,10 +51,7 @@ public class PatrolBrick : LevelBrick {
 		if (GameEventManager.gameOver != true)
 		{
 			pos = gameObject.transform.position;
-//			print (FETool.Round(direction.x, 1));
-//			print (FETool.Round(direction.y, 1));
-//			gameObject.transform.position += new Vector3 ( speed * FETool.Round(direction.x, 1), speed * FETool.Round(direction.y, 1), 0f);
-			gameObject.transform.position += new Vector3 ( speed * FETool.RoundToQuarter(direction.x), speed * FETool.RoundToQuarter(direction.y), 0f);
+			gameObject.transform.position += new Vector3 ( speed * direction.x, speed * direction.y, 0f);
 		}
 	}
 	
@@ -89,12 +86,12 @@ public class PatrolBrick : LevelBrick {
 	}
 	public void GoToWaypoint(Waypoint _wp)
 	{
-		if (currentWP != null && pos != null && type != typeList.Fields)
-		{
+//		if (currentWP != null && pos != null && type != typeList.Fields)
+//		{
 			currentWP = currentWP.nextWP;
 			target = _wp.transform.position;
-			direction = (target - pos).normalized;
-		}
+			direction = Vector3.Normalize(target - pos);
+//		}
 	}
 
 	public void brickBounce()

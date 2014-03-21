@@ -6,17 +6,16 @@ using UnityEditor;
 class WaypointEditor : Editor {
 	
 	public Waypoint wp;
-	public Vector3 resize;
 
 	public override void OnInspectorGUI() 
 	{
-		GUILayout.BeginHorizontal();
-		EditorGUILayout.Vector3Field( "Resizer" , resize );
-		GUILayout.EndHorizontal();
-		if(GUILayout.Button("Resize Collider"))
+		base.OnInspectorGUI();
+		wp = (Waypoint)target;
+		Waypoint[] allWp = GameObject.FindObjectsOfType(typeof(Waypoint)) as Waypoint[];
+		foreach (Waypoint _wp in allWp)
 		{
-			wp = (Waypoint)target;
-			wp.setupCollider(resize);
+			_wp.Resizer = wp.Resizer;
+			_wp.GetComponent<BoxCollider>().size = new Vector3( _wp.Resizer, _wp.Resizer, 50f);
 		}
 	}
 }

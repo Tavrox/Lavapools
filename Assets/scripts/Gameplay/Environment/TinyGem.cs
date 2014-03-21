@@ -10,6 +10,7 @@ public class TinyGem : Collectible {
 	{
 		base.Setup(_lm);
 		collPlace = _place;
+		PlaceCollectibleToGo = PlacesCollect.Panel;
 		Pop();
 		value = LevelManager.GlobTuning.Gem_Value;
 	}

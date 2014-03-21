@@ -4,6 +4,7 @@ using UnityEditor;
 public class TextEditor : Editor
 {
 	private TextUI text;
+	private DialogSheet Dialogs;
 	
 	public override void OnInspectorGUI()
 	{
@@ -13,5 +14,10 @@ public class TextEditor : Editor
 			text = (TextUI)target;
 			text.Format();
 		}
+		if (GUILayout.Button("FindTranslation"))
+		{
+			text = (TextUI)target;
+		}
 	}
+
 }

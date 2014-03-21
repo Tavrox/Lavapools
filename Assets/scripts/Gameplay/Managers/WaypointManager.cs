@@ -68,7 +68,7 @@ public class WaypointManager : MonoBehaviour {
 
 	public void sortDescendant()
 	{
-		inverted = false;
+		inverted = true;
 		relatedWaypoints.Sort(delegate (Waypoint x, Waypoint y)
 		{
 			if (x.id > y.id) return -1;
@@ -88,7 +88,7 @@ public class WaypointManager : MonoBehaviour {
 
 	public void sortAscendant()
 	{
-		inverted = true;
+		inverted = false;
 		relatedWaypoints.Sort(delegate (Waypoint x, Waypoint y)
 		                      {
 			if (x.id < y.id) return -1;

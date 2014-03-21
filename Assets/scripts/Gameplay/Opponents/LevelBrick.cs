@@ -15,15 +15,16 @@ public class LevelBrick : MonoBehaviour {
 	public float initSpeed;
 	[HideInInspector] public LevelManager _levMan;
 	[HideInInspector] public int brickId;
-	[HideInInspector] public Vector3 direction;
-	[HideInInspector] public Vector3 target;
+	public Vector3 direction;
+	public Vector3 target;
 	[HideInInspector] public Vector3 pos;
 	[HideInInspector] public Vector3 initPos;
 	[HideInInspector] public Player _player;
+	public bool isEnabled = false;
 	[HideInInspector] public List<FESound> _soundList = new List<FESound>();
 	
 	private OTAnimatingSprite animSpr;
-	public Dictionary<LevelBrick.typeList, float> _bricksSpeed = new Dictionary<LevelBrick.typeList, float>();
+	[HideInInspector] public Dictionary<LevelBrick.typeList, float> _bricksSpeed = new Dictionary<LevelBrick.typeList, float>();
 
 	public void Setup()
 	{
@@ -61,7 +62,7 @@ public class LevelBrick : MonoBehaviour {
 		{
 			animSpr = GetComponentInChildren<OTAnimatingSprite>();
 		}
-		
+		disableBrick();
 	}
 
 	public float getSpeed(LevelBrick _brick, Dictionary<LevelBrick.typeList, float> _dico)
@@ -76,16 +77,18 @@ public class LevelBrick : MonoBehaviour {
 	{
 		float initspeed = getSpeed(this, _bricksSpeed);
 		new OTTween(this, 0.5f).Tween("speed", initspeed );
+		isEnabled = true;
 	}
 
 	public void disableBrick()
 	{
+		isEnabled = false;
 		speed = 0;
 	}
 
 	private void GameStart()
 	{
-		speed = 0f;
+		disableBrick();
 		new OTTween(this, 0.5f).Tween("speed", initSpeed );
 	}
 	
@@ -96,6 +99,7 @@ public class LevelBrick : MonoBehaviour {
 	
 	private void Respawn()
 	{
+		disableBrick();
 		if (type != typeList.Fields)
 		{
 			gameObject.transform.position = initPos;

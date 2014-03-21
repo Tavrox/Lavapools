@@ -7,6 +7,7 @@ public class LPTuning : ScriptableObject {
 	
 	public Vector2 Player_Friction;
 	public int Gem_Value = 1;
+	public int Gatepart_Value = 1;
 
 	public Color ColPlayer;
 	public Color ColRank;

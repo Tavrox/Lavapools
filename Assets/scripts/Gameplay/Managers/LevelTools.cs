@@ -63,9 +63,25 @@ public class LevelTools : MonoBehaviour {
 
 	public void CollectObject(Collectible _thing)
 	{
-		_levMan.CollectibleGathered.Add(_thing);
-		_levMan.collecSum += _thing.value;
-		_levMan._player.triggerNotification(_thing.value);
+		switch (_thing.typeCollectible)
+		{
+		case Collectible.ListCollectible.TinyGem :
+		{
+			_levMan.CollectibleGathered.Add(_thing);
+			_levMan.collecSum += _thing.value;
+			_levMan._player.triggerNotification(_thing.value);
+			break;
+		}
+		case Collectible.ListCollectible.Gatepart :
+		{
+			_levMan.CollectibleGathered.Add(_thing);
+			_levMan.collecSum += _thing.value;
+			_levMan._player.triggerNotification(_thing.value);
+			_levMan.Gate.collectPart(_levMan.score);
+			break;
+		}
+
+		}
 	}
 
 	public void UnlockLevel(LevelInfo _lvl)

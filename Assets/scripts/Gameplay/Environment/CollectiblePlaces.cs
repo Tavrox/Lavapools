@@ -24,6 +24,18 @@ public class CollectiblePlaces : MonoBehaviour {
 				_gem._relatedPlace = this;
 				break;
 			}
+			case Collectible.ListCollectible.Gatepart :
+			{
+				GameObject partObj = Instantiate(Resources.Load("Bricks/Environment/Gatepart")) as GameObject;
+				Gatepart _part = partObj.GetComponent<Gatepart>();
+				_part.Setup(_lm, this);
+				partObj.transform.parent = gameObject.transform;
+				partObj.transform.position = gameObject.transform.position;
+				_part.value = LevelManager.GlobTuning.Gatepart_Value;
+				_part._relatedPlace = this;
+				break;
+
+			}
 			}
 			occupied = true;
 		}

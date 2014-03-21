@@ -264,10 +264,49 @@
                 <key>sourceSize</key>
                 <string>{800,179}</string>
             </dict>
+            <key>thumb_etna.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{5,799},{98,60}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{98,60}}</string>
+                <key>sourceSize</key>
+                <string>{98,60}</string>
+            </dict>
+            <key>thumb_grensdalur.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{5,799},{98,60}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{98,60}}</string>
+                <key>sourceSize</key>
+                <string>{98,60}</string>
+            </dict>
+            <key>thumb_vesuvio.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{5,799},{98,60}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{98,60}}</string>
+                <key>sourceSize</key>
+                <string>{98,60}</string>
+            </dict>
             <key>tileLvlSelect.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{5,799},{275,204}}</string>
+                <string>{{108,799},{275,204}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -280,7 +319,7 @@
             <key>title.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{285,799},{610,110}}</string>
+                <string>{{388,799},{610,110}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -300,7 +339,7 @@
             <key>size</key>
             <string>{1024,1024}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:6335884a13c4c2e3ef0f55c39d4bb6bf:a1e26db8ff8784760e184c934c857833:0dbeed7acf6c3264861a2e70e992bcae$</string>
+            <string>$TexturePacker:SmartUpdate:15aa83487c2eb9129d37e718c3a196e4:b21f78ef38deaa01cf05ad1f6c8438cc:0dbeed7acf6c3264861a2e70e992bcae$</string>
             <key>textureFileName</key>
             <string>ui.png</string>
         </dict>

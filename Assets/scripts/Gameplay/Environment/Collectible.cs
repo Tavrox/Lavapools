@@ -6,8 +6,15 @@ public class Collectible : MonoBehaviour {
 	public enum ListCollectible
 	{
 		BigGem,
-		TinyGem
+		TinyGem,
+		Gatepart
 	};
+	public enum PlacesCollect
+	{
+		Panel,
+		Stargate
+	};
+	public PlacesCollect PlaceCollectibleToGo;
 	public ListCollectible typeCollectible;
 	public int value;
 	public LevelManager _levMan;
@@ -49,19 +56,39 @@ public class Collectible : MonoBehaviour {
 		if (picked == false)
 		{
 			picked = true;
+
 			if (_spr != null)
 			{
 				new OTTween(_spr, 1f).Tween("alpha", 0f).Wait(1f);
 				new OTTween(_spr, 0.5f, OTEasing.BackOut).Tween("depth", -15f);
-				new OTTween(gameObject.transform, 1.5f, OTEasing.BackOut).Tween("localScale", new Vector3(1.5f, 1.5f, 1f)).PingPong();
-				new OTTween(gameObject.transform, 1.5f, OTEasing.BackIn).Tween("position", new Vector3(0f,5.5f,0f));
 			}
+
 			if (_animSpr != null)
 			{
 				new OTTween(_animSpr, 1f).Tween("alpha", 0f).Wait(1f);
 				new OTTween(_animSpr, 0.5f, OTEasing.BackOut).Tween("depth", -15f);
-				new OTTween(gameObject.transform, 1.5f, OTEasing.BackOut).Tween("localScale", new Vector3(1.5f, 1.5f, 1f)).PingPong();
-				new OTTween(gameObject.transform, 1.5f, OTEasing.BackIn).Tween("position", new Vector3(0f,5.5f,0f));
+			}
+
+			if (_animSpr != null || _spr != null)
+			{
+				
+				switch (PlaceCollectibleToGo)
+				{
+				case PlacesCollect.Panel :
+				{
+					
+					new OTTween(gameObject.transform, 1.5f, OTEasing.BackOut).Tween("localScale", new Vector3(1.5f, 1.5f, 1f)).PingPong();
+					new OTTween(gameObject.transform, 1.5f, OTEasing.BackIn).Tween("position", new Vector3(0f,5.5f,0f));
+					break;
+				}
+				case PlacesCollect.Stargate :
+				{
+					GameObject StargatePlace = GameObject.FindGameObjectWithTag("SpaceGate");
+					new OTTween(gameObject.transform, 1.5f, OTEasing.BackOut).Tween("localScale", new Vector3(1.5f, 1.5f, 1f)).PingPong();
+					new OTTween(gameObject.transform, 1.5f, OTEasing.BackIn).Tween("position", StargatePlace.transform.position);
+					break;
+				}
+				}
 			}
 			Destroy (gameObject, 3f);
 		}

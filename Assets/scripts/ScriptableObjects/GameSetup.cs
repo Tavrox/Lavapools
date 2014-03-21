@@ -19,8 +19,14 @@ public class GameSetup : ScriptableObject {
 	public Vector2 GameSize;
 	public float OrthelloSize;
 	public string gameversion;
+	public languageList ChosenLanguage;
 	public DialogSheet Dialogs;
 	public string twitter_url;
 	public string facebook_url;
 	public string website_url;
+
+	public void changeLang( languageList _chosen)
+	{
+		ChosenLanguage = _chosen;
+	}
 }
