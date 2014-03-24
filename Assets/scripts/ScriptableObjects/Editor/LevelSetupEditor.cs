@@ -10,13 +10,17 @@ public class LevelSetupEditor : Editor
 	public override void OnInspectorGUI()
 	{
 		base.OnInspectorGUI();
-		if (GUILayout.Button("Copy"))
+		lvl = (LevelSetup)target;
+		if (lvl._lvlToCopy != null)
 		{
-			lvl = (LevelSetup)target;
-			if (lvl._lvlToCopy != null)
+			if (GUILayout.Button("Copy ["+ lvl._lvlToCopy.NAME +"] Setup"))
 			{
-			lvl.CopySetup();
+				lvl.CopySetup();
 			}
+		}
+		if (GUILayout.Button("Reset all " + lvl.numberOfSteps.ToString() + " steps of [" + lvl.NAME +"]"))
+		{
+			lvl.ResetAllSteps();
 		}
 	}
 }

@@ -65,7 +65,7 @@ public class Procedural : MonoBehaviour {
 		}
 		foreach (string _lb in _step.BricksEnabled)
 		{
-			if (_step.BricksEnabled != null)
+			if (_step.BricksEnabled != null && _lb != "")
 			{
 				_levMan.bricksMan.BricksList.Find ((LevelBrick obj) => obj.name == _lb).enableBrick();
 			}	
@@ -89,14 +89,12 @@ public class Procedural : MonoBehaviour {
 		}
 		_levMan._player.speed = _levMan._player.speed * _step.SpeedMultiplier;
 		_levMan.menuManager.changeLevelLabel(_CURRENTSTEP);
-		if (_step.levelLabel != ProceduralSteps.Difficulty.Noobcrab)
-		{
-			MasterAudio.PlaySound("Steps", 1f, 1f,0f, _step.levelLabel.ToString());
-		}
+
 		if (_step.Music_To_Play != ProceduralSteps.MusicList.None)
 		{
 			MasterAudio.TriggerPlaylistClip(_step.Music_To_Play.ToString());
 		}
+
 		if (_step.LevelToUnlock != null)
 		{
 			_levMan.tools.UnlockLevel(_step.LevelToUnlock);

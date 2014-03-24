@@ -16,8 +16,7 @@ public class Waypoint : MonoBehaviour {
 	public Waypoint nextWP;
 	[HideInInspector] public WaypointManager linkedManager;
 	public bool passedUpon = false;
-	public BoxCollider colli;
-	public float Resizer;
+	public float EDITOR_Resizer;
 
 	public void Setup()
 	{

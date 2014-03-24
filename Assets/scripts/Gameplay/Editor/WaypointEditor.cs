@@ -14,8 +14,8 @@ class WaypointEditor : Editor {
 		Waypoint[] allWp = GameObject.FindObjectsOfType(typeof(Waypoint)) as Waypoint[];
 		foreach (Waypoint _wp in allWp)
 		{
-			_wp.Resizer = wp.Resizer;
-			_wp.GetComponent<BoxCollider>().size = new Vector3( _wp.Resizer, _wp.Resizer, 50f);
+			_wp.EDITOR_Resizer = wp.EDITOR_Resizer;
+			_wp.GetComponent<BoxCollider>().size = new Vector3( _wp.EDITOR_Resizer, _wp.EDITOR_Resizer, 50f);
 		}
 	}
 }

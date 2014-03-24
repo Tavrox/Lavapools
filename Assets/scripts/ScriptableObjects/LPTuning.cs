@@ -18,11 +18,4 @@ public class LPTuning : ScriptableObject {
 	[HideInInspector] public float CapturePoint_Score = 600f;
 	[HideInInspector] public float CaptureSpeed = 1f;
 	[HideInInspector] public float ScoreOverTime = 5f;
-
-	public enum LevelNames
-	{
-		Vesuvio,
-		Grensdalur,
-		Etna
-	}
 }

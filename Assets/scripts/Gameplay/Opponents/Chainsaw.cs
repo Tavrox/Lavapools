@@ -15,8 +15,6 @@ public class Chainsaw : PatrolBrick {
 		{
 			Debug.Log("The path of "+gameObject.name+" is missing.");
 		}
-		currentWP = brickPath.pickRandomWP();
-		transform.position = brickPath.findNextWaypoint(currentWP).transform.position;
-		saveWaypoints();
+		setupPath();
 	}
 }

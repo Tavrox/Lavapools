@@ -178,13 +178,19 @@ public class LevelManager : MonoBehaviour {
 
 	public void triggerSpawnGem(CollectiblePlaces _place)
 	{
-		StartCoroutine(delayedSpawnGem(_place));
+		if (LevelManager.GAMESTATE != GameEventManager.GameState.GameOver && _place.occupied != true)
+		{
+			StartCoroutine(delayedSpawnGem(_place));
+		}
 	}
 
 	IEnumerator delayedSpawnGem(CollectiblePlaces _place)
 	{
 		yield return new WaitForSeconds(LocalTuning.Gem_SpawnRate);
-		_place.Spawn(this);
+		if (LevelManager.GAMESTATE != GameEventManager.GameState.GameOver && _place.occupied != true)
+		{
+			_place.Spawn(this);
+		}
 	}
 
 	public void spawnFields()
@@ -201,6 +207,11 @@ public class LevelManager : MonoBehaviour {
 		{
 			Debug.Log("LevMan bad setup");
 		}
+		InvokeRepeating("managerCheckerInvoke", 0f, 1f);
+	}
+	private void managerCheckerInvoke()
+	{
+//		Debug.Log("Current Lvl State" + GAMESTATE);
 	}
 
 	#region Events
@@ -219,6 +230,7 @@ public class LevelManager : MonoBehaviour {
 		CancelInvoke("updateTime");
 		CancelInvoke("spawnFields");
 		CancelInvoke("UpdateScoreOverTime");
+		StopCoroutine("delayedSpawnGem");
 	}
 	
 	private void Respawn()
@@ -226,7 +238,6 @@ public class LevelManager : MonoBehaviour {
 		OvertimeScoreElapsed = 0;
 		InvokeRepeating("UpdateScoreOverTime", 0f, 0.1f);
 		InvokeRepeating("updateTime", 0f, 0.01f);
-		InvokeRepeating("spawnFields", LocalTuning.Fields_DelaySpawn, LocalTuning.Fields_FrequencySpawn);
 		_player.gameObject.SetActive(true);
 		score = 0f;
 		fieldsCaptured = 0;

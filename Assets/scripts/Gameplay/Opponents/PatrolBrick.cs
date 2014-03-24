@@ -5,14 +5,14 @@ using System.Collections.Generic;
 public class PatrolBrick : LevelBrick {
 
 	[HideInInspector] public string brickPathId;
-	[HideInInspector] public Waypoint currentWP;
+	public Waypoint currentWP;
 	public bool debug;
-	public WaypointManager brickPath;
+	[HideInInspector] public WaypointManager brickPath;
 
-	private Waypoint initWp;
+	public Waypoint initWp;
 	private WaypointManager initPath;
 
-	public ColliderKiller _collKiller;
+	[HideInInspector] public ColliderKiller _collKiller;
 
 
 	// Use this for initialization
@@ -27,31 +27,40 @@ public class PatrolBrick : LevelBrick {
 		{
 			_collKiller.Setup(this);
 		}
-		InvokeRepeating("UpdateMovement", 0f, 0.01f);
+		InvokeRepeating("RecalculateTarget", 0f, 0.01f);
+//		InvokeRepeating("Move", 0f, 0.1f);
 	}
 
-	public void saveWaypoints()
+	public void setupPath()
 	{
+		currentWP = brickPath.pickRandomWP();
+//		transform.position = brickPath.findNextWaypoint(currentWP).transform.position;
+		transform.position = currentWP.transform.position;
 		initWp = currentWP;
 		initPath = brickPath;
+		setupTarget();
 	}
 
 	public void setupTarget()
 	{
-		if (currentWP != null)
-		{
-			pos = gameObject.transform.position;
-			target = currentWP.nextWP.transform.position;
-			direction = Vector3.Normalize(target - pos);
-		}
+		pos = gameObject.transform.position;
+		target = currentWP.nextWP.transform.position;
+		direction = Vector3.Normalize(target - pos);
 	}
 
-	void UpdateMovement () {
+	public void RecalculateTarget()
+	{
+		direction = Vector3.Normalize(target - pos);
+	}
+
+	void Update () {
 			
 		if (GameEventManager.gameOver != true)
 		{
 			pos = gameObject.transform.position;
-			gameObject.transform.position += new Vector3 ( speed * direction.x, speed * direction.y, 0f);
+			Debug.DrawLine(pos,  (pos + new Vector3 ( (speed * direction.x) * 50f, (speed * direction.y) * 50f, 0f)), Color.blue);
+//			gameObject.transform.Translate(new Vector3 ( (speed * direction.x) * Time.deltaTime, (speed * direction.y) * Time.deltaTime, 0f));
+			gameObject.transform.position += new Vector3 ( (speed * direction.x) * Time.deltaTime, (speed * direction.y) * Time.deltaTime, 0f);
 		}
 	}
 	
@@ -86,12 +95,9 @@ public class PatrolBrick : LevelBrick {
 	}
 	public void GoToWaypoint(Waypoint _wp)
 	{
-//		if (currentWP != null && pos != null && type != typeList.Fields)
-//		{
-			currentWP = currentWP.nextWP;
-			target = _wp.transform.position;
-			direction = Vector3.Normalize(target - pos);
-//		}
+		currentWP = currentWP.nextWP;
+		target = _wp.transform.position;
+		direction = Vector3.Normalize(target - pos);
 	}
 
 	public void brickBounce()
@@ -111,12 +117,6 @@ public class PatrolBrick : LevelBrick {
 	
 	private void Respawn()
 	{
-		if (this != null && enabled == true)
-		{
-			currentWP = brickPath.pickRandomWP();
-			transform.position = brickPath.findNextWaypoint(currentWP).transform.position;
-			initPath = brickPath;
-			setupTarget();
-		}
+		setupPath();
 	}
 }

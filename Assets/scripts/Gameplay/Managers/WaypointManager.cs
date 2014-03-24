@@ -120,12 +120,14 @@ public class WaypointManager : MonoBehaviour {
 	{
 		if (inverted == true)
 		{
-			sortDescendant();
+			Debug.Log("InvertASC" + gameObject.name);
+			sortAscendant();
 //			print ("trevni");
 		}
 		else
 		{
-			sortAscendant();
+			Debug.Log("InvertDESC" + gameObject.name);
+			sortDescendant();
 //			print ("invert");
 		}
 		return inverted;

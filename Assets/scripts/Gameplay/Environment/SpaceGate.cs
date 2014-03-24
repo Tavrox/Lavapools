@@ -8,6 +8,8 @@ public class SpaceGate : MonoBehaviour {
 	public void Setup()
 	{
 		_spr = GetComponentInChildren<OTSprite>();
+		GameEventManager.Respawn += Respawn;
+
 	}
 
 	public void collectPart(float _score)
@@ -23,6 +25,11 @@ public class SpaceGate : MonoBehaviour {
 			_spr.frameName = "gate" + _score +"load";
 		}
 
+	}
+
+	private void Respawn()
+	{
+		_spr.frameName = "gate00load";
 	}
 
 }

@@ -13,7 +13,7 @@ public class FEDebug : MonoBehaviour {
 
 	void OnGUI()
 	{
-		if (God == true)
+		if (GUI.Toggle(new Rect(100f,100f,100f,100f), GodMode ,"GodMode"))
 		{
 			GodMode = true;
 		}
@@ -21,39 +21,7 @@ public class FEDebug : MonoBehaviour {
 		{
 			GodMode = false;
 		}
-
-		if (spawnsFields == true)
-		{
-			spawnsFieldsBool = true;
-		}
-		else
-		{
-			spawnsFieldsBool = false;
-		}
-
-		if (logTimecode == true)
-		{
-			logTimecodeBool = true;
-		}
-		else
-		{
-			logTimecodeBool = false;
-		}
-	}
-
-	void Update()
-	{
-		if (Input.GetKeyDown(KeyCode.A))
-		{
-			if (GodMode == true)
-			{
-				GodMode = false;
-			}
-			else
-			{
-				GodMode = true;
-			}
-		}
+		           
 	}
 
 }

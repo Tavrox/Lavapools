@@ -31,7 +31,6 @@ public static class GameEventManager {
 		{
 			Debug.LogWarning("GAMEOVER "+ _killer);
 			gameOver = true;
-			Debug.DebugBreak();
 			LevelManager.GAMESTATE = GameState.GameOver;
 			GameOver();
 		}
@@ -39,7 +38,7 @@ public static class GameEventManager {
 	
 	public static void TriggerRespawn(string _trigger, bool forced = false)
 	{
-		if(Respawn != null)
+		if(Respawn != null || forced == true)
 		{
 			Debug.LogWarning("RESPAWN " + _trigger);
 			gameOver = false;

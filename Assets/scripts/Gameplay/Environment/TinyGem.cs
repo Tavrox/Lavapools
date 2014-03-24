@@ -19,10 +19,9 @@ public class TinyGem : Collectible {
 	{
 		if (_other.CompareTag("Player") && picked == false)
 		{
-//			print ("omg");
 			_levMan.tools.CollectObject(this);
-			_levMan.triggerSpawnGem(collPlace);
 			collPlace.occupied = false;
+			_levMan.triggerSpawnGem(collPlace);
 			Vanish();
 		}
 	}

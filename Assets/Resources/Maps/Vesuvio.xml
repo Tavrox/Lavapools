@@ -155,18 +155,18 @@
   <object x="172" y="101" width="23" height="317"/>
   <object x="103" y="400" width="88" height="23"/>
   <object x="100" y="401" width="16" height="249"/>
-  <object x="24" y="556" width="91" height="96"/>
-  <object x="113" y="628" width="463" height="24"/>
+  <object x="20" y="548" width="95" height="99"/>
+  <object x="113" y="619" width="463" height="24"/>
   <object x="473" y="549" width="100" height="103"/>
   <object x="473" y="325" width="180" height="20"/>
-  <object x="550" y="75" width="26" height="475"/>
+  <object x="549" y="14" width="26" height="536"/>
   <object x="571" y="547" width="531" height="23"/>
   <object x="853" y="569" width="248" height="83"/>
   <object x="1072" y="331" width="27" height="217"/>
   <object x="1004" y="100" width="21" height="243"/>
   <object x="1025" y="321" width="72" height="21"/>
-  <object x="924" y="28" width="179" height="96"/>
-  <object x="91" y="100" width="831" height="23"/>
-  <object x="93" y="31" width="180" height="68"/>
+  <object x="923" y="24" width="179" height="96"/>
+  <object x="92" y="96" width="831" height="23"/>
+  <object x="92" y="15" width="185" height="83"/>
  </objectgroup>
 </map>

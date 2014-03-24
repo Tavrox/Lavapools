@@ -3,8 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class ProceduralSteps : ScriptableObject {
-	
-	public LPTuning.LevelNames NAME;
+
 	public enum Difficulty
 	{
 		Noobcrab,
@@ -54,5 +53,6 @@ public class ProceduralSteps : ScriptableObject {
 		TimerCondition = 0f;
 		SpeedMultiplier = 0f;
 		Music_To_Play = MusicList.None;
+		stepID = int.Parse(name);
 	}
 }

@@ -18,9 +18,9 @@ public class Gatepart : Collectible {
 	{
 		if (_other.CompareTag("Player") && picked == false)
 		{
+			collPlace.occupied = false;
 			_levMan.tools.CollectObject(this);
 			_levMan.triggerSpawnGem(collPlace);
-			collPlace.occupied = false;
 			Vanish();
 		}
 	}

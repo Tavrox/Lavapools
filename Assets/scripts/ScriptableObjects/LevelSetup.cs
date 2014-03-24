@@ -4,17 +4,19 @@ using System.Collections.Generic;
 
 public class LevelSetup : ScriptableObject 
 {
+	public GameSetup.LevelList NAME;
 	public int numberOfSteps;
 	public float Player_Speed;
 	public float Bird_Speed;
 	public float Chainsaw_Speed;
-	public float Fields_Speed;
-	public float Fields_FrequencySpawn;
-	public float Fields_DelaySpawn;
 	public float Gem_SpawnRate;
-	public Dictionary<LevelBrick.typeList, float> _dicoBricks = new Dictionary<LevelBrick.typeList, float>();
-	public List<ProceduralSteps> Procedural_Steps;
 	public LevelSetup _lvlToCopy;
+	
+	[HideInInspector] public float Fields_Speed;
+	[HideInInspector] public float Fields_FrequencySpawn;
+	[HideInInspector] public float Fields_DelaySpawn;
+	[HideInInspector] public Dictionary<LevelBrick.typeList, float> _dicoBricks = new Dictionary<LevelBrick.typeList, float>();
+	[HideInInspector] public List<ProceduralSteps> Procedural_Steps;
 
 	// Use this for initialization
 	public void initScript () {
@@ -33,6 +35,14 @@ public class LevelSetup : ScriptableObject
 		Fields_FrequencySpawn = _lvlToCopy.Fields_FrequencySpawn;
 		Fields_DelaySpawn = _lvlToCopy.Fields_DelaySpawn;
 		Gem_SpawnRate = _lvlToCopy.Gem_SpawnRate;
-
+	}
+	public void ResetAllSteps()
+	{
+		string path = "Procedural/" + NAME + "/";
+		for (int i = 1; i <= numberOfSteps ; i++)
+		{
+			ProceduralSteps _stp = Resources.Load( path + i) as ProceduralSteps;
+			_stp.Reset();
+		}
 	}
 }
