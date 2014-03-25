@@ -45,7 +45,7 @@ public class Procedural : MonoBehaviour {
 				}
 				else
 				{
-					break;
+//					break;
 				}
 			}
 
@@ -109,7 +109,7 @@ public class Procedural : MonoBehaviour {
 	private void Respawn()
 	{
 		triggerStep(_listSteps[0]);
-		InvokeRepeating("checkScore", 0f, 1f);
+		InvokeRepeating("checkScore", 0f, 0.001f);
 //		MasterAudio.TriggerPlaylistClip("Step_1");
 	}
 }

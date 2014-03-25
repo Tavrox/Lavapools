@@ -12,6 +12,7 @@ public class WaypointManager : MonoBehaviour {
 	public List<Waypoint> relatedWaypoints = new List<Waypoint>();
 	[HideInInspector] public Waypoint lastWp;
 	public bool inverted = false;
+	[HideInInspector] public bool debug = false;
 
 	public void Setup(LevelManager man)
 	{
@@ -120,15 +121,13 @@ public class WaypointManager : MonoBehaviour {
 	{
 		if (inverted == true)
 		{
-			Debug.Log("InvertASC" + gameObject.name);
-			sortAscendant();
-//			print ("trevni");
-		}
-		else
-		{
 			Debug.Log("InvertDESC" + gameObject.name);
+			sortAscendant();
+		}
+		else if (inverted == false)
+		{
+			Debug.Log("InvertASC" + gameObject.name);
 			sortDescendant();
-//			print ("invert");
 		}
 		return inverted;
 	}

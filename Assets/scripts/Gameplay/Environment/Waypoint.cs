@@ -47,7 +47,7 @@ public class Waypoint : MonoBehaviour {
 					{
 						passedUpon = true;
 						StartCoroutine("delayRetrigger");
-						_collBrick.GoToWaypoint(nextWP);
+						_collBrick.GoToWaypoint(linkedManager.findNextWaypoint(this));
 					}
 //				}
 			}
@@ -56,7 +56,7 @@ public class Waypoint : MonoBehaviour {
 
 	IEnumerator delayRetrigger()
 	{
-		yield return new WaitForSeconds(5f);
+		yield return new WaitForSeconds(0.5f);
 		passedUpon = false;
 	}
 
