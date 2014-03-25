@@ -69,16 +69,16 @@
  </layer>
  <objectgroup name="Collider_0" width="10" height="6">
   <object x="83" y="2" width="64" height="196"/>
-  <object x="8" y="156" width="233" height="57"/>
-  <object x="8" y="155" width="61" height="196"/>
-  <object x="35" y="305" width="108" height="51"/>
-  <object x="79" y="314" width="64" height="116"/>
-  <object x="131" y="374" width="240" height="55"/>
-  <object x="231" y="80" width="290" height="288"/>
-  <object x="227" y="347" width="145" height="55"/>
-  <object x="476" y="4" width="270" height="53"/>
+  <object x="8" y="156" width="232" height="43"/>
+  <object x="8" y="155" width="61" height="188"/>
+  <object x="35" y="305" width="108" height="39"/>
+  <object x="79" y="314" width="56" height="105"/>
+  <object x="131" y="374" width="240" height="46"/>
+  <object x="231" y="80" width="290" height="262"/>
+  <object x="232" y="337" width="138" height="67"/>
+  <object x="476" y="4" width="271" height="40"/>
   <object x="458" y="4" width="57" height="84"/>
-  <object x="688" y="32" width="59" height="178"/>
-  <object x="504" y="156" width="195" height="53"/>
+  <object x="688" y="32" width="59" height="165"/>
+  <object x="504" y="156" width="195" height="41"/>
  </objectgroup>
 </map>
