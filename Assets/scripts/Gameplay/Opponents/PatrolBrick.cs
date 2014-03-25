@@ -5,11 +5,11 @@ using System.Collections.Generic;
 public class PatrolBrick : LevelBrick {
 
 	[HideInInspector] public string brickPathId;
-	public Waypoint currentWP;
-	public bool debug;
-	[HideInInspector] public WaypointManager brickPath;
+	[HideInInspector] public Waypoint currentWP;
+	[HideInInspector] public bool debug;
+	public WaypointManager brickPath;
 
-	public Waypoint initWp;
+	[HideInInspector] public Waypoint initWp;
 	private WaypointManager initPath;
 
 	[HideInInspector] public ColliderKiller _collKiller;

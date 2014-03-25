@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="10" height="6" tilewidth="75" tileheight="75">
+ <tileset firstgid="1" name="tileset" tilewidth="75" tileheight="75">
+  <image source="tileset.png" width="1024" height="1024"/>
+ </tileset>
+ <layer name="Layout" width="10" height="6">
+  <data>
+   <tile gid="0"/>
+   <tile gid="1"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="7"/>
+   <tile gid="62"/>
+   <tile gid="63"/>
+   <tile gid="24"/>
+   <tile gid="0"/>
+   <tile gid="37"/>
+   <tile gid="0"/>
+   <tile gid="8"/>
+   <tile gid="14"/>
+   <tile gid="18"/>
+   <tile gid="40"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="33"/>
+   <tile gid="7"/>
+   <tile gid="79"/>
+   <tile gid="63"/>
+   <tile gid="46"/>
+   <tile gid="47"/>
+   <tile gid="50"/>
+   <tile gid="47"/>
+   <tile gid="63"/>
+   <tile gid="59"/>
+   <tile gid="88"/>
+   <tile gid="35"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="30"/>
+   <tile gid="46"/>
+   <tile gid="48"/>
+   <tile gid="41"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="74"/>
+   <tile gid="21"/>
+   <tile gid="0"/>
+   <tile gid="29"/>
+   <tile gid="48"/>
+   <tile gid="83"/>
+   <tile gid="85"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="76"/>
+   <tile gid="63"/>
+   <tile gid="82"/>
+   <tile gid="86"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+  </data>
+ </layer>
+ <objectgroup name="Collider_0" width="10" height="6">
+  <object x="96" y="19" width="32" height="179"/>
+  <object x="17" y="165" width="221" height="32"/>
+  <object x="19" y="163" width="32" height="185"/>
+  <object x="16" y="316" width="109" height="35"/>
+  <object x="92" y="315" width="36" height="109"/>
+  <object x="96" y="387" width="259" height="39"/>
+  <object x="239" y="91" width="271" height="267"/>
+  <object x="239" y="348" width="117" height="55"/>
+  <object x="473" y="15" width="267" height="33"/>
+  <object x="469" y="20" width="40" height="77"/>
+  <object x="691" y="40" width="43" height="157"/>
+  <object x="504" y="161" width="191" height="36"/>
+ </objectgroup>
+</map>

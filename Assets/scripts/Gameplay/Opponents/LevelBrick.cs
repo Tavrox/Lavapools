@@ -11,16 +11,16 @@ public class LevelBrick : MonoBehaviour {
 		Chainsaw,
 	};
 	public typeList type;
-	public float speed;
-	public float initSpeed;
+	[HideInInspector] public float speed;
+	[HideInInspector] public float initSpeed;
 	[HideInInspector] public LevelManager _levMan;
 	[HideInInspector] public int brickId;
-	public Vector3 direction;
-	public Vector3 target;
+	[HideInInspector] public Vector3 direction;
+	[HideInInspector] public Vector3 target;
 	[HideInInspector] public Vector3 pos;
 	[HideInInspector] public Vector3 initPos;
 	[HideInInspector] public Player _player;
-	public bool isEnabled = false;
+	[HideInInspector] public bool isEnabled = false;
 	[HideInInspector] public List<FESound> _soundList = new List<FESound>();
 	
 	private OTAnimatingSprite animSpr;
