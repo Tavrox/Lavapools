@@ -95,7 +95,7 @@ public class PatrolBrick : LevelBrick {
 	}
 	public void GoToWaypoint(Waypoint _wp)
 	{
-		currentWP = currentWP.nextWP;
+		currentWP = _wp.nextWP;
 		target = _wp.transform.position;
 		direction = Vector3.Normalize(target - pos);
 	}

@@ -18,10 +18,13 @@ public class FEEditor : MonoBehaviour {
 			cols.Add(Color.red);
 		}
 	}
-	
+
+	/*
+
 	[ContextMenu ("OnDrawGizmos")]
 	void OnDrawGizmos () 
 	{
+		Debug.Log("CAREFUL : GIZMO PREVENT INVERTING WAYPOINTS");
 		for (int j = 0; j < WPM.Count-1; j++)
 		{
 			WPM[j].relatedWaypoints = WPM[j].GetWpList();
@@ -37,4 +40,7 @@ public class FEEditor : MonoBehaviour {
 		}
 
 	}
+
+	*/
+
 }

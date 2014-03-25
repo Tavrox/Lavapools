@@ -15,7 +15,8 @@ public class MiscButton : MonoBehaviour {
 		Pad,
 		TwitterPublish,
 		FacebookPublish,
-		Website
+		Website,
+		LevelMenu
 	};
 	public buttonList buttonType;
 	private GameSetup SETUP;
@@ -61,6 +62,11 @@ public class MiscButton : MonoBehaviour {
 		case buttonList.Website :
 		{
 			Application.OpenURL(SETUP.website_url);
+			break;
+		}
+		case buttonList.LevelMenu :
+		{
+			Application.LoadLevel(0);
 			break;
 		}
 		}
