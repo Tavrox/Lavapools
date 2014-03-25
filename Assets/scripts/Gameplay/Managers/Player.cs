@@ -71,6 +71,11 @@ public class Player : MonoBehaviour {
 		pos = gameObject.transform.position;
 //		print ("Platforms[" + OnPlatforms+"]");
 
+		if (speed == 0)
+		{
+			Debug.Log("Speed of crab is 0");
+		}
+
 		if (LevelManager.GAMESTATE == GameEventManager.GameState.Live )
 		{
 			if (OnPlatforms <= 0)
@@ -139,7 +144,7 @@ public class Player : MonoBehaviour {
 		{
 			mod.x -= speed;
 		}
-		if(Input.GetAxisRaw("X axis") < InputMan.X_AxisNeg_Sensibility)
+		if(Input.GetAxisRaw("X axis") < InputMan.X_AxisNeg_Sensibility )
 		{
 			mod.x += speed;
 		}
@@ -152,6 +157,27 @@ public class Player : MonoBehaviour {
 		{
 			mod.y -= speed;
 		}
+
+		/*
+		if(Input.GetAxisRaw("6th axis") > InputMan.X_AxisPos_Sensibility )
+		{
+			mod.x -= speed;
+		}
+		if(Input.GetAxisRaw("6th axis") < InputMan.X_AxisNeg_Sensibility)
+		{
+			mod.x += speed;
+		}
+		
+		if(Input.GetAxisRaw("7th axis") > InputMan.Y_AxisPos_Sensibility)
+		{
+			mod.y += speed;
+		}
+		if(Input.GetAxisRaw("7th axis") < InputMan.Y_AxisNeg_Sensibility)
+		{
+			mod.y -= speed;
+		}
+		*/
+
 	}
 
 	public void triggerNotification(float _value)

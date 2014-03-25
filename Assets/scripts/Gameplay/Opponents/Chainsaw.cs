@@ -3,6 +3,8 @@ using System.Collections;
 
 public class Chainsaw : PatrolBrick {
 
+	public OTAnimatingSprite Invert;
+
 	public void Start () 
 	{
 		base.Setup();			
@@ -16,5 +18,12 @@ public class Chainsaw : PatrolBrick {
 			Debug.Log("The path of "+gameObject.name+" is missing.");
 		}
 		setupPath();
+		Invert = FETool.findWithinChildren(gameObject, "Inversion/sprite/spr").GetComponent<OTAnimatingSprite>();
+	}
+
+	public void launchInvertAnim()
+	{
+		Invert.PlayOnce("chainsaw_invert");
+		OTTween invertSpeed = new OTTween(this, 1f).Tween("speed", 0f).PingPong();
 	}
 }

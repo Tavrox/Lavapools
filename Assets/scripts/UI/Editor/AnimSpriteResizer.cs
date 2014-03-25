@@ -7,13 +7,6 @@ public class AnimSpriteResizer : Editor
 	
 	public override void OnInspectorGUI()
 	{
-		/*
 		base.OnInspectorGUI();
-		if (GUILayout.Button("Resize"))
-		{
-			sprite = (OTAnimatingSprite)target;
-			sprite.ResizeOT();
-		}
-		*/
 	}
 }

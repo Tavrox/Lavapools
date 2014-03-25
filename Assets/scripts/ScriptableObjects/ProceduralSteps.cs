@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+[ExecuteInEditMode]
 
 public class ProceduralSteps : ScriptableObject {
 
@@ -32,7 +33,8 @@ public class ProceduralSteps : ScriptableObject {
 	public conditionEnum condition;
 	public float ScoreCondition;
 	public float TimerCondition;
-	public float SpeedMultiplier = 1f;
+	public float Crab_SpeedMultiplier = 1f;
+	public float Enemies_SpeedMultiplier = 1f;
 	public List<string> BricksEnabled;
 	public List<string> BricksDisabled;
 	public List<string> WaypointsToInvert;
@@ -44,10 +46,16 @@ public class ProceduralSteps : ScriptableObject {
 		BricksEnabled = null;
 		BricksDisabled = null;
 		WaypointsToInvert = null;
-		ScoreCondition = 0f;
+		ScoreCondition = 1000f;
 		TimerCondition = 0f;
-		SpeedMultiplier = 0f;
+		Crab_SpeedMultiplier = 1f;
+		Enemies_SpeedMultiplier = 1f;
 		Music_To_Play = MusicList.None;
+		stepID = int.Parse(name);
+	}
+
+	void Update()
+	{
 		stepID = int.Parse(name);
 	}
 }

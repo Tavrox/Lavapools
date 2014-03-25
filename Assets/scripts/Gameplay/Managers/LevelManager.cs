@@ -7,6 +7,7 @@ public class LevelManager : MonoBehaviour {
 	public static LPTuning GlobTuning;
 	public static LevelSetup LocalTuning;
 	public static LevelInfo CurrentLevelInfo;
+	public static InputManager InputMan;
 	public static GameEventManager.GameState GAMESTATE;
 
 	public GameEventManager.GameState _EditorState ;
@@ -32,7 +33,6 @@ public class LevelManager : MonoBehaviour {
 	[HideInInspector] public Procedural proc;
 	[HideInInspector] public MainMenu menuManager;
 	[HideInInspector] public PlayerProfile _profile;
-	[HideInInspector] public InputManager InputMan;
 	[HideInInspector] public Player _player;
 	
 	private FieldManager fieldMan;
@@ -133,7 +133,7 @@ public class LevelManager : MonoBehaviour {
 				if (score == bestScore && score != 0)
 				{
 					string name = _player.playerName.Replace("%0d", "");
-					menuManager._GameOverUI._lb.SendScore(name, score);
+					menuManager._GameOverUI._lb.SendScore(name, score, CurrentLevelInfo.levelID);
 				}
 				GameEventManager.TriggerRespawn(gameObject.name);
 			}

@@ -18,7 +18,7 @@ public class OTAnimatingSprite : OTSprite
     
     public float _speed = 1;
     
-	public bool _looping = true;
+    public bool _looping = true;
     
     public int _numberOfPlays = -1;
     

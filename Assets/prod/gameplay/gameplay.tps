@@ -151,7 +151,7 @@
             <string></string>
         </struct>
         <key>autoAliasEnabled</key>
-        <true/>
+        <false/>
         <key>trimSpriteNames</key>
         <false/>
         <key>cleanTransparentPixels</key>
@@ -176,6 +176,17 @@
         <key>fileList</key>
         <array>
             <filename>tinyhotel.png</filename>
+            <filename>chainsaw05invert.png</filename>
+            <filename>chainsaw06invert.png</filename>
+            <filename>chainsaw07invert.png</filename>
+            <filename>chainsaw08invert.png</filename>
+            <filename>chainsaw09invert.png</filename>
+            <filename>chainsaw01invert.png</filename>
+            <filename>chainsaw02invert.png</filename>
+            <filename>chainsaw03invert.png</filename>
+            <filename>chainsaw04invert.png</filename>
+            <filename>chainsaw00invert.png</filename>
+            <filename>chainsaw10invert.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

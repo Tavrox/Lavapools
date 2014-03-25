@@ -119,6 +119,12 @@ public class WaypointManager : MonoBehaviour {
 
 	public bool invertWaypoints()
 	{
+//		relatedBrick.GetComponent<PatrolBrick>().set
+		if (relatedBrick.GetComponent<Chainsaw>() != null)
+		{
+			relatedBrick.GetComponent<Chainsaw>().launchInvertAnim();
+		}
+		
 		if (inverted == true)
 		{
 			Debug.Log("InvertDESC" + gameObject.name);

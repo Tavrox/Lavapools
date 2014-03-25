@@ -4,10 +4,153 @@
     <dict>
         <key>frames</key>
         <dict>
+            <key>chainsaw00invert.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{5,5},{61,61}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{61,61}}</string>
+                <key>sourceSize</key>
+                <string>{61,61}</string>
+            </dict>
+            <key>chainsaw01invert.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{71,5},{61,61}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{61,61}}</string>
+                <key>sourceSize</key>
+                <string>{61,61}</string>
+            </dict>
+            <key>chainsaw02invert.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{137,5},{61,61}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{61,61}}</string>
+                <key>sourceSize</key>
+                <string>{61,61}</string>
+            </dict>
+            <key>chainsaw03invert.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{5,71},{61,61}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{61,61}}</string>
+                <key>sourceSize</key>
+                <string>{61,61}</string>
+            </dict>
+            <key>chainsaw04invert.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{71,71},{61,61}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{61,61}}</string>
+                <key>sourceSize</key>
+                <string>{61,61}</string>
+            </dict>
+            <key>chainsaw05invert.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{137,71},{61,61}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{61,61}}</string>
+                <key>sourceSize</key>
+                <string>{61,61}</string>
+            </dict>
+            <key>chainsaw06invert.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{5,137},{61,61}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{61,61}}</string>
+                <key>sourceSize</key>
+                <string>{61,61}</string>
+            </dict>
+            <key>chainsaw07invert.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{71,137},{61,61}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{61,61}}</string>
+                <key>sourceSize</key>
+                <string>{61,61}</string>
+            </dict>
+            <key>chainsaw08invert.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{137,137},{61,61}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{61,61}}</string>
+                <key>sourceSize</key>
+                <string>{61,61}</string>
+            </dict>
+            <key>chainsaw09invert.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{5,203},{61,61}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{61,61}}</string>
+                <key>sourceSize</key>
+                <string>{61,61}</string>
+            </dict>
+            <key>chainsaw10invert.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{71,203},{61,61}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{61,61}}</string>
+                <key>sourceSize</key>
+                <string>{61,61}</string>
+            </dict>
             <key>tinyhotel.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{5,5},{37,25}}</string>
+                <string>{{137,203},{37,25}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -25,9 +168,9 @@
             <key>realTextureFileName</key>
             <string>gameplay.png</string>
             <key>size</key>
-            <string>{64,64}</string>
+            <string>{256,512}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:9bd444e1f8165d3629298434f2bef382:80054d50e27c93983fee29037f4dff16:e5cf3cba82ad0660ff9df1afd691b27d$</string>
+            <string>$TexturePacker:SmartUpdate:2159edc856ea7c78a649234a44a361a6:185fa26645dec00a5d567ed0e14cf192:e5cf3cba82ad0660ff9df1afd691b27d$</string>
             <key>textureFileName</key>
             <string>gameplay.png</string>
         </dict>

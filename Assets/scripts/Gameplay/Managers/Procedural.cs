@@ -74,9 +74,9 @@ public class Procedural : MonoBehaviour {
 		{
 			if (_brick.speed > 0)
 			{
-				_brick.speed = _brick.speed * _step.SpeedMultiplier;
+				_brick.speed = _brick.speed * _step.Enemies_SpeedMultiplier;
 			}
-			_brick.initSpeed = _brick.initSpeed * _step.SpeedMultiplier;
+			_brick.initSpeed = _brick.initSpeed * _step.Enemies_SpeedMultiplier;
 		}
 		foreach (string _wpm in _step.WaypointsToInvert)
 		{
@@ -87,7 +87,7 @@ public class Procedural : MonoBehaviour {
 //				man.relatedBrick.GetComponent<PatrolBrick>().setupTarget();
 			}	
 		}
-		_levMan._player.speed = _levMan._player.speed * _step.SpeedMultiplier;
+		_levMan._player.speed = _levMan._player.speed * _step.Crab_SpeedMultiplier;
 		_levMan.menuManager.changeLevelLabel(_CURRENTSTEP);
 
 		if (_step.Music_To_Play != ProceduralSteps.MusicList.None)
