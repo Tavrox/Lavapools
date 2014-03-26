@@ -98,12 +98,10 @@ public class PhpLeaderboards : MonoBehaviour
 			string[] entries = hs_get.text.Split(']');
 			for (int i = 0; i < entries.Length -1 ; i++)
 			{
-				print (hs_get.text);
 				ListUser[i].ranking = i+1;
 				ListUser[i].userName = entries[i].Split('|')[0];
-				print (entries[i].Split('|')[1]);
 				ListUser[i].userBestScore = int.Parse(entries[i].Split('|')[1]);
-				Debug.Log (ListUser[i].ranking +""+ ListUser[i].userName +""+ ListUser[i].userBestScore);
+//				Debug.Log (ListUser[i].ranking +""+ ListUser[i].userName +""+ ListUser[i].userBestScore);
 			}
 		}
 	}

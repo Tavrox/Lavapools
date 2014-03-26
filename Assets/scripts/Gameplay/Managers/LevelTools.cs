@@ -84,6 +84,28 @@ public class LevelTools : MonoBehaviour {
 		}
 	}
 
+	public List<CollectiblePlaces> calculateFarSpawnPlace(ref List<CollectiblePlaces> _AllPlace, Player _player)
+	{
+		Vector2 playerVec = new Vector2(_player.transform.position.x, _player.transform.position.y);
+		List<CollectiblePlaces> PlacesToSpawn = new List<CollectiblePlaces>();
+		PlacesToSpawn = _AllPlace;
+
+		foreach (CollectiblePlaces _place in PlacesToSpawn)
+		{
+			Vector2 placeVec = new Vector2(_place.transform.position.x, _place.transform.position.y);
+			_place.distToPlayer = Vector2.Distance(placeVec, playerVec);
+		}
+		PlacesToSpawn.Sort(delegate (CollectiblePlaces x, CollectiblePlaces y)
+		                      {
+			if (x.distToPlayer < y.distToPlayer) return -1;
+			if (x.distToPlayer > y.distToPlayer) return 1;
+			else return 0;
+		});
+		PlacesToSpawn.Remove(PlacesToSpawn[0]);
+		return (PlacesToSpawn);
+
+	}
+
 	public void UnlockLevel(LevelInfo _lvl)
 	{
 

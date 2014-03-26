@@ -176,21 +176,34 @@ public class LevelManager : MonoBehaviour {
 		}
 	}
 
-	public void triggerSpawnGem(CollectiblePlaces _place)
+	public void triggerSpawnGem()
 	{
-		if (LevelManager.GAMESTATE != GameEventManager.GameState.GameOver && _place.occupied != true)
+		List<CollectiblePlaces> AllPlacesToSpawn = new List<CollectiblePlaces>();
+		foreach (CollectiblePlaces pl in collecPlaces)
 		{
-			StartCoroutine(delayedSpawnGem(_place));
+			AllPlacesToSpawn.Add(pl);
+		}
+		AllPlacesToSpawn = tools.calculateFarSpawnPlace(ref AllPlacesToSpawn, _player);
+		if (LevelManager.GAMESTATE != GameEventManager.GameState.GameOver)
+		{
+			StartCoroutine(delayedSpawnGem(AllPlacesToSpawn));
 		}
 	}
 
-	IEnumerator delayedSpawnGem(CollectiblePlaces _place)
+	IEnumerator delayedSpawnGem(List<CollectiblePlaces> _placesToSpawn)
 	{
 		yield return new WaitForSeconds(LocalTuning.Gem_SpawnRate);
-		if (LevelManager.GAMESTATE != GameEventManager.GameState.GameOver && _place.occupied != true)
+		if (LevelManager.GAMESTATE != GameEventManager.GameState.GameOver)
 		{
-			_place.Spawn(this);
+			foreach (CollectiblePlaces _pl in _placesToSpawn)
+			{
+				if (_pl.occupied != true)
+				{
+					_pl.Spawn(this);
+				}
+			}
 		}
+		print (_placesToSpawn[0]);
 	}
 
 	public void spawnFields()

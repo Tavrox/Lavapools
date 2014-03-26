@@ -5,6 +5,7 @@ public class CollectiblePlaces : MonoBehaviour {
 
 	public Collectible.ListCollectible _placeType;
 	public bool occupied = false;
+	public float distToPlayer;
 
 	public void Spawn(LevelManager _lm)
 	{
