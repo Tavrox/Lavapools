@@ -20,7 +20,7 @@ public class Gatepart : Collectible {
 		{
 			collPlace.occupied = false;
 			_levMan.tools.CollectObject(this);
-			_levMan.triggerSpawnGem();
+			_levMan.triggerSpawnGem(collPlace);
 			Vanish();
 		}
 	}

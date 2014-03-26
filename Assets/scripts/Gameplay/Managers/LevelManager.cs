@@ -27,18 +27,18 @@ public class LevelManager : MonoBehaviour {
 	[HideInInspector] public BricksManager bricksMan;
 	[HideInInspector] public List<WaypointManager> waypointsMan = new List<WaypointManager>();
 	[HideInInspector] public List<Collectible> CollectibleGathered = new List<Collectible>();
-	[HideInInspector] public List<CollectiblePlaces> collecPlaces = new List<CollectiblePlaces>();
+	public List<CollectiblePlaces> collecPlaces = new List<CollectiblePlaces>();
 	[HideInInspector] public LevelTools tools;
 	[HideInInspector] public LevelTools.KillerList killer;
 	[HideInInspector] public Procedural proc;
 	[HideInInspector] public MainMenu menuManager;
 	[HideInInspector] public PlayerProfile _profile;
 	[HideInInspector] public Player _player;
+	[HideInInspector] public SpaceGate Gate;
 	
 	private FieldManager fieldMan;
 	private Fields spawningField;
 
-	public SpaceGate Gate;
 
 
 
@@ -176,34 +176,29 @@ public class LevelManager : MonoBehaviour {
 		}
 	}
 
-	public void triggerSpawnGem()
+	public void triggerSpawnGem(CollectiblePlaces _origin)
 	{
 		List<CollectiblePlaces> AllPlacesToSpawn = new List<CollectiblePlaces>();
+		CollectiblePlaces _chosen;
 		foreach (CollectiblePlaces pl in collecPlaces)
 		{
 			AllPlacesToSpawn.Add(pl);
+//			AllPlacesToSpawn.Remove(_origin);
 		}
-		AllPlacesToSpawn = tools.calculateFarSpawnPlace(ref AllPlacesToSpawn, _player);
-		if (LevelManager.GAMESTATE != GameEventManager.GameState.GameOver)
+		_chosen = tools.calculateFarSpawnPlace(ref AllPlacesToSpawn, _player);
+		if (LevelManager.GAMESTATE != GameEventManager.GameState.GameOver && _chosen != null)
 		{
-			StartCoroutine(delayedSpawnGem(AllPlacesToSpawn));
+			StartCoroutine(delayedSpawnGem(_chosen));
 		}
 	}
 
-	IEnumerator delayedSpawnGem(List<CollectiblePlaces> _placesToSpawn)
+	IEnumerator delayedSpawnGem(CollectiblePlaces _placeToSpawn)
 	{
 		yield return new WaitForSeconds(LocalTuning.Gem_SpawnRate);
 		if (LevelManager.GAMESTATE != GameEventManager.GameState.GameOver)
 		{
-			foreach (CollectiblePlaces _pl in _placesToSpawn)
-			{
-				if (_pl.occupied != true)
-				{
-					_pl.Spawn(this);
-				}
-			}
+			_placeToSpawn.Spawn(this);
 		}
-		print (_placesToSpawn[0]);
 	}
 
 	public void spawnFields()

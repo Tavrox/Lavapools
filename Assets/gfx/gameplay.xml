@@ -147,10 +147,62 @@
                 <key>sourceSize</key>
                 <string>{61,61}</string>
             </dict>
+            <key>gatePart.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{137,203},{26,26}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{26,26}}</string>
+                <key>sourceSize</key>
+                <string>{26,26}</string>
+            </dict>
+            <key>pathExit.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{5,269},{121,75}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{121,75}}</string>
+                <key>sourceSize</key>
+                <string>{121,75}</string>
+            </dict>
+            <key>pathGate.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{131,269},{72,74}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{72,74}}</string>
+                <key>sourceSize</key>
+                <string>{72,74}</string>
+            </dict>
+            <key>supportGate.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{5,349},{208,65}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{208,65}}</string>
+                <key>sourceSize</key>
+                <string>{208,65}</string>
+            </dict>
             <key>tinyhotel.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{137,203},{37,25}}</string>
+                <string>{{5,419},{37,25}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -170,7 +222,7 @@
             <key>size</key>
             <string>{256,512}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:2159edc856ea7c78a649234a44a361a6:185fa26645dec00a5d567ed0e14cf192:e5cf3cba82ad0660ff9df1afd691b27d$</string>
+            <string>$TexturePacker:SmartUpdate:3b0094823d868393ca820ebb0e261e52:c1936e960d90a64b8a67020c9bea6ac4:e5cf3cba82ad0660ff9df1afd691b27d$</string>
             <key>textureFileName</key>
             <string>gameplay.png</string>
         </dict>

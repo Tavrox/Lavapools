@@ -7,7 +7,7 @@ public class Player : MonoBehaviour {
 	[HideInInspector] public InputManager InputMan;
 	public int OnPlatforms;
 
-	public float speed;
+	[SerializeField] private float _speed;
 	public float initSpeed;
 	private RaycastHit hit;
 	private Vector3 pos;
@@ -21,6 +21,8 @@ public class Player : MonoBehaviour {
 	private Vector2 originalSize;
 	private Notification _notif;
 	private PlayerAnims _anims;
+	public float speed
+	{ get {return _speed;} set {_speed = value;} }
 
 	[HideInInspector] public enum playerState
 	{

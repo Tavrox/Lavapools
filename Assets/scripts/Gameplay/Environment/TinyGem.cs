@@ -21,7 +21,7 @@ public class TinyGem : Collectible {
 		{
 			_levMan.tools.CollectObject(this);
 			collPlace.occupied = false;
-			_levMan.triggerSpawnGem();
+			_levMan.triggerSpawnGem(collPlace);
 			Vanish();
 		}
 	}

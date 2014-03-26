@@ -36,7 +36,11 @@ public class TextUI : MonoBehaviour {
 
 	public void Format()
 	{
-		print ("fu");
 		text = text.Replace("/n", "\n");
+	}
+	public void textParser()
+	{
+//		$OBJ$
+
 	}
 }

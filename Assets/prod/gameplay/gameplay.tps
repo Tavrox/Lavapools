@@ -187,6 +187,10 @@
             <filename>chainsaw04invert.png</filename>
             <filename>chainsaw00invert.png</filename>
             <filename>chainsaw10invert.png</filename>
+            <filename>supportGate.png</filename>
+            <filename>gatePart.png</filename>
+            <filename>pathGate.png</filename>
+            <filename>pathExit.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

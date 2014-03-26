@@ -72,9 +72,9 @@
         <key>maxTextureSize</key>
         <QSize>
             <key>width</key>
-            <int>2048</int>
+            <int>4096</int>
             <key>height</key>
-            <int>2048</int>
+            <int>4096</int>
         </QSize>
         <key>fixedTextureSize</key>
         <QSize>
@@ -175,31 +175,35 @@
         </struct>
         <key>fileList</key>
         <array>
-            <filename>pan_scoring.png</filename>
-            <filename>pan_leaderboard.png</filename>
-            <filename>stat_player.png</filename>
-            <filename>sq.png</filename>
-            <filename>title.png</filename>
-            <filename>entrypanel.png</filename>
-            <filename>btnFB.png</filename>
+            <filename>btnPad.png</filename>
+            <filename>btnPlay.png</filename>
+            <filename>btnReplay.png</filename>
+            <filename>btnStartQuit.png</filename>
             <filename>btnTW.png</filename>
-            <filename>tileLvlSelect.png</filename>
+            <filename>entrypanel.png</filename>
+            <filename>lock.png</filename>
+            <filename>logo_4edges.png</filename>
             <filename>lvlSelectleft.png</filename>
             <filename>lvlSelectright.png</filename>
-            <filename>panLvlTitle.png</filename>
-            <filename>lock.png</filename>
+            <filename>pan_leaderboard.png</filename>
             <filename>pan_leaderboard_title.png</filename>
             <filename>pan_ok_pad.png</filename>
-            <filename>btnClose.png</filename>
-            <filename>btnPad.png</filename>
-            <filename>btnOk_cancel.png</filename>
-            <filename>btnPlay.png</filename>
-            <filename>logo_4edges.png</filename>
+            <filename>pan_scoring.png</filename>
             <filename>pan_version.png</filename>
-            <filename>pan_credits.png</filename>
-            <filename>thumb_vesuvio.png</filename>
+            <filename>panLvlTitle.png</filename>
+            <filename>panStartQuit.png</filename>
+            <filename>sq.png</filename>
+            <filename>stat_player.png</filename>
             <filename>thumb_etna.png</filename>
             <filename>thumb_grensdalur.png</filename>
+            <filename>thumb_vesuvio.png</filename>
+            <filename>tileLvlSelect.png</filename>
+            <filename>title.png</filename>
+            <filename>btnClose.png</filename>
+            <filename>btnFB.png</filename>
+            <filename>btnGetFull.png</filename>
+            <filename>btnHome.png</filename>
+            <filename>btnOk_cancel.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

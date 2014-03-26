@@ -175,6 +175,7 @@
         </struct>
         <key>fileList</key>
         <array>
+            <filename>gate24load.png</filename>
             <filename>gate25load.png</filename>
             <filename>gate00load.png</filename>
             <filename>gate01load.png</filename>
@@ -200,7 +201,23 @@
             <filename>gate21load.png</filename>
             <filename>gate22load.png</filename>
             <filename>gate23load.png</filename>
-            <filename>gate24load.png</filename>
+            <filename>gate36vortex.png</filename>
+            <filename>gate37vortex.png</filename>
+            <filename>gate38vortex.png</filename>
+            <filename>gate39vortex.png</filename>
+            <filename>gate40vortex.png</filename>
+            <filename>gate41vortex.png</filename>
+            <filename>gate42vortex.png</filename>
+            <filename>gate26vortex.png</filename>
+            <filename>gate27vortex.png</filename>
+            <filename>gate28vortex.png</filename>
+            <filename>gate29vortex.png</filename>
+            <filename>gate30vortex.png</filename>
+            <filename>gate31vortex.png</filename>
+            <filename>gate32vortex.png</filename>
+            <filename>gate33vortex.png</filename>
+            <filename>gate34vortex.png</filename>
+            <filename>gate35vortex.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

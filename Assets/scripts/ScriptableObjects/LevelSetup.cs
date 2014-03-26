@@ -10,6 +10,7 @@ public class LevelSetup : ScriptableObject
 	public float Bird_Speed;
 	public float Chainsaw_Speed;
 	public float Gem_SpawnRate;
+	public float Gem_MinimumInLevel;
 	public LevelSetup _lvlToCopy;
 	
 	[HideInInspector] public float Fields_Speed;
