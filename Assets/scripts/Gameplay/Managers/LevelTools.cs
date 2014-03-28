@@ -93,8 +93,8 @@ public class LevelTools : MonoBehaviour {
 
 		PlacesToSpawn = _AllPlace;
 		int removedItem = PlacesToSpawn.RemoveAll( obj => obj.occupied == true);
-
-		if (removedItem == LevelManager.LocalTuning.Gem_MinimumInLevel)
+//		print (removedItem);
+		if (removedItem < LevelManager.LocalTuning.Gem_MinimumInLevel)
 		{
 			foreach (CollectiblePlaces _place in PlacesToSpawn)
 			{
@@ -107,7 +107,6 @@ public class LevelTools : MonoBehaviour {
 				if (x.distToPlayer > y.distToPlayer) return 1;
 				else return 0;
 			});
-			PlacesToSpawn.Remove( PlacesToSpawn[0]);
 			int rando = Random.Range(0, PlacesToSpawn.Count);
 			_chosen = PlacesToSpawn[rando];
 		}

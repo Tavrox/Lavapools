@@ -45,7 +45,6 @@ public class GameOverUI : SubMenu {
 	{
 		if (this != null)
 		{
-			print ("started");
 			new OTTween(_RespawnUI.gameObject.transform, 0.3f, OTEasing.QuadIn ).Tween("position", respOutPos);
 			new OTTween(_LeaderboardUI.gameObject.transform, 0.3f, OTEasing.QuadIn ).Tween("position", lbOutPos);
 		}

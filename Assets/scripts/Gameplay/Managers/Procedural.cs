@@ -80,7 +80,7 @@ public class Procedural : MonoBehaviour {
 		}
 		foreach (string _wpm in _step.WaypointsToInvert)
 		{
-			if (_step.WaypointsToInvert != null)
+			if (_step.WaypointsToInvert != null && _wpm != "")
 			{
 				WaypointManager man = _levMan.waypointsMan.Find((WaypointManager obj) => obj.name == _wpm);
 				man.invertWaypoints();
@@ -99,6 +99,9 @@ public class Procedural : MonoBehaviour {
 		{
 			_levMan.tools.UnlockLevel(_step.LevelToUnlock);
 		}
+
+		_step.BricksEnabled.RemoveAll((string obj) =>  obj == "");
+		_step.WaypointsToInvert.RemoveAll((string obj) =>  obj == "");
 	}
 
 	private void GameOver()

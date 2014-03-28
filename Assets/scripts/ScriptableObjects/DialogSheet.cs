@@ -18,7 +18,17 @@ public class DialogSheet : ScriptableObject {
 	}
 	public string TranslateSingle(string DIALOG_ID)
 	{
-		return (translated_texts[DIALOG_ID]);
+		string res = null;
+		Debug.Log (translated_texts.ContainsKey(DIALOG_ID));
+		if ( translated_texts.ContainsKey(DIALOG_ID) != null)
+		{
+			res = translated_texts[DIALOG_ID];
+		}
+		else
+		{
+			res = "TRANSLATION_NOT_FOUND...ID_" + DIALOG_ID;
+		}
+		return (res);
 	}
 	public void TranslateAll(ref TextUI[] _arrTxt)
 	{

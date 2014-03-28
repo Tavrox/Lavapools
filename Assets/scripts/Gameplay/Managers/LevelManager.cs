@@ -42,7 +42,6 @@ public class LevelManager : MonoBehaviour {
 
 	// Use this for initialization
 	public void Awake () {
-		Debug.LogWarning("LevelManager awoken");
 
 		if (GameObject.Find("Frameworks") == null)
 		{
@@ -201,7 +200,7 @@ public class LevelManager : MonoBehaviour {
 		foreach (CollectiblePlaces pl in collecPlaces)
 		{
 			AllPlacesToSpawn.Add(pl);
-//			AllPlacesToSpawn.Remove(_origin);
+			AllPlacesToSpawn.Remove(_origin);
 		}
 		_chosen = tools.calculateFarSpawnPlace(ref AllPlacesToSpawn, _player);
 		if (LevelManager.GAMESTATE != GameEventManager.GameState.GameOver && _chosen != null)
