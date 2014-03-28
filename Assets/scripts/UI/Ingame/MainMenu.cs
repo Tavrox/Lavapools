@@ -13,16 +13,24 @@ public class MainMenu : MonoBehaviour {
 
 	// Use this for initialization
 	public void Setup (LevelManager _lm) {
+		name = "UI";
 
 		_levman = _lm;
+		
+		print ("S2" + _IngameUI);
 		
 		GameEventManager.GameStart += GameStart;
 		GameEventManager.GameOver += GameOver;
 		GameEventManager.Respawn += Respawn;
 
+
 		_IngameUI = FETool.findWithinChildren(this.gameObject, "Ingame").GetComponent<IngameUI>();
 		_GameOverUI = FETool.findWithinChildren(this.gameObject, "GameOver").GetComponent<GameOverUI>();
 		_EntryUI = FETool.findWithinChildren(this.gameObject, "EntryMenu").GetComponent<EntryUI>();
+
+		
+		print ("S3" + _IngameUI);
+
 
 		_IngameUI.SetupSub(this);
 		_IngameUI.Setup();
@@ -30,6 +38,9 @@ public class MainMenu : MonoBehaviour {
 		_GameOverUI.Setup();
 		_EntryUI.SetupSub(this);
 		_EntryUI.Setup();
+		
+		print ("S4" + _IngameUI);
+		print ("S5" + _IngameUI.gameObject);
 
 	}
 

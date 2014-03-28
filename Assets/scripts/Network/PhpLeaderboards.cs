@@ -108,7 +108,10 @@ public class PhpLeaderboards : MonoBehaviour
 
 	private void Respawn()
 	{
-		GatherScores();
+		if (this != null)
+		{
+			GatherScores();
+		}
 	}
 	
 	public void sortLeaderboard(ref List<UserLeaderboard> _listLb, int length)

@@ -93,14 +93,20 @@ public class UserInput : TextUI {
 
 	private void Respawn()
 	{
-		CancelInvoke("switchColor");
-		canModify = false;
+		if (this != null)
+		{
+			CancelInvoke("switchColor");
+			canModify = false;
+		}
 	}
 
 	private void GameOver()
 	{
-		StartCoroutine("EnableInput");
-		InvokeRepeating("switchColor", 0f, 0.5f);
+		if (this != null)
+		{
+			StartCoroutine("EnableInput");
+			InvokeRepeating("switchColor", 0f, 0.5f);
+		}
 	}
 
 	IEnumerator EnableInput()

@@ -88,8 +88,11 @@ public class LevelBrick : MonoBehaviour {
 
 	private void GameStart()
 	{
-		disableBrick();
-		new OTTween(this, 0.5f).Tween("speed", initSpeed );
+		if (this != null)
+		{
+			disableBrick();
+			new OTTween(this, 0.5f).Tween("speed", initSpeed );
+		}
 	}
 	
 	private void GameOver()
@@ -99,10 +102,13 @@ public class LevelBrick : MonoBehaviour {
 	
 	private void Respawn()
 	{
-		disableBrick();
-		if (type != typeList.Fields)
+		if (this != null)
 		{
-			gameObject.transform.position = initPos;
+			disableBrick();
+			if (type != typeList.Fields)
+			{
+				gameObject.transform.position = initPos;
+			}
 		}
 	}
 }

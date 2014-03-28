@@ -18,7 +18,10 @@ public class LevelThumbnail : MonoBehaviour
 	{
 		nameLv = _set;
 		Locked = _isLocked;
-		Info = Instantiate(Resources.Load("Tuning/Levels/" +  nameLv.ToString())) as LevelInfo;
+		if (nameLv != GameSetup.LevelList.None)
+		{
+			Info = Instantiate(Resources.Load("Tuning/Levels/" +  nameLv.ToString())) as LevelInfo;
+		}
 		gameObject.name = _set.ToString();
 		Locker = FETool.findWithinChildren(gameObject, "Lock").GetComponentInChildren<OTSprite>();
 		if (Locked == true)

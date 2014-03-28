@@ -4,10 +4,11 @@ using System.Collections;
 
 public class TextUI : MonoBehaviour {
 
-	public GameSetup SETUP;
-	public TextMesh _mesh;
+	[HideInInspector] public GameSetup SETUP;
+	[HideInInspector] public TextMesh _mesh;
+	public string DIALOG_ID;
 	public string text;
-	public Color initColor;
+	[HideInInspector] public Color initColor;
 	public Color color;
 
 	public void Awake()
@@ -37,6 +38,17 @@ public class TextUI : MonoBehaviour {
 	public void Format()
 	{
 		text = text.Replace("/n", "\n");
+	}
+	public void TranslateThis()
+	{
+		SETUP.TextSheet.SetupTranslation(SETUP.ChosenLanguage);
+		text = SETUP.TextSheet.TranslateSingle(DIALOG_ID);
+	}
+	public void TranslateAllInScene()
+	{
+		SETUP.TextSheet.SetupTranslation(SETUP.ChosenLanguage);
+		TextUI[] allTxt = GameObject.FindObjectsOfType(typeof(TextUI)) as TextUI[];
+		SETUP.TextSheet.TranslateAll(ref allTxt);
 	}
 	public void textParser()
 	{

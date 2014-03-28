@@ -1324,9 +1324,12 @@ public class OTSprite : OTObject
 		OTSprite[] allSprites = GameObject.FindObjectsOfType(typeof(OTSprite)) as OTSprite[];
 		foreach (OTSprite _spr in allSprites)
 		{
-			float sx = _spr.spriteContainer.GetFrame(_spr.frameIndex).size.x;
-			float sy = _spr.spriteContainer.GetFrame(_spr.frameIndex).size.y;
-			_spr.gameObject.transform.localScale = new Vector3(sx * ratioUnity , sy * ratioUnity, 0f);
+			if (_spr.spriteContainer != null)
+			{
+				float sx = _spr.spriteContainer.GetFrame(_spr.frameIndex).size.x;
+				float sy = _spr.spriteContainer.GetFrame(_spr.frameIndex).size.y;
+				_spr.gameObject.transform.localScale = new Vector3(sx * ratioUnity , sy * ratioUnity, 0f);
+			}
 
 		}
 		/*

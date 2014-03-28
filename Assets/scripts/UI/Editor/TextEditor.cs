@@ -9,15 +9,22 @@ public class TextEditor : Editor
 	public override void OnInspectorGUI()
 	{
 		base.OnInspectorGUI();
+		text = (TextUI)target;
 		if (GUILayout.Button("FormatText"))
 		{
-			text = (TextUI)target;
 			text.Format();
 		}
-		if (GUILayout.Button("FindTranslation"))
+		if (GUILayout.Button("TranslateThis"))
 		{
-			text = (TextUI)target;
+			text.TranslateThis();
 		}
+		if (GUILayout.Button("TranslateAllInScene"))
+		{
+			text.TranslateAllInScene();
+		}
+
+
+
 	}
 
 }

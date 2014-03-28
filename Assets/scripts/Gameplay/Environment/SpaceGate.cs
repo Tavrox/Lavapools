@@ -26,6 +26,10 @@ public class SpaceGate : MonoBehaviour {
 		spriteSecondStep = secondStep.GetComponentsInChildren<OTSprite>();
 		spriteThirdStep = thirdStep.GetComponentsInChildren<OTSprite>();
 
+		fadeOutSprites(spriteFirstStep);
+		fadeOutSprites(spriteSecondStep);
+		fadeOutSprites(spriteThirdStep);
+
 	}
 
 	public void collectPart(float _score)
@@ -80,6 +84,13 @@ public class SpaceGate : MonoBehaviour {
 		foreach (OTSprite _spr in _arrSprite)
 		{
 			new OTTween(_spr, 1f).Tween("alpha", 1f);
+		}
+	}
+	private void fadeOutSprites(OTSprite[] _arrSprite)
+	{
+		foreach (OTSprite _spr in _arrSprite)
+		{
+			new OTTween(_spr, 1f).Tween("alpha", 0f);
 		}
 	}
 

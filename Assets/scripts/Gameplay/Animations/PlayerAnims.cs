@@ -11,7 +11,7 @@ public class PlayerAnims : MonoBehaviour {
 
 
 	// Use this for initialization
-	void Start () {
+	public void Setup () {
 
 		_animations = GameObject.Find("Frameworks/OT/Animations/player").GetComponent<OTAnimation>();
 		_animSprite = GetComponentInChildren<OTAnimatingSprite>();

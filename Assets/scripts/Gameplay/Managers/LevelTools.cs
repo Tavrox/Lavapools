@@ -93,7 +93,6 @@ public class LevelTools : MonoBehaviour {
 
 		PlacesToSpawn = _AllPlace;
 		int removedItem = PlacesToSpawn.RemoveAll( obj => obj.occupied == true);
-		print (removedItem + "were removed from list");
 
 		if (removedItem == LevelManager.LocalTuning.Gem_MinimumInLevel)
 		{
@@ -110,7 +109,6 @@ public class LevelTools : MonoBehaviour {
 			});
 			PlacesToSpawn.Remove( PlacesToSpawn[0]);
 			int rando = Random.Range(0, PlacesToSpawn.Count);
-//			Debug.Log("There is" + PlacesToSpawn.Count + "places ; " + rando + "was chosen");
 			_chosen = PlacesToSpawn[rando];
 		}
 		else

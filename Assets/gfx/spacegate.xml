@@ -573,7 +573,7 @@
             <key>size</key>
             <string>{1024,2048}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:888eeab95921d3211c8f5a3a2abc3384:02c2a8c9dbb85d8301d7d3a5f4f9f3bb:e54609b0fc87cb18de0a50e9036b418b$</string>
+            <string>$TexturePacker:SmartUpdate:b7f4dceed01e928786a1cf2d9b7da7a9:02c2a8c9dbb85d8301d7d3a5f4f9f3bb:e54609b0fc87cb18de0a50e9036b418b$</string>
             <key>textureFileName</key>
             <string>spacegate.png</string>
         </dict>

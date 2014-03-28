@@ -6,69 +6,155 @@ public class MiscButton : MonoBehaviour {
 	public enum buttonList
 	{
 		None,
-		Play,
-		Mute,
-		Credits,
+		PlayLevel,
+		MuteGlobal,
+		MuteMusic,
 		Facebook,
 		Twitter,
-		Close,
-		Pad,
 		TwitterPublish,
 		FacebookPublish,
 		Website,
-		LevelMenu
+		GoHome,
+		CloseGame,
+		OpenOptions,
+		OpenLevel,
+		OpenCredits,
+		BackHome
 	};
-	public buttonList buttonType;
-	private GameSetup SETUP;
+	public GameSetup SETUP;
 	public GameSetup.LevelList levelToLoad;
-	private BoxCollider _coll;
+	public BoxCollider _coll;
+	public MainTitleUI mainUi;
+	public LevelChooser chooser;
+
+	public bool locked = false;
+	public buttonList buttonType;
 
 	void Start()
 	{
 		SETUP = Resources.Load ("Tuning/GameSetup") as GameSetup;
+		if (GameObject.Find("TitleMenu") != null)
+		{
+			mainUi = GameObject.Find("TitleMenu").GetComponent<MainTitleUI>();
+		}
 		if (_coll = GetComponent<BoxCollider>())
 		{_coll.isTrigger = true;}
 	}
 
 	void OnMouseDown()
 	{
-		switch (buttonType)
+		if (locked == false)
 		{
-		case buttonList.Twitter :
-		{
-			Application.OpenURL(SETUP.twitter_url);
-			break;
-		}
-		case buttonList.Facebook :
-		{
-			Application.OpenURL(SETUP.facebook_url);
-			break;
-		}
-		case buttonList.Play :
-		{
-			LevelThumbnail _parent = gameObject.transform.parent.gameObject.GetComponent<LevelThumbnail>();
-			levelToLoad = _parent.Info.LvlName;
-			if (_parent.Locked == false)
+			LockButtons();
+			switch (buttonType)
 			{
-				Application.LoadLevel(levelToLoad.ToString());
+			case buttonList.None :
+			{
+				print ("this button do nothing bro" + gameObject.name);
+				break;
 			}
-			break;
+			case buttonList.PlayLevel :
+			{
+				LevelThumbnail _parent = gameObject.transform.parent.gameObject.GetComponent<LevelThumbnail>();
+				levelToLoad = _parent.Info.LvlName;
+				if (_parent.Locked == false)
+				{
+					Application.LoadLevel(levelToLoad.ToString());
+				}
+				break;
+			}
+			case buttonList.MuteGlobal :
+			{
+				mainUi.PLAYERDAT.MuteGlobal();
+				break;
+			}
+			case buttonList.MuteMusic :
+			{
+				mainUi.PLAYERDAT.MuteMusic();
+				break;
+			}
+			case buttonList.Twitter :
+			{
+				Application.OpenURL(SETUP.twitter_url);
+				break;
+			}
+			case buttonList.Facebook :
+			{
+				Application.OpenURL(SETUP.facebook_url);
+				break;
+			}
+			case buttonList.TwitterPublish :
+			{
+				
+				break;
+			}
+			case buttonList.FacebookPublish :
+			{
+				
+				break;
+			}
+			case buttonList.Website :
+			{
+				Application.OpenURL(SETUP.website_url);
+				break;
+			}
+			case buttonList.GoHome :
+			{
+				Application.LoadLevel(0);
+				break;
+			}
+			case buttonList.CloseGame :
+			{
+				Application.Quit();
+				break;
+			}
+			case buttonList.OpenOptions :
+			{
+				mainUi.makeTransition( mainUi.Options);
+				break;
+			}
+			case buttonList.OpenLevel :
+			{
+				mainUi.makeTransition( mainUi.LevelChooser);
+				break;
+			}
+			case buttonList.OpenCredits :
+			{
+				mainUi.makeTransition( mainUi.Credits);
+				break;
+			}
+			case buttonList.BackHome :
+			{
+				mainUi.backHome();
+				break;
+			}
+			}
+			print ("clicked" + buttonType);
 		}
-		case buttonList.Close :
+	}
+
+	public void LockButtons()
+	{
+		lockEveryButton();
+		StartCoroutine("unlockEveryButton");
+	}
+
+	public void lockEveryButton()
+	{
+		MiscButton[] allBtn = GameObject.FindObjectsOfType(typeof(MiscButton)) as MiscButton[];
+		foreach (MiscButton _spr in allBtn)
 		{
-			Application.Quit();
-			break;
+			_spr.locked = true;
 		}
-		case buttonList.Website :
+	}
+
+	IEnumerator unlockEveryButton()
+	{
+		yield return new WaitForSeconds(1.1f);
+		MiscButton[] allBtn = GameObject.FindObjectsOfType(typeof(MiscButton)) as MiscButton[];
+		foreach (MiscButton _spr in allBtn)
 		{
-			Application.OpenURL(SETUP.website_url);
-			break;
-		}
-		case buttonList.LevelMenu :
-		{
-			Application.LoadLevel(0);
-			break;
-		}
+			_spr.locked = false;
 		}
 	}
 }

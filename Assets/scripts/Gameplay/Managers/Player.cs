@@ -54,17 +54,20 @@ public class Player : MonoBehaviour {
 		speed = LevelManager.LocalTuning.Player_Speed;
 		initSpeed = speed;
 		InputMan = Resources.Load("Tuning/InputManager") as InputManager;
-		
-		GameEventManager.GameStart += GameStart;
-		GameEventManager.GameOver += GameOver;
-		GameEventManager.Respawn += Respawn;
+
 		 
 		_anims = gameObject.AddComponent<PlayerAnims>() as PlayerAnims;
+		_anims.Setup();
 		_notif = GetComponentInChildren<Notification>();
 
 		startPos = gameObject.transform.position;
 		friction.x = LevelManager.GlobTuning.Player_Friction.x;
 		friction.y = LevelManager.GlobTuning.Player_Friction.y;
+
+		
+		GameEventManager.GameStart += GameStart;
+		GameEventManager.GameOver += GameOver;
+		GameEventManager.Respawn += Respawn;
 	}
 	
 	// Update is called once per frame
@@ -197,29 +200,38 @@ public class Player : MonoBehaviour {
 
 	private void GameStart()
 	{
-		speed = initSpeed;
-		new OTTween(spr, 0.5f).Tween("alpha", 1f);
-		new OTTween(spr, 0.5f).Tween("size", new Vector2(originalSize.x,originalSize.y));
-		_notif.makeFadeOut();
-		OnPlatforms = 0;
+		if (this != null)
+		{
+			speed = initSpeed;
+			new OTTween(spr, 0.5f).Tween("alpha", 1f);
+			new OTTween(spr, 0.5f).Tween("size", new Vector2(originalSize.x,originalSize.y));
+			_notif.makeFadeOut();
+			OnPlatforms = 0;
+		}
 	}
 	
 	private void GameOver()
 	{
-		speed = initSpeed;
-		new OTTween(spr, 0.5f).Tween("alpha", 0f);
-		new OTTween(spr, 0.5f).Tween("size", new Vector2(0.25f,0.25f));
-		_notif.makeFadeOut();
-		OnPlatforms = 0;
+		if (this != null)
+		{
+			speed = initSpeed;
+			new OTTween(spr, 0.5f).Tween("alpha", 0f);
+			new OTTween(spr, 0.5f).Tween("size", new Vector2(0.25f,0.25f));
+			_notif.makeFadeOut();
+			OnPlatforms = 0;
+		}
 	}
 	
 	private void Respawn()
 	{
-		speed = initSpeed;
-		gameObject.transform.position = startPos;
-		new OTTween(spr, 0.5f).Tween("alpha", 1f);
-		new OTTween(spr, 0.5f).Tween("size", new Vector2(originalSize.x,originalSize.y));
-		_notif.makeFadeOut();
-//		OnPlatforms = 0;
+		if (this != null)
+		{
+			speed = initSpeed;
+			gameObject.transform.position = startPos;
+			new OTTween(spr, 0.5f).Tween("alpha", 1f);
+			new OTTween(spr, 0.5f).Tween("size", new Vector2(originalSize.x,originalSize.y));
+			_notif.makeFadeOut();
+	//		OnPlatforms = 0;
+		}
 	}
 }

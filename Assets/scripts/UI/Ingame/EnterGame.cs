@@ -12,11 +12,12 @@ public class EnterGame : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
 	{
-
-		if (Input.GetKeyDown (KeyCode.Space) || Input.GetKeyDown(LevelManager.InputMan.EnterButton)) 
+		if (this != null)
 		{
-			GameEventManager.TriggerRespawn("Enter Game");
+			if (Input.GetKeyDown (KeyCode.Space) || Input.GetKeyDown(LevelManager.InputMan.EnterButton)) 
+			{
+				GameEventManager.TriggerRespawn("Enter Game");
+			}
 		}
-	
 	}
 }

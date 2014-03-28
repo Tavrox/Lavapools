@@ -23,12 +23,18 @@ public class EntryUI : SubMenu {
 	}
 	public void GameOver()
 	{
-		_EnterUI.gameObject.SetActive(false);
-//		_Objective.gameObject.SetActive(false);
+		if (this != null && gameObject.activeInHierarchy == true)
+		{
+			_EnterUI.gameObject.SetActive(false);
+	//		_Objective.gameObject.SetActive(false);
+		}
 	}
 	public void Respawn()
 	{
-		_EnterUI.gameObject.SetActive(false);
-//		_Objective.gameObject.SetActive(false);
+		if (this != null && gameObject.activeInHierarchy == true)
+		{
+			_EnterUI.gameObject.SetActive(false);
+	//		_Objective.gameObject.SetActive(false);
+		}
 	}
 }

@@ -14,11 +14,11 @@ public class IngameUI : SubMenu {
 	public Vector3 initPos;
 	public Vector3 outPos;
 
+	public bool iscreated = false;
+
 	public void Setup()
 	{
-		GameEventManager.GameStart += GameStart;
-		GameEventManager.GameOver += GameOver;
-		GameEventManager.Respawn += Respawn;
+		print ("setup ingame ui");
 
 		initPos = gameObject.transform.position;
 		outPos = new Vector3 (initPos.x, initPos.y + 1f, initPos.z);
@@ -31,19 +31,33 @@ public class IngameUI : SubMenu {
 		BestScore = FETool.findWithinChildren(this.gameObject, "BestScore/BestScore_int").GetComponent<TextUI>();
 		BestScoreTxt = FETool.findWithinChildren(this.gameObject, "BestScore/BestScore_txt").GetComponent<TextUI>();
 
+		
+		GameEventManager.GameStart += GameStart;
+		GameEventManager.GameOver += GameOver;
+		GameEventManager.Respawn += Respawn;
+
 	}
 
-	public void GameStart()
+	void GameStart()
 	{
-		new OTTween(gameObject.transform, 0.3f, OTEasing.QuadIn ).Tween("position", outPos);
+		if (this != null && gameObject != null)
+		{
+			new OTTween(gameObject.transform, 0.3f, OTEasing.QuadIn ).Tween("position", outPos);
+		}
 	}
-	public void GameOver()
+	void GameOver()
 	{
-		new OTTween(gameObject.transform, 0.3f, OTEasing.QuadIn ).Tween("position", outPos);
+		if (this != null)
+		{
+			new OTTween(gameObject.transform, 0.3f, OTEasing.QuadIn ).Tween("position", outPos);
+		}
 	}
-	public void Respawn()
+	void Respawn()
 	{
-		new OTTween(gameObject.transform, 0.3f, OTEasing.QuadIn ).Tween("position", initPos);
+		if (this != null)
+		{
+			new OTTween(gameObject.transform, 0.3f, OTEasing.QuadIn ).Tween("position", initPos);
+		}
 	}
 
 }

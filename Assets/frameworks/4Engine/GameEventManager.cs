@@ -14,7 +14,7 @@ public static class GameEventManager {
 	};
 	public static bool gameOver = false;
 	
-	public static void TriggerGameStart(string _trigger, bool forced = false)
+	public static void TriggerGameStart(string _trigger)
 	{
 		if(GameStart != null)
 		{
@@ -25,9 +25,9 @@ public static class GameEventManager {
 		}
 	}
 
-	public static void TriggerGameOver(LevelTools.KillerList _killer, bool forced = false)
+	public static void TriggerGameOver(LevelTools.KillerList _killer)
 	{
-		if(GameOver != null && LevelManager.GAMESTATE != GameState.GameOver && FEDebug.GodMode != true)
+		if(GameOver != null && LevelManager.GAMESTATE != GameState.GameOver)
 		{
 			Debug.LogWarning("GAMEOVER "+ _killer);
 			gameOver = true;
@@ -36,9 +36,9 @@ public static class GameEventManager {
 		}
 	}
 	
-	public static void TriggerRespawn(string _trigger, bool forced = false)
+	public static void TriggerRespawn(string _trigger)
 	{
-		if(Respawn != null || forced == true)
+		if(Respawn != null)
 		{
 			Debug.LogWarning("RESPAWN " + _trigger);
 			gameOver = false;

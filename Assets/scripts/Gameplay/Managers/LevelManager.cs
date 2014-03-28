@@ -38,29 +38,36 @@ public class LevelManager : MonoBehaviour {
 	
 	private FieldManager fieldMan;
 	private Fields spawningField;
-
-
-
+	
 
 	// Use this for initialization
-	void Awake () {
+	public void Awake () {
+		Debug.LogWarning("LevelManager awoken");
 
-		GameEventManager.GameStart += GameStart;
-		GameEventManager.GameOver += GameOver;
-		GameEventManager.Respawn += Respawn;
+		if (GameObject.Find("Frameworks") == null)
+		{
+			GameObject fmObj = Instantiate(Resources.Load("Presets/Frameworks")) as GameObject;
+			fmObj.name = "Frameworks";
+		}
+		else
+		{
 
+		}
+	
+
+		if (GameObject.Find("PlayerData") == null)
+		{
+			GameObject fmObj = Instantiate(Resources.Load("Presets/PlayerData")) as GameObject;
+			fmObj.name = "PlayerData";
+		}
 		GAMESTATE = _EditorState;
-
 		_profile = ScriptableObject.CreateInstance("PlayerProfile") as PlayerProfile;
-
 		_player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
-		
 		GlobTuning = Instantiate(Resources.Load("Tuning/Global")) as LPTuning;
 		LocalTuning = Instantiate(Resources.Load("Procedural/" + NAME + "/Setup")) as LevelSetup;
 		LocalTuning.initScript();
 		InputMan = Resources.Load("Tuning/InputManager") as InputManager;
 		CurrentLevelInfo = Instantiate(Resources.Load("Tuning/Levels/" + NAME)) as LevelInfo;
-
 		proc = gameObject.AddComponent<Procedural>();
 		proc._levMan = this;
 		proc.Setup();
@@ -91,10 +98,21 @@ public class LevelManager : MonoBehaviour {
 		Gate = GameObject.FindGameObjectWithTag("SpaceGate").GetComponent<SpaceGate>();
 		Gate.Setup();
 
-		menuManager = GameObject.Find("UI").GetComponent<MainMenu>();
+		if (GameObject.Find("UI") == null)
+		{
+			GameObject uiman = Instantiate(Resources.Load("Presets/UI")) as GameObject;
+			uiman.name = "UI";
+			menuManager = uiman.GetComponent<MainMenu>();
+		}
+		else
+		{
+			menuManager = GameObject.Find("UI").GetComponent<MainMenu>();
+		}
+		print ("S1" + menuManager);
 		menuManager.Setup(this);
 
 		managerChecker();
+		print ("S6" + menuManager._IngameUI.gameObject.transform.position);
 
 		proc.triggerStep(proc._listSteps[0]);
 		_player.Setup();
@@ -103,26 +121,24 @@ public class LevelManager : MonoBehaviour {
 
 	void Setup()
 	{
+		
+		GameEventManager.GameStart += GameStart;
+		GameEventManager.GameOver += GameOver;
+		GameEventManager.Respawn += Respawn;
 
 		if (GAMESTATE == GameEventManager.GameState.MainMenu)
 		{
-			GameEventManager.TriggerGameStart("LM", true);
-		}
-		if (GAMESTATE == GameEventManager.GameState.GameOver)
-		{
-			GameEventManager.TriggerGameOver(LevelTools.KillerList.LevelManager, true);
-		}
-		if (GAMESTATE == GameEventManager.GameState.Live)
-		{
-			GameEventManager.TriggerRespawn("LM", true);
+			GameEventManager.TriggerGameStart("LM");
 		}
 		InvokeRepeating("updateTime", 0f, 0.01f);
 		InvokeRepeating("UpdateScoreOverTime", 0f, 0.1f);
-//		InvokeRepeating("spawnFields", LocalTuning.Fields_DelaySpawn, LocalTuning.Fields_FrequencySpawn);
 	}
 
 	// Update is called once per frame
 	void Update () {
+
+
+//		print (GAMESTATE);
 	
 		updateScore();
 
@@ -138,20 +154,26 @@ public class LevelManager : MonoBehaviour {
 				GameEventManager.TriggerRespawn(gameObject.name);
 			}
 		}
-		menuManager._IngameUI.Score.text = score.ToString();
-		
-		if (score > bestScore)
+		if (menuManager != null)
 		{
-			bestScore = score;
-			menuManager._IngameUI.BestScore.text = bestScore.ToString();
+			menuManager._IngameUI.Score.text = score.ToString();
+			
+			if (score > bestScore)
+			{
+				bestScore = score;
+				menuManager._IngameUI.BestScore.text = bestScore.ToString();
+			}
+			_player.playerName = menuManager._GameOverUI._RespawnUI._playerInput.text;
 		}
-		_player.playerName = menuManager._GameOverUI._RespawnUI._playerInput.text;
 
 	}
 	
 	public void updateScore()
 	{
-		score = collecSum;
+		if (menuManager != null)
+		{
+			score = collecSum;
+		}
 	}
 
 	private void UpdateScoreOverTime()
@@ -226,38 +248,44 @@ public class LevelManager : MonoBehaviour {
 	private void GameStart()
 	{
 
+
 	}
 	
 	private void GameOver()
 	{
-		_player.gameObject.SetActive(false);
-		if (spawningField != null)
+		if (this != null)
 		{
-			Destroy(spawningField.gameObject.transform.parent.gameObject);
+			_player.gameObject.SetActive(false);
+			if (spawningField != null)
+			{
+				Destroy(spawningField.gameObject.transform.parent.gameObject);
+			}
+			CancelInvoke("updateTime");
+			CancelInvoke("spawnFields");
+			CancelInvoke("UpdateScoreOverTime");
+			StopCoroutine("delayedSpawnGem");
 		}
-		CancelInvoke("updateTime");
-		CancelInvoke("spawnFields");
-		CancelInvoke("UpdateScoreOverTime");
-		StopCoroutine("delayedSpawnGem");
 	}
 	
 	private void Respawn()
 	{
-		OvertimeScoreElapsed = 0;
-		InvokeRepeating("UpdateScoreOverTime", 0f, 0.1f);
-		InvokeRepeating("updateTime", 0f, 0.01f);
-		_player.gameObject.SetActive(true);
-		score = 0f;
-		fieldsCaptured = 0;
-		centSecondsElapsed = 0;
-		SecondsElapsed = 0;
-		collecSum = 0;
-		CollectibleGathered.Clear();
-		foreach (CollectiblePlaces cpl in collecPlaces)
+		if (this != null)
 		{
-			cpl.Spawn(this);
+			OvertimeScoreElapsed = 0;
+			InvokeRepeating("UpdateScoreOverTime", 0f, 0.1f);
+			InvokeRepeating("updateTime", 0f, 0.01f);
+			_player.gameObject.SetActive(true);
+			score = 0f;
+			fieldsCaptured = 0;
+			centSecondsElapsed = 0;
+			SecondsElapsed = 0;
+			collecSum = 0;
+			CollectibleGathered.Clear();
+			foreach (CollectiblePlaces cpl in collecPlaces)
+			{
+				cpl.Spawn(this);
+			}
 		}
-	
 	}
 	#endregion
 }

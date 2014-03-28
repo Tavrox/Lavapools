@@ -117,6 +117,9 @@ public class PatrolBrick : LevelBrick {
 	
 	private void Respawn()
 	{
-		setupPath();
+		if (this != null)
+		{
+			setupPath();
+		}
 	}
 }

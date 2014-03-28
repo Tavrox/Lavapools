@@ -103,13 +103,18 @@ public class Procedural : MonoBehaviour {
 
 	private void GameOver()
 	{
-		CancelInvoke("checkScore");
+		if (this != null)
+		{
+			CancelInvoke("checkScore");
+		}
 	}
 
 	private void Respawn()
 	{
-		triggerStep(_listSteps[0]);
-		InvokeRepeating("checkScore", 0f, 0.001f);
-//		MasterAudio.TriggerPlaylistClip("Step_1");
+		if (this != null)
+		{
+			triggerStep(_listSteps[0]);
+			InvokeRepeating("checkScore", 0f, 0.001f);
+		}
 	}
 }
