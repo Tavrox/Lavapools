@@ -18,8 +18,6 @@ public class IngameUI : SubMenu {
 
 	public void Setup()
 	{
-		print ("setup ingame ui");
-
 		initPos = gameObject.transform.position;
 		outPos = new Vector3 (initPos.x, initPos.y + 1f, initPos.z);
 

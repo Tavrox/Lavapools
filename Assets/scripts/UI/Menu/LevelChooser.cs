@@ -53,11 +53,11 @@ public class LevelChooser : MonoBehaviour {
 		Vector3 mod = new Vector3 (20f, 0f, 0f);
 		if (_btn.direction == LevelChooserButton.DirectionList.Left)
 		{
-			new OTTween(ThumbGO.transform, _btn.twDuration, OTEasing.BounceOut).Tween("position", ThumbGO.transform.position + mod);
+			new OTTween(ThumbGO.transform, _btn.twDuration, OTEasing.QuadInOut).Tween("position", ThumbGO.transform.position + mod);
 		}
 		else
 		{
-			new OTTween(ThumbGO.transform, _btn.twDuration, OTEasing.BounceOut).Tween("position", ThumbGO.transform.position - mod);
+			new OTTween(ThumbGO.transform, _btn.twDuration, OTEasing.QuadInOut).Tween("position", ThumbGO.transform.position - mod);
 		}
 		currThumb = currThumb.FindThumbAround(Thumbs, currThumb, _btn.direction);
 		levelName.text = currThumb.nameLv.ToString();

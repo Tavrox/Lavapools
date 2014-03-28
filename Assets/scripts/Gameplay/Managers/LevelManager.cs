@@ -49,19 +49,19 @@ public class LevelManager : MonoBehaviour {
 			GameObject fmObj = Instantiate(Resources.Load("Presets/Frameworks")) as GameObject;
 			fmObj.name = "Frameworks";
 		}
-		else
-		{
-
-		}
-	
 
 		if (GameObject.Find("PlayerData") == null)
 		{
-			GameObject fmObj = Instantiate(Resources.Load("Presets/PlayerData")) as GameObject;
-			fmObj.name = "PlayerData";
+			PlayerData _dataplayer = Instantiate(Resources.Load("Presets/PlayerData")) as PlayerData;
+			_profile = _dataplayer.PROFILE;
 		}
+		else
+		{
+			_profile = GameObject.Find("PlayerData").GetComponent<PlayerData>().PROFILE;
+		}
+
+
 		GAMESTATE = _EditorState;
-		_profile = ScriptableObject.CreateInstance("PlayerProfile") as PlayerProfile;
 		_player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
 		GlobTuning = Instantiate(Resources.Load("Tuning/Global")) as LPTuning;
 		LocalTuning = Instantiate(Resources.Load("Procedural/" + NAME + "/Setup")) as LevelSetup;
@@ -108,12 +108,8 @@ public class LevelManager : MonoBehaviour {
 		{
 			menuManager = GameObject.Find("UI").GetComponent<MainMenu>();
 		}
-		print ("S1" + menuManager);
 		menuManager.Setup(this);
-
 		managerChecker();
-		print ("S6" + menuManager._IngameUI.gameObject.transform.position);
-
 		proc.triggerStep(proc._listSteps[0]);
 		_player.Setup();
 		Setup();

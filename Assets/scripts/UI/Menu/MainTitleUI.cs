@@ -29,10 +29,17 @@ public class MainTitleUI : MonoBehaviour
 
 		SETUP = Resources.Load ("Tuning/GameSetup") as GameSetup;
 		Chooser = FETool.findWithinChildren(gameObject, "LevelChooser").GetComponent<LevelChooser>();
-		Chooser.Setup ();
 		SETUP.startTranslate(SETUP.ChosenLanguage);
 		levelInformations = new List<LevelInfo> ();
-		PLAYERDAT = GameObject.Find("PlayerData").GetComponent<PlayerData>();
+
+		if (GameObject.Find("PlayerData") == null)
+		{
+			Instantiate(Resources.Load("Presets/PlayerData") as GameObject);
+		}
+		else
+		{
+			PLAYERDAT = GameObject.FindGameObjectWithTag("PlayerData").GetComponent<PlayerData>();
+		}
 
 		if (GameObject.Find("Frameworks") == null)
 		{
@@ -40,6 +47,7 @@ public class MainTitleUI : MonoBehaviour
 			fmObj.name = "Frameworks";
 		}
 		
+		Chooser.Setup ();
 		awayPlace = FETool.findWithinChildren(gameObject, "AwayPlace");
 		frontPlace = FETool.findWithinChildren(gameObject, "FrontPlace");
 		Credits = FETool.findWithinChildren(gameObject, "Credits");
@@ -56,9 +64,8 @@ public class MainTitleUI : MonoBehaviour
 
 	public void makeTransition (GameObject _thingIn)
 	{
-		print ("entered here bro");
-		new OTTween(Landing.transform, 1f).Tween("position", awayPlace.transform.position);
-		new OTTween(_thingIn.transform, 1f).Tween("position", frontPlace.transform.position);
+		new OTTween(Landing.transform,1f, OTEasing.QuadInOut).Tween("position", awayPlace.transform.position);
+		new OTTween(_thingIn.transform, 1f, OTEasing.QuadInOut).Tween("position", frontPlace.transform.position);
 	}
 
 	public void backHome()

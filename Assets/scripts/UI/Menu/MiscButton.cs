@@ -129,7 +129,7 @@ public class MiscButton : MonoBehaviour {
 				break;
 			}
 			}
-			print ("clicked" + buttonType);
+//			print ("clicked" + buttonType);
 		}
 	}
 

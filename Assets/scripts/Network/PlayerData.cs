@@ -15,13 +15,8 @@ public class PlayerData : MonoBehaviour {
 	{
 		PROFILE = Resources.Load("Tuning/PlayerProfile") as PlayerProfile;
 		SETUP = Resources.Load("Tuning/GameSetup") as GameSetup;
+		name = "PlayerData";
 		DontDestroyOnLoad(this);
-//
-//		if (GameObject.Find("LevelManager") != null)
-//		{GameObject.Find("LevelManager").GetComponent<LevelManager>().Setup();}
-
-
-//		DontDestroyOnLoad(GameObject.Find("Frameworks"));
 	}
 
 	
