@@ -30,6 +30,7 @@ public class MainTitleUI : MonoBehaviour
 		SETUP = Resources.Load ("Tuning/GameSetup") as GameSetup;
 		Chooser = FETool.findWithinChildren(gameObject, "LevelChooser").GetComponent<LevelChooser>();
 		SETUP.startTranslate(SETUP.ChosenLanguage);
+		SETUP.translateSceneText();	
 		levelInformations = new List<LevelInfo> ();
 
 		if (GameObject.Find("PlayerData") == null)

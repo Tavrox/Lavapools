@@ -16,26 +16,38 @@ public class DialogSheet : ScriptableObject {
 		translated_texts = fillDicoText(currLanguage);
 //		Debug.Log (translated_texts +""+_lang);
 	}
-	public string TranslateSingle(string DIALOG_ID)
+	public string TranslateSingle(TextUI _txt)
 	{
-		string res = null;
-		Debug.Log (translated_texts.ContainsKey(DIALOG_ID));
-		if ( translated_texts.ContainsKey(DIALOG_ID) != null)
+		string result = "lol";
+		if ( translated_texts.ContainsKey(_txt.DIALOG_ID) != false)
 		{
-			res = translated_texts[DIALOG_ID];
+			result = translated_texts[_txt.DIALOG_ID];
 		}
 		else
 		{
-			res = "TRANSLATION_NOT_FOUND...ID_" + DIALOG_ID;
+			Debug.Log(_txt.DIALOG_ID + " couldn't be found");
+			result = "NOT FOUND";
 		}
-		return (res);
+		return (result);
 	}
 	public void TranslateAll(ref TextUI[] _arrTxt)
 	{
-		TextUI[] allTxt = GameObject.FindObjectsOfType(typeof(TextUI)) as TextUI[];
-		foreach (TextUI _tx in allTxt)
+//		TextUI[] allTxt = GameObject.FindObjectsOfType(typeof(TextUI)) as TextUI[];
+		foreach (TextUI _tx in _arrTxt)
 		{
-			_tx.text = translated_texts[_tx.DIALOG_ID];
+			if (translated_texts.ContainsKey(_tx.DIALOG_ID) != false && _tx.dontTranslate == false)
+			{		
+				_tx.text = translated_texts[_tx.DIALOG_ID];
+			}
+			else
+			{
+				if (_tx.dontTranslate == false)
+				{
+					Debug.Log(_tx.DIALOG_ID + " couldn't be found");
+					_tx.text = "NOT FOUND";
+				}
+			}
+			
 		}
 	}
 

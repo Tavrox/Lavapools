@@ -22,9 +22,14 @@ public class TextEditor : Editor
 		{
 			text.TranslateAllInScene();
 		}
-
-
-
+		if (GUILayout.Button("renameAllTextObject"))
+		{
+			text.renameAllTextObject();
+		}
+		if (GUILayout.Button("Setup_DialogID"))
+		{
+			text.SetupDialogIDFromGameObject();
+		}
 	}
 
 }

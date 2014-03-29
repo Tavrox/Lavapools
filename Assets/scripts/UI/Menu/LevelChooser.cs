@@ -23,7 +23,7 @@ public class LevelChooser : MonoBehaviour {
 		ThumbGO = new GameObject("Thumbnails");
 		ThumbGO.transform.parent = gameObject.transform;
 		ThumbGO.transform.localPosition = new Vector3(0f,0f,0f);
-		levelName = FETool.findWithinChildren(gameObject, "LevelTitle/LevelName").GetComponent<TextUI>();
+		levelName = FETool.findWithinChildren(gameObject, "LevelTitle/LEVEL_NAME").GetComponent<TextUI>();
 		_btnLeft = FETool.findWithinChildren(gameObject, "SelectLeft").GetComponent<LevelChooserButton>();
 		_btnRight = FETool.findWithinChildren(gameObject, "SelectRight").GetComponent<LevelChooserButton>();
 

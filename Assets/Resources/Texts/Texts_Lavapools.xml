@@ -1,71 +1,71 @@
 <texts>							
 	<info>		Pour créer un espace, entrez /n				</info>
 	<entry id='OBJECTIVE_LEVEL'>						
-		<english>		</english>	<help>	0	</help>
-		<french>		</french>	<help>	0	</help>
+		<english>	Placeholder	</english>	<help>	11	</help>
+		<french>	Placeholder	</french>	<help>	11	</help>
 	</entry>						
 	<entry id='KRUSTY_DIED'>						
-		<english>	Krusty di/ned miserab l y.	</english>	<help>	26	</help>
-		<french>	Krusty est mort lamentablement.	</french>	<help>	31	</help>
+		<english>	Placeholder	</english>	<help>	11	</help>
+		<french>	Placeholder	</french>	<help>	11	</help>
 	</entry>						
 	<entry id='OBJECTIVE_LEVELID'>						
-		<english>	Level $levelid	</english>	<help>	14	</help>
-		<french>	Niveau $levelid	</french>	<help>	15	</help>
+		<english>	Placeholder	</english>	<help>	11	</help>
+		<french>	Placeholder	</french>	<help>	11	</help>
 	</entry>						
 	<entry id='RESPAWN_COMMAND'>						
-		<english>		</english>	<help>	0	</help>
-		<french>		</french>	<help>	0	</help>
+		<english>	Placeholder	</english>	<help>	11	</help>
+		<french>	Placeholder	</french>	<help>	11	</help>
 	</entry>						
 	<entry id='START_TITLE'>						
-		<english>	Start	</english>	<help>	5	</help>
-		<french>	Jouer	</french>	<help>	5	</help>
+		<english>	Placeholder	</english>	<help>	11	</help>
+		<french>	Placeholder	</french>	<help>	11	</help>
 	</entry>						
 	<entry id='BEST_TITLE'>						
-		<english>		</english>	<help>	0	</help>
-		<french>		</french>	<help>	0	</help>
+		<english>	Placeholder	</english>	<help>	11	</help>
+		<french>	Placeholder	</french>	<help>	11	</help>
 	</entry>						
 	<entry id='LEADERBOARD_TITLE'>						
-		<english>		</english>	<help>	0	</help>
-		<french>		</french>	<help>	0	</help>
+		<english>	Placeholder	</english>	<help>	11	</help>
+		<french>	Placeholder	</french>	<help>	11	</help>
 	</entry>						
 	<entry id='OPTION_TITLE'>						
-		<english>		</english>	<help>	0	</help>
-		<french>		</french>	<help>	0	</help>
+		<english>	Placeholder	</english>	<help>	11	</help>
+		<french>	Placeholder	</french>	<help>	11	</help>
 	</entry>						
 	<entry id='CREDITS_TITLE'>						
-		<english>		</english>	<help>	0	</help>
-		<french>		</french>	<help>	0	</help>
+		<english>	Placeholder	</english>	<help>	11	</help>
+		<french>	Placeholder	</french>	<help>	11	</help>
 	</entry>						
 	<entry id='EXIT_TITLE'>						
-		<english>		</english>	<help>	0	</help>
-		<french>		</french>	<help>	0	</help>
+		<english>	Placeholder	</english>	<help>	11	</help>
+		<french>	Placeholder	</french>	<help>	11	</help>
 	</entry>						
 	<entry id='VERSION_TITLE'>						
-		<english>	Free version/n Alpha v.2 by	</english>	<help>	27	</help>
-		<french>	Version Gratuite/n Alphav.2 par	</french>	<help>	31	</help>
+		<english>	Placeholder	</english>	<help>	11	</help>
+		<french>	Placeholder	</french>	<help>	11	</help>
 	</entry>						
 	<entry id='TEAM_TITLE'>						
-		<english>	4EdgesGames	</english>	<help>	11	</help>
-		<french>	4EdgesGames	</french>	<help>	11	</help>
+		<english>	Placeholder	</english>	<help>	11	</help>
+		<french>	Placeholder	</french>	<help>	11	</help>
 	</entry>						
 	<entry id='OBJECTIVE_DECK1'>						
-		<english>		</english>	<help>	0	</help>
-		<french>		</french>	<help>	0	</help>
+		<english>	Placeholder	</english>	<help>	11	</help>
+		<french>	Placeholder	</french>	<help>	11	</help>
 	</entry>						
-	<entry id='OBJECTIVE_DECK1'>						
-		<english>		</english>	<help>	0	</help>
-		<french>		</french>	<help>	0	</help>
+	<entry id='START'>						
+		<english>	Placeholder	</english>	<help>	11	</help>
+		<french>	Placeholder	</french>	<help>	11	</help>
 	</entry>						
-	<entry id='OBJECTIVE_DECK1'>						
-		<english>		</english>	<help>	0	</help>
-		<french>		</french>	<help>	0	</help>
+	<entry id='JULIEN_LABEL'>						
+		<english>	Placeholder	</english>	<help>	11	</help>
+		<french>	Placeholder	</french>	<help>	11	</help>
 	</entry>						
-	<entry id='OBJECTIVE_DECK1'>						
-		<english>		</english>	<help>	0	</help>
-		<french>		</french>	<help>	0	</help>
+	<entry id='PAUL_LABEL'>						
+		<english>	Placeholder	</english>	<help>	11	</help>
+		<french>	Placeholder	</french>	<help>	11	</help>
 	</entry>						
-	<entry id='OBJECTIVE_DECK1'>						
-		<english>		</english>	<help>	0	</help>
-		<french>		</french>	<help>	0	</help>
+	<entry id='EXIT_BTN'>						
+		<english>	Placeholder	</english>	<help>	11	</help>
+		<french>	Placeholder	</french>	<help>	11	</help>
 	</entry>						
 </texts>							
