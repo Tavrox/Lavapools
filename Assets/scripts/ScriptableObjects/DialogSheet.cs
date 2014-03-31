@@ -9,6 +9,7 @@ public class DialogSheet : ScriptableObject {
 	private XmlDocument Doc;
 	public TextAsset dialog_file; 
 	public Dictionary<string, string> translated_texts; // First is ID, Second is Translation
+	public bool translateGame;
 
 	public void SetupTranslation(GameSetup.languageList _lang)
 	{
@@ -18,36 +19,45 @@ public class DialogSheet : ScriptableObject {
 	}
 	public string TranslateSingle(TextUI _txt)
 	{
-		string result = "lol";
-		if ( translated_texts.ContainsKey(_txt.DIALOG_ID) != false)
+		string result = _txt.text;
+		if (translateGame == true)
 		{
-			result = translated_texts[_txt.DIALOG_ID];
-		}
-		else
-		{
-			Debug.Log(_txt.DIALOG_ID + " couldn't be found");
-			result = "NOT FOUND";
+			if ( translated_texts.ContainsKey(_txt.DIALOG_ID) != false && _txt.DIALOG_ID != null)
+			{
+				result = translated_texts[_txt.DIALOG_ID];
+				_txt.hasBeenTranslated = true;
+			}
+			else
+			{
+				Debug.Log(_txt.gameObject.name + "/" +  _txt.DIALOG_ID + " couldn't be found");
+				_txt.hasBeenTranslated = false;
+				result = "NOT FOUND";
+			}
 		}
 		return (result);
 	}
 	public void TranslateAll(ref TextUI[] _arrTxt)
 	{
-//		TextUI[] allTxt = GameObject.FindObjectsOfType(typeof(TextUI)) as TextUI[];
-		foreach (TextUI _tx in _arrTxt)
+		if (translateGame == true)
 		{
-			if (translated_texts.ContainsKey(_tx.DIALOG_ID) != false && _tx.dontTranslate == false)
-			{		
-				_tx.text = translated_texts[_tx.DIALOG_ID];
-			}
-			else
+	//		TextUI[] allTxt = GameObject.FindObjectsOfType(typeof(TextUI)) as TextUI[];
+			foreach (TextUI _tx in _arrTxt)
 			{
-				if (_tx.dontTranslate == false)
-				{
-					Debug.Log(_tx.DIALOG_ID + " couldn't be found");
-					_tx.text = "NOT FOUND";
+				if (translated_texts.ContainsKey(_tx.DIALOG_ID) != false && _tx.dontTranslate == false)
+				{		
+					_tx.text = translated_texts[_tx.DIALOG_ID];
+					_tx.hasBeenTranslated = true;
 				}
+				else
+				{
+					if (_tx.dontTranslate == false)
+					{
+						Debug.Log(_tx.gameObject.name + "/" +  _tx.DIALOG_ID + " couldn't be found");
+						_tx.text = "NOT FOUND";
+						_tx.hasBeenTranslated = false;
+					}
+				}	
 			}
-			
 		}
 	}
 
@@ -62,13 +72,13 @@ public class DialogSheet : ScriptableObject {
 
 		foreach (XmlNode node in TextNode)
 		{
+			node.InnerXml = node.InnerXml.Replace("	", "");
 			XmlNodeList entries = node.SelectNodes("entry");
 			foreach (XmlNode entry in entries)
 			{
 				string entryID = entry.Attributes.GetNamedItem("id").Value;
 				XmlNodeList LangEntry = entry.SelectNodes(_lang.ToString());
 				string entryTranslation = LangEntry.Item(0).InnerText;
-				entryTranslation = entryTranslation.Replace("	", "");
 				entryTranslation = entryTranslation.Replace("/n", "\n");
 
 				if (translate.ContainsKey(entryID) == false)
@@ -77,46 +87,26 @@ public class DialogSheet : ScriptableObject {
 				}
 			}
 		}
-
-
-
-
-		//
-		//		XmlWriter _writer = XmlWriter.Create("lol.xml");
-		//		_writer.WriteComment("prout man");
-		//
-		//		scoreLines = new Label[10];
-		//		scoreLines = GetComponentsInChildren<Label>();
-		//		if (www.error == null && www.isDone)
-		//		{
-		//			
-//		scoreNodes = xmlDoc.SelectNodes("leaderboard/mode");
-		//			writeInLeaderboard(xmlDoc, scoreNodes);
-//		List<UserLeaderboard> listUser = new List<UserLeaderboard>();
-		//		foreach (XmlNode node in _nodelist)
-		//		{
-		//			foreach (XmlNode _childNode in node.ChildNodes)
-		//			{
-		////				UserLeaderboard _usr = new UserLeaderboard();
-		//				UserLeaderboard _usr = (UserLeaderboard)ScriptableObject.CreateInstance("UserLeaderboard");
-		//				
-		//				_usr.name 		= 			_childNode.SelectSingleNode("name").InnerText;
-		//				_usr.userID 	= int.Parse(_childNode.Attributes.GetNamedItem("id").Value);
-		//				_usr.userName	= 			_childNode.SelectSingleNode("name").InnerText;
-		//				_usr.userBestScore 	= int.Parse(_childNode.SelectSingleNode("score").InnerText);
-		//				_usr.timestamp 	= 			_childNode.SelectSingleNode("timestamp").InnerText;
-		//				if (node.Attributes.GetNamedItem("type").Value == GameModes.gameTypeList.Arcade.ToString())
-		//				{
-		//					_usr.typeReg = GameModes.gameTypeList.Arcade;
-		//				}
-		//				if (node.Attributes.GetNamedItem("type").Value == GameModes.gameTypeList.Story.ToString())
-		//				{
-		//					_usr.typeReg = GameModes.gameTypeList.Story;
-		//				}
-		//
-		//				listUser.Add(_usr);
-		//			}
-		//		}
 		return (translate);
 	}
+	
+	
+	public string findTranslation (string _id)
+	{
+		string result = _id;
+		if (translateGame == true)
+		{
+			if ( translated_texts.ContainsKey(_id) != false)
+			{
+				result = translated_texts[_id];
+			}
+			else
+			{
+				Debug.Log(_id + " couldn't be found");
+				result = "NOT FOUND";
+			}
+		}
+		return (result);
+	}
+
 }

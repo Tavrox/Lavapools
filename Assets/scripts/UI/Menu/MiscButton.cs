@@ -65,11 +65,13 @@ public class MiscButton : MonoBehaviour {
 			}
 			case buttonList.MuteGlobal :
 			{
+				mainUi = GameObject.Find("TitleMenu").GetComponent<MainTitleUI>();
 				mainUi.PLAYERDAT.MuteGlobal();
 				break;
 			}
 			case buttonList.MuteMusic :
 			{
+				mainUi = GameObject.Find("TitleMenu").GetComponent<MainTitleUI>();
 				mainUi.PLAYERDAT.MuteMusic();
 				break;
 			}

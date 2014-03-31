@@ -26,20 +26,22 @@ public class MainTitleUI : MonoBehaviour
 	
 	void Awake () 
 	{
-
+		name = "TitleMenu";
 		SETUP = Resources.Load ("Tuning/GameSetup") as GameSetup;
 		Chooser = FETool.findWithinChildren(gameObject, "LevelChooser").GetComponent<LevelChooser>();
 		SETUP.startTranslate(SETUP.ChosenLanguage);
 		SETUP.translateSceneText();	
 		levelInformations = new List<LevelInfo> ();
 
-		if (GameObject.Find("PlayerData") == null)
+		if (GameObject.FindGameObjectWithTag("PlayerData") == null)
 		{
-			Instantiate(Resources.Load("Presets/PlayerData") as GameObject);
+			GameObject _dataObj = Instantiate(Resources.Load("Presets/PlayerData")) as GameObject;
+			PLAYERDAT = _dataObj.GetComponent<PlayerData>();
 		}
 		else
 		{
 			PLAYERDAT = GameObject.FindGameObjectWithTag("PlayerData").GetComponent<PlayerData>();
+			print("find");
 		}
 
 		if (GameObject.Find("Frameworks") == null)

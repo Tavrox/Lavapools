@@ -52,6 +52,7 @@ public class LevelManager : MonoBehaviour {
 		if (GameObject.Find("PlayerData") == null)
 		{
 			PlayerData _dataplayer = Instantiate(Resources.Load("Presets/PlayerData")) as PlayerData;
+//			_dataplayer
 			_profile = _dataplayer.PROFILE;
 		}
 		else

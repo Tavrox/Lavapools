@@ -24,13 +24,11 @@ public class PlayerData : MonoBehaviour {
 	{
 		if (musicVolMuted == true)
 		{
-			print ("mutemuzik");
 			musicVolMuted = false;
 			musicVolume = 0f;
 		}
 		else
 		{
-			print ("unmutemuzik");
 			musicVolMuted = true;
 			musicVolume = 1f;
 		}
@@ -41,13 +39,11 @@ public class PlayerData : MonoBehaviour {
 	{
 		if (globalVolMuted == true)
 		{
-			print ("muteglob");
 			globalVolMuted = false;
 			GlobalVolume = 0f;
 		}
 		else
 		{
-			print ("unmuteglob");
 			globalVolMuted = true;
 			GlobalVolume = 1f;
 		}
