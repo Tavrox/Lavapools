@@ -14,7 +14,7 @@ public class LevelManager : MonoBehaviour {
 	public GameSetup.LevelList NAME;
 
 	[HideInInspector] public bool GemHasSpawned = false;
-	[HideInInspector] public float score = 0f;
+	public float score = 0f;
 	[HideInInspector] public float bestScore = 0f;
 	[HideInInspector] public float collecSum = 0f;
 	[HideInInspector] public int gemCounter = 0;

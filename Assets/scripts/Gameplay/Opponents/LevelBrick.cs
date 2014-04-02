@@ -54,6 +54,7 @@ public class LevelBrick : MonoBehaviour {
 		GameEventManager.GameStart += GameStart;
 		GameEventManager.GameOver += GameOver;
 		GameEventManager.Respawn += Respawn;
+		GameEventManager.EndGame += EndGame;
 
 		speed = getSpeed(this, _bricksSpeed);
 		initSpeed = speed;
@@ -98,6 +99,11 @@ public class LevelBrick : MonoBehaviour {
 	private void GameOver()
 	{
 
+	}
+
+	private void EndGame()
+	{
+		isEnabled = false;
 	}
 	
 	private void Respawn()

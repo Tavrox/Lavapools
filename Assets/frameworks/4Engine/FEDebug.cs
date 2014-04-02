@@ -21,6 +21,14 @@ public class FEDebug : MonoBehaviour {
 		{
 			GodMode = false;
 		}
+
+		if (Input.GetKey(KeyCode.A))
+		{
+			print ("add score");
+			LevelManager _mana = GameObject.Find("LevelManager").GetComponent<LevelManager>() ;
+			_mana.collecSum += 1f;
+			_mana.tools.checkLevelCompletion();
+		}
 		           
 	}
 

@@ -23,7 +23,7 @@ public class Chainsaw : PatrolBrick {
 
 	public void launchInvertAnim()
 	{
-		Invert.PlayOnce("chainsaw_invert");
+		Invert.PlayOnce("invert");
 		OTTween invertSpeed = new OTTween(this, 1f).Tween("speed", 0f).PingPong();
 	}
 }

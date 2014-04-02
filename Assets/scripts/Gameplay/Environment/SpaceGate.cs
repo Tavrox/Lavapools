@@ -32,6 +32,11 @@ public class SpaceGate : MonoBehaviour {
 
 	}
 
+	void OnTriggerEnter()
+	{
+		GameEventManager.TriggerEndGame();
+	}
+
 	public void collectPart(float _score)
 	{
 		StartCoroutine(CollectGatePart(_score));
@@ -59,6 +64,7 @@ public class SpaceGate : MonoBehaviour {
 
 	public void triggTransition(int _nbTransition)
 	{
+		print ("trigg" + _nbTransition);
 		switch (_nbTransition)
 		{
 		case 1:

@@ -5,12 +5,13 @@ public static class GameEventManager {
 
 	public delegate void GameEvent();
 	
-	public static event GameEvent GameStart, GameOver, Respawn;
+	public static event GameEvent GameStart, GameOver, Respawn, EndGame;
 	public enum GameState
 	{
 		Live,
 		GameOver,
-		MainMenu
+		MainMenu,
+		EndGame
 	};
 	public static bool gameOver = false;
 	
@@ -44,6 +45,17 @@ public static class GameEventManager {
 			gameOver = false;
 			LevelManager.GAMESTATE = GameState.Live;
 			Respawn();
+		}
+	}
+
+	public static void TriggerEndGame()
+	{
+		if(EndGame != null)
+		{
+			Debug.LogWarning("TO THE STARS CRABBY ENGAME");
+			gameOver = false;
+			LevelManager.GAMESTATE = GameState.EndGame;
+			EndGame();
 		}
 	}
 }

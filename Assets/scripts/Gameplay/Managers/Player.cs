@@ -68,6 +68,7 @@ public class Player : MonoBehaviour {
 		GameEventManager.GameStart += GameStart;
 		GameEventManager.GameOver += GameOver;
 		GameEventManager.Respawn += Respawn;
+		GameEventManager.EndGame += EndGame;
 	}
 	
 	// Update is called once per frame
@@ -233,5 +234,10 @@ public class Player : MonoBehaviour {
 			_notif.makeFadeOut();
 	//		OnPlatforms = 0;
 		}
+	}
+
+	private void EndGame()
+	{
+//		transform.position = new Vector3(transform.position.x, transform.position.y, 200f);
 	}
 }
