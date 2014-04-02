@@ -950,7 +950,7 @@
             <key>size</key>
             <string>{512,1024}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:5f185f5f0c04a42146e6797815511772:7f2c039df2affaf1bc2cecef9df4e5c5:e5cf3cba82ad0660ff9df1afd691b27d$</string>
+            <string>$TexturePacker:SmartUpdate:7ba3e8cd7dd61de7123e918eebb27abf:c90943b70e3e1726272ab9d06cb87ef0:e5cf3cba82ad0660ff9df1afd691b27d$</string>
             <key>textureFileName</key>
             <string>gameplay.png</string>
         </dict>

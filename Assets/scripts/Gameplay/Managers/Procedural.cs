@@ -94,6 +94,12 @@ public class Procedural : MonoBehaviour {
 		{
 			MasterAudio.TriggerPlaylistClip(_step.Music_To_Play.ToString());
 		}
+		if (_step.MusicSource != null)
+		{
+			MasterAudio.TriggerPlaylistClip(_step.MusicSource.name);
+//			MasterAudio.TriggerNextPlaylistClip();
+			print (_step.MusicSource.name);
+		}
 
 		if (_step.LevelToUnlock != null)
 		{
@@ -108,6 +114,7 @@ public class Procedural : MonoBehaviour {
 	{
 		if (this != null)
 		{
+			MasterAudio.StopAllPlaylists();
 			CancelInvoke("checkScore");
 		}
 	}

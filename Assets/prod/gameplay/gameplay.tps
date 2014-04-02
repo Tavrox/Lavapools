@@ -188,9 +188,65 @@
             <filename>chainsaw00invert.png</filename>
             <filename>chainsaw10invert.png</filename>
             <filename>supportGate.png</filename>
-            <filename>gatePart.png</filename>
             <filename>pathGate.png</filename>
-            <filename>pathExit.png</filename>
+            <filename>pathExit03active.png</filename>
+            <filename>gatePart00.png</filename>
+            <filename>gatePart01.png</filename>
+            <filename>gatePart02.png</filename>
+            <filename>gatePart03.png</filename>
+            <filename>gatePart04.png</filename>
+            <filename>gatePart05.png</filename>
+            <filename>gatePart06.png</filename>
+            <filename>gatePart07.png</filename>
+            <filename>gatePart08.png</filename>
+            <filename>gatePart09.png</filename>
+            <filename>gatePart10.png</filename>
+            <filename>gatePart11.png</filename>
+            <filename>gatePart12.png</filename>
+            <filename>gatePart13.png</filename>
+            <filename>gatePart14.png</filename>
+            <filename>gatePart15.png</filename>
+            <filename>gatePart16.png</filename>
+            <filename>gatePart17.png</filename>
+            <filename>gatePart18.png</filename>
+            <filename>gatePart19.png</filename>
+            <filename>gatePart20.png</filename>
+            <filename>gatePart21.png</filename>
+            <filename>path00drowning.png</filename>
+            <filename>path01drowning.png</filename>
+            <filename>path02drowning.png</filename>
+            <filename>path03drowning.png</filename>
+            <filename>path04drowning.png</filename>
+            <filename>path05drowning.png</filename>
+            <filename>path06drowning.png</filename>
+            <filename>path07drowning.png</filename>
+            <filename>path08drowning.png</filename>
+            <filename>path09drowning.png</filename>
+            <filename>path10drowning.png</filename>
+            <filename>path11drowning.png</filename>
+            <filename>path12drowning.png</filename>
+            <filename>path13drowning.png</filename>
+            <filename>path14drowning.png</filename>
+            <filename>path15drowning.png</filename>
+            <filename>path16drowning.png</filename>
+            <filename>path17drowning.png</filename>
+            <filename>path18drowning.png</filename>
+            <filename>path19drowning.png</filename>
+            <filename>path20drowning.png</filename>
+            <filename>path21drowning.png</filename>
+            <filename>path22drowning.png</filename>
+            <filename>path23drowning.png</filename>
+            <filename>path24drowning.png</filename>
+            <filename>path25drowning.png</filename>
+            <filename>path26drowning.png</filename>
+            <filename>path27drowning.png</filename>
+            <filename>pathExit00active.png</filename>
+            <filename>pathExit01active.png</filename>
+            <filename>pathExit02active.png</filename>
+            <filename>bat04signal.png</filename>
+            <filename>bat01signal.png</filename>
+            <filename>bat02signal.png</filename>
+            <filename>bat03signal.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

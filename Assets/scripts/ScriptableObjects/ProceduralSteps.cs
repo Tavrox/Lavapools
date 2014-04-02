@@ -22,6 +22,7 @@ public class ProceduralSteps : ScriptableObject {
 		SuperHexacrab
 	};
 	public MusicList Music_To_Play;
+	public AudioClip MusicSource;
 	public int stepID;
 	public enum conditionEnum
 	{
