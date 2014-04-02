@@ -18,19 +18,19 @@
    <tile gid="0"/>
    <tile gid="37"/>
    <tile gid="0"/>
-   <tile gid="8"/>
-   <tile gid="14"/>
-   <tile gid="18"/>
-   <tile gid="40"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="35"/>
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="33"/>
    <tile gid="7"/>
    <tile gid="79"/>
    <tile gid="63"/>
-   <tile gid="46"/>
-   <tile gid="47"/>
-   <tile gid="50"/>
+   <tile gid="14"/>
+   <tile gid="16"/>
+   <tile gid="17"/>
    <tile gid="47"/>
    <tile gid="63"/>
    <tile gid="59"/>
@@ -51,8 +51,8 @@
    <tile gid="29"/>
    <tile gid="48"/>
    <tile gid="83"/>
-   <tile gid="85"/>
-   <tile gid="0"/>
+   <tile gid="82"/>
+   <tile gid="69"/>
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
@@ -69,16 +69,17 @@
  </layer>
  <objectgroup name="Collider_0" width="10" height="6">
   <object x="92" y="11" width="41" height="181"/>
-  <object x="13" y="161" width="233" height="32"/>
+  <object x="14" y="158" width="236" height="36"/>
   <object x="15" y="162" width="41" height="188"/>
   <object x="47" y="312" width="49" height="38"/>
   <object x="91" y="310" width="41" height="110"/>
   <object x="131" y="374" width="228" height="45"/>
-  <object x="247" y="89" width="259" height="254"/>
+  <object x="246" y="157" width="263" height="181"/>
   <object x="245" y="337" width="111" height="44"/>
-  <object x="463" y="12" width="274" height="35"/>
-  <object x="463" y="36" width="41" height="59"/>
+  <object x="463" y="8" width="274" height="40"/>
+  <object x="464" y="35" width="41" height="124"/>
   <object x="691" y="33" width="46" height="162"/>
   <object x="504" y="156" width="195" height="41"/>
+  <object x="511" y="305" width="79" height="35"/>
  </objectgroup>
 </map>
