@@ -20,6 +20,7 @@ public class LevelChooser : MonoBehaviour {
 	{
 		SETUP = MainTitleUI.getSetup();
 		PLAYERDATA = GameObject.FindGameObjectWithTag("PlayerData").GetComponent<PlayerData>();
+		PLAYERDATA.Launch();
 		ThumbGO = new GameObject("Thumbnails");
 		ThumbGO.transform.parent = gameObject.transform;
 		ThumbGO.transform.localPosition = new Vector3(0f,0f,0f);

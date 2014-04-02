@@ -57,6 +57,15 @@ public class MainTitleUI : MonoBehaviour
 		Landing = FETool.findWithinChildren(gameObject, "Landing");
 		LevelChooser = FETool.findWithinChildren(gameObject, "LevelChooser");
 		Options = FETool.findWithinChildren(gameObject, "Options");
+
+		TranslateAllInScene();
+	}
+
+	public void TranslateAllInScene()
+	{
+		SETUP.TextSheet.SetupTranslation(SETUP.ChosenLanguage);
+		TextUI[] allTxt = GameObject.FindObjectsOfType(typeof(TextUI)) as TextUI[];
+		SETUP.TextSheet.TranslateAll(ref allTxt);
 	}
 
 	public static GameSetup getSetup()

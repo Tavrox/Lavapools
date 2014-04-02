@@ -49,15 +49,15 @@ public class LevelManager : MonoBehaviour {
 			fmObj.name = "Frameworks";
 		}
 
-		if (GameObject.Find("PlayerData") == null)
+		if (GameObject.FindGameObjectWithTag("PlayerData") == null)
 		{
-			PlayerData _dataplayer = Instantiate(Resources.Load("Presets/PlayerData")) as PlayerData;
-//			_dataplayer
-			_profile = _dataplayer.PROFILE;
+			GameObject _dataplayer = Instantiate(Resources.Load("Presets/PlayerData")) as GameObject;
+			_dataplayer.GetComponent<PlayerData>().Launch();
+			_profile = _dataplayer.GetComponent<PlayerData>().PROFILE;
 		}
 		else
 		{
-			_profile = GameObject.Find("PlayerData").GetComponent<PlayerData>().PROFILE;
+			_profile = GameObject.FindGameObjectWithTag("PlayerData").GetComponent<PlayerData>().PROFILE;
 		}
 
 

@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using System.Collections;
-[ExecuteInEditMode]
 
 public class TextUI : MonoBehaviour {
 
@@ -15,25 +14,23 @@ public class TextUI : MonoBehaviour {
 
 	public void Awake()
 	{
+		hasBeenTranslated = false;
 		SETUP = Resources.Load("Tuning/GameSetup") as GameSetup;
 		_mesh = GetComponent<TextMesh>();
 		initColor = color;
 		DIALOG_ID = gameObject.name;
+	}
+
+	void Start()
+	{
 		if (hasBeenTranslated == false)
 		{
-			SETUP.startTranslate(SETUP.ChosenLanguage);
-			text = SETUP.TextSheet.TranslateSingle(this);
-			hasBeenTranslated = true;
+			TranslateThis();
 		}
 	}
 	
 	void Update()
 	{
-		if (hasBeenTranslated == false)
-		{
-			text = SETUP.TextSheet.TranslateSingle(this);
-			hasBeenTranslated = true;
-		}
 		text = text.Replace("/n", "\n");
 		_mesh.text = text;
 		_mesh.color = color;
@@ -55,8 +52,7 @@ public class TextUI : MonoBehaviour {
 	}
 	public void TranslateThis()
 	{
-		SETUP.TextSheet.SetupTranslation(SETUP.ChosenLanguage);
-//		text = SETUP.TextSheet.TranslateSingle(this);
+		text = SETUP.TextSheet.TranslateSingle(this);
 	}
 	public void TranslateAllInScene()
 	{

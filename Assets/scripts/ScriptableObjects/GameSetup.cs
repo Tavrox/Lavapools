@@ -24,6 +24,7 @@ public class GameSetup : ScriptableObject {
 	public string facebook_url;
 	public string website_url;
 	public DialogSheet TextSheet;
+	public bool translated = false;
 
 	public void changeLang( languageList _chosen)
 	{
@@ -35,6 +36,7 @@ public class GameSetup : ScriptableObject {
 		if (TextSheet != null)
 		{
 			TextSheet.SetupTranslation(_chosen);
+			translated = true;
 		}
 		else
 		{

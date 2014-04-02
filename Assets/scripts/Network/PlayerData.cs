@@ -11,11 +11,10 @@ public class PlayerData : MonoBehaviour {
 	public bool musicVolMuted = false;
 
 	// Use this for initialization
-	void Awake () 
+	public void Launch () 
 	{
 		PROFILE = Resources.Load("Tuning/PlayerProfile") as PlayerProfile;
 		SETUP = Resources.Load("Tuning/GameSetup") as GameSetup;
-		name = "PlayerData";
 		DontDestroyOnLoad(this);
 	}
 
