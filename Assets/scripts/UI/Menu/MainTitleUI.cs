@@ -41,7 +41,6 @@ public class MainTitleUI : MonoBehaviour
 		else
 		{
 			PLAYERDAT = GameObject.FindGameObjectWithTag("PlayerData").GetComponent<PlayerData>();
-			print("find");
 		}
 
 		if (GameObject.Find("Frameworks") == null)

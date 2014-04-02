@@ -32,7 +32,7 @@ public class LevelManager : MonoBehaviour {
 	[HideInInspector] public LevelTools.KillerList killer;
 	[HideInInspector] public Procedural proc;
 	[HideInInspector] public MainMenu menuManager;
-	[HideInInspector] public PlayerProfile _profile;
+	[HideInInspector] public PlayerData _profile;
 	[HideInInspector] public Player _player;
 	[HideInInspector] public SpaceGate Gate;
 	
@@ -52,12 +52,13 @@ public class LevelManager : MonoBehaviour {
 		if (GameObject.FindGameObjectWithTag("PlayerData") == null)
 		{
 			GameObject _dataplayer = Instantiate(Resources.Load("Presets/PlayerData")) as GameObject;
-			_dataplayer.GetComponent<PlayerData>().Launch();
-			_profile = _dataplayer.GetComponent<PlayerData>().PROFILE;
+			_profile = _dataplayer.GetComponent<PlayerData>();
+			_profile.Launch();
 		}
 		else
 		{
-			_profile = GameObject.FindGameObjectWithTag("PlayerData").GetComponent<PlayerData>().PROFILE;
+			_profile = GameObject.FindGameObjectWithTag("PlayerData").GetComponent<PlayerData>();
+			_profile.Launch();
 		}
 
 
@@ -108,6 +109,7 @@ public class LevelManager : MonoBehaviour {
 		{
 			menuManager = GameObject.Find("UI").GetComponent<MainMenu>();
 		}
+		TranslateAllInScene();
 		menuManager.Setup(this);
 		managerChecker();
 		proc.triggerStep(proc._listSteps[0]);
@@ -192,6 +194,14 @@ public class LevelManager : MonoBehaviour {
 				bestTime = SecondsElapsed;
 			}
 		}
+	}
+
+
+	public void TranslateAllInScene()
+	{
+		_profile.SETUP.TextSheet.SetupTranslation(_profile.SETUP.ChosenLanguage);
+		TextUI[] allTxt = GameObject.FindObjectsOfType(typeof(TextUI)) as TextUI[];
+		_profile.SETUP.TextSheet.TranslateAll(ref allTxt);
 	}
 
 	public void triggerSpawnGem(CollectiblePlaces _origin)
