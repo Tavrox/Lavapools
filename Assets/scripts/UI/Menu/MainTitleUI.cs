@@ -58,6 +58,7 @@ public class MainTitleUI : MonoBehaviour
 		Options = FETool.findWithinChildren(gameObject, "Options");
 
 		TranslateAllInScene();
+//		StartCoroutine("DelayMusic");
 	}
 
 	public void TranslateAllInScene()
