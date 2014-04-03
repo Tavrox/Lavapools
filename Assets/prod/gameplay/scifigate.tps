@@ -218,6 +218,12 @@
             <filename>gate33vortex.png</filename>
             <filename>gate34vortex.png</filename>
             <filename>gate35vortex.png</filename>
+            <filename>supportGate.png</filename>
+            <filename>pathExit00active.png</filename>
+            <filename>pathExit01active.png</filename>
+            <filename>pathExit02active.png</filename>
+            <filename>pathExit03active.png</filename>
+            <filename>pathGate.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

@@ -48,14 +48,17 @@ public class SpaceGate : MonoBehaviour {
 	{
 		yield return new WaitForSeconds(1.5f);
 		_score +=1;
-		if (_score < 10)
+		if (_score < 25)
 		{
-			_spr.frameName = "gate" + "0" +  _score +"load";
-			
-		}
-		else
-		{
-			_spr.frameName = "gate" + _score +"load";
+			if (_score < 10)
+			{
+				_spr.frameName = "gate" + "0" +  _score +"load";
+				
+			}
+			else
+			{
+				_spr.frameName = "gate" + _score +"load";
+			}
 		}
 	}
 

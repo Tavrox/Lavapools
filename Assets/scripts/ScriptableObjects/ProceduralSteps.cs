@@ -7,21 +7,14 @@ public class ProceduralSteps : ScriptableObject {
 
 	public enum Difficulty
 	{
-		Noobcrab,
 		Crabbish,
+		Crablike,
+		Crabmaster,
 		Hardcrabore,
-		Crabmaster, 
+		Supercrab,
 		SuperHexacrab
 	}
 	public Difficulty levelLabel;
-	public enum MusicList
-	{
-		None,
-		Noobcrab,
-		Hardcrabore,
-		SuperHexacrab
-	};
-	public MusicList Music_To_Play;
 	public AudioClip MusicSource;
 	public int stepID;
 	public enum conditionEnum
@@ -51,7 +44,6 @@ public class ProceduralSteps : ScriptableObject {
 		TimerCondition = 0f;
 		Crab_SpeedMultiplier = 1f;
 		Enemies_SpeedMultiplier = 1f;
-		Music_To_Play = MusicList.None;
 		stepID = int.Parse(name);
 	}
 

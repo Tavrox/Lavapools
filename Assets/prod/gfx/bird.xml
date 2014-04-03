@@ -118,7 +118,7 @@
             <key>size</key>
             <string>{512,512}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:607a0aa62564f68273eba51e495ef8f7:688571516a20e91d63083936842142b2:251da82c517908c0df73b068b8ea77ec$</string>
+            <string>$TexturePacker:SmartUpdate:b777b58d744c246257d1121f0047022e:688571516a20e91d63083936842142b2:251da82c517908c0df73b068b8ea77ec$</string>
             <key>textureFileName</key>
             <string>bird.png</string>
         </dict>

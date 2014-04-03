@@ -313,7 +313,7 @@
             <key>size</key>
             <string>{256,512}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:3382438f08ef6980a55a29605040081f:3cbda0069f8739721dacf44d87f85555:de9c3a652de05c54cfe7478834f7eafa$</string>
+            <string>$TexturePacker:SmartUpdate:300acc50c51287023eae9115e123844a:3cbda0069f8739721dacf44d87f85555:de9c3a652de05c54cfe7478834f7eafa$</string>
             <key>textureFileName</key>
             <string>chainsaw.png</string>
         </dict>

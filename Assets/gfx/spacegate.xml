@@ -563,6 +563,84 @@
                 <key>sourceSize</key>
                 <string>{136,147}</string>
             </dict>
+            <key>pathExit00active.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{146,917},{121,75}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{121,75}}</string>
+                <key>sourceSize</key>
+                <string>{121,75}</string>
+            </dict>
+            <key>pathExit01active.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{272,917},{121,75}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{121,75}}</string>
+                <key>sourceSize</key>
+                <string>{121,75}</string>
+            </dict>
+            <key>pathExit02active.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{398,917},{121,75}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{121,75}}</string>
+                <key>sourceSize</key>
+                <string>{121,75}</string>
+            </dict>
+            <key>pathExit03active.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{524,917},{121,75}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{121,75}}</string>
+                <key>sourceSize</key>
+                <string>{121,75}</string>
+            </dict>
+            <key>pathGate.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{650,917},{72,74}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{72,74}}</string>
+                <key>sourceSize</key>
+                <string>{72,74}</string>
+            </dict>
+            <key>supportGate.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{727,917},{208,65}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{208,65}}</string>
+                <key>sourceSize</key>
+                <string>{208,65}</string>
+            </dict>
         </dict>
         <key>metadata</key>
         <dict>
@@ -573,7 +651,7 @@
             <key>size</key>
             <string>{1024,2048}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:b7f4dceed01e928786a1cf2d9b7da7a9:02c2a8c9dbb85d8301d7d3a5f4f9f3bb:e54609b0fc87cb18de0a50e9036b418b$</string>
+            <string>$TexturePacker:SmartUpdate:ad7944101119e16a020d1b9c867ba0b7:9d85b613555b70b3ebcb8b2c0ec69c51:e54609b0fc87cb18de0a50e9036b418b$</string>
             <key>textureFileName</key>
             <string>spacegate.png</string>
         </dict>

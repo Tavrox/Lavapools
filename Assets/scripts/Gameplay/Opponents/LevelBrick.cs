@@ -11,13 +11,13 @@ public class LevelBrick : MonoBehaviour {
 		Chainsaw,
 	};
 	public typeList type;
-	[HideInInspector] public float speed;
+	public float speed;
 	[HideInInspector] public float initSpeed;
 	[HideInInspector] public LevelManager _levMan;
 	[HideInInspector] public int brickId;
-	[HideInInspector] public Vector3 direction;
-	[HideInInspector] public Vector3 target;
-	[HideInInspector] public Vector3 pos;
+	public Vector3 direction;
+	public Vector3 target;
+	public Vector3 pos;
 	[HideInInspector] public Vector3 initPos;
 	[HideInInspector] public Player _player;
 	[HideInInspector] public bool isEnabled = false;
@@ -69,7 +69,6 @@ public class LevelBrick : MonoBehaviour {
 	public float getSpeed(LevelBrick _brick, Dictionary<LevelBrick.typeList, float> _dico)
 	{
 		float res = 0f;
-//		print (_brick);
 		res = _dico[_brick.type];
 		return res;
 	}

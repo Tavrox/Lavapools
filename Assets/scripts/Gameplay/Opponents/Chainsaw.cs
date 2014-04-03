@@ -18,7 +18,7 @@ public class Chainsaw : PatrolBrick {
 			Debug.Log("The path of "+gameObject.name+" is missing.");
 		}
 		setupPath();
-		Invert = FETool.findWithinChildren(gameObject, "Inversion/sprite/spr").GetComponent<OTAnimatingSprite>();
+		Invert = FETool.findWithinChildren(gameObject, "Inversion").GetComponentInChildren<OTAnimatingSprite>();
 	}
 
 	public void launchInvertAnim()

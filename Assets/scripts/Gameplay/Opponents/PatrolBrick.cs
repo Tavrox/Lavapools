@@ -37,11 +37,12 @@ public class PatrolBrick : LevelBrick {
 //		transform.position = brickPath.findNextWaypoint(currentWP).transform.position;
 		if (type == typeList.Chainsaw)
 		{
-			transform.position = currentWP.transform.position;
+			gameObject.transform.position = currentWP.transform.position;
 		}
 		else
 		{
-			transform.position = GameObject.Find("LevelManager").GetComponent<LevelManager>().Gate.transform.position;
+			SpaceGate gt = GameObject.Find("LevelManager").GetComponent<LevelManager>().Gate;
+			gameObject.transform.position = new Vector3(gt.transform.position.x, gt.transform.position.y, 0f);
 		}
 		initWp = currentWP;
 		initPath = brickPath;
@@ -57,6 +58,7 @@ public class PatrolBrick : LevelBrick {
 
 	public void RecalculateTarget()
 	{
+		pos = gameObject.transform.position;
 		direction = Vector3.Normalize(target - pos);
 	}
 

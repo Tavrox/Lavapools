@@ -88,16 +88,13 @@ public class Procedural : MonoBehaviour {
 			}	
 		}
 		_levMan._player.speed = _levMan._player.speed * _step.Crab_SpeedMultiplier;
-		_levMan.menuManager.changeLevelLabel(_CURRENTSTEP);
+		_levMan.menuManager.changeLevelLabel(_CURRENTSTEP); 
 
-		if (_step.Music_To_Play != ProceduralSteps.MusicList.None)
-		{
-			MasterAudio.TriggerPlaylistClip(_step.Music_To_Play.ToString());
-		}
+		MasterAudio.PlaySound("Steps", 1f, 1f, 0f, "step_" + _step.levelLabel.ToString().ToLower());
+
 		if (_step.MusicSource != null)
 		{
 			MasterAudio.TriggerPlaylistClip(_step.MusicSource.name);
-//			MasterAudio.TriggerNextPlaylistClip();
 			print (_step.MusicSource.name);
 		}
 

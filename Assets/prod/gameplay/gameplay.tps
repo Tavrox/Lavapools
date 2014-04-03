@@ -176,20 +176,6 @@
         <key>fileList</key>
         <array>
             <filename>tinyhotel.png</filename>
-            <filename>chainsaw05invert.png</filename>
-            <filename>chainsaw06invert.png</filename>
-            <filename>chainsaw07invert.png</filename>
-            <filename>chainsaw08invert.png</filename>
-            <filename>chainsaw09invert.png</filename>
-            <filename>chainsaw01invert.png</filename>
-            <filename>chainsaw02invert.png</filename>
-            <filename>chainsaw03invert.png</filename>
-            <filename>chainsaw04invert.png</filename>
-            <filename>chainsaw00invert.png</filename>
-            <filename>chainsaw10invert.png</filename>
-            <filename>supportGate.png</filename>
-            <filename>pathGate.png</filename>
-            <filename>pathExit03active.png</filename>
             <filename>gatePart00.png</filename>
             <filename>gatePart01.png</filename>
             <filename>gatePart02.png</filename>
@@ -210,8 +196,6 @@
             <filename>gatePart17.png</filename>
             <filename>gatePart18.png</filename>
             <filename>gatePart19.png</filename>
-            <filename>gatePart20.png</filename>
-            <filename>gatePart21.png</filename>
             <filename>path00drowning.png</filename>
             <filename>path01drowning.png</filename>
             <filename>path02drowning.png</filename>
@@ -240,13 +224,6 @@
             <filename>path25drowning.png</filename>
             <filename>path26drowning.png</filename>
             <filename>path27drowning.png</filename>
-            <filename>pathExit00active.png</filename>
-            <filename>pathExit01active.png</filename>
-            <filename>pathExit02active.png</filename>
-            <filename>bat04signal.png</filename>
-            <filename>bat01signal.png</filename>
-            <filename>bat02signal.png</filename>
-            <filename>bat03signal.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>
