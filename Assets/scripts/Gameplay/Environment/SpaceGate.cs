@@ -32,9 +32,12 @@ public class SpaceGate : MonoBehaviour {
 
 	}
 
-	void OnTriggerEnter()
+	void OnTriggerEnter(Collider _other)
 	{
-		GameEventManager.TriggerEndGame();
+		if (_other.CompareTag("Player"))
+		{
+			GameEventManager.TriggerEndGame();
+		}
 	}
 
 	public void collectPart(float _score)

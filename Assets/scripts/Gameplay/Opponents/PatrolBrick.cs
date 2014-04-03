@@ -35,7 +35,14 @@ public class PatrolBrick : LevelBrick {
 	{
 		currentWP = brickPath.pickRandomWP();
 //		transform.position = brickPath.findNextWaypoint(currentWP).transform.position;
-		transform.position = currentWP.transform.position;
+		if (type == typeList.Chainsaw)
+		{
+			transform.position = currentWP.transform.position;
+		}
+		else
+		{
+			transform.position = GameObject.Find("LevelManager").GetComponent<LevelManager>().Gate.transform.position;
+		}
 		initWp = currentWP;
 		initPath = brickPath;
 		setupTarget();
