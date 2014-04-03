@@ -55,84 +55,104 @@ public class MiscButton : MonoBehaviour {
 			}
 			case buttonList.PlayLevel :
 			{
+				MasterAudio.PlaySound("select_level");
 				LevelThumbnail _parent = gameObject.transform.parent.gameObject.GetComponent<LevelThumbnail>();
 				levelToLoad = _parent.Info.LvlName;
 				if (_parent.Locked == false)
 				{
-					Application.LoadLevel(levelToLoad.ToString());
+					StartCoroutine(delayLevelTrigger(levelToLoad.ToString()));
 				}
 				break;
 			}
 			case buttonList.MuteGlobal :
 			{
+				MasterAudio.PlaySound("click");
 				mainUi = GameObject.Find("TitleMenu").GetComponent<MainTitleUI>();
 				mainUi.PLAYERDAT.MuteGlobal();
 				break;
 			}
 			case buttonList.MuteMusic :
 			{
+				MasterAudio.PlaySound("click");
 				mainUi = GameObject.Find("TitleMenu").GetComponent<MainTitleUI>();
 				mainUi.PLAYERDAT.MuteMusic();
 				break;
 			}
 			case buttonList.Twitter :
 			{
+				MasterAudio.PlaySound("click");
 				Application.OpenURL(SETUP.twitter_url);
 				break;
 			}
 			case buttonList.Facebook :
 			{
+				MasterAudio.PlaySound("click");
 				Application.OpenURL(SETUP.facebook_url);
 				break;
 			}
 			case buttonList.TwitterPublish :
 			{
 				
+				MasterAudio.PlaySound("click");
 				break;
 			}
 			case buttonList.FacebookPublish :
 			{
 				
+				MasterAudio.PlaySound("click");
 				break;
 			}
 			case buttonList.Website :
 			{
+				MasterAudio.PlaySound("click");
 				Application.OpenURL(SETUP.website_url);
 				break;
 			}
 			case buttonList.GoHome :
 			{
+				MasterAudio.PlaySound("click");
 				Application.LoadLevel(0);
 				break;
 			}
 			case buttonList.CloseGame :
 			{
+				MasterAudio.PlaySound("click");
 				Application.Quit();
 				break;
 			}
 			case buttonList.OpenOptions :
 			{
+				MasterAudio.PlaySound("click");
 				mainUi.makeTransition( mainUi.Options);
 				break;
 			}
 			case buttonList.OpenLevel :
 			{
+				MasterAudio.PlaySound("click");
 				mainUi.makeTransition( mainUi.LevelChooser);
 				break;
 			}
 			case buttonList.OpenCredits :
 			{
+				MasterAudio.PlaySound("click");
 				mainUi.makeTransition( mainUi.Credits);
 				break;
 			}
 			case buttonList.BackHome :
 			{
+				MasterAudio.PlaySound("click");
 				mainUi.backHome();
 				break;
 			}
 			}
 //			print ("clicked" + buttonType);
 		}
+	}
+
+	IEnumerator delayLevelTrigger(string lvlName)
+	{
+		yield return new WaitForSeconds(1f);
+		Application.LoadLevel(lvlName);
 	}
 
 	public void LockButtons()

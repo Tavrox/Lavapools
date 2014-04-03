@@ -12,6 +12,7 @@ public class LevelManager : MonoBehaviour {
 
 	public GameEventManager.GameState _EditorState ;
 	public GameSetup.LevelList NAME;
+	public GameSetup.LevelList NEXT_LEVEL;
 
 	[HideInInspector] public bool GemHasSpawned = false;
 	public float score = 0f;

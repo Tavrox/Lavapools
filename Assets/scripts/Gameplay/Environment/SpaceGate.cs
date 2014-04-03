@@ -48,7 +48,7 @@ public class SpaceGate : MonoBehaviour {
 	{
 		yield return new WaitForSeconds(1.5f);
 		_score +=1;
-		if (_score < 25)
+		if (_score < 26)
 		{
 			if (_score < 10)
 			{

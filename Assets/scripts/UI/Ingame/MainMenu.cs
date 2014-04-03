@@ -10,6 +10,7 @@ public class MainMenu : MonoBehaviour {
 	[HideInInspector] public IngameUI _IngameUI;
 	[HideInInspector] public GameOverUI _GameOverUI;
 	[HideInInspector] public EntryUI _EntryUI;
+	[HideInInspector] public EndGameUI _EndGameUI;
 
 	// Use this for initialization
 	public void Setup (LevelManager _lm) {
@@ -24,6 +25,7 @@ public class MainMenu : MonoBehaviour {
 		_IngameUI = FETool.findWithinChildren(this.gameObject, "Ingame").GetComponent<IngameUI>();
 		_GameOverUI = FETool.findWithinChildren(this.gameObject, "GameOver").GetComponent<GameOverUI>();
 		_EntryUI = FETool.findWithinChildren(this.gameObject, "EntryMenu").GetComponent<EntryUI>();
+		_EndGameUI = FETool.findWithinChildren(this.gameObject, "EndGame").GetComponent<EndGameUI>();
 
 		_IngameUI.SetupSub(this);
 		_IngameUI.Setup();
@@ -31,6 +33,8 @@ public class MainMenu : MonoBehaviour {
 		_GameOverUI.Setup();
 		_EntryUI.SetupSub(this);
 		_EntryUI.Setup();
+		_EndGameUI.SetupSub(this);
+		_EndGameUI.Setup();
 
 	}
 
@@ -69,6 +73,7 @@ public class MainMenu : MonoBehaviour {
 	public void changeLevelLabel(ProceduralSteps _step)
 	{
 		_IngameUI.LevelTxt.text = "" + _step.levelLabel + "";
+		_IngameUI.TriggerLvText();
 
 	}
 

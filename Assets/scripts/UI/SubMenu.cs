@@ -8,7 +8,8 @@ public class SubMenu : MonoBehaviour {
 	{
 		Ingame,
 		GameOver,
-		EntryMenu
+		EntryMenu,
+		EndGame
 	}
 	public submenus subMenuList;
 	[HideInInspector] public List<GameObject> menuThings;

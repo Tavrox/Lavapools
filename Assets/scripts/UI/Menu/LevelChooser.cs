@@ -46,6 +46,7 @@ public class LevelChooser : MonoBehaviour {
 		_btnLeft.Setup(this, LevelChooserButton.DirectionList.Left);
 		_btnRight.Setup(this, LevelChooserButton.DirectionList.Right);
 		currThumb = Thumbs[0];
+		levelName.text = currThumb.nameLv.ToString();
 		checkCurrThumb();
 	}
 

@@ -26,6 +26,7 @@ public class MainTitleUI : MonoBehaviour
 	
 	void Awake () 
 	{
+		Screen.SetResolution(1366,768, false);
 		name = "TitleMenu";
 		SETUP = Resources.Load ("Tuning/GameSetup") as GameSetup;
 		Chooser = FETool.findWithinChildren(gameObject, "LevelChooser").GetComponent<LevelChooser>();

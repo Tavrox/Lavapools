@@ -25,11 +25,13 @@ public class PlayerData : MonoBehaviour {
 		{
 			musicVolMuted = false;
 			musicVolume = 0f;
+			MasterAudio.PlaylistsMuted = false;
 		}
 		else
 		{
 			musicVolMuted = true;
 			musicVolume = 1f;
+			MasterAudio.PlaylistsMuted = true;
 		}
 		
 	}
@@ -40,11 +42,13 @@ public class PlayerData : MonoBehaviour {
 		{
 			globalVolMuted = false;
 			GlobalVolume = 0f;
+			MasterAudio.MixerMuted = true;
 		}
 		else
 		{
 			globalVolMuted = true;
 			GlobalVolume = 1f;
+			MasterAudio.MixerMuted = false;
 		}
 		
 		
