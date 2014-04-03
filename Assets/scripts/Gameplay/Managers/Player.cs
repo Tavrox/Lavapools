@@ -87,7 +87,6 @@ public class Player : MonoBehaviour {
 			if (OnPlatforms <= 0)
 			{
 				GameEventManager.TriggerGameOver(LevelTools.KillerList.Lava);
-				MasterAudio.PlaySound("Enviro");
 			}
 			KeyInput();
 			XboxInput();

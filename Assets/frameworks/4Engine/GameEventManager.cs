@@ -30,6 +30,24 @@ public static class GameEventManager {
 	{
 		if(GameOver != null && LevelManager.GAMESTATE != GameState.GameOver)
 		{
+			switch (_killer)
+			{
+			case  LevelTools.KillerList.Bird :
+			{
+				MasterAudio.PlaySound("death_bat");
+				break;
+			}
+			case  LevelTools.KillerList.Chainsaw :
+			{
+				MasterAudio.PlaySound("death_saw");
+				break;
+			}
+			case  LevelTools.KillerList.Lava :
+			{
+				MasterAudio.PlaySound("death_fall");
+				break;
+			}
+			}
 			Debug.LogWarning("GAMEOVER "+ _killer);
 			gameOver = true;
 			LevelManager.GAMESTATE = GameState.GameOver;

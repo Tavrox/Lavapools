@@ -50,6 +50,7 @@ public class SpaceGate : MonoBehaviour {
 		_score +=1;
 		if (_score < 26)
 		{
+			MasterAudio.PlaySound("door_piece");
 			if (_score < 10)
 			{
 				_spr.frameName = "gate" + "0" +  _score +"load";

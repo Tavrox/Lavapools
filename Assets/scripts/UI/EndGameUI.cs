@@ -7,8 +7,11 @@ public class EndGameUI : SubMenu {
 	private GameObject BackTwo;
 	private GameObject BackOneIn;
 	private GameObject BackTwoIn;
-	private GameObject Crabby;
+	private OTSprite CrabbySpr;
+	private OTSprite StrokeSpr;
+	private OTSprite VortexSpr;
 	private TextUI Succeed;
+	private TextUI CurrLvl;
 
 	public LeaderboardUI _LeaderboardUI;
 	public RespawnUI _RespawnUI;
@@ -40,7 +43,11 @@ public class EndGameUI : SubMenu {
 		BackOneIn = FETool.findWithinChildren(gameObject, "Background/newPosP1");
 		BackTwoIn = FETool.findWithinChildren(gameObject, "Background/newPosP2");
 		Succeed = FETool.findWithinChildren(gameObject, "SUCCEED").GetComponent<TextUI>();
+		CurrLvl = FETool.findWithinChildren(gameObject, "CURRLVL").GetComponent<TextUI>();
 
+		CrabbySpr = FETool.findWithinChildren(gameObject, "Crab").GetComponentInChildren<OTSprite>();
+		StrokeSpr = FETool.findWithinChildren(gameObject, "Door/Stroke").GetComponentInChildren<OTSprite>();
+		VortexSpr = FETool.findWithinChildren(gameObject, "Door/Vortex").GetComponentInChildren<OTSprite>();
 
 		InvokeRepeating("UpdateScore", 0f, 0.3f);
 	}
@@ -71,6 +78,7 @@ public class EndGameUI : SubMenu {
 			new OTTween(_RespawnUI.gameObject.transform, 0.3f, OTEasing.QuadIn ).Tween("position", respOutPos);
 			new OTTween(_LeaderboardUI.gameObject.transform, 0.3f, OTEasing.QuadIn ).Tween("position", lbOutPos);
 			new OTTween(Succeed, 0.3f, OTEasing.QuadIn ).Tween("color", Color.clear);
+			new OTTween(CurrLvl, 0.3f, OTEasing.QuadIn ).Tween("color", Color.clear);
 		}
 	}
 	
@@ -84,6 +92,12 @@ public class EndGameUI : SubMenu {
 			new OTTween(BackOne.gameObject.transform, 0.3f, OTEasing.QuadIn ).Tween("position", BackOneIn.transform.position);
 			new OTTween(BackTwo.gameObject.transform, 0.3f, OTEasing.QuadIn ).Tween("position", BackTwoIn.transform.position);
 			new OTTween(Succeed, 0.3f, OTEasing.QuadIn ).Tween("color", Color.white);
+			new OTTween(CurrLvl, 0.3f, OTEasing.QuadIn ).Tween("color", CurrLvl.initColor);
+			new OTTween(CrabbySpr, 0.3f ).Tween("alpha", 1f);
+			new OTTween(StrokeSpr, 0.3f ).Tween("alpha", 1f);
+			new OTTween(VortexSpr, 0.3f ).Tween("alpha", 1f);
+			new OTTween(BackOne.GetComponentInChildren<OTSprite>(), 0.3f ).Tween("alpha", 1f);
+			new OTTween(BackTwo.GetComponentInChildren<OTSprite>(), 0.3f ).Tween("alpha", 1f);
 		}
 	}
 }

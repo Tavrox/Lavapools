@@ -21,6 +21,7 @@ public class Gatepart : Collectible {
 			collPlace.occupied = false;
 			_levMan.tools.CollectObject(this);
 			_levMan.triggerSpawnGem(collPlace);
+			MasterAudio.PlaySound("door_piece_pick");
 			Vanish();
 		}
 	}

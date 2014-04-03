@@ -124,6 +124,7 @@ public class LevelManager : MonoBehaviour {
 		GameEventManager.GameStart += GameStart;
 		GameEventManager.GameOver += GameOver;
 		GameEventManager.Respawn += Respawn;
+		GameEventManager.EndGame += EndGame;
 
 		if (GAMESTATE == GameEventManager.GameState.MainMenu)
 		{
@@ -294,5 +295,11 @@ public class LevelManager : MonoBehaviour {
 			}
 		}
 	}
+
+	private void EndGame()
+	{
+		MasterAudio.PlaySound("teleport");
+	}
+
 	#endregion
 }

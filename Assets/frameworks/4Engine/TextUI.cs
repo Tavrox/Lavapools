@@ -57,7 +57,7 @@ public class TextUI : MonoBehaviour {
 	public void TranslateThis()
 	{
 		text = SETUP.TextSheet.TranslateSingle(this);
-		print ("translateSingle" + DIALOG_ID);
+//		print ("translateSingle" + DIALOG_ID);
 	}
 	public void TranslateAllInScene()
 	{

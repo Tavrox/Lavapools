@@ -34,6 +34,7 @@ public class CollectiblePlaces : MonoBehaviour {
 				partObj.transform.position = gameObject.transform.position;
 				_part.value = LevelManager.GlobTuning.Gatepart_Value;
 				_part._relatedPlace = this;
+				MasterAudio.PlaySound("door_piece_appear");
 				break;
 
 			}

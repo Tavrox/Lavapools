@@ -27,6 +27,7 @@ public class LevelChooserButton : MiscButton {
 		{
 			base.LockButtons();
 			chooser.SwipeThumbnail(this);
+			MasterAudio.PlaySound("select_level");
 		}
 	}
 

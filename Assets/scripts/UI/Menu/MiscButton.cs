@@ -55,7 +55,6 @@ public class MiscButton : MonoBehaviour {
 			}
 			case buttonList.PlayLevel :
 			{
-				MasterAudio.PlaySound("select_level");
 				LevelThumbnail _parent = gameObject.transform.parent.gameObject.GetComponent<LevelThumbnail>();
 				levelToLoad = _parent.Info.LvlName;
 				if (_parent.Locked == false)
