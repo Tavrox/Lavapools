@@ -98,8 +98,6 @@ public class Procedural : MonoBehaviour {
 		if (_step.MusicSource != null)
 		{
 			MasterAudio.TriggerPlaylistClip(_step.MusicSource.name);
-			print (_step.MusicSource.name);
-			print ("play");
 		}
 
 		if (_step.LevelToUnlock != null)

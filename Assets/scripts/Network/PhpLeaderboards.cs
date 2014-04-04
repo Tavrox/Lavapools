@@ -35,6 +35,7 @@ public class PhpLeaderboards : MonoBehaviour
 	{
 		StartCoroutine(GetScores());
 		updateScores(ref ListUser, ref ListEntries);
+//		sortLeaderboard(ref ListUser, 15);
 	}
 
  	private void updateScores(ref List<UserLeaderboard> _listLB,ref List<LBEntry> _listEntries)
@@ -57,12 +58,12 @@ public class PhpLeaderboards : MonoBehaviour
 	// remember to use StartCoroutine when calling this function!
 	IEnumerator PostScores(string name, float score, int level_id)
 	{
-		string hash = FETool.Md5Sum(name + score + secretKey);
+		string hash = FETool.Md5Sum(level_id + name + score + secretKey);
 		int prse = Mathf.RoundToInt(score);
 		string post_url = 
 			addScoreURL + 
-				"?name=" + WWW.EscapeURL(name) +
-				"&levelid=" + level_id.ToString() +
+				"?levelid=" + level_id.ToString() +
+				"&name=" + WWW.EscapeURL(name) +
 				"&score=" + prse.ToString() +
 				"&hash=" + hash;
 
@@ -75,10 +76,10 @@ public class PhpLeaderboards : MonoBehaviour
 		}
 		else
 		{
-			print ("Record envoyé"
-			       + level_id.ToString() + "]["
-			       + name  + "]["
-			       + score + "]");
+//			print ("Record envoyé"
+//			       + level_id.ToString() + "]["
+//			       + name  + "]["
+//			       + score + "]");
 		}
 	}
 	
@@ -86,6 +87,7 @@ public class PhpLeaderboards : MonoBehaviour
 	// remember to use StartCoroutine when calling this function!
 	IEnumerator GetScores()
 	{
+//		print ("bitc plz");
 		WWW hs_get = new WWW(highscoreURL);
 		yield return hs_get;
 		
@@ -104,6 +106,8 @@ public class PhpLeaderboards : MonoBehaviour
 //				Debug.Log (ListUser[i].ranking +""+ ListUser[i].userName +""+ ListUser[i].userBestScore);
 			}
 		}
+		
+		updateScores(ref ListUser, ref ListEntries);
 	}
 
 	private void Respawn()

@@ -30,12 +30,12 @@ public class EndGameUI : SubMenu {
 		GameEventManager.EndGame += EndGame;
 		subMenuList = submenus.EndGame;
 
-		_LeaderboardUI = FETool.findWithinChildren(this.gameObject, "Leaderboard").GetComponent<LeaderboardUI>();
-		_lb = FETool.findWithinChildren(this.gameObject, "Leaderboard/LB_Content").GetComponent<PhpLeaderboards>();
+//		_LeaderboardUI = FETool.findWithinChildren(this.gameObject, "Leaderboard").GetComponent<LeaderboardUI>();
+//		_lb = FETool.findWithinChildren(this.gameObject, "Leaderboard/LB_Content").GetComponent<PhpLeaderboards>();
 		_RespawnUI = FETool.findWithinChildren(this.gameObject, "Respawn").GetComponent<RespawnUI>();
 		_RespawnUI.Setup();
-		lbInitpos = _LeaderboardUI.transform.position;
-		lbOutPos = new Vector3 (lbInitpos.x, lbInitpos.y-5f, lbInitpos.z);
+//		lbInitpos = _LeaderboardUI.transform.position;
+//		lbOutPos = new Vector3 (lbInitpos.x, lbInitpos.y-5f, lbInitpos.z);
 		respInitpos = _RespawnUI.transform.position;
 		respOutPos = new Vector3 (respInitpos.x-20f, respInitpos.y, respInitpos.z);
 		BackOne = FETool.findWithinChildren(gameObject, "Background/p1");
@@ -76,7 +76,7 @@ public class EndGameUI : SubMenu {
 		if (this != null)
 		{
 			new OTTween(_RespawnUI.gameObject.transform, 0.3f, OTEasing.QuadIn ).Tween("position", respOutPos);
-			new OTTween(_LeaderboardUI.gameObject.transform, 0.3f, OTEasing.QuadIn ).Tween("position", lbOutPos);
+//			new OTTween(_LeaderboardUI.gameObject.transform, 0.3f, OTEasing.QuadIn ).Tween("position", lbOutPos);
 			new OTTween(Succeed, 0.3f, OTEasing.QuadIn ).Tween("color", Color.clear);
 			new OTTween(CurrLvl, 0.3f, OTEasing.QuadIn ).Tween("color", Color.clear);
 		}
@@ -88,7 +88,7 @@ public class EndGameUI : SubMenu {
 		{
 			print ("trigg");
 			new OTTween(_RespawnUI.gameObject.transform, 0.3f, OTEasing.QuadIn ).Tween("position", respInitpos);
-			new OTTween(_LeaderboardUI.gameObject.transform, 0.3f, OTEasing.QuadIn ).Tween("position", lbInitpos);
+//			new OTTween(_LeaderboardUI.gameObject.transform, 0.3f, OTEasing.QuadIn ).Tween("position", lbInitpos);
 			new OTTween(BackOne.gameObject.transform, 0.3f, OTEasing.QuadIn ).Tween("position", BackOneIn.transform.position);
 			new OTTween(BackTwo.gameObject.transform, 0.3f, OTEasing.QuadIn ).Tween("position", BackTwoIn.transform.position);
 			new OTTween(Succeed, 0.3f, OTEasing.QuadIn ).Tween("color", Color.white);

@@ -15,13 +15,6 @@ public class LBEntry : MonoBehaviour {
 		Rank = FETool.findWithinChildren(gameObject, "Rank").GetComponent<TextMesh>();
 		UserName = FETool.findWithinChildren(gameObject, "Username").GetComponent<TextMesh>();
 		Score = FETool.findWithinChildren(gameObject, "Score").GetComponent<TextMesh>();
-
-		Rank.text = "01";
-//		Rank.color = LevelManager.GlobTuning.ColRank;
-		UserName.text = "TEST";
-//		UserName.color = LevelManager.GlobTuning.ColPlayer;
-		Score.text = "1000000";
-//		Score.color = LevelManager.GlobTuning.ColScore;
 	}
 
 	public void UpdateScore(string _rank, string _score, string _username )
