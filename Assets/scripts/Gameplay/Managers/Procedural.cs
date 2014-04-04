@@ -17,6 +17,7 @@ public class Procedural : MonoBehaviour {
 		string path = "Procedural/" + _levMan.NAME + "/";
 		_levMan = GameObject.Find("LevelManager").GetComponent<LevelManager>();
 		_listSteps = new List<ProceduralSteps>();
+		GameEventManager.GameStart += GameStart;
 		GameEventManager.Respawn += Respawn;
 		GameEventManager.GameOver += GameOver;
 
@@ -97,6 +98,8 @@ public class Procedural : MonoBehaviour {
 		if (_step.MusicSource != null)
 		{
 			MasterAudio.TriggerPlaylistClip(_step.MusicSource.name);
+			print (_step.MusicSource.name);
+			print ("play");
 		}
 
 		if (_step.LevelToUnlock != null)
@@ -106,6 +109,14 @@ public class Procedural : MonoBehaviour {
 
 		_step.BricksEnabled.RemoveAll((string obj) =>  obj == "");
 		_step.WaypointsToInvert.RemoveAll((string obj) =>  obj == "");
+	}
+
+	private void GameStart()
+	{
+		if (this != null)
+		{
+
+		}
 	}
 
 	private void GameOver()

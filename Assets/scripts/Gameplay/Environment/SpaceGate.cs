@@ -19,6 +19,7 @@ public class SpaceGate : MonoBehaviour {
 	{
 		_spr = FETool.findWithinChildren(gameObject, "TheGate").GetComponentInChildren<OTSprite>();
 		GameEventManager.Respawn += Respawn;
+		GameEventManager.GameOver += GameOver;
 
 		firstStep = FETool.findWithinChildren(gameObject, "ExitLoc/1");
 		secondStep = FETool.findWithinChildren(gameObject, "ExitLoc/2");
@@ -28,9 +29,9 @@ public class SpaceGate : MonoBehaviour {
 		spriteSecondStep = secondStep.GetComponentsInChildren<OTSprite>();
 		spriteThirdStep = thirdStep.GetComponentsInChildren<OTSprite>();
 
-		fadeOutSprites(spriteFirstStep);
-		fadeOutSprites(spriteSecondStep);
-		fadeOutSprites(spriteThirdStep);
+		fadeSprites(spriteFirstStep, 0f);
+		fadeSprites(spriteSecondStep, 0f);
+		fadeSprites(spriteThirdStep, 0f);
 
 		Vortex = FETool.findWithinChildren(gameObject, "Vortex").GetComponentInChildren<OTAnimatingSprite>();
 	}
@@ -43,15 +44,41 @@ public class SpaceGate : MonoBehaviour {
 		}
 	}
 
-	private void disableGround(GameObject _step)
+	private void triggerGround(int _Nbstep, bool _isEnabled, float _toAlpha)
 	{
-		_step.GetComponent<ImmovableGround>().enabled = false;
-	}
-
-	private void enableGround(GameObject _step)
-	{
-		_step.GetComponent<ImmovableGround>().enabled = true;
-		print (_step.GetComponent<ImmovableGround>().enabled);
+		switch (_Nbstep)
+		{
+			case 0: // FOR ALL
+			{
+				firstStep.GetComponent<ImmovableGround>().enabled = _isEnabled;
+				fadeSprites(spriteFirstStep, _toAlpha);
+				secondStep.GetComponent<ImmovableGround>().enabled = _isEnabled;
+				fadeSprites(spriteSecondStep, _toAlpha);
+				thirdStep.GetComponent<ImmovableGround>().enabled = _isEnabled;
+				fadeSprites(spriteThirdStep, _toAlpha);
+				break;
+			}
+			case 1:
+				{
+				firstStep.GetComponent<ImmovableGround>().enabled = _isEnabled;
+				fadeSprites(spriteFirstStep, _toAlpha);
+				break;
+			}
+			case 2:
+			{
+				secondStep.GetComponent<ImmovableGround>().enabled = _isEnabled;
+				fadeSprites(spriteSecondStep, _toAlpha);
+				break;
+			}
+			case 3:
+			{
+				thirdStep.GetComponent<ImmovableGround>().enabled = _isEnabled;
+				fadeSprites(spriteThirdStep, _toAlpha);
+				Vortex.PlayLoop("active");
+				Vortex.speed = 0.3f;
+				break;
+			}
+		}
 	}
 
 	public void collectPart(float _score)
@@ -77,56 +104,55 @@ public class SpaceGate : MonoBehaviour {
 		}
 	}
 
-
-	private void Respawn()
-	{
-		_spr.frameName = "gate00load";
-		Vortex.PlayLoop("idle");
-		Vortex.speed = 0.8f;
-	}
-
 	public void triggTransition(int _nbTransition)
 	{
 		switch (_nbTransition)
 		{
 		case 1:
 		{
-			enableGround(firstStep);
-			fadeInSprites(spriteFirstStep);
+			triggerGround(1, true, 1f);
 			break;
 		}
 		case 2:
 		{
-			enableGround(secondStep);
-			fadeInSprites(spriteSecondStep);
+			triggerGround(2, true, 1f);
 			break;
 		}
 		case 3:
 		{
-			enableGround(thirdStep);
-			fadeInSprites(spriteThirdStep);
+			triggerGround(3, true, 1f);
 			Vortex.PlayLoop("active");
 			Vortex.speed = 0.3f;
 			break;
 		}
 		}
 	}
-
-	private void fadeInSprites(OTSprite[] _arrSprite)
+	private void fadeSprites(OTSprite[] _arrSprite, float _toAlpha)
 	{
 		foreach (OTSprite _spr in _arrSprite)
 		{
-			new OTTween(_spr, 1f).Tween("alpha", 1f);
-		}
-	}
-	private void fadeOutSprites(OTSprite[] _arrSprite)
-	{
-		foreach (OTSprite _spr in _arrSprite)
-		{
-			new OTTween(_spr, 1f).Tween("alpha", 0f);
+			new OTTween(_spr, 1f).Tween("alpha", _toAlpha);
 		}
 	}
 	
+	
+	
+	private void Respawn()
+	{
+		if (this != null)
+		{
+			triggerGround(0, false, 0f);
+		}
+	}
+	
+	
+	private void GameOver()
+	{
+		if (this != null)
+		{
+			triggerGround(0, false, 0f);
+		}
+	}
 
 
 }

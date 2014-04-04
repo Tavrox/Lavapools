@@ -298,7 +298,10 @@ public class LevelManager : MonoBehaviour {
 
 	private void EndGame()
 	{
-		MasterAudio.PlaySound("teleport");
+		if (this != null)
+		{
+			MasterAudio.PlaySound("teleport");
+		}
 	}
 
 	#endregion
