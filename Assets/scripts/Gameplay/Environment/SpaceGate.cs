@@ -142,6 +142,7 @@ public class SpaceGate : MonoBehaviour {
 		if (this != null)
 		{
 			triggerGround(0, false, 0f);
+			_spr.frameName = "gate00load";
 		}
 	}
 	
@@ -151,6 +152,7 @@ public class SpaceGate : MonoBehaviour {
 		if (this != null)
 		{
 			triggerGround(0, false, 0f);
+			_spr.frameName = "gate00load";
 		}
 	}
 
