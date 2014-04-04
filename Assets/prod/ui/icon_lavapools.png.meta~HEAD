@@ -1,9 +1,5 @@
 fileFormatVersion: 2
-<<<<<<< HEAD:Assets/prod/ui/icon_lavapools.png.meta
-guid: a6bd73dced7fce0478817c9b775223ed
-=======
 guid: 74501f714b544a74b8101a501d0f181f
->>>>>>> a5a042f5bc5027d1f778f752df8895359a7da6bb:Assets/prod/ui/icon_lavapools.png.meta
 TextureImporter:
   serializedVersion: 2
   mipmaps:
