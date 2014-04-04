@@ -13,6 +13,8 @@ public class SpaceGate : MonoBehaviour {
 	private OTSprite[] spriteSecondStep = new OTSprite[0];
 	private OTSprite[] spriteThirdStep = new OTSprite[0];
 
+	public OTAnimatingSprite Vortex;
+
 	public void Setup()
 	{
 		_spr = FETool.findWithinChildren(gameObject, "TheGate").GetComponentInChildren<OTSprite>();
@@ -30,6 +32,7 @@ public class SpaceGate : MonoBehaviour {
 		fadeOutSprites(spriteSecondStep);
 		fadeOutSprites(spriteThirdStep);
 
+		Vortex = FETool.findWithinChildren(gameObject, "Vortex").GetComponentInChildren<OTAnimatingSprite>();
 	}
 
 	void OnTriggerEnter(Collider _other)
@@ -38,6 +41,17 @@ public class SpaceGate : MonoBehaviour {
 		{
 			GameEventManager.TriggerEndGame();
 		}
+	}
+
+	private void disableGround(GameObject _step)
+	{
+		_step.GetComponent<ImmovableGround>().enabled = false;
+	}
+
+	private void enableGround(GameObject _step)
+	{
+		_step.GetComponent<ImmovableGround>().enabled = true;
+		print (_step.GetComponent<ImmovableGround>().enabled);
 	}
 
 	public void collectPart(float _score)
@@ -67,26 +81,32 @@ public class SpaceGate : MonoBehaviour {
 	private void Respawn()
 	{
 		_spr.frameName = "gate00load";
+		Vortex.PlayLoop("idle");
+		Vortex.speed = 0.8f;
 	}
 
 	public void triggTransition(int _nbTransition)
 	{
-		print ("trigg" + _nbTransition);
 		switch (_nbTransition)
 		{
 		case 1:
 		{
+			enableGround(firstStep);
 			fadeInSprites(spriteFirstStep);
 			break;
 		}
 		case 2:
 		{
+			enableGround(secondStep);
 			fadeInSprites(spriteSecondStep);
 			break;
 		}
 		case 3:
 		{
+			enableGround(thirdStep);
 			fadeInSprites(spriteThirdStep);
+			Vortex.PlayLoop("active");
+			Vortex.speed = 0.3f;
 			break;
 		}
 		}
@@ -106,6 +126,7 @@ public class SpaceGate : MonoBehaviour {
 			new OTTween(_spr, 1f).Tween("alpha", 0f);
 		}
 	}
+	
 
 
 }

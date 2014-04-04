@@ -76,6 +76,7 @@ public class LevelManager : MonoBehaviour {
 
 		tools = gameObject.AddComponent<LevelTools>();
 		tools._levMan = this;
+		TranslateAllInScene();
 
 		WaypointManager[] waypointsManagers = FETool.findWithinChildren(this.gameObject, "LevelBricks/Waypoints").GetComponentsInChildren<WaypointManager>();
 		foreach (WaypointManager wpm in waypointsManagers)
@@ -110,7 +111,6 @@ public class LevelManager : MonoBehaviour {
 		{
 			menuManager = GameObject.Find("UI").GetComponent<MainMenu>();
 		}
-		TranslateAllInScene();
 		menuManager.Setup(this);
 		managerChecker();
 		proc.triggerStep(proc._listSteps[0]);

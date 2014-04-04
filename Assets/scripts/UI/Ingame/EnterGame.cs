@@ -3,10 +3,13 @@ using System.Collections;
 
 public class EnterGame : MonoBehaviour {
 
+	private TextUI _lvlNameDisp;
+
 
 	public void Setup(LevelInfo _currLvl)
 	{
-		FETool.findWithinChildren(gameObject, "Level").GetComponent<TextUI>().text = LevelManager.CurrentLevelInfo.levelID + " - " + LevelManager.CurrentLevelInfo.LvlName.ToString();
+		_lvlNameDisp = FETool.findWithinChildren(gameObject, "LEVEL_NAME").GetComponent<TextUI>();
+		_lvlNameDisp.text = _currLvl.LvlName.ToString();
 	}
 	
 	// Update is called once per frame
@@ -14,7 +17,7 @@ public class EnterGame : MonoBehaviour {
 	{
 		if (this != null)
 		{
-			if (Input.GetKeyDown (KeyCode.Space) || Input.GetKeyDown(LevelManager.InputMan.EnterButton)) 
+			if (Input.GetKeyDown(LevelManager.InputMan.EnterButton) || Input.GetKeyDown(LevelManager.InputMan.KeyEnter) ) 
 			{
 				GameEventManager.TriggerRespawn("Enter Game");
 			}

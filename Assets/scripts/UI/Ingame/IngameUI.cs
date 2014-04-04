@@ -14,8 +14,6 @@ public class IngameUI : SubMenu {
 	public Vector3 initPos;
 	public Vector3 outPos;
 
-	public bool iscreated = false;
-
 	public void Setup()
 	{
 		initPos = gameObject.transform.position;
@@ -25,7 +23,7 @@ public class IngameUI : SubMenu {
 		ScoreTxt = FETool.findWithinChildren(this.gameObject, "Score/SCORE_LAB").GetComponent<TextUI>();
 
 		LevelTxt = FETool.findWithinChildren(this.gameObject, "LevelLabel/LVL_LABEL").GetComponent<TextUI>();
-		LevelTxt._mesh.characterSize = 0.09f;
+		LevelTxt._mesh.characterSize = 0.07f;
 
 		BestScore = FETool.findWithinChildren(this.gameObject, "BestScore/BEST_CONT").GetComponent<TextUI>();
 		BestScoreTxt = FETool.findWithinChildren(this.gameObject, "BestScore/BEST_LABEL").GetComponent<TextUI>();

@@ -14,6 +14,7 @@ public class EntryUI : SubMenu {
 		GameEventManager.Respawn += Respawn;
 
 		_EnterUI = FETool.findWithinChildren(this.gameObject, "EnterGame").GetComponent<EnterGame>();
+		_EnterUI.Setup(LevelManager.CurrentLevelInfo);
 //		_Objective = FETool.findWithinChildren(this.gameObject, "Objective");
 	}
 

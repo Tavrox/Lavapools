@@ -175,8 +175,13 @@
         </struct>
         <key>fileList</key>
         <array>
-            <filename>gate24load.png</filename>
-            <filename>gate25load.png</filename>
+            <filename>supportGate.png</filename>
+            <filename>pathExit00active.png</filename>
+            <filename>pathExit01active.png</filename>
+            <filename>pathExit02active.png</filename>
+            <filename>pathExit03active.png</filename>
+            <filename>pathGate.png</filename>
+            <filename>gate73vortexOpen.png</filename>
             <filename>gate00load.png</filename>
             <filename>gate01load.png</filename>
             <filename>gate02load.png</filename>
@@ -201,13 +206,8 @@
             <filename>gate21load.png</filename>
             <filename>gate22load.png</filename>
             <filename>gate23load.png</filename>
-            <filename>gate36vortex.png</filename>
-            <filename>gate37vortex.png</filename>
-            <filename>gate38vortex.png</filename>
-            <filename>gate39vortex.png</filename>
-            <filename>gate40vortex.png</filename>
-            <filename>gate41vortex.png</filename>
-            <filename>gate42vortex.png</filename>
+            <filename>gate24load.png</filename>
+            <filename>gate25load.png</filename>
             <filename>gate26vortex.png</filename>
             <filename>gate27vortex.png</filename>
             <filename>gate28vortex.png</filename>
@@ -218,12 +218,43 @@
             <filename>gate33vortex.png</filename>
             <filename>gate34vortex.png</filename>
             <filename>gate35vortex.png</filename>
-            <filename>supportGate.png</filename>
-            <filename>pathExit00active.png</filename>
-            <filename>pathExit01active.png</filename>
-            <filename>pathExit02active.png</filename>
-            <filename>pathExit03active.png</filename>
-            <filename>pathGate.png</filename>
+            <filename>gate36vortex.png</filename>
+            <filename>gate37vortex.png</filename>
+            <filename>gate38vortex.png</filename>
+            <filename>gate39vortex.png</filename>
+            <filename>gate40vortex.png</filename>
+            <filename>gate41vortex.png</filename>
+            <filename>gate42vortex.png</filename>
+            <filename>gate43vortex.png</filename>
+            <filename>gate44vortex.png</filename>
+            <filename>gate45vortex.png</filename>
+            <filename>gate46vortex.png</filename>
+            <filename>gate47vortex.png</filename>
+            <filename>gate48vortex.png</filename>
+            <filename>gate49vortex.png</filename>
+            <filename>gate50vortexOpen.png</filename>
+            <filename>gate51vortexOpen.png</filename>
+            <filename>gate52vortexOpen.png</filename>
+            <filename>gate53vortexOpen.png</filename>
+            <filename>gate54vortexOpen.png</filename>
+            <filename>gate55vortexOpen.png</filename>
+            <filename>gate56vortexOpen.png</filename>
+            <filename>gate57vortexOpen.png</filename>
+            <filename>gate58vortexOpen.png</filename>
+            <filename>gate59vortexOpen.png</filename>
+            <filename>gate60vortexOpen.png</filename>
+            <filename>gate61vortexOpen.png</filename>
+            <filename>gate62vortexOpen.png</filename>
+            <filename>gate63vortexOpen.png</filename>
+            <filename>gate64vortexOpen.png</filename>
+            <filename>gate65vortexOpen.png</filename>
+            <filename>gate66vortexOpen.png</filename>
+            <filename>gate67vortexOpen.png</filename>
+            <filename>gate68vortexOpen.png</filename>
+            <filename>gate69vortexOpen.png</filename>
+            <filename>gate70vortexOpen.png</filename>
+            <filename>gate71vortexOpen.png</filename>
+            <filename>gate72vortexOpen.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

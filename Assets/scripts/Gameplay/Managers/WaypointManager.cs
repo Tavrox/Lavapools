@@ -21,14 +21,6 @@ public class WaypointManager : MonoBehaviour {
 		_levMan = man;
 	}
 
-	void Update()
-	{
-		if (Input.GetKeyDown(KeyCode.A))
-		{
-			invertWaypoints();
-		}
-	}
-
 	public Waypoint findNextWaypoint( Waypoint _wpSource)
 	{
 		Waypoint res = null;

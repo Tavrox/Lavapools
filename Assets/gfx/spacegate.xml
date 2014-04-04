@@ -563,10 +563,413 @@
                 <key>sourceSize</key>
                 <string>{136,147}</string>
             </dict>
+            <key>gate43vortex.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{146,917},{136,147}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{136,147}}</string>
+                <key>sourceSize</key>
+                <string>{136,147}</string>
+            </dict>
+            <key>gate44vortex.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{287,917},{136,147}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{136,147}}</string>
+                <key>sourceSize</key>
+                <string>{136,147}</string>
+            </dict>
+            <key>gate45vortex.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{428,917},{136,147}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{136,147}}</string>
+                <key>sourceSize</key>
+                <string>{136,147}</string>
+            </dict>
+            <key>gate46vortex.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{569,917},{136,147}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{136,147}}</string>
+                <key>sourceSize</key>
+                <string>{136,147}</string>
+            </dict>
+            <key>gate47vortex.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{710,917},{136,147}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{136,147}}</string>
+                <key>sourceSize</key>
+                <string>{136,147}</string>
+            </dict>
+            <key>gate48vortex.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{851,917},{136,147}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{136,147}}</string>
+                <key>sourceSize</key>
+                <string>{136,147}</string>
+            </dict>
+            <key>gate49vortex.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{5,1069},{136,147}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{136,147}}</string>
+                <key>sourceSize</key>
+                <string>{136,147}</string>
+            </dict>
+            <key>gate50vortexOpen.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{146,1069},{136,147}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{136,147}}</string>
+                <key>sourceSize</key>
+                <string>{136,147}</string>
+            </dict>
+            <key>gate51vortexOpen.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{287,1069},{136,147}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{136,147}}</string>
+                <key>sourceSize</key>
+                <string>{136,147}</string>
+            </dict>
+            <key>gate52vortexOpen.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{428,1069},{136,147}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{136,147}}</string>
+                <key>sourceSize</key>
+                <string>{136,147}</string>
+            </dict>
+            <key>gate53vortexOpen.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{569,1069},{136,147}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{136,147}}</string>
+                <key>sourceSize</key>
+                <string>{136,147}</string>
+            </dict>
+            <key>gate54vortexOpen.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{710,1069},{136,147}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{136,147}}</string>
+                <key>sourceSize</key>
+                <string>{136,147}</string>
+            </dict>
+            <key>gate55vortexOpen.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{851,1069},{136,147}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{136,147}}</string>
+                <key>sourceSize</key>
+                <string>{136,147}</string>
+            </dict>
+            <key>gate56vortexOpen.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{5,1221},{136,147}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{136,147}}</string>
+                <key>sourceSize</key>
+                <string>{136,147}</string>
+            </dict>
+            <key>gate57vortexOpen.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{146,1221},{136,147}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{136,147}}</string>
+                <key>sourceSize</key>
+                <string>{136,147}</string>
+            </dict>
+            <key>gate58vortexOpen.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{287,1221},{136,147}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{136,147}}</string>
+                <key>sourceSize</key>
+                <string>{136,147}</string>
+            </dict>
+            <key>gate59vortexOpen.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{428,1221},{136,147}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{136,147}}</string>
+                <key>sourceSize</key>
+                <string>{136,147}</string>
+            </dict>
+            <key>gate60vortexOpen.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{569,1221},{136,147}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{136,147}}</string>
+                <key>sourceSize</key>
+                <string>{136,147}</string>
+            </dict>
+            <key>gate61vortexOpen.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{710,1221},{136,147}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{136,147}}</string>
+                <key>sourceSize</key>
+                <string>{136,147}</string>
+            </dict>
+            <key>gate62vortexOpen.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{851,1221},{136,147}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{136,147}}</string>
+                <key>sourceSize</key>
+                <string>{136,147}</string>
+            </dict>
+            <key>gate63vortexOpen.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{5,1373},{136,147}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{136,147}}</string>
+                <key>sourceSize</key>
+                <string>{136,147}</string>
+            </dict>
+            <key>gate64vortexOpen.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{146,1373},{136,147}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{136,147}}</string>
+                <key>sourceSize</key>
+                <string>{136,147}</string>
+            </dict>
+            <key>gate65vortexOpen.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{287,1373},{136,147}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{136,147}}</string>
+                <key>sourceSize</key>
+                <string>{136,147}</string>
+            </dict>
+            <key>gate66vortexOpen.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{428,1373},{136,147}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{136,147}}</string>
+                <key>sourceSize</key>
+                <string>{136,147}</string>
+            </dict>
+            <key>gate67vortexOpen.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{569,1373},{136,147}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{136,147}}</string>
+                <key>sourceSize</key>
+                <string>{136,147}</string>
+            </dict>
+            <key>gate68vortexOpen.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{710,1373},{136,147}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{136,147}}</string>
+                <key>sourceSize</key>
+                <string>{136,147}</string>
+            </dict>
+            <key>gate69vortexOpen.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{851,1373},{136,147}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{136,147}}</string>
+                <key>sourceSize</key>
+                <string>{136,147}</string>
+            </dict>
+            <key>gate70vortexOpen.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{5,1525},{136,147}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{136,147}}</string>
+                <key>sourceSize</key>
+                <string>{136,147}</string>
+            </dict>
+            <key>gate71vortexOpen.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{146,1525},{136,147}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{136,147}}</string>
+                <key>sourceSize</key>
+                <string>{136,147}</string>
+            </dict>
+            <key>gate72vortexOpen.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{287,1525},{136,147}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{136,147}}</string>
+                <key>sourceSize</key>
+                <string>{136,147}</string>
+            </dict>
+            <key>gate73vortexOpen.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{428,1525},{136,147}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{136,147}}</string>
+                <key>sourceSize</key>
+                <string>{136,147}</string>
+            </dict>
             <key>pathExit00active.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{146,917},{121,75}}</string>
+                <string>{{569,1525},{121,75}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -579,7 +982,7 @@
             <key>pathExit01active.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{272,917},{121,75}}</string>
+                <string>{{695,1525},{121,75}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -592,7 +995,7 @@
             <key>pathExit02active.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{398,917},{121,75}}</string>
+                <string>{{821,1525},{121,75}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -605,7 +1008,7 @@
             <key>pathExit03active.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{524,917},{121,75}}</string>
+                <string>{{5,1677},{121,75}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -618,7 +1021,7 @@
             <key>pathGate.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{650,917},{72,74}}</string>
+                <string>{{131,1677},{72,74}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -631,7 +1034,7 @@
             <key>supportGate.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{727,917},{208,65}}</string>
+                <string>{{208,1677},{208,65}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -651,7 +1054,7 @@
             <key>size</key>
             <string>{1024,2048}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:ad7944101119e16a020d1b9c867ba0b7:9d85b613555b70b3ebcb8b2c0ec69c51:e54609b0fc87cb18de0a50e9036b418b$</string>
+            <string>$TexturePacker:SmartUpdate:43d0b136b8364e0fa87e0ad818aee50e:d1713d6dbe5bbbdf005f107993d5f9a6:e54609b0fc87cb18de0a50e9036b418b$</string>
             <key>textureFileName</key>
             <string>spacegate.png</string>
         </dict>
