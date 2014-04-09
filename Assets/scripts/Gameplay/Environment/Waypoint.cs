@@ -20,6 +20,7 @@ public class Waypoint : MonoBehaviour {
 
 	public void Setup()
 	{
+		transform.position = new Vector3(transform.position.x, transform.position.y, 0f);
 		linkedManager = transform.parent.GetComponent<WaypointManager>();
 		id = int.Parse(name);
 	}
@@ -33,7 +34,7 @@ public class Waypoint : MonoBehaviour {
 
 	void OnTriggerEnter(Collider _other)
 	{
-		if (activated && _other.GetComponent<PatrolBrick>() != null && passedUpon == false)
+		if (activated && _other.GetComponent<PatrolBrick>() != null)
 		{
 			PatrolBrick _collBrick = _other.GetComponent<PatrolBrick>();
 //			print ("[" + _collBrick.type + " VS " + LevelBrick.typeList.Fields + "]");

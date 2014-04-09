@@ -25,7 +25,7 @@ public class GameOverUI : SubMenu {
 		_lb = FETool.findWithinChildren(this.gameObject, "Leaderboard/LB_Content").GetComponent<PhpLeaderboards>();
 
 		_RespawnUI = FETool.findWithinChildren(this.gameObject, "Respawn").GetComponent<RespawnUI>();
-		_RespawnUI.Setup();
+		_RespawnUI.Setup(this);
 
 
 		lbInitpos = _LeaderboardUI.transform.position;
@@ -33,12 +33,6 @@ public class GameOverUI : SubMenu {
 		
 		respInitpos = _RespawnUI.transform.position;
 		respOutPos = new Vector3 (respInitpos.x-20f, respInitpos.y, respInitpos.z);
-		InvokeRepeating("UpdateScore", 0f, 0.3f);
-	}
-	
-	public void UpdateScore()
-	{
-		_RespawnUI.UpdateScore(_menuMan._levman.score);
 	}
 
 	public void GameStart()

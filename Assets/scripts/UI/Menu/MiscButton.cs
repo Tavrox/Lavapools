@@ -19,15 +19,17 @@ public class MiscButton : MonoBehaviour {
 		OpenOptions,
 		OpenLevel,
 		OpenCredits,
-		BackHome
+		BackHome,
+		RespawnBtn
 	};
-	public GameSetup SETUP;
+	[HideInInspector] public GameSetup SETUP;
 	public GameSetup.LevelList levelToLoad;
-	public BoxCollider _coll;
-	public MainTitleUI mainUi;
-	public LevelChooser chooser;
+	[HideInInspector] public BoxCollider _coll;
+	[HideInInspector] public MainTitleUI mainUi;
+	[HideInInspector] public LevelChooser chooser;
 
-	public bool locked = false;
+	[HideInInspector] public bool locked = false;
+	public bool hasFocus = false;
 	public buttonList buttonType;
 
 	void Start()
@@ -141,6 +143,14 @@ public class MiscButton : MonoBehaviour {
 			{
 				MasterAudio.PlaySound("click");
 				mainUi.backHome();
+				break;
+			}
+			case buttonList.RespawnBtn :
+			{
+				if (LevelManager.GAMESTATE == GameEventManager.GameState.GameOver)
+				{
+					GameEventManager.TriggerRespawn("DeadBtn");
+				}
 				break;
 			}
 			}

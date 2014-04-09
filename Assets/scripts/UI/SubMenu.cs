@@ -12,11 +12,20 @@ public class SubMenu : MonoBehaviour {
 		EndGame
 	}
 	public submenus subMenuList;
-	[HideInInspector] public List<GameObject> menuThings;
+	public List<MiscButton> menuButtons;
 	public MainMenu _menuMan;
 
 	public void SetupSub(MainMenu _menu)
 	{
 		_menuMan = _menu;
 	}
+	public void setupBtn()
+	{
+		MiscButton[] childBtn = GetComponentsInChildren<MiscButton>();
+		foreach (MiscButton child in childBtn)
+		{
+			menuButtons.Add(child);
+		}
+	}
+
 }

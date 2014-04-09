@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class EndGameUI : SubMenu {
 
@@ -33,7 +34,7 @@ public class EndGameUI : SubMenu {
 //		_LeaderboardUI = FETool.findWithinChildren(this.gameObject, "Leaderboard").GetComponent<LeaderboardUI>();
 //		_lb = FETool.findWithinChildren(this.gameObject, "Leaderboard/LB_Content").GetComponent<PhpLeaderboards>();
 		_RespawnUI = FETool.findWithinChildren(this.gameObject, "Respawn").GetComponent<RespawnUI>();
-		_RespawnUI.Setup();
+		_RespawnUI.Setup(this);
 //		lbInitpos = _LeaderboardUI.transform.position;
 //		lbOutPos = new Vector3 (lbInitpos.x, lbInitpos.y-5f, lbInitpos.z);
 		respInitpos = _RespawnUI.transform.position;
@@ -48,13 +49,6 @@ public class EndGameUI : SubMenu {
 		CrabbySpr = FETool.findWithinChildren(gameObject, "Crab").GetComponentInChildren<OTSprite>();
 		StrokeSpr = FETool.findWithinChildren(gameObject, "Door/Stroke").GetComponentInChildren<OTSprite>();
 		VortexSpr = FETool.findWithinChildren(gameObject, "Door/Vortex").GetComponentInChildren<OTSprite>();
-
-		InvokeRepeating("UpdateScore", 0f, 0.3f);
-	}
-	
-	public void UpdateScore()
-	{
-		_RespawnUI.UpdateScore(_menuMan._levman.score);
 	}
 
 	void Update()
@@ -63,8 +57,8 @@ public class EndGameUI : SubMenu {
 		{
 			if (Input.GetKeyDown(KeyCode.Return))
 			{
+
 				LevelInfo _lvlIn = _menuMan._levman._profile.PROFILE.ActivatedLevels[_menuMan._levman._profile.PROFILE.ActivatedLevels.FindIndex(lvl => lvl.LvlName == _menuMan._levman.NAME)+1];
-				_menuMan._levman._profile.globalVolMuted = true;
 				Application.LoadLevel(_lvlIn.LvlName.ToString());
 			}
 		}

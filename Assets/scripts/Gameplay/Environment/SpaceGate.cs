@@ -50,38 +50,29 @@ public class SpaceGate : MonoBehaviour {
 		{
 			case 0: // FOR ALL
 			{
-				firstStep = FETool.findWithinChildren(gameObject, "ExitLoc/1");
-				secondStep = FETool.findWithinChildren(gameObject, "ExitLoc/2");
-				thirdStep = FETool.findWithinChildren(gameObject, "ExitLoc/3");
 				firstStep.GetComponent<BoxCollider>().enabled = _isEnabled;
-				firstStep.GetComponent<ImmovableGround>().enabled = _isEnabled;
-				fadeSprites(spriteFirstStep, _toAlpha);
-				secondStep.GetComponent<ImmovableGround>().enabled = _isEnabled;
 				secondStep.GetComponent<BoxCollider>().enabled = _isEnabled;
-				fadeSprites(spriteSecondStep, _toAlpha);
-				thirdStep.GetComponent<ImmovableGround>().enabled = _isEnabled;
 				thirdStep.GetComponent<BoxCollider>().enabled = _isEnabled;
+				fadeSprites(spriteFirstStep, _toAlpha);
+				fadeSprites(spriteSecondStep, _toAlpha);
 				fadeSprites(spriteThirdStep, _toAlpha);
 				break;
 			}
 			case 1:
-				{
-			firstStep.GetComponent<ImmovableGround>().enabled = _isEnabled;
-			firstStep.GetComponent<BoxCollider>().enabled = _isEnabled;
+			{
+				firstStep.GetComponent<BoxCollider>().enabled = _isEnabled;
 				fadeSprites(spriteFirstStep, _toAlpha);
 				break;
 			}
 			case 2:
 			{
-			secondStep.GetComponent<ImmovableGround>().enabled = _isEnabled;
-			secondStep.GetComponent<BoxCollider>().enabled = _isEnabled;
+				secondStep.GetComponent<BoxCollider>().enabled = _isEnabled;
 				fadeSprites(spriteSecondStep, _toAlpha);
 				break;
 			}
 			case 3:
 			{
-			thirdStep.GetComponent<ImmovableGround>().enabled = _isEnabled;
-			thirdStep.GetComponent<BoxCollider>().enabled = _isEnabled;
+				thirdStep.GetComponent<BoxCollider>().enabled = _isEnabled;
 				fadeSprites(spriteThirdStep, _toAlpha);
 				Vortex.PlayLoop("active");
 				Vortex.speed = 0.3f;
@@ -130,8 +121,6 @@ public class SpaceGate : MonoBehaviour {
 		case 3:
 		{
 			triggerGround(3, true, 1f);
-			Vortex.PlayLoop("active");
-			Vortex.speed = 0.3f;
 			break;
 		}
 		}
@@ -159,7 +148,6 @@ public class SpaceGate : MonoBehaviour {
 	{
 		if (this != null)
 		{
-			triggerGround(0, false, 0f);
 			_spr.frameName = "gate00load";
 			Vortex.PlayLoop("idle");
 		}

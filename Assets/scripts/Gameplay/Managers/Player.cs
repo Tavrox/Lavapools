@@ -79,7 +79,7 @@ public class Player : MonoBehaviour {
 
 		if (speed == 0)
 		{
-			Debug.Log("Speed of crab is 0");
+//			Debug.Log("Speed of crab is 0");
 		}
 
 		if (LevelManager.GAMESTATE == GameEventManager.GameState.Live )

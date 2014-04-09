@@ -9,15 +9,15 @@ public class ImmovableGround : MonoBehaviour {
 	// Use this for initialization
 	void Start () 
 	{
+		killer = false;
 		_player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
 		GameEventManager.Respawn += Respawn;
 		GameEventManager.GameOver += GameOver;
-	
 	}
 
 	public void OnTriggerEnter(Collider _other)
 	{
-		if (_other.CompareTag("Player") && _other != null & this != null)
+		if (_other.CompareTag("Player") && _other != null & this != null && killer != true)
 		{
 			_other.GetComponent<Player>().OnPlatforms += 1;
 		}
@@ -32,22 +32,17 @@ public class ImmovableGround : MonoBehaviour {
 
 	public void GameOver()
 	{
-		if (this == null)
+		if (this != null)
 		{
-			GetComponent<BoxCollider>().enabled = false;
-			enabled = false;
-//			Destroy(this);
+
 		}
 	}
 
 	public void Respawn()
 	{
-		if (this == null)
+		if (this != null)
 		{
-			_player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
-			GetComponent<BoxCollider>().enabled = true;
-			enabled = true;
-//			Destroy(this);
+
 		}
 	}
 }

@@ -19,28 +19,30 @@ public class FEEditor : MonoBehaviour {
 		}
 	}
 
-	/*
 
-	[ContextMenu ("OnDrawGizmos")]
 	void OnDrawGizmos () 
 	{
+		/*
 		Debug.Log("CAREFUL : GIZMO PREVENT INVERTING WAYPOINTS");
-		for (int j = 0; j < WPM.Count-1; j++)
+		if (WPM != null && cols != null)
 		{
-			WPM[j].relatedWaypoints = WPM[j].GetWpList();
-			Gizmos.color = cols[j];
-			for (int i = 0; i < WPM[j].relatedWaypoints.Count-1; i++)
+			for (int j = 0; j < WPM.Count-1; j++)
 			{
-				Gizmos.DrawLine(WPM[j].relatedWaypoints[i].transform.position, WPM[j].relatedWaypoints[i+1].transform.position);
-				if (WPM[j].relatedWaypoints[i].id == WPM[j].lastWp.id)
+				WPM[j].relatedWaypoints = WPM[j].GetWpList();
+				Gizmos.color = cols[j];
+				for (int i = 0; i < WPM[j].relatedWaypoints.Count-1; i++)
 				{
-					Gizmos.DrawLine(WPM[j].relatedWaypoints[i].transform.position, WPM[j].relatedWaypoints[0].transform.position);
+					Gizmos.DrawLine(WPM[j].relatedWaypoints[i].transform.position, WPM[j].relatedWaypoints[i+1].transform.position);
+					if (WPM[j].relatedWaypoints[i].id == WPM[j].lastWp.id)
+					{
+						Gizmos.DrawLine(WPM[j].relatedWaypoints[i].transform.position, WPM[j].relatedWaypoints[0].transform.position);
+					}
 				}
 			}
 		}
-
+		*/
 	}
 
-	*/
+
 
 }

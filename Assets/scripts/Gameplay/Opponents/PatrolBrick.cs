@@ -5,12 +5,14 @@ using System.Collections.Generic;
 public class PatrolBrick : LevelBrick {
 
 	[HideInInspector] public string brickPathId;
-	[HideInInspector] public Waypoint currentWP;
+	public Waypoint currentWP;
 	[HideInInspector] public bool debug;
+
+	private WaypointManager initPath;
 	public WaypointManager brickPath;
 
-	[HideInInspector] public Waypoint initWp;
-	private WaypointManager initPath;
+	public bool isRandomSpawn = true;
+	public Waypoint initWp;
 
 	[HideInInspector] public ColliderKiller _collKiller;
 
@@ -27,24 +29,37 @@ public class PatrolBrick : LevelBrick {
 		{
 			_collKiller.Setup(this);
 		}
+		if (isRandomSpawn == false && initWp == null)
+		{
+			Debug.Break();
+			Debug.LogError("Non-Random Brick hasn't his init WP setupped" + "[" + gameObject.name  +"]");
+		}
 		InvokeRepeating("RecalculateTarget", 0f, 0.01f);
 //		InvokeRepeating("Move", 0f, 0.1f);
 	}
 
 	public void setupPath()
 	{
-		currentWP = brickPath.pickRandomWP();
-//		transform.position = brickPath.findNextWaypoint(currentWP).transform.position;
-		if (type == typeList.Chainsaw)
+		if (isRandomSpawn == false && initWp != null)
+		{
+			currentWP = initWp;
+		}
+		else
+		{
+			currentWP = brickPath.pickRandomWP();
+		}
+
+		if (type == typeList.Chainsaw && isRandomSpawn == true)
 		{
 			gameObject.transform.position = currentWP.transform.position;
 		}
-		else
+
+		if (type == typeList.Bird)
 		{
 			SpaceGate gt = GameObject.Find("LevelManager").GetComponent<LevelManager>().Gate;
 			gameObject.transform.position = new Vector3(gt.transform.position.x, gt.transform.position.y, 0f);
 		}
-		initWp = currentWP;
+
 		initPath = brickPath;
 		setupTarget();
 	}
@@ -129,6 +144,20 @@ public class PatrolBrick : LevelBrick {
 		if (this != null)
 		{
 			setupPath();
+		}
+	}
+
+	void OnDrawGizmos()
+	{
+		if (initWp != null)
+		{
+			Gizmos.color = Color.yellow;
+			Gizmos.DrawLine( gameObject.transform.position, initWp.transform.position);
+		}
+		else
+		{
+			Gizmos.color = Color.blue;
+			Gizmos.DrawLine( gameObject.transform.position, brickPath.relatedWaypoints[0].transform.position);
 		}
 	}
 }

@@ -96,7 +96,6 @@ public class LevelManager : MonoBehaviour {
 		foreach (CollectiblePlaces cpl in collecPla)
 		{
 			collecPlaces.Add(cpl);
-			cpl.Spawn(this);
 		}
 		Gate = GameObject.FindGameObjectWithTag("SpaceGate").GetComponent<SpaceGate>();
 		Gate.Setup();

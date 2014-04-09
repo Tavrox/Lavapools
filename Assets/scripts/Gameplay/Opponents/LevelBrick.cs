@@ -11,13 +11,13 @@ public class LevelBrick : MonoBehaviour {
 		Chainsaw,
 	};
 	public typeList type;
-	public float speed;
+	[HideInInspector] public float speed;
 	[HideInInspector] public float initSpeed;
 	[HideInInspector] public LevelManager _levMan;
 	[HideInInspector] public int brickId;
-	public Vector3 direction;
-	public Vector3 target;
-	public Vector3 pos;
+	[HideInInspector] public Vector3 direction;
+	[HideInInspector] public Vector3 target;
+	[HideInInspector] public Vector3 pos;
 	[HideInInspector] public Vector3 initPos;
 	[HideInInspector] public Player _player;
 	[HideInInspector] public bool isEnabled = false;
@@ -77,11 +77,14 @@ public class LevelBrick : MonoBehaviour {
 	{
 		float initspeed = getSpeed(this, _bricksSpeed);
 		new OTTween(this, 0.5f).Tween("speed", initspeed );
+		animSpr.Play();
+//		animSpr.Resume();
 		isEnabled = true;
 	}
 
 	public void disableBrick()
 	{
+//		animSpr.Pauze();
 		isEnabled = false;
 		speed = 0;
 	}
@@ -110,10 +113,7 @@ public class LevelBrick : MonoBehaviour {
 		if (this != null)
 		{
 			disableBrick();
-			if (type != typeList.Fields)
-			{
-				gameObject.transform.position = initPos;
-			}
+			gameObject.transform.position = initPos;
 		}
 	}
 }

@@ -57,19 +57,29 @@ public class Procedural : MonoBehaviour {
 	{
 		_CURRENTSTEP = _step;
 //		Debug.Log ("Triggered STEP" + _CURRENTSTEP.stepID);
-		foreach (string _lb in _step.BricksDisabled)
+		foreach (ProceduralSteps.BrickStack _lb in _step.BricksDisabled)
 		{
 			if (_step.BricksDisabled != null)
 			{
-				_levMan.bricksMan.BricksList.Find ((LevelBrick obj) => obj.name == _lb).disableBrick();
+				string brickToFetch = _lb.ToString().Replace("_", "/");
+				LevelBrick brk = _levMan.bricksMan.BricksList.Find ((LevelBrick obj) => obj.name == brickToFetch);
+				if (brk != null)
+				{
+					brk.disableBrick();
+				}
 			}	
 		}
-		foreach (string _lb in _step.BricksEnabled)
+		foreach (ProceduralSteps.BrickStack _lb in _step.BricksEnabled)
 		{
-			if (_step.BricksEnabled != null && _lb != "")
+			if (_step.BricksEnabled != null)
 			{
-				_levMan.bricksMan.BricksList.Find ((LevelBrick obj) => obj.name == _lb).enableBrick();
-			}	
+				string brickToFetch = _lb.ToString().Replace("_", "/");
+				LevelBrick brk = _levMan.bricksMan.BricksList.Find ((LevelBrick obj) => obj.name == brickToFetch);
+				if (brk != null)
+				{
+					brk.enableBrick();
+				}
+			}
 		}
 		foreach (LevelBrick _brick in _levMan.bricksMan.BricksList)
 		{
@@ -79,11 +89,12 @@ public class Procedural : MonoBehaviour {
 			}
 			_brick.initSpeed = _brick.initSpeed * _step.Enemies_SpeedMultiplier;
 		}
-		foreach (string _wpm in _step.WaypointsToInvert)
+		foreach (ProceduralSteps.PathStack _wpm in _step.WaypointsToInvert)
 		{
-			if (_step.WaypointsToInvert != null && _wpm != "")
+			if (_step.WaypointsToInvert != null && _wpm != null)
 			{
-				WaypointManager man = _levMan.waypointsMan.Find((WaypointManager obj) => obj.name == _wpm);
+				string pathToFetch = _wpm.ToString().Replace("_", "/");
+				WaypointManager man = _levMan.waypointsMan.Find((WaypointManager obj) => obj.name == pathToFetch);
 				man.invertWaypoints();
 //				man.relatedBrick.GetComponent<PatrolBrick>().setupTarget();
 			}	
@@ -104,9 +115,6 @@ public class Procedural : MonoBehaviour {
 		{
 			_levMan.tools.UnlockLevel(_step.LevelToUnlock);
 		}
-
-		_step.BricksEnabled.RemoveAll((string obj) =>  obj == "");
-		_step.WaypointsToInvert.RemoveAll((string obj) =>  obj == "");
 	}
 
 	private void GameStart()

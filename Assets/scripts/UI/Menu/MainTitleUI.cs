@@ -14,15 +14,15 @@ public class MainTitleUI : MonoBehaviour
 		Credits,
 		LevelChooser
 	};
-	public MenuStates CurrentState;
-	public PlayerData PLAYERDAT;
+	[HideInInspector] public MenuStates CurrentState;
+	[HideInInspector] public PlayerData PLAYERDAT;
 
-	public GameObject awayPlace;
-	public GameObject frontPlace;
-	public GameObject Credits;
-	public GameObject Landing;
-	public GameObject LevelChooser;
-	public GameObject Options;
+	[HideInInspector] public GameObject awayPlace;
+	[HideInInspector] public GameObject frontPlace;
+	[HideInInspector] public GameObject Credits;
+	[HideInInspector] public GameObject Landing;
+	[HideInInspector] public GameObject LevelChooser;
+	[HideInInspector] public GameObject Options;
 	
 	void Awake () 
 	{
@@ -33,6 +33,12 @@ public class MainTitleUI : MonoBehaviour
 		SETUP.startTranslate(SETUP.ChosenLanguage);
 		SETUP.translateSceneText();	
 		levelInformations = new List<LevelInfo> ();
+		
+		SubMenu[] subMn = GetComponentsInChildren<SubMenu>();
+		foreach (SubMenu sub in subMn)
+		{
+			sub.setupBtn();
+		}
 
 		if (GameObject.FindGameObjectWithTag("PlayerData") == null)
 		{
@@ -57,6 +63,8 @@ public class MainTitleUI : MonoBehaviour
 		Landing = FETool.findWithinChildren(gameObject, "Landing");
 		LevelChooser = FETool.findWithinChildren(gameObject, "LevelChooser");
 		Options = FETool.findWithinChildren(gameObject, "Options");
+
+
 
 		TranslateAllInScene();
 //		StartCoroutine("DelayMusic");

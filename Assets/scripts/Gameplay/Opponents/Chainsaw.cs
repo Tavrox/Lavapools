@@ -7,6 +7,7 @@ public class Chainsaw : PatrolBrick {
 
 	public void Start () 
 	{
+		transform.position = new Vector3(transform.position.x, transform.position.y, 0f);
 		base.Setup();			
 		if (brickPath != null)
 		{

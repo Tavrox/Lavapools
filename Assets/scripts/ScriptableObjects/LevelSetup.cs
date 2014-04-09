@@ -44,6 +44,7 @@ public class LevelSetup : ScriptableObject
 		{
 			ProceduralSteps _stp = Resources.Load( path + i) as ProceduralSteps;
 			_stp.Reset();
+			_stp.ScoreCondition = (_stp.stepID * 5) - 5;
 		}
 	}
 }

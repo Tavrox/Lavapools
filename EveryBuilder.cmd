@@ -1,0 +1,1 @@
+"D:\Program Files (x86)\Unity\Editor\Unity.exe" -batchMode -quit -nographics -projectPath C:\Users\Tavrox\Documents\GitHub\Lavapools\ -executeMethod EveryBuilder.PerformBuild
