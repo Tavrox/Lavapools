@@ -204,6 +204,7 @@
             <filename>btnGetFull.png</filename>
             <filename>btnHome.png</filename>
             <filename>btnOk_cancel.png</filename>
+            <filename>btnStartQuitAlt.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

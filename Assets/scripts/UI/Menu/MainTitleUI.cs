@@ -14,15 +14,17 @@ public class MainTitleUI : MonoBehaviour
 		Credits,
 		LevelChooser
 	};
-	[HideInInspector] public MenuStates CurrentState;
+	public MenuStates CurrentState;
+	public SubMenu currentActiveMenu;
 	[HideInInspector] public PlayerData PLAYERDAT;
 
 	[HideInInspector] public GameObject awayPlace;
 	[HideInInspector] public GameObject frontPlace;
-	[HideInInspector] public GameObject Credits;
-	[HideInInspector] public GameObject Landing;
-	[HideInInspector] public GameObject LevelChooser;
-	[HideInInspector] public GameObject Options;
+	[HideInInspector] public SubMenu Credits;
+	[HideInInspector] public SubMenu Landing;
+	[HideInInspector] public SubMenu LevelChooser;
+	[HideInInspector] public SubMenu Options;
+	public MiscButton currFocusedbtn;
 	
 	void Awake () 
 	{
@@ -33,12 +35,6 @@ public class MainTitleUI : MonoBehaviour
 		SETUP.startTranslate(SETUP.ChosenLanguage);
 		SETUP.translateSceneText();	
 		levelInformations = new List<LevelInfo> ();
-		
-		SubMenu[] subMn = GetComponentsInChildren<SubMenu>();
-		foreach (SubMenu sub in subMn)
-		{
-			sub.setupBtn();
-		}
 
 		if (GameObject.FindGameObjectWithTag("PlayerData") == null)
 		{
@@ -59,15 +55,103 @@ public class MainTitleUI : MonoBehaviour
 		Chooser.Setup ();
 		awayPlace = FETool.findWithinChildren(gameObject, "AwayPlace");
 		frontPlace = FETool.findWithinChildren(gameObject, "FrontPlace");
-		Credits = FETool.findWithinChildren(gameObject, "Credits");
-		Landing = FETool.findWithinChildren(gameObject, "Landing");
-		LevelChooser = FETool.findWithinChildren(gameObject, "LevelChooser");
-		Options = FETool.findWithinChildren(gameObject, "Options");
+		Credits = FETool.findWithinChildren(gameObject, "Credits").GetComponent<SubMenu>();
+		Landing = FETool.findWithinChildren(gameObject, "Landing").GetComponent<SubMenu>();
+		LevelChooser = FETool.findWithinChildren(gameObject, "LevelChooser").GetComponent<SubMenu>();
+		Options = FETool.findWithinChildren(gameObject, "Options").GetComponent<SubMenu>();
 
-
-
+		SubMenu[] subMn = GetComponentsInChildren<SubMenu>();
+		foreach (SubMenu sub in subMn)
+		{
+			sub.setupBtn();
+		}
+		changeState(MenuStates.Start);
 		TranslateAllInScene();
+		InvokeRepeating("checkPadMenu", 0f, 0.5f);
 //		StartCoroutine("DelayMusic");
+	}
+
+	void checkPadMenu()
+	{
+		if (currFocusedbtn != null)
+		{
+			if(Input.GetAxisRaw("X axis") > PLAYERDAT.INPUT.X_AxisPos_Btn)
+			{
+
+			}
+			if(Input.GetAxisRaw("X axis") < PLAYERDAT.INPUT.X_AxisNeg_Btn )
+			{
+
+			}
+			
+			if(Input.GetAxisRaw("Y axis") > PLAYERDAT.INPUT.Y_AxisPos_Btn)
+			{
+				currFocusedbtn.giveFocus(false);
+				currFocusedbtn = currentActiveMenu.findPrevBtn(currFocusedbtn);
+				currFocusedbtn.giveFocus(true);
+			}
+			if(Input.GetAxisRaw("Y axis") < PLAYERDAT.INPUT.Y_AxisNeg_Btn)
+			{
+				currFocusedbtn.giveFocus(false);
+				currFocusedbtn = currentActiveMenu.findNextBtn(currFocusedbtn);
+				currFocusedbtn.giveFocus(true);
+			}
+		}
+
+			if (CurrentState == MenuStates.LevelChooser)
+			{
+				if (Input.GetButton(PLAYERDAT.INPUT.TriggerLeftButton))
+				{
+					Chooser._btnLeft.triggerDirBtn();
+				}
+				if (Input.GetButton(PLAYERDAT.INPUT.TriggerRightButton))
+				{
+					Chooser._btnRight.triggerDirBtn();
+				}
+				if (Input.GetButton(PLAYERDAT.INPUT.EnterButton))
+				{
+					Chooser.currThumb.linkedPlayBtn.playCurrLvlThumb();
+				}
+				if (Input.GetButton(PLAYERDAT.INPUT.BackButton))
+				{
+					backHome();
+				}
+			}
+	}
+
+	public void changeState(MenuStates _st)
+	{
+		CurrentState = _st;
+		switch (CurrentState)
+		{
+		case MenuStates.Credits :
+		{
+			currentActiveMenu = Credits;
+			currFocusedbtn = currentActiveMenu.GetComponent<SubMenu>().menuButtons[0];
+			currFocusedbtn.giveFocus(true);
+			break;
+		}
+		case MenuStates.LevelChooser :
+		{
+			currentActiveMenu = LevelChooser;
+			currFocusedbtn = null;
+			break;
+		}	
+		case MenuStates.Options :
+		{
+			currentActiveMenu = Options;
+			currFocusedbtn = currentActiveMenu.GetComponent<SubMenu>().menuButtons[0];
+			currFocusedbtn.giveFocus(true);
+			break;
+		}
+		case MenuStates.Start :
+		{
+			currentActiveMenu = Landing;
+			currFocusedbtn = currentActiveMenu.GetComponent<SubMenu>().menuButtons[0];
+			currFocusedbtn.giveFocus(true);
+			break;
+		}
+		}
 	}
 
 	public void TranslateAllInScene()
@@ -83,10 +167,10 @@ public class MainTitleUI : MonoBehaviour
 		return _set;
 	}
 
-	public void makeTransition (GameObject _thingIn)
+	public void makeTransition (SubMenu _thingIn)
 	{
 		new OTTween(Landing.transform,1f, OTEasing.QuadInOut).Tween("position", awayPlace.transform.position);
-		new OTTween(_thingIn.transform, 1f, OTEasing.QuadInOut).Tween("position", frontPlace.transform.position);
+		new OTTween(_thingIn.gameObject.transform, 1f, OTEasing.QuadInOut).Tween("position", frontPlace.transform.position);
 	}
 
 	public void backHome()
@@ -96,6 +180,7 @@ public class MainTitleUI : MonoBehaviour
 		new OTTween(Options.transform, 1f).Tween("position", awayPlace.transform.position);
 
 		new OTTween(Landing.transform, 1f).Tween("position", frontPlace.transform.position);
+		changeState(MenuStates.Start);
 
 	}
 }

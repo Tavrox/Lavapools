@@ -13,6 +13,7 @@ public class LevelThumbnail : MonoBehaviour
 	public bool isEndSlot = false;
 	public bool Locked = false;
 	public LevelInfo Info;
+	public MiscButton linkedPlayBtn;
 
 	public void Setup(GameSetup.LevelList _set, bool _isLocked)
 	{
@@ -32,6 +33,7 @@ public class LevelThumbnail : MonoBehaviour
 		{
 			Locker.alpha = 0f;
 		}
+		linkedPlayBtn = GetComponentInChildren<MiscButton>();
 	}
 
 	public LevelThumbnail FindThumbAround(List<LevelThumbnail> _listTh, LevelThumbnail _thumb, LevelChooserButton.DirectionList _dir)

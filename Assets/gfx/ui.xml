@@ -121,10 +121,23 @@
                 <key>sourceSize</key>
                 <string>{151,43}</string>
             </dict>
+            <key>btnStartQuitAlt.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{734,5},{151,43}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{151,43}}</string>
+                <key>sourceSize</key>
+                <string>{151,43}</string>
+            </dict>
             <key>btnTW.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{734,5},{40,41}}</string>
+                <string>{{890,5},{40,41}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -391,7 +404,7 @@
             <key>size</key>
             <string>{1024,2048}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:8d076376d2097e62eddb82ae45008396:969d5085fb8df5122c4d81c763f41aba:0dbeed7acf6c3264861a2e70e992bcae$</string>
+            <string>$TexturePacker:SmartUpdate:26e4c05d5fefb63d3a69d687c0644fd5:484b817eb92d36517e6819f71c25caa3:0dbeed7acf6c3264861a2e70e992bcae$</string>
             <key>textureFileName</key>
             <string>ui.png</string>
         </dict>

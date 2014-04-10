@@ -5,15 +5,15 @@ using System.Collections.Generic;
 public class LevelChooser : MonoBehaviour {
 
 	private TextUI levelName;
-	private LevelChooserButton _btnLeft;
-	private LevelChooserButton _btnRight;
+	public LevelChooserButton _btnLeft;
+	public LevelChooserButton _btnRight;
 	private GameSetup SETUP;
 	private PlayerData PLAYERDATA;
 
 	private GameObject ThumbGO;
 	private List<LevelThumbnail> Thumbs =  new List<LevelThumbnail>();
 
-	private LevelThumbnail currThumb;
+	public LevelThumbnail currThumb;
 	private Vector3 gapThumbs = new Vector3(20f, 0f, -10f);
 	
 	public void Setup () 

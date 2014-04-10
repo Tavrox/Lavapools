@@ -57,7 +57,6 @@ public class WaypointManager : MonoBehaviour {
 			Debug.LogError("A point hasn't been found");
 		}
 		return res;
-
 	}
 
 	public void sortDescendant()

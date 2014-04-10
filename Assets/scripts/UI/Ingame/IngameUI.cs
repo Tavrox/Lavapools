@@ -14,6 +14,9 @@ public class IngameUI : SubMenu {
 	public Vector3 initPos;
 	public Vector3 outPos;
 
+	public float origLabelSize = 0.07f;
+	public float bigLabelSize = 0.15f;
+
 	public void Setup()
 	{
 		initPos = gameObject.transform.position;
@@ -23,7 +26,7 @@ public class IngameUI : SubMenu {
 		ScoreTxt = FETool.findWithinChildren(this.gameObject, "Score/SCORE_LAB").GetComponent<TextUI>();
 
 		LevelTxt = FETool.findWithinChildren(this.gameObject, "LevelLabel/LVL_LABEL").GetComponent<TextUI>();
-		LevelTxt._mesh.characterSize = 0.07f;
+		LevelTxt._mesh.characterSize = origLabelSize;
 
 		BestScore = FETool.findWithinChildren(this.gameObject, "BestScore/BEST_CONT").GetComponent<TextUI>();
 		BestScoreTxt = FETool.findWithinChildren(this.gameObject, "BestScore/BEST_LABEL").GetComponent<TextUI>();
@@ -37,14 +40,14 @@ public class IngameUI : SubMenu {
 
 	public void TriggerLvText()
 	{
-		new OTTween(LevelTxt._mesh, 1f).Tween("characterSize", 0.15f).PingPong();
+		new OTTween(LevelTxt._mesh, 0.4f).Tween("characterSize", bigLabelSize).PingPong();
 	}
 
 	void GameStart()
 	{
 		if (this != null && gameObject != null)
 		{
-			LevelTxt._mesh.characterSize = 0.09f;
+			LevelTxt._mesh.characterSize = origLabelSize;
 			new OTTween(gameObject.transform, 0.3f, OTEasing.QuadIn ).Tween("position", outPos);
 		}
 	}
@@ -52,7 +55,7 @@ public class IngameUI : SubMenu {
 	{
 		if (this != null)
 		{
-			LevelTxt._mesh.characterSize = 0.09f;
+			LevelTxt._mesh.characterSize = origLabelSize;
 			new OTTween(gameObject.transform, 0.3f, OTEasing.QuadIn ).Tween("position", outPos);
 		}
 	}
@@ -60,7 +63,7 @@ public class IngameUI : SubMenu {
 	{
 		if (this != null)
 		{
-			LevelTxt._mesh.characterSize = 0.09f;
+			LevelTxt._mesh.characterSize = origLabelSize;
 			new OTTween(gameObject.transform, 0.3f, OTEasing.QuadIn ).Tween("position", initPos);
 		}
 	}

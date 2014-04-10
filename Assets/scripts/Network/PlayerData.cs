@@ -5,6 +5,7 @@ public class PlayerData : MonoBehaviour {
 
 	public PlayerProfile PROFILE;
 	public GameSetup SETUP;
+	public InputManager INPUT;
 	public float GlobalVolume = 1f;
 	public bool globalVolMuted = false;
 	public float musicVolume = 1f;
@@ -15,6 +16,7 @@ public class PlayerData : MonoBehaviour {
 	{
 		PROFILE = Resources.Load("Tuning/PlayerProfile") as PlayerProfile;
 		SETUP = Resources.Load("Tuning/GameSetup") as GameSetup;
+		INPUT = Resources.Load("Tuning/InputManager") as InputManager;
 		DontDestroyOnLoad(this);
 	}
 

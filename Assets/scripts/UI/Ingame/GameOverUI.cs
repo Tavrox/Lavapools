@@ -7,7 +7,6 @@ public class GameOverUI : SubMenu {
 	public RespawnUI _RespawnUI;
 	public PhpLeaderboards _lb;
 
-
 	private Vector3 lbInitpos;
 	private Vector3 lbOutPos;
 
@@ -23,10 +22,10 @@ public class GameOverUI : SubMenu {
 		
 		_LeaderboardUI = FETool.findWithinChildren(this.gameObject, "Leaderboard").GetComponent<LeaderboardUI>();
 		_lb = FETool.findWithinChildren(this.gameObject, "Leaderboard/LB_Content").GetComponent<PhpLeaderboards>();
+		_lb.Setup();
 
 		_RespawnUI = FETool.findWithinChildren(this.gameObject, "Respawn").GetComponent<RespawnUI>();
 		_RespawnUI.Setup(this);
-
 
 		lbInitpos = _LeaderboardUI.transform.position;
 		lbOutPos = new Vector3 (lbInitpos.x, lbInitpos.y-5f, lbInitpos.z);
@@ -55,6 +54,7 @@ public class GameOverUI : SubMenu {
 	{
 		if (this != null)
 		{
+			_lb.GatherScores(LevelManager.CurrentLevelInfo.levelID);
 			new OTTween(_RespawnUI.gameObject.transform, 0.3f, OTEasing.QuadIn ).Tween("position", respOutPos);
 			new OTTween(_LeaderboardUI.gameObject.transform, 0.3f, OTEasing.QuadIn ).Tween("position", lbOutPos);
 		}

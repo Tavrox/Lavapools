@@ -23,6 +23,11 @@ public class LevelChooserButton : MiscButton {
 
 	void OnMouseDown()
 	{
+		triggerDirBtn();
+	}
+
+	public void triggerDirBtn()
+	{
 		if (locked == false && trigger == true)
 		{
 			base.LockButtons();

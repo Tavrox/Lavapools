@@ -88,17 +88,17 @@ public class Player : MonoBehaviour {
 			{
 				GameEventManager.TriggerGameOver(LevelTools.KillerList.Lava);
 			}
-			KeyInput();
-			XboxInput();
+			moveInput();
 			mod.x *= friction.x;
 			mod.y *= friction.y;
 			this.gameObject.transform.position += mod * Time.deltaTime;
 		}
 	}
 
-	private void KeyInput()
+	private void moveInput()
 	{
-		if (Input.GetKey (InputMan.KeyRight)) 
+//		_anims.playAnimation(_anims._STATIC);
+		if (Input.GetKey (InputMan.KeyRight) || Input.GetAxisRaw("X axis") < InputMan.X_AxisNeg_Sensibility) 
 		{
 			mod.x += speed;
 			_anims.playAnimation(_anims._WALK);
@@ -109,7 +109,7 @@ public class Player : MonoBehaviour {
 			_anims.playAnimation(_anims._STATIC);
 		}
 		
-		if (Input.GetKey (InputMan.KeyUp)) 
+		if (Input.GetKey (InputMan.KeyUp) || Input.GetAxisRaw("Y axis") > InputMan.Y_AxisPos_Sensibility) 
 		{
 			mod.y += speed;
 			_anims.playAnimation(_anims._WALK);
@@ -120,7 +120,7 @@ public class Player : MonoBehaviour {
 			_anims.playAnimation(_anims._STATIC);
 		}
 		
-		if (Input.GetKey (InputMan.KeyLeft)) 
+		if (Input.GetKey (InputMan.KeyLeft) || Input.GetAxisRaw("X axis") > InputMan.X_AxisPos_Sensibility) 
 		{
 			mod.x -= speed;
 			_anims.playAnimation(_anims._WALK);
@@ -131,7 +131,7 @@ public class Player : MonoBehaviour {
 			_anims.playAnimation(_anims._STATIC);
 		}
 		
-		if (Input.GetKey (InputMan.KeyDown)) 
+		if (Input.GetKey (InputMan.KeyDown) || Input.GetAxisRaw("Y axis") < InputMan.Y_AxisNeg_Sensibility ) 
 		{
 			mod.y -= speed;
 			_anims.playAnimation(_anims._WALK);
@@ -141,48 +141,6 @@ public class Player : MonoBehaviour {
 			mod.y = -10f;
 			_anims.playAnimation(_anims._STATIC);
 		}
-	}
-
-	private void XboxInput()
-	{
-		if(Input.GetAxisRaw("X axis") > InputMan.X_AxisPos_Sensibility)
-		{
-			mod.x -= speed;
-		}
-		if(Input.GetAxisRaw("X axis") < InputMan.X_AxisNeg_Sensibility )
-		{
-			mod.x += speed;
-		}
-		
-		if(Input.GetAxisRaw("Y axis") > InputMan.Y_AxisPos_Sensibility)
-		{
-			mod.y += speed;
-		}
-		if(Input.GetAxisRaw("Y axis") < InputMan.Y_AxisNeg_Sensibility)
-		{
-			mod.y -= speed;
-		}
-
-		/*
-		if(Input.GetAxisRaw("6th axis") > InputMan.X_AxisPos_Sensibility )
-		{
-			mod.x -= speed;
-		}
-		if(Input.GetAxisRaw("6th axis") < InputMan.X_AxisNeg_Sensibility)
-		{
-			mod.x += speed;
-		}
-		
-		if(Input.GetAxisRaw("7th axis") > InputMan.Y_AxisPos_Sensibility)
-		{
-			mod.y += speed;
-		}
-		if(Input.GetAxisRaw("7th axis") < InputMan.Y_AxisNeg_Sensibility)
-		{
-			mod.y -= speed;
-		}
-		*/
-
 	}
 
 	public void triggerNotification(float _value)

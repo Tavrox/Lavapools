@@ -31,10 +31,12 @@ public class TextUI : MonoBehaviour {
 	
 	void Update()
 	{
+		/*
 		if (text != SETUP.TextSheet.TranslateSingle(this) && dontTranslate == false && hasBeenTranslated == true)
 		{
 			hasBeenTranslated = false;
 		}
+		*/
 		text = text.Replace("/n", "\n");
 		_mesh.text = text;
 		_mesh.color = color;

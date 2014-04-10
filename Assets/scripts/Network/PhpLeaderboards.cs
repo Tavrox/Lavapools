@@ -13,7 +13,7 @@ public class PhpLeaderboards : MonoBehaviour
 	public List<LBEntry> ListEntries;
 	private int lbLength =  15;
 	
-	void Awake()
+	public void Setup()
 	{
 		GameEventManager.Respawn += Respawn;
 		ListUser = new List<UserLeaderboard>();
@@ -28,12 +28,11 @@ public class PhpLeaderboards : MonoBehaviour
 			_lb.Setup();
 			ListEntries.Add(_lb);
 		}
-		StartCoroutine(GetScores());
 	}
 	
-	public void GatherScores()
+	public void GatherScores(int level_id)
 	{
-		StartCoroutine(GetScores());
+		StartCoroutine(GetScores(level_id));
 		updateScores(ref ListUser, ref ListEntries);
 //		sortLeaderboard(ref ListUser, 15);
 	}
@@ -85,9 +84,10 @@ public class PhpLeaderboards : MonoBehaviour
 	
 	// Get the scores from the MySQL DB to display in a GUIText.
 	// remember to use StartCoroutine when calling this function!
-	IEnumerator GetScores()
+	IEnumerator GetScores(int level_id)
 	{
 //		print ("bitc plz");
+		highscoreURL = highscoreURL + "?levelid=" + level_id;
 		WWW hs_get = new WWW(highscoreURL);
 		yield return hs_get;
 		
@@ -98,6 +98,7 @@ public class PhpLeaderboards : MonoBehaviour
 		else
 		{
 			string[] entries = hs_get.text.Split(']');
+			print (entries.ToString());
 			for (int i = 0; i < entries.Length -1 ; i++)
 			{
 				ListUser[i].ranking = i+1;
@@ -114,7 +115,7 @@ public class PhpLeaderboards : MonoBehaviour
 	{
 		if (this != null)
 		{
-			GatherScores();
+
 		}
 	}
 	

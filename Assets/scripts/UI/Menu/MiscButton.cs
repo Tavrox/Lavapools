@@ -27,23 +27,45 @@ public class MiscButton : MonoBehaviour {
 	[HideInInspector] public BoxCollider _coll;
 	[HideInInspector] public MainTitleUI mainUi;
 	[HideInInspector] public LevelChooser chooser;
+	private OTSprite spr;
+	private string stdFrame;
+	private string altFrame;
 
-	[HideInInspector] public bool locked = false;
+	public bool locked = false;
 	public bool hasFocus = false;
 	public buttonList buttonType;
 
-	void Start()
+	public void Setup()
 	{
-		SETUP = Resources.Load ("Tuning/GameSetup") as GameSetup;
 		if (GameObject.Find("TitleMenu") != null)
 		{
 			mainUi = GameObject.Find("TitleMenu").GetComponent<MainTitleUI>();
+			SETUP = mainUi.PLAYERDAT.SETUP;
 		}
 		if (_coll = GetComponent<BoxCollider>())
 		{_coll.isTrigger = true;}
+		if (GetComponentInChildren<OTSprite>() != null)
+		{
+			spr = GetComponentInChildren<OTSprite>();
+			stdFrame = spr.frameName;
+			altFrame = spr.frameName +"Alt";
+		}
+	}
+
+	void Update()
+	{
+		if (hasFocus == true && Input.GetKey(mainUi.PLAYERDAT.INPUT.EnterButton))
+	    {
+			checkAction();
+		}
 	}
 
 	void OnMouseDown()
+	{
+		checkAction();
+	}
+
+	private void checkAction()
 	{
 		if (locked == false)
 		{
@@ -57,12 +79,7 @@ public class MiscButton : MonoBehaviour {
 			}
 			case buttonList.PlayLevel :
 			{
-				LevelThumbnail _parent = gameObject.transform.parent.gameObject.GetComponent<LevelThumbnail>();
-				levelToLoad = _parent.Info.LvlName;
-				if (_parent.Locked == false)
-				{
-					StartCoroutine(delayLevelTrigger(levelToLoad.ToString()));
-				}
+				playCurrLvlThumb();
 				break;
 			}
 			case buttonList.MuteGlobal :
@@ -124,6 +141,7 @@ public class MiscButton : MonoBehaviour {
 			case buttonList.OpenOptions :
 			{
 				MasterAudio.PlaySound("click");
+				mainUi.changeState(MainTitleUI.MenuStates.Options);
 				mainUi.makeTransition( mainUi.Options);
 				break;
 			}
@@ -131,17 +149,20 @@ public class MiscButton : MonoBehaviour {
 			{
 				MasterAudio.PlaySound("click");
 				mainUi.makeTransition( mainUi.LevelChooser);
+				mainUi.changeState(MainTitleUI.MenuStates.LevelChooser);
 				break;
 			}
 			case buttonList.OpenCredits :
 			{
 				MasterAudio.PlaySound("click");
+				mainUi.changeState(MainTitleUI.MenuStates.Credits);
 				mainUi.makeTransition( mainUi.Credits);
 				break;
 			}
 			case buttonList.BackHome :
 			{
 				MasterAudio.PlaySound("click");
+				mainUi.changeState(MainTitleUI.MenuStates.Start);
 				mainUi.backHome();
 				break;
 			}
@@ -154,18 +175,29 @@ public class MiscButton : MonoBehaviour {
 				break;
 			}
 			}
-//			print ("clicked" + buttonType);
+			//			print ("clicked" + buttonType);
+		}
+	}
+
+	public void playCurrLvlThumb()
+	{
+		LevelThumbnail _parent = gameObject.transform.parent.gameObject.GetComponent<LevelThumbnail>();
+		levelToLoad = _parent.Info.LvlName;
+		if (_parent.Locked == false)
+		{
+			StartCoroutine(delayLevelTrigger(levelToLoad.ToString()));
 		}
 	}
 
 	IEnumerator delayLevelTrigger(string lvlName)
 	{
-		yield return new WaitForSeconds(1f);
+		yield return new WaitForSeconds(0.5f);
 		Application.LoadLevel(lvlName);
 	}
 
 	public void LockButtons()
 	{
+		print ("lock btn");
 		lockEveryButton();
 		StartCoroutine("unlockEveryButton");
 	}
@@ -177,6 +209,21 @@ public class MiscButton : MonoBehaviour {
 		{
 			_spr.locked = true;
 		}
+	}
+
+	public void giveFocus(bool state)
+	{
+		hasFocus = state;		
+		if (hasFocus == true)
+		{
+			spr.frameName = altFrame;
+		}
+		else
+		{
+			spr.frameName = stdFrame;
+		}
+		
+
 	}
 
 	IEnumerator unlockEveryButton()
