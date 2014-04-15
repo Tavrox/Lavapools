@@ -9,9 +9,9 @@ public class ArrowTower : LevelBrick {
 
 
 	// Use this for initialization
-	public void Setup () {
-
-
+	public void Setup () 
+	{
+		type = typeList.ArrowTower;
 		triggerShooting();
 	
 	}

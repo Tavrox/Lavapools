@@ -9,6 +9,7 @@ public class LevelBrick : MonoBehaviour {
 		Bird, 
 		Fields,
 		Chainsaw,
+		ArrowTower
 	};
 	public typeList type;
 	[HideInInspector] public float speed;

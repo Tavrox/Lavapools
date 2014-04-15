@@ -9,6 +9,7 @@ public class Bird : PatrolBrick {
 	public void Start () 
 	{
 		base.Setup();
+		type = typeList.Bird;
 		
 		GameEventManager.GameStart += GameStart;
 		GameEventManager.GameOver += GameOver;
