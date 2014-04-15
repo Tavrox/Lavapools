@@ -21,7 +21,8 @@ public class ProceduralSteps : ScriptableObject {
 		HolyCrab,
 		Crabocalypse,
 		Crabbageddon,
-		SuperHexacrab
+		SuperHexacrab,
+		CrabLike
 	}
 	public Difficulty levelLabel;
 	public AudioClip MusicSource;

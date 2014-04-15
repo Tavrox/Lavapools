@@ -7,6 +7,7 @@ public class Chainsaw : PatrolBrick {
 
 	public void Start () 
 	{
+		type = typeList.Chainsaw;
 		transform.position = new Vector3(transform.position.x, transform.position.y, 0f);
 		base.Setup();			
 		if (brickPath != null)
@@ -26,5 +27,10 @@ public class Chainsaw : PatrolBrick {
 	{
 		Invert.PlayOnce("invert");
 		OTTween invertSpeed = new OTTween(this, 1f).Tween("speed", 0f).PingPong();
+	}
+
+	public void prepareBrick()
+	{
+		animSpr.Play();
 	}
 }

@@ -25,6 +25,7 @@ public class MainTitleUI : MonoBehaviour
 	[HideInInspector] public SubMenu LevelChooser;
 	[HideInInspector] public SubMenu Options;
 	public MiscButton currFocusedbtn;
+	public bool padEntered = false;
 	
 	void Awake () 
 	{
@@ -65,10 +66,25 @@ public class MainTitleUI : MonoBehaviour
 		{
 			sub.setupBtn();
 		}
-		changeState(MenuStates.Start);
+		if (Input.GetJoystickNames().Length > 0)
+		{
+			padEntered = true;
+			changeState(MenuStates.Start);
+		}
 		TranslateAllInScene();
 		InvokeRepeating("checkPadMenu", 0f, 0.5f);
+		InvokeRepeating("checkPadAvailable", 0f, 1f);
 //		StartCoroutine("DelayMusic");
+	}
+
+	void checkPadAvailable()
+	{
+		if (Input.GetJoystickNames().Length > 0)
+		{
+			padEntered = true;
+			changeState(MenuStates.Start);
+			CancelInvoke("checkPadAvailable");
+		}
 	}
 
 	void checkPadMenu()
@@ -98,25 +114,25 @@ public class MainTitleUI : MonoBehaviour
 			}
 		}
 
-			if (CurrentState == MenuStates.LevelChooser)
+		if (CurrentState == MenuStates.LevelChooser)
+		{
+			if (Input.GetButton(PLAYERDAT.INPUT.TriggerLeftButton))
 			{
-				if (Input.GetButton(PLAYERDAT.INPUT.TriggerLeftButton))
-				{
-					Chooser._btnLeft.triggerDirBtn();
-				}
-				if (Input.GetButton(PLAYERDAT.INPUT.TriggerRightButton))
-				{
-					Chooser._btnRight.triggerDirBtn();
-				}
-				if (Input.GetButton(PLAYERDAT.INPUT.EnterButton))
-				{
-					Chooser.currThumb.linkedPlayBtn.playCurrLvlThumb();
-				}
-				if (Input.GetButton(PLAYERDAT.INPUT.BackButton))
-				{
-					backHome();
-				}
+				Chooser._btnLeft.triggerDirBtn();
 			}
+			if (Input.GetButton(PLAYERDAT.INPUT.TriggerRightButton))
+			{
+				Chooser._btnRight.triggerDirBtn();
+			}
+			if (Input.GetButton(PLAYERDAT.INPUT.EnterButton))
+			{
+				Chooser.currThumb.linkedPlayBtn.playCurrLvlThumb();
+			}
+			if (Input.GetButton(PLAYERDAT.INPUT.BackButton))
+			{
+				backHome();
+			}
+		}
 	}
 
 	public void changeState(MenuStates _st)

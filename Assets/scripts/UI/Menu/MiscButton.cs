@@ -20,7 +20,8 @@ public class MiscButton : MonoBehaviour {
 		OpenLevel,
 		OpenCredits,
 		BackHome,
-		RespawnBtn
+		RespawnBtn,
+		ChangeLang
 	};
 	[HideInInspector] public GameSetup SETUP;
 	public GameSetup.LevelList levelToLoad;
@@ -174,6 +175,20 @@ public class MiscButton : MonoBehaviour {
 				}
 				break;
 			}
+			case buttonList.ChangeLang :
+			{
+				if (SETUP.ChosenLanguage == GameSetup.languageList.french)
+				{
+					SETUP.ChosenLanguage = GameSetup.languageList.english;
+				}
+				else if (SETUP.ChosenLanguage == GameSetup.languageList.english)
+				{
+					SETUP.ChosenLanguage = GameSetup.languageList.french;	
+				}
+				mainUi.TranslateAllInScene();
+				break;
+			}
+
 			}
 			//			print ("clicked" + buttonType);
 		}
@@ -213,17 +228,18 @@ public class MiscButton : MonoBehaviour {
 
 	public void giveFocus(bool state)
 	{
-		hasFocus = state;		
-		if (hasFocus == true)
+		if (mainUi.padEntered == true)
 		{
-			spr.frameName = altFrame;
+			hasFocus = state;		
+			if (hasFocus == true)
+			{
+				spr.frameName = altFrame;
+			}
+			else
+			{
+				spr.frameName = stdFrame;
+			}
 		}
-		else
-		{
-			spr.frameName = stdFrame;
-		}
-		
-
 	}
 
 	IEnumerator unlockEveryButton()

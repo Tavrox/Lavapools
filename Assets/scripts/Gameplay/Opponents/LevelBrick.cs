@@ -9,6 +9,7 @@ public class LevelBrick : MonoBehaviour {
 		Bird, 
 		Fields,
 		Chainsaw,
+		ArrowTower
 	};
 	public typeList type;
 	[HideInInspector] public float speed;
@@ -23,7 +24,7 @@ public class LevelBrick : MonoBehaviour {
 	[HideInInspector] public bool isEnabled = false;
 	[HideInInspector] public List<FESound> _soundList = new List<FESound>();
 	
-	private OTAnimatingSprite animSpr;
+	[HideInInspector] public OTAnimatingSprite animSpr;
 	[HideInInspector] public Dictionary<LevelBrick.typeList, float> _bricksSpeed = new Dictionary<LevelBrick.typeList, float>();
 
 	public void Setup()
@@ -73,18 +74,16 @@ public class LevelBrick : MonoBehaviour {
 		return res;
 	}
 
-	public void enableBrick()
+	virtual public void enableBrick()
 	{
 		float initspeed = getSpeed(this, _bricksSpeed);
 		new OTTween(this, 0.5f).Tween("speed", initspeed );
 		animSpr.Play();
-//		animSpr.Resume();
 		isEnabled = true;
 	}
 
-	public void disableBrick()
+	virtual public void disableBrick()
 	{
-//		animSpr.Pauze();
 		isEnabled = false;
 		speed = 0;
 	}
@@ -93,6 +92,7 @@ public class LevelBrick : MonoBehaviour {
 	{
 		if (this != null)
 		{
+			animSpr.Play();
 			disableBrick();
 			new OTTween(this, 0.5f).Tween("speed", initSpeed );
 		}
@@ -100,7 +100,10 @@ public class LevelBrick : MonoBehaviour {
 	
 	private void GameOver()
 	{
+		if (this != null)
+		{
 
+		}
 	}
 
 	private void EndGame()

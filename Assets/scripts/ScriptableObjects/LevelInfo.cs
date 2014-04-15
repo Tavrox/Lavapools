@@ -7,5 +7,6 @@ public class LevelInfo : ScriptableObject {
 	public GameSetup.LevelList LvlName;
 	public float player_best_score;
 	public bool locked;
+	public bool specialLevel = false;
 
 }

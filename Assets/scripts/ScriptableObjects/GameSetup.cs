@@ -9,7 +9,16 @@ public class GameSetup : ScriptableObject {
 		None,
 		Grensdalur,
 		Etna,
-		Vesuvio
+		Vesuvio,
+		Gedamsa,
+		Fuji,
+		Whakaari,
+		Augustine,
+		Lanzarote,
+		Amirani, 
+		Olympus,
+		GameEnding,
+		PayToPlay
 	};
 	public enum languageList
 	{
@@ -25,10 +34,12 @@ public class GameSetup : ScriptableObject {
 	public string website_url;
 	public DialogSheet TextSheet;
 	public bool translated = false;
+	public bool demoVersion = false;
 
-	public void changeLang( languageList _chosen)
+	public string changeLang( languageList _chosen)
 	{
 		ChosenLanguage = _chosen;
+		return ChosenLanguage.ToString();
 	}
 
 	public void startTranslate(languageList _chosen)

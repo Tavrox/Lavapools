@@ -2,16 +2,32 @@
 <data version="1.0">
     <struct type="Settings">
         <key>fileFormatVersion</key>
-        <int>1</int>
-        <key>variation</key>
-        <string>main</string>
-        <key>verbose</key>
-        <false/>
+        <int>3</int>
+        <key>texturePackerVersion</key>
+        <string>3.3.1</string>
+        <key>fileName</key>
+        <string>C:/Users/Tavrox/Documents/GitHub/Lavapools/Assets/prod/gameplay/tinygem.tps</string>
         <key>autoSDSettings</key>
-        <array/>
+        <array>
+            <struct type="AutoSDSettings">
+                <key>scale</key>
+                <double>1</double>
+                <key>extension</key>
+                <string></string>
+                <key>spriteFilter</key>
+                <string></string>
+                <key>acceptFractionalValues</key>
+                <false/>
+                <key>maxTextureSize</key>
+                <QSize>
+                    <key>width</key>
+                    <int>-1</int>
+                    <key>height</key>
+                    <int>-1</int>
+                </QSize>
+            </struct>
+        </array>
         <key>allowRotation</key>
-        <false/>
-        <key>quiet</key>
         <false/>
         <key>premultiplyAlpha</key>
         <false/>
@@ -22,7 +38,7 @@
         <key>dataFormat</key>
         <string>cocos2d</string>
         <key>textureFileName</key>
-        <filename>../gfx/tinygem.png</filename>
+        <filename>../../gfx/drowning.png</filename>
         <key>flipPVR</key>
         <false/>
         <key>ditherType</key>
@@ -45,6 +61,8 @@
         <uint>80</uint>
         <key>pngOptimizationLevel</key>
         <uint>0</uint>
+        <key>webpQualityLevel</key>
+        <uint>101</uint>
         <key>textureSubPath</key>
         <string></string>
         <key>textureFormat</key>
@@ -98,8 +116,6 @@
             <enum type="AndEngine::MinFilter">Linear</enum>
             <key>packageName</key>
             <string>Texture</string>
-            <key>javaFileName</key>
-            <filename>../gfx/spritesheet.java</filename>
             <key>wrap</key>
             <struct type="AndEngineWrap">
                 <key>s</key>
@@ -110,12 +126,21 @@
             <key>magFilter</key>
             <enum type="AndEngine::MagFilter">MagLinear</enum>
         </struct>
-        <key>dataFileName</key>
-        <filename>../gfx/tinygem.xml</filename>
+        <key>dataFileNames</key>
+        <map type="GFileNameMap">
+            <key>data</key>
+            <struct type="DataFile">
+                <key>name</key>
+                <filename>../../gfx/drowning.xml</filename>
+            </struct>
+            <key>java</key>
+            <struct type="DataFile">
+                <key>name</key>
+                <filename>../gfx/spritesheet.java</filename>
+            </struct>
+        </map>
         <key>multiPack</key>
         <false/>
-        <key>mainExtension</key>
-        <string></string>
         <key>forceIdenticalLayout</key>
         <false/>
         <key>outputFormat</key>
@@ -129,6 +154,8 @@
         <true/>
         <key>trimSpriteNames</key>
         <false/>
+        <key>cleanTransparentPixels</key>
+        <true/>
         <key>globalSpriteSettings</key>
         <struct type="SpriteSettings">
             <key>scale</key>
@@ -148,31 +175,34 @@
         </struct>
         <key>fileList</key>
         <array>
-            <filename>TinyGem20bounce.png</filename>
-            <filename>TinyGem21bounce.png</filename>
-            <filename>TinyGem22bounce.png</filename>
-            <filename>TinyGem23bounce.png</filename>
-            <filename>TinyGem24bounce.png</filename>
-            <filename>TinyGem25bounce.png</filename>
-            <filename>tinygem01bounce.png</filename>
-            <filename>tinygem02bounce.png</filename>
-            <filename>tinygem03bounce.png</filename>
-            <filename>tinygem04bounce.png</filename>
-            <filename>TinyGem05bounce.png</filename>
-            <filename>TinyGem06bounce.png</filename>
-            <filename>TinyGem07bounce.png</filename>
-            <filename>TinyGem08bounce.png</filename>
-            <filename>TinyGem09bounce.png</filename>
-            <filename>TinyGem10bounce.png</filename>
-            <filename>TinyGem11bounce.png</filename>
-            <filename>TinyGem12bounce.png</filename>
-            <filename>TinyGem13bounce.png</filename>
-            <filename>TinyGem14bounce.png</filename>
-            <filename>TinyGem15bounce.png</filename>
-            <filename>TinyGem16bounce.png</filename>
-            <filename>TinyGem17bounce.png</filename>
-            <filename>TinyGem18bounce.png</filename>
-            <filename>TinyGem19bounce.png</filename>
+            <filename>path20drowning.png</filename>
+            <filename>path21drowning.png</filename>
+            <filename>path22drowning.png</filename>
+            <filename>path23drowning.png</filename>
+            <filename>path24drowning.png</filename>
+            <filename>path25drowning.png</filename>
+            <filename>path26drowning.png</filename>
+            <filename>path27drowning.png</filename>
+            <filename>path00drowning.png</filename>
+            <filename>path01drowning.png</filename>
+            <filename>path02drowning.png</filename>
+            <filename>path03drowning.png</filename>
+            <filename>path04drowning.png</filename>
+            <filename>path05drowning.png</filename>
+            <filename>path06drowning.png</filename>
+            <filename>path07drowning.png</filename>
+            <filename>path08drowning.png</filename>
+            <filename>path09drowning.png</filename>
+            <filename>path10drowning.png</filename>
+            <filename>path11drowning.png</filename>
+            <filename>path12drowning.png</filename>
+            <filename>path13drowning.png</filename>
+            <filename>path14drowning.png</filename>
+            <filename>path15drowning.png</filename>
+            <filename>path16drowning.png</filename>
+            <filename>path17drowning.png</filename>
+            <filename>path18drowning.png</filename>
+            <filename>path19drowning.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

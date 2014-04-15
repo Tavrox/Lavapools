@@ -11,7 +11,8 @@ public class LevelTools : MonoBehaviour {
 		Chainsaw,
 		Bird,
 		GameBorders,
-		LevelManager
+		LevelManager,
+		Arrow
 	};
 	
 	public void disableBrick (LevelBrick _brickToEnable)

@@ -36,11 +36,11 @@ public class Procedural : MonoBehaviour {
 		{
 			if ( _step.stepID > _CURRENTSTEP.stepID)
 			{
-				if (_step.condition == ProceduralSteps.conditionEnum.Score && _step.ScoreCondition < _levMan.score)
+				if (_step.condition == ProceduralSteps.conditionEnum.Score && _step.ScoreCondition == _levMan.score)
 				{
 					triggerStep(_step);
 				}
-				if (_step.condition == ProceduralSteps.conditionEnum.Timer && _step.TimerCondition < _levMan.SecondsElapsed)
+				if (_step.condition == ProceduralSteps.conditionEnum.Timer && _step.TimerCondition == _levMan.SecondsElapsed)
 				{
 					triggerStep(_step);
 				}
@@ -99,7 +99,9 @@ public class Procedural : MonoBehaviour {
 //				man.relatedBrick.GetComponent<PatrolBrick>().setupTarget();
 			}	
 		}
-		_levMan._player.speed = _levMan._player.speed * _step.Crab_SpeedMultiplier;
+		_levMan._player.lowSpeed = _levMan._player.lowSpeed * _step.Crab_SpeedMultiplier;
+		_levMan._player.medSpeed = _levMan._player.medSpeed * _step.Crab_SpeedMultiplier;
+		_levMan._player.highSpeed = _levMan._player.highSpeed * _step.Crab_SpeedMultiplier;
 		_levMan.menuManager.changeLevelLabel(_CURRENTSTEP); 
 
 		if (_step.stepID > 1)

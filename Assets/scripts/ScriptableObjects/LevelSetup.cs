@@ -6,7 +6,9 @@ public class LevelSetup : ScriptableObject
 {
 	public GameSetup.LevelList NAME;
 	public int numberOfSteps;
-	public float Player_Speed;
+	public float Player_Speed_low;
+	public float Player_Speed_med;
+	public float Player_Speed_high;
 	public float Bird_Speed;
 	public float Chainsaw_Speed;
 	public float Gem_SpawnRate;
@@ -29,7 +31,9 @@ public class LevelSetup : ScriptableObject
 	public void CopySetup()
 	{
 		numberOfSteps = _lvlToCopy.numberOfSteps;
-		Player_Speed = _lvlToCopy.Player_Speed;
+		Player_Speed_low = _lvlToCopy.Player_Speed_low;
+		Player_Speed_med = _lvlToCopy.Player_Speed_med;
+		Player_Speed_high = _lvlToCopy.Player_Speed_high;
 		Bird_Speed = _lvlToCopy.Bird_Speed;
 		Chainsaw_Speed = _lvlToCopy.Chainsaw_Speed;
 		Fields_Speed = _lvlToCopy.Fields_Speed;

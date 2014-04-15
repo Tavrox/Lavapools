@@ -6,11 +6,14 @@ using System;
 public class LPTuning : ScriptableObject {
 	
 	public Vector2 Player_Friction;
+	public Vector3 PlayerSteps;
+	public float PlayerSpeedReset;
 	public int Gem_Value = 1;
 	public int Gatepart_Value = 1;
 	public float finishFirstStep = 5f;
 	public float finishSecondStep = 15f;
 	public float finishThirdStep = 25f;
+	public float fadeAfterDelay = 4f;
 
 	public Color ColPlayer;
 	public Color ColRank;
