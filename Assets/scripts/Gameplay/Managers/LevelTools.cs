@@ -14,6 +14,13 @@ public class LevelTools : MonoBehaviour {
 		LevelManager,
 		Arrow
 	};
+	public enum DirectionList
+	{
+		Up,
+		Down,
+		Left,
+		Right
+	};
 	
 	public void disableBrick (LevelBrick _brickToEnable)
 	{

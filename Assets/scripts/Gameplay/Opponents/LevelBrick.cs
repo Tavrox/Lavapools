@@ -12,7 +12,7 @@ public class LevelBrick : MonoBehaviour {
 		ArrowTower
 	};
 	public typeList type;
-	[HideInInspector] public float speed;
+	public float speed;
 	[HideInInspector] public float initSpeed;
 	[HideInInspector] public LevelManager _levMan;
 	[HideInInspector] public int brickId;

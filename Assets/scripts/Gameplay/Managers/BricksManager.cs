@@ -21,6 +21,10 @@ public class BricksManager : MonoBehaviour {
 			{
 				_brick.GetComponent<Chainsaw>().Setup();
 			}
+			if (_brick.GetComponent<ArrowTower>() != null)
+			{
+				_brick.GetComponent<ArrowTower>().Setup();
+			}
 		}
 	}
 
