@@ -205,6 +205,8 @@
             <filename>btnHome.png</filename>
             <filename>btnOk_cancel.png</filename>
             <filename>btnStartQuitAlt.png</filename>
+            <filename>english.png</filename>
+            <filename>french.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

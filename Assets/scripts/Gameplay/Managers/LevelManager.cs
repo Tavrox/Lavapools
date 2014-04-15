@@ -36,6 +36,8 @@ public class LevelManager : MonoBehaviour {
 	[HideInInspector] public PlayerData _profile;
 	[HideInInspector] public Player _player;
 	[HideInInspector] public SpaceGate Gate;
+	[HideInInspector] public GameObject OuterSpawn;
+
 	
 	private FieldManager fieldMan;
 	private Fields spawningField;
@@ -91,6 +93,8 @@ public class LevelManager : MonoBehaviour {
 
 		bricksMan = FETool.findWithinChildren(this.gameObject, "LevelBricks/Bricks").GetComponent<BricksManager>();
 		bricksMan.Setup();
+
+		OuterSpawn = FETool.findWithinChildren(this.gameObject, "Enviro/OuterSpawn");
 
 		CollectiblePlaces[] collecPla = FETool.findWithinChildren(this.gameObject, "Enviro/CollectiblePlaces").GetComponentsInChildren<CollectiblePlaces>();
 		foreach (CollectiblePlaces cpl in collecPla)

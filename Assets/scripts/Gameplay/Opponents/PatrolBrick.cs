@@ -5,8 +5,8 @@ using System.Collections.Generic;
 public class PatrolBrick : LevelBrick {
 
 	[HideInInspector] public string brickPathId;
-	public Waypoint currentWP;
 	[HideInInspector] public bool debug;
+	public Waypoint currentWP;
 
 	private WaypointManager initPath;
 	public WaypointManager brickPath;
@@ -56,8 +56,8 @@ public class PatrolBrick : LevelBrick {
 
 		if (type == typeList.Bird)
 		{
-			SpaceGate gt = GameObject.Find("LevelManager").GetComponent<LevelManager>().Gate;
-			gameObject.transform.position = new Vector3(gt.transform.position.x, gt.transform.position.y, 0f);
+			GameObject spw = GameObject.Find("LevelManager/Enviro/OuterSpawn");
+			gameObject.transform.position = new Vector3(spw.transform.position.x, spw.transform.position.y, 0f);
 		}
 
 		initPath = brickPath;
@@ -136,7 +136,10 @@ public class PatrolBrick : LevelBrick {
 	
 	private void GameOver()
 	{
+		if (this != null)
+		{
 
+		}
 	}
 	
 	private void Respawn()
@@ -144,6 +147,7 @@ public class PatrolBrick : LevelBrick {
 		if (this != null)
 		{
 			setupPath();
+//			animSpr.Stop();
 		}
 	}
 

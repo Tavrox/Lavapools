@@ -15,6 +15,7 @@ public class UserInput : TextUI {
 	private float smallDelay = 1.25f;
 	private bool canModify = false;
 	private bool writing = false;
+	private bool hasWritten = false;
 
 	void Start()
 	{
@@ -33,29 +34,20 @@ public class UserInput : TextUI {
 	{
 		_mesh.text = text;
 		_mesh.color = color;
-		mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 		writing = false;
 		if (LevelManager.GAMESTATE == GameEventManager.GameState.GameOver && canModify == true)
 		{
-			if (mousePos.x < _rec.xMax && mousePos.x > _rec.xMin && mousePos.y > _rec.yMin && mousePos.y < _rec.xMax)
-			{
+//			if (Input.anyKey == true && Input.GetKey(KeyCode.Space) != true  && Input.GetKey(KeyCode.Return) != true)
+//			{
+//				text = "";
+//				color = _col1;
+//				CancelInvoke("switchColor");
+//			}
 
-			}
-			else if (Input.GetMouseButtonDown(0))
-			{
-				color.a = 1f;
-			}
-			if (text == "" || text == " " )
-			{
-				writing = false;
-				StartCoroutine("ReprintDefault");
-			}
-			if (Input.anyKey == true && text == "_NAME_" && Input.GetKey(KeyCode.Space) != true  && Input.GetKey(KeyCode.Return) != true)
-			{
-				text = "";
-				color = _col1;
-				CancelInvoke("switchColor");
-			}
+//			if (Input.anyKey == true && hasWritten == false)
+//			{
+//				text = " ";
+//			}
 
 			if (Input.inputString == "\b")
 			{
@@ -72,6 +64,7 @@ public class UserInput : TextUI {
 				    && Input.inputString != "\n" && Input.inputString != "\r")
 				{
 					writing = true;
+					hasWritten = true;
 					text += Input.inputString;
 					text.Replace(" ", "_");
 				}

@@ -75,10 +75,10 @@ public class PhpLeaderboards : MonoBehaviour
 		}
 		else
 		{
-//			print ("Record envoyé"
+			print ("Record envoyé"
 //			       + level_id.ToString() + "]["
-//			       + name  + "]["
-//			       + score + "]");
+			       + name  + "]["
+			       + score + "]");
 		}
 	}
 	
@@ -86,7 +86,6 @@ public class PhpLeaderboards : MonoBehaviour
 	// remember to use StartCoroutine when calling this function!
 	IEnumerator GetScores(int level_id)
 	{
-//		print ("bitc plz");
 		highscoreURL = highscoreURL + "?levelid=" + level_id;
 		WWW hs_get = new WWW(highscoreURL);
 		yield return hs_get;
@@ -98,7 +97,6 @@ public class PhpLeaderboards : MonoBehaviour
 		else
 		{
 			string[] entries = hs_get.text.Split(']');
-			print (entries.ToString());
 			for (int i = 0; i < entries.Length -1 ; i++)
 			{
 				ListUser[i].ranking = i+1;

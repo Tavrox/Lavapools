@@ -16,6 +16,7 @@ public class TextUI : MonoBehaviour {
 	public void Awake()
 	{
 		SETUP = Resources.Load("Tuning/GameSetup") as GameSetup;
+		SETUP.changeLang(SETUP.ChosenLanguage);
 		_mesh = GetComponent<TextMesh>();
 		initColor = color;
 		DIALOG_ID = gameObject.name;

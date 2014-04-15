@@ -15,7 +15,8 @@ public class DialogSheet : ScriptableObject {
 	{
 		currLanguage = _lang;
 		translated_texts = fillDicoText(currLanguage);
-		Debug.Log (translated_texts +""+_lang);
+//		Debug.Log (translated_texts +""+_lang);
+//		Debug.Log (translated_texts.Count);
 	}
 	public string TranslateSingle(TextUI _txt)
 	{
@@ -40,7 +41,6 @@ public class DialogSheet : ScriptableObject {
 	{
 		if (translateGame == true)
 		{
-	//		TextUI[] allTxt = GameObject.FindObjectsOfType(typeof(TextUI)) as TextUI[];
 			foreach (TextUI _tx in _arrTxt)
 			{
 				if (translated_texts.ContainsKey(_tx.DIALOG_ID) != false && _tx.dontTranslate == false)

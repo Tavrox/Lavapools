@@ -147,6 +147,19 @@
                 <key>sourceSize</key>
                 <string>{40,41}</string>
             </dict>
+            <key>english.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{935,5},{40,40}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{40,40}}</string>
+                <key>sourceSize</key>
+                <string>{40,40}</string>
+            </dict>
             <key>entrypanel.png</key>
             <dict>
                 <key>frame</key>
@@ -160,10 +173,23 @@
                 <key>sourceSize</key>
                 <string>{800,125}</string>
             </dict>
+            <key>french.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{810,53},{40,40}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{40,40}}</string>
+                <key>sourceSize</key>
+                <string>{40,40}</string>
+            </dict>
             <key>lock.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{810,53},{59,65}}</string>
+                <string>{{855,53},{59,65}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -404,7 +430,7 @@
             <key>size</key>
             <string>{1024,2048}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:26e4c05d5fefb63d3a69d687c0644fd5:484b817eb92d36517e6819f71c25caa3:0dbeed7acf6c3264861a2e70e992bcae$</string>
+            <string>$TexturePacker:SmartUpdate:95ef9bff0646fe9a8def0c78bceceb65:c32389c50900400436134f9afcafdb4e:0dbeed7acf6c3264861a2e70e992bcae$</string>
             <key>textureFileName</key>
             <string>ui.png</string>
         </dict>

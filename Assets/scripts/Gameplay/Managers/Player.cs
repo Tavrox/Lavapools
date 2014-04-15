@@ -7,8 +7,14 @@ public class Player : MonoBehaviour {
 	[HideInInspector] public InputManager InputMan;
 	public int OnPlatforms;
 
-	[SerializeField] private float _speed;
-	public float initSpeed;
+	public float lowSpeed;
+	public float medSpeed;
+	public float highSpeed;
+	public float initLowSpeed;
+	public float initMedSpeed;
+	public float initHighSpeed;
+	public float currSpeed;
+
 	private RaycastHit hit;
 	private Vector3 pos;
 	private int layer;
@@ -21,8 +27,7 @@ public class Player : MonoBehaviour {
 	private Vector2 originalSize;
 	private Notification _notif;
 	private PlayerAnims _anims;
-	public float speed
-	{ get {return _speed;} set {_speed = value;} }
+	private float speedStack;
 
 	[HideInInspector] public enum playerState
 	{
@@ -51,8 +56,12 @@ public class Player : MonoBehaviour {
 		_playerSheet = ScriptableObject.CreateInstance("UserLeaderboard") as UserLeaderboard;
 		_playerSheet.name = playerName;
 
-		speed = LevelManager.LocalTuning.Player_Speed;
-		initSpeed = speed;
+		lowSpeed = LevelManager.LocalTuning.Player_Speed_low;
+		medSpeed = LevelManager.LocalTuning.Player_Speed_med;
+		highSpeed = LevelManager.LocalTuning.Player_Speed_high;
+		initLowSpeed = lowSpeed;
+		initMedSpeed = medSpeed;
+		initHighSpeed = highSpeed;
 		InputMan = Resources.Load("Tuning/InputManager") as InputManager;
 
 		 
@@ -77,7 +86,7 @@ public class Player : MonoBehaviour {
 		pos = gameObject.transform.position;
 //		print ("Platforms[" + OnPlatforms+"]");
 
-		if (speed == 0)
+		if (medSpeed == 0)
 		{
 //			Debug.Log("Speed of crab is 0");
 		}
@@ -97,50 +106,81 @@ public class Player : MonoBehaviour {
 
 	private void moveInput()
 	{
-//		_anims.playAnimation(_anims._STATIC);
-		if (Input.GetKey (InputMan.KeyRight) || Input.GetAxisRaw("X axis") < InputMan.X_AxisNeg_Sensibility) 
+
+		if (speedStack > LevelManager.GlobTuning.PlayerSteps.x && speedStack < LevelManager.GlobTuning.PlayerSteps.y )
 		{
-			mod.x += speed;
+			currSpeed = lowSpeed;
+		}
+		if (speedStack > LevelManager.GlobTuning.PlayerSteps.y  && speedStack < LevelManager.GlobTuning.PlayerSteps.z)
+		{
+			currSpeed = medSpeed;
+		}
+		if (speedStack > LevelManager.GlobTuning.PlayerSteps.z)
+		{
+			currSpeed = highSpeed;
+		}
+//		_anims.playAnimation(_anims._STATIC);
+		if (Input.GetKey (InputMan.KeyRight) || Input.GetAxisRaw("X axis") < (InputMan.BigAxis * -1) || Input.GetAxisRaw("6th axis") < (InputMan.SmallAxis * -1)) 
+		{
+			StopCoroutine("StartCheckReset");
+			speedStack += 1f * Time.deltaTime;
+			mod.x += currSpeed;
 			_anims.playAnimation(_anims._WALK);
 		}
 		else if (Input.GetKeyUp (InputMan.KeyRight)) 
 		{
+			StartCoroutine("StartCheckReset");
 			mod.x = 10f;
 			_anims.playAnimation(_anims._STATIC);
 		}
 		
-		if (Input.GetKey (InputMan.KeyUp) || Input.GetAxisRaw("Y axis") > InputMan.Y_AxisPos_Sensibility) 
+		if (Input.GetKey (InputMan.KeyUp) || Input.GetAxisRaw("Y axis") > InputMan.BigAxis  || Input.GetAxisRaw("7th axis") > InputMan.SmallAxis) 
 		{
-			mod.y += speed;
+			StopCoroutine("StartCheckReset");
+			speedStack += 1f * Time.deltaTime;
+			mod.y += currSpeed;
 			_anims.playAnimation(_anims._WALK);
 		}
 		else if (Input.GetKeyUp (InputMan.KeyUp)) 
 		{
+			StartCoroutine("StartCheckReset");
 			mod.y = 10f;
 			_anims.playAnimation(_anims._STATIC);
 		}
-		
-		if (Input.GetKey (InputMan.KeyLeft) || Input.GetAxisRaw("X axis") > InputMan.X_AxisPos_Sensibility) 
+
+		if (Input.GetKey (InputMan.KeyLeft) || Input.GetAxisRaw("X axis") > InputMan.BigAxis  || Input.GetAxisRaw("6th axis") > InputMan.SmallAxis ) 
 		{
-			mod.x -= speed;
+			speedStack += 1f * Time.deltaTime;
+			StopCoroutine("StartCheckReset");
+			mod.x -= currSpeed;
 			_anims.playAnimation(_anims._WALK);
 		}
 		else if (Input.GetKeyUp (InputMan.KeyLeft)) 
 		{
+			StartCoroutine("StartCheckReset");
 			mod.x = -10f;
 			_anims.playAnimation(_anims._STATIC);
 		}
 		
-		if (Input.GetKey (InputMan.KeyDown) || Input.GetAxisRaw("Y axis") < InputMan.Y_AxisNeg_Sensibility ) 
+		if (Input.GetKey (InputMan.KeyDown) || Input.GetAxisRaw("Y axis") < (InputMan.BigAxis * -1)  || Input.GetAxisRaw("7th axis") < (InputMan.SmallAxis * -1)  ) 
 		{
-			mod.y -= speed;
+			speedStack += 1f * Time.deltaTime;
+			StopCoroutine("StartCheckReset");
+			mod.y -= currSpeed;
 			_anims.playAnimation(_anims._WALK);
 		}
 		else if (Input.GetKeyUp (InputMan.KeyDown)) 
 		{
+			StartCoroutine("StartCheckReset");
 			mod.y = -10f;
 			_anims.playAnimation(_anims._STATIC);
 		}
+	}
+
+	IEnumerator StartCheckReset()
+	{
+		yield return new WaitForSeconds(LevelManager.GlobTuning.PlayerSpeedReset);
+		speedStack = 0f;
 	}
 
 	public void triggerNotification(float _value)
@@ -160,7 +200,9 @@ public class Player : MonoBehaviour {
 	{
 		if (this != null)
 		{
-			speed = initSpeed;
+			lowSpeed = initLowSpeed;
+			medSpeed = initMedSpeed;
+			highSpeed = initHighSpeed;
 			new OTTween(spr, 0.5f).Tween("alpha", 1f);
 			new OTTween(spr, 0.5f).Tween("size", new Vector2(originalSize.x,originalSize.y));
 			_notif.makeFadeOut();
@@ -172,7 +214,9 @@ public class Player : MonoBehaviour {
 	{
 		if (this != null)
 		{
-			speed = initSpeed;
+			lowSpeed = initLowSpeed;
+			medSpeed = initMedSpeed;
+			highSpeed = initHighSpeed;
 			new OTTween(spr, 0.5f).Tween("alpha", 0f);
 			new OTTween(spr, 0.5f).Tween("size", new Vector2(0.25f,0.25f));
 			_notif.makeFadeOut();
@@ -184,7 +228,9 @@ public class Player : MonoBehaviour {
 	{
 		if (this != null)
 		{
-			speed = initSpeed;
+			lowSpeed = initLowSpeed;
+			medSpeed = initMedSpeed;
+			highSpeed = initHighSpeed;
 			gameObject.transform.position = startPos;
 			new OTTween(spr, 0.5f).Tween("alpha", 1f);
 			new OTTween(spr, 0.5f).Tween("size", new Vector2(originalSize.x,originalSize.y));

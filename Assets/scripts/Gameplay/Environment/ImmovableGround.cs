@@ -11,6 +11,7 @@ public class ImmovableGround : MonoBehaviour {
 	{
 		killer = false;
 		_player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+//		GetComponent<BoxCollider>().size = new Vector3(0f,0f,100f);
 		GameEventManager.Respawn += Respawn;
 		GameEventManager.GameOver += GameOver;
 	}
