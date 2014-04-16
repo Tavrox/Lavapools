@@ -108,17 +108,23 @@ public class LevelManager : MonoBehaviour {
 		Gate = GameObject.FindGameObjectWithTag("SpaceGate").GetComponent<SpaceGate>();
 		Gate.Setup();
 
-		if (GameObject.Find("UI") == null)
+		if (LocalTuning.OblivionLevel == false)
 		{
-			GameObject uiman = Instantiate(Resources.Load("Presets/UI")) as GameObject;
-			uiman.name = "UI";
-			menuManager = uiman.GetComponent<MainMenu>();
+			if (GameObject.Find("UI") == null)
+			{
+				GameObject uiman = Instantiate(Resources.Load("Presets/UI")) as GameObject;
+				uiman.name = "UI";
+				menuManager = uiman.GetComponent<MainMenu>();
+			}
+			else
+			{
+				menuManager = GameObject.Find("UI").GetComponent<MainMenu>();
+			}
 		}
-		else
+		if (menuManager != null)
 		{
-			menuManager = GameObject.Find("UI").GetComponent<MainMenu>();
+			menuManager.Setup(this);
 		}
-		menuManager.Setup(this);
 		managerChecker();
 		proc.triggerStep(proc._listSteps[0]);
 		_player.Setup();

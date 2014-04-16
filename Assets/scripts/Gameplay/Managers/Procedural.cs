@@ -101,8 +101,10 @@ public class Procedural : MonoBehaviour {
 		_levMan._player.lowSpeed = _levMan._player.lowSpeed * _step.Crab_SpeedMultiplier;
 		_levMan._player.medSpeed = _levMan._player.medSpeed * _step.Crab_SpeedMultiplier;
 		_levMan._player.highSpeed = _levMan._player.highSpeed * _step.Crab_SpeedMultiplier;
-		_levMan.menuManager.changeLevelLabel(_CURRENTSTEP); 
-
+		if (_levMan.menuManager != null)
+		{
+			_levMan.menuManager.changeLevelLabel(_CURRENTSTEP); 
+		}
 		if (_step.stepID > 1)
 		{
 			MasterAudio.PlaySound("Steps", 1f, 1f, 0f, "step_" + _step.levelLabel.ToString().ToLower());

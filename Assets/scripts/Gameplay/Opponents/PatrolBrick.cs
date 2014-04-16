@@ -152,15 +152,18 @@ public class PatrolBrick : LevelBrick {
 
 	void OnDrawGizmos()
 	{
-		if (initWp != null)
+		if (brickPath != null)
 		{
-			Gizmos.color = Color.yellow;
-			Gizmos.DrawLine( gameObject.transform.position, initWp.transform.position);
-		}
-		else
-		{
-			Gizmos.color = Color.blue;
-			Gizmos.DrawLine( gameObject.transform.position, brickPath.relatedWaypoints[0].transform.position);
+			if (initWp != null)
+			{
+				Gizmos.color = Color.yellow;
+				Gizmos.DrawLine( gameObject.transform.position, initWp.transform.position);
+			}
+			else
+			{
+				Gizmos.color = Color.blue;
+				Gizmos.DrawLine( gameObject.transform.position, brickPath.relatedWaypoints[0].transform.position);
+			}
 		}
 	}
 }

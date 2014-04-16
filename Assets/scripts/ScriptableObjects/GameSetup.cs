@@ -18,7 +18,7 @@ public class GameSetup : ScriptableObject {
 		Amirani, 
 		Olympus,
 		GameEnding,
-		PayToPlay
+		Oblivion
 	};
 	public enum languageList
 	{
@@ -35,6 +35,7 @@ public class GameSetup : ScriptableObject {
 	public DialogSheet TextSheet;
 	public bool translated = false;
 	public bool demoVersion = false;
+	public bool alphaVersion = false;
 
 	public string changeLang( languageList _chosen)
 	{

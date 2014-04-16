@@ -16,6 +16,7 @@ public class LevelSetup : ScriptableObject
 	public float Gem_SpawnRate;
 	[Range(1,10)] public int Gem_MinimumInLevel;
 	public LevelSetup _lvlToCopy;
+	public bool OblivionLevel;
 	
 	[HideInInspector] public float Fields_Speed;
 	[HideInInspector] public float Fields_FrequencySpawn;
