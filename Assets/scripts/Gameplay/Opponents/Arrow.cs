@@ -2,65 +2,76 @@
 using System.Collections;
 
 public class Arrow : MonoBehaviour {
-
-	private Vector3 target;
-	public float speed;
+	
 	private LevelTools.DirectionList arrDirection;
 	private float Angle;
-	private float Padding = 1f;
+	private float Padding = 0f;
+	private Vector3 target;
+	public ArrowTower linkedTower;
+	public float speed;
+	public bool Busy = false;
+	public float delayBeforeExtinction = 10f;
 
 	void OnTriggerEnter(Collider _oth)
 	{
-		if (_oth.CompareTag("Player"))
+		if (_oth.CompareTag("Player") == true)
 		{
 			GameEventManager.TriggerGameOver(LevelTools.KillerList.Arrow);
 		}
 	}
 
+	void Update()
+	{
+		if (Busy == true)
+		{
+			transform.position += new Vector3 ((speed * target.x) * Time.deltaTime, (speed * target.y) *  Time.deltaTime, 0f) ;
+		}
+		else
+		{
+			transform.localPosition = Vector3.zero;
+		}
+	}
+
 	public void giveDirection(LevelTools.DirectionList _dir)
 	{
+		transform.position = linkedTower.transform.position;
+		transform.localPosition = new Vector3(0f,0f,0f);
 		arrDirection = _dir;
+		Busy = true;
 		switch (arrDirection)
 		{
 			case LevelTools.DirectionList.Up :
 			{
-			target = new Vector3(0f,1f,0f);
-			transform.Rotate(new Vector3(0f,0f,90f));
-			transform.position += new Vector3(0f, Padding, 0f);
+			target = Vector3.up;
+			transform.rotation = Quaternion.Euler( new Vector3(0f,0f,270f));
+//			transform.position += new Vector3(0f, Padding, 0f);
 			break;
 			}
 			case LevelTools.DirectionList.Down :
 			{
-			target = new Vector3(0f,-1f,0f);
-			transform.Rotate(new Vector3(0f,0f,270f));
-			transform.position += new Vector3(0f, (Padding * -1f), 0f);
+			target = Vector3.down;
+			transform.rotation = Quaternion.Euler( new Vector3(0f,0f,90f));
 			break;
 			}
 			case LevelTools.DirectionList.Left :
 			{
-			target = new Vector3(-1f,0f,0f);
-			transform.Rotate(new Vector3(0f,0f,180f));
-			transform.position += new Vector3((Padding * -1f), 0f, 0f);
+			target = Vector3.left;
+			transform.rotation = Quaternion.Euler( new Vector3(0f,0f,180f));
 			break;
 			}
 			case LevelTools.DirectionList.Right :
 			{
-			target = new Vector3(1f,0f,0f);
-			transform.Rotate(new Vector3(0f,0f,0f));
-			transform.position += new Vector3(Padding, 0f, 0f);
+			target = Vector3.right;
+			transform.rotation = Quaternion.Euler( new Vector3(0f,0f,0f));
 			break;
 			}
 		}
-		InvokeRepeating("UpdateMovement", 0f, 0.01f);
+		StartCoroutine("FadeAway");
 	}
 
-	public void cancelMovement()
+	IEnumerator FadeAway()
 	{
-		CancelInvoke("UpdateMovement");
-	}
-	
-	public void UpdateMovement()
-	{
-		transform.position += speed * target * Time.deltaTime;
+		yield return new WaitForSeconds(delayBeforeExtinction);
+		Busy = false;
 	}
 }

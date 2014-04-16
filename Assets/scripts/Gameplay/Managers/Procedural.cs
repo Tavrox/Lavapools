@@ -96,7 +96,6 @@ public class Procedural : MonoBehaviour {
 				string pathToFetch = _wpm.ToString().Replace("_", "/");
 				WaypointManager man = _levMan.waypointsMan.Find((WaypointManager obj) => obj.name == pathToFetch);
 				man.invertWaypoints();
-//				man.relatedBrick.GetComponent<PatrolBrick>().setupTarget();
 			}	
 		}
 		_levMan._player.lowSpeed = _levMan._player.lowSpeed * _step.Crab_SpeedMultiplier;
@@ -140,6 +139,7 @@ public class Procedural : MonoBehaviour {
 	{
 		if (this != null)
 		{
+			_levMan.tools.disableAllBrick();
 			triggerStep(_listSteps[0]);
 			InvokeRepeating("checkScore", 0f, 0.001f);
 		}

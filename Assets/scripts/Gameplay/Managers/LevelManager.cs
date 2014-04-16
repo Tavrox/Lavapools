@@ -76,6 +76,12 @@ public class LevelManager : MonoBehaviour {
 		proc._levMan = this;
 		proc.Setup();
 
+		
+		GameObject OutSpw = new GameObject("OuterSpawn");
+		OuterSpawn = OutSpw;
+		OuterSpawn.transform.parent = FETool.findWithinChildren(this.gameObject, "Enviro").transform;
+		OuterSpawn.transform.position = new Vector3(0f, -7.5f, 0f);
+
 		tools = gameObject.AddComponent<LevelTools>();
 		tools._levMan = this;
 		TranslateAllInScene();
@@ -93,8 +99,6 @@ public class LevelManager : MonoBehaviour {
 
 		bricksMan = FETool.findWithinChildren(this.gameObject, "LevelBricks/Bricks").GetComponent<BricksManager>();
 		bricksMan.Setup();
-
-		OuterSpawn = FETool.findWithinChildren(this.gameObject, "Enviro/OuterSpawn");
 
 		CollectiblePlaces[] collecPla = FETool.findWithinChildren(this.gameObject, "Enviro/CollectiblePlaces").GetComponentsInChildren<CollectiblePlaces>();
 		foreach (CollectiblePlaces cpl in collecPla)

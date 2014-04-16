@@ -35,7 +35,6 @@ public class PatrolBrick : LevelBrick {
 			Debug.LogError("Non-Random Brick hasn't his init WP setupped" + "[" + gameObject.name  +"]");
 		}
 		InvokeRepeating("RecalculateTarget", 0f, 0.01f);
-//		InvokeRepeating("Move", 0f, 0.1f);
 	}
 
 	public void setupPath()

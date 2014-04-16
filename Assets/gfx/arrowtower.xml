@@ -4,18 +4,31 @@
     <dict>
         <key>frames</key>
         <dict>
-            <key>arrowTower01idle.png</key>
+            <key>dir.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{5,5},{62,88}}</string>
+                <string>{{5,5},{8,7}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{62,88}}</string>
+                <string>{{0,0},{8,7}}</string>
                 <key>sourceSize</key>
-                <string>{62,88}</string>
+                <string>{8,7}</string>
+            </dict>
+            <key>turret.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{18,5},{64,73}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{64,73}}</string>
+                <key>sourceSize</key>
+                <string>{64,73}</string>
             </dict>
         </dict>
         <key>metadata</key>
@@ -27,7 +40,7 @@
             <key>size</key>
             <string>{128,128}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:c396527055431ca21aa3c83feff82697:27b02a1574be74c7a0971714fbfd45ac:ef1ef167296cc4d86bb34b670ba2c087$</string>
+            <string>$TexturePacker:SmartUpdate:01026228604b2643033a1064a8115863:278954eaa65debe08eff8eeb2a2f8435:ef1ef167296cc4d86bb34b670ba2c087$</string>
             <key>textureFileName</key>
             <string>arrowtower.png</string>
         </dict>

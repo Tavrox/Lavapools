@@ -22,12 +22,13 @@ public class Player : MonoBehaviour {
 	private Bounds rect;
 	private Vector3 startPos;
 	private Vector3 friction;
+	private Vector3 playerSteps;
 	private Vector3 mod = new Vector3(0f,0f,0f);
 	private OTSprite spr;
 	private Vector2 originalSize;
 	private Notification _notif;
 	private PlayerAnims _anims;
-	private float speedStack;
+	private float speedStack = 0f;
 
 	[HideInInspector] public enum playerState
 	{
@@ -62,6 +63,7 @@ public class Player : MonoBehaviour {
 		initLowSpeed = lowSpeed;
 		initMedSpeed = medSpeed;
 		initHighSpeed = highSpeed;
+		playerSteps = LevelManager.GlobTuning.PlayerSteps;
 		InputMan = Resources.Load("Tuning/InputManager") as InputManager;
 
 		 
@@ -106,16 +108,15 @@ public class Player : MonoBehaviour {
 
 	private void moveInput()
 	{
-
-		if (speedStack > LevelManager.GlobTuning.PlayerSteps.x && speedStack < LevelManager.GlobTuning.PlayerSteps.y )
+		if (speedStack > playerSteps.x && speedStack < playerSteps.y )
 		{
 			currSpeed = lowSpeed;
 		}
-		if (speedStack > LevelManager.GlobTuning.PlayerSteps.y  && speedStack < LevelManager.GlobTuning.PlayerSteps.z)
+		if (speedStack > playerSteps.y  && speedStack < playerSteps.z)
 		{
 			currSpeed = medSpeed;
 		}
-		if (speedStack > LevelManager.GlobTuning.PlayerSteps.z)
+		if (speedStack > playerSteps.z)
 		{
 			currSpeed = highSpeed;
 		}

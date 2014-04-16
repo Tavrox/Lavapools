@@ -175,7 +175,8 @@
         </struct>
         <key>fileList</key>
         <array>
-            <filename>arrowTower01idle.png</filename>
+            <filename>turret.png</filename>
+            <filename>dir.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

@@ -4,18 +4,18 @@
     <dict>
         <key>frames</key>
         <dict>
-            <key>arrow01idle.png</key>
+            <key>arrow.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{5,5},{79,41}}</string>
+                <string>{{5,5},{37,5}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{79,41}}</string>
+                <string>{{0,0},{37,5}}</string>
                 <key>sourceSize</key>
-                <string>{79,41}</string>
+                <string>{37,5}</string>
             </dict>
         </dict>
         <key>metadata</key>
@@ -25,9 +25,9 @@
             <key>realTextureFileName</key>
             <string>arrow.png</string>
             <key>size</key>
-            <string>{128,64}</string>
+            <string>{64,16}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:cb112d397129a29733eae6c796b79deb:e592753f0ab7f363d4c86a68ee829ce0:41d21c08c0f3d86c10e4f2c8e6942046$</string>
+            <string>$TexturePacker:SmartUpdate:13033d28448dfd8996dbcb62413da26f:afdd3a62cecff018d32207b28bd5580c:41d21c08c0f3d86c10e4f2c8e6942046$</string>
             <key>textureFileName</key>
             <string>arrow.png</string>
         </dict>

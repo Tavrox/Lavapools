@@ -51,7 +51,15 @@ public class ProceduralSteps : ScriptableObject {
 		Chainsaw_5,
 		Chainsaw_6,
 		Chainsaw_7,
-		Chainsaw_8
+		Chainsaw_8,
+		ArrowTower_1,
+		ArrowTower_2,
+		ArrowTower_3,
+		ArrowTower_4,
+		ArrowTower_5,
+		ArrowTower_6,
+		ArrowTower_7,
+		ArrowTower_8,
 	};
 	public enum PathStack
 	{
@@ -80,6 +88,7 @@ public class ProceduralSteps : ScriptableObject {
 	public List<BrickStack> BricksEnabled;
 	public List<BrickStack> BricksDisabled;
 	public List<PathStack> WaypointsToInvert;
+	public List<List<LevelTools.DirectionList>> ArrowTowerToChange;
 	public LevelInfo LevelToUnlock;
 
 	public void Reset()

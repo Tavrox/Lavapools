@@ -27,9 +27,12 @@ public class LevelTools : MonoBehaviour {
 		
 	}
 	
-	public void disableBrick (string _brickToEnable)
+	public void disableAllBrick ()
 	{
-		
+		foreach (LevelBrick brk in _levMan.bricksMan.BricksList)
+		{
+			brk.disableBrick();
+		}
 	}
 
 	public void enableBrick (LevelBrick _brickToEnable)

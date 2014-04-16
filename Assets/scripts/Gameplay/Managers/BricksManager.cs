@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public class BricksManager : MonoBehaviour {
 	
-	[HideInInspector] public List<LevelBrick> BricksList = new List<LevelBrick>();
+	public List<LevelBrick> BricksList = new List<LevelBrick>();
 	
 	// Use this for initialization
 	public void Setup () {
@@ -25,6 +25,7 @@ public class BricksManager : MonoBehaviour {
 			{
 				_brick.GetComponent<ArrowTower>().Setup();
 			}
+			_brick.disableBrick();
 		}
 	}
 

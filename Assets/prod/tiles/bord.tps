@@ -6,7 +6,7 @@
         <key>texturePackerVersion</key>
         <string>3.3.1</string>
         <key>fileName</key>
-        <string>C:/Users/Tavrox/Documents/GitHub/Lavapools/Assets/prod/gameplay/Arrow.tps</string>
+        <string>C:/Users/Tavrox/Documents/GitHub/Lavapools/Assets/prod/tiles/bord.tps</string>
         <key>autoSDSettings</key>
         <array>
             <struct type="AutoSDSettings">
@@ -38,7 +38,7 @@
         <key>dataFormat</key>
         <string>cocos2d</string>
         <key>textureFileName</key>
-        <filename>../../gfx/arrow.png</filename>
+        <filename>../../Resources/Maps/tileset.png</filename>
         <key>flipPVR</key>
         <false/>
         <key>ditherType</key>
@@ -56,7 +56,7 @@
             </struct>
         </struct>
         <key>shapePadding</key>
-        <uint>5</uint>
+        <uint>0</uint>
         <key>jpgQuality</key>
         <uint>80</uint>
         <key>pngOptimizationLevel</key>
@@ -68,13 +68,13 @@
         <key>textureFormat</key>
         <enum type="SettingsBase::TextureFormat">png</enum>
         <key>borderPadding</key>
-        <uint>5</uint>
+        <uint>0</uint>
         <key>maxTextureSize</key>
         <QSize>
             <key>width</key>
-            <int>2048</int>
+            <int>1024</int>
             <key>height</key>
-            <int>2048</int>
+            <int>1024</int>
         </QSize>
         <key>fixedTextureSize</key>
         <QSize>
@@ -131,7 +131,7 @@
             <key>data</key>
             <struct type="DataFile">
                 <key>name</key>
-                <filename>../../gfx/arrow.xml</filename>
+                <filename>../../Resources/Maps/tileset.xml</filename>
             </struct>
             <key>java</key>
             <struct type="DataFile">
@@ -151,7 +151,7 @@
             <string></string>
         </struct>
         <key>autoAliasEnabled</key>
-        <true/>
+        <false/>
         <key>trimSpriteNames</key>
         <false/>
         <key>cleanTransparentPixels</key>
@@ -175,7 +175,22 @@
         </struct>
         <key>fileList</key>
         <array>
-            <filename>arrow.png</filename>
+            <filename>lava07borderBottom2.png</filename>
+            <filename>lava00borderBottom1.png</filename>
+            <filename>lava00borderBottom2.png</filename>
+            <filename>lava01borderBottom1.png</filename>
+            <filename>lava01borderBottom2.png</filename>
+            <filename>lava02borderBottom1.png</filename>
+            <filename>lava02borderBottom2.png</filename>
+            <filename>lava03borderBottom1.png</filename>
+            <filename>lava03borderBottom2.png</filename>
+            <filename>lava04borderBottom1.png</filename>
+            <filename>lava04borderBottom2.png</filename>
+            <filename>lava05borderBottom1.png</filename>
+            <filename>lava05borderBottom2.png</filename>
+            <filename>lava06borderBottom1.png</filename>
+            <filename>lava06borderBottom2.png</filename>
+            <filename>lava07borderBottom1.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>
