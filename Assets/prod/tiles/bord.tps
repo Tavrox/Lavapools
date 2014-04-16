@@ -38,7 +38,7 @@
         <key>dataFormat</key>
         <string>cocos2d</string>
         <key>textureFileName</key>
-        <filename>../../Resources/Maps/tileset.png</filename>
+        <filename>../../gfx/bord.png</filename>
         <key>flipPVR</key>
         <false/>
         <key>ditherType</key>
@@ -131,7 +131,7 @@
             <key>data</key>
             <struct type="DataFile">
                 <key>name</key>
-                <filename>../../Resources/Maps/tileset.xml</filename>
+                <filename>../../gfx/bord.xml</filename>
             </struct>
             <key>java</key>
             <struct type="DataFile">
@@ -175,22 +175,22 @@
         </struct>
         <key>fileList</key>
         <array>
-            <filename>lava07borderBottom2.png</filename>
-            <filename>lava00borderBottom1.png</filename>
-            <filename>lava00borderBottom2.png</filename>
-            <filename>lava01borderBottom1.png</filename>
-            <filename>lava01borderBottom2.png</filename>
-            <filename>lava02borderBottom1.png</filename>
-            <filename>lava02borderBottom2.png</filename>
-            <filename>lava03borderBottom1.png</filename>
-            <filename>lava03borderBottom2.png</filename>
-            <filename>lava04borderBottom1.png</filename>
-            <filename>lava04borderBottom2.png</filename>
-            <filename>lava05borderBottom1.png</filename>
-            <filename>lava05borderBottom2.png</filename>
-            <filename>lava06borderBottom1.png</filename>
-            <filename>lava06borderBottom2.png</filename>
-            <filename>lava07borderBottom1.png</filename>
+            <filename>lava15borderBottomSecond.png</filename>
+            <filename>lava00borderBottomFirst.png</filename>
+            <filename>lava01borderBottomFirst.png</filename>
+            <filename>lava02borderBottomFirst.png</filename>
+            <filename>lava03borderBottomFirst.png</filename>
+            <filename>lava04borderBottomFirst.png</filename>
+            <filename>lava05borderBottomFirst.png</filename>
+            <filename>lava06borderBottomFirst.png</filename>
+            <filename>lava07borderBottomFirst.png</filename>
+            <filename>lava08borderBottomSecond.png</filename>
+            <filename>lava09borderBottomSecond.png</filename>
+            <filename>lava10borderBottomSecond.png</filename>
+            <filename>lava11borderBottomSecond.png</filename>
+            <filename>lava12borderBottomSecond.png</filename>
+            <filename>lava13borderBottomSecond.png</filename>
+            <filename>lava14borderBottomSecond.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

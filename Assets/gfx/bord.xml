@@ -4,10 +4,10 @@
     <dict>
         <key>frames</key>
         <dict>
-            <key>lava00borderBottom1.png</key>
+            <key>lava00borderBottomFirst.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{0,0},{75,86}}</string>
+                <string>{{5,5},{75,86}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -17,10 +17,10 @@
                 <key>sourceSize</key>
                 <string>{75,86}</string>
             </dict>
-            <key>lava00borderBottom2.png</key>
+            <key>lava01borderBottomFirst.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{75,0},{75,86}}</string>
+                <string>{{85,5},{75,86}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -30,10 +30,10 @@
                 <key>sourceSize</key>
                 <string>{75,86}</string>
             </dict>
-            <key>lava01borderBottom1.png</key>
+            <key>lava02borderBottomFirst.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{150,0},{75,86}}</string>
+                <string>{{165,5},{75,86}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -43,10 +43,10 @@
                 <key>sourceSize</key>
                 <string>{75,86}</string>
             </dict>
-            <key>lava01borderBottom2.png</key>
+            <key>lava03borderBottomFirst.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{225,0},{75,86}}</string>
+                <string>{{245,5},{75,86}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -56,10 +56,10 @@
                 <key>sourceSize</key>
                 <string>{75,86}</string>
             </dict>
-            <key>lava02borderBottom1.png</key>
+            <key>lava04borderBottomFirst.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{300,0},{75,86}}</string>
+                <string>{{325,5},{75,86}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -69,10 +69,10 @@
                 <key>sourceSize</key>
                 <string>{75,86}</string>
             </dict>
-            <key>lava02borderBottom2.png</key>
+            <key>lava05borderBottomFirst.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{375,0},{75,86}}</string>
+                <string>{{405,5},{75,86}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -82,10 +82,10 @@
                 <key>sourceSize</key>
                 <string>{75,86}</string>
             </dict>
-            <key>lava03borderBottom1.png</key>
+            <key>lava06borderBottomFirst.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{0,86},{75,86}}</string>
+                <string>{{5,96},{75,86}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -95,10 +95,10 @@
                 <key>sourceSize</key>
                 <string>{75,86}</string>
             </dict>
-            <key>lava03borderBottom2.png</key>
+            <key>lava07borderBottomFirst.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{75,86},{75,86}}</string>
+                <string>{{85,96},{75,86}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -108,10 +108,10 @@
                 <key>sourceSize</key>
                 <string>{75,86}</string>
             </dict>
-            <key>lava04borderBottom1.png</key>
+            <key>lava08borderBottomSecond.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{150,86},{75,86}}</string>
+                <string>{{165,96},{75,86}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -121,10 +121,10 @@
                 <key>sourceSize</key>
                 <string>{75,86}</string>
             </dict>
-            <key>lava04borderBottom2.png</key>
+            <key>lava09borderBottomSecond.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{225,86},{75,86}}</string>
+                <string>{{245,96},{75,86}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -134,10 +134,10 @@
                 <key>sourceSize</key>
                 <string>{75,86}</string>
             </dict>
-            <key>lava05borderBottom1.png</key>
+            <key>lava10borderBottomSecond.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{300,86},{75,86}}</string>
+                <string>{{325,96},{75,86}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -147,10 +147,10 @@
                 <key>sourceSize</key>
                 <string>{75,86}</string>
             </dict>
-            <key>lava05borderBottom2.png</key>
+            <key>lava11borderBottomSecond.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{375,86},{75,86}}</string>
+                <string>{{405,96},{75,86}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -160,10 +160,10 @@
                 <key>sourceSize</key>
                 <string>{75,86}</string>
             </dict>
-            <key>lava06borderBottom1.png</key>
+            <key>lava12borderBottomSecond.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{0,172},{75,86}}</string>
+                <string>{{5,187},{75,86}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -173,10 +173,10 @@
                 <key>sourceSize</key>
                 <string>{75,86}</string>
             </dict>
-            <key>lava06borderBottom2.png</key>
+            <key>lava13borderBottomSecond.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{75,172},{75,86}}</string>
+                <string>{{85,187},{75,86}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -186,10 +186,10 @@
                 <key>sourceSize</key>
                 <string>{75,86}</string>
             </dict>
-            <key>lava07borderBottom1.png</key>
+            <key>lava14borderBottomSecond.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{150,172},{75,86}}</string>
+                <string>{{165,187},{75,86}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -199,10 +199,10 @@
                 <key>sourceSize</key>
                 <string>{75,86}</string>
             </dict>
-            <key>lava07borderBottom2.png</key>
+            <key>lava15borderBottomSecond.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{225,172},{75,86}}</string>
+                <string>{{245,187},{75,86}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -222,7 +222,7 @@
             <key>size</key>
             <string>{512,512}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:72d422a7ea0243503fe6c56d7d48715e:bf3dc3ad40667bc3812a02f76a74239f:217c462a03433b91518a227d7a9a9530$</string>
+            <string>$TexturePacker:SmartUpdate:a49998f84de28d4ff0ad9af8e3b93d6a:69a54afbbb963610daee3a9d2871d4f4:217c462a03433b91518a227d7a9a9530$</string>
             <key>textureFileName</key>
             <string>bord.png</string>
         </dict>
