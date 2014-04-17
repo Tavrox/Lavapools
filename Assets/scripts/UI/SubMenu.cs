@@ -13,18 +13,23 @@ public class SubMenu : MonoBehaviour {
 	}
 	public submenus subMenuList;
 	public List<MiscButton> menuButtons;
+	public ParentMenu _parent;
 	public MainMenu _menuMan;
 
-	public void SetupSub(MainMenu _menu)
+	public void SetupSub(ParentMenu _menu)
 	{
-		_menuMan = _menu;
+		_parent = _menu.GetComponent<ParentMenu>();
+		if (_menu.GetComponent<MainMenu>() != null)
+		{
+			_menuMan = _menu.GetComponent<MainMenu>();
+		}
 	}
 	public void setupBtn()
 	{
 		MiscButton[] childBtn = GetComponentsInChildren<MiscButton>();
 		foreach (MiscButton child in childBtn)
 		{
-			child.Setup();
+			child.Setup(_parent);
 			menuButtons.Add(child);
 		}
 	}

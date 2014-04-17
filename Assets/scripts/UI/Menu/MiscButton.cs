@@ -21,12 +21,14 @@ public class MiscButton : MonoBehaviour {
 		OpenCredits,
 		BackHome,
 		RespawnBtn,
-		ChangeLang
+		ChangeLang,
+		GoLink
 	};
 	[HideInInspector] public GameSetup SETUP;
 	public GameSetup.LevelList levelToLoad;
 	[HideInInspector] public BoxCollider _coll;
 	[HideInInspector] public MainTitleUI mainUi;
+	[HideInInspector] public ParentMenu parentUi;
 	[HideInInspector] public LevelChooser chooser;
 	private OTSprite spr;
 	private string stdFrame;
@@ -35,14 +37,18 @@ public class MiscButton : MonoBehaviour {
 	public bool locked = false;
 	public bool hasFocus = false;
 	public buttonList buttonType;
+	public string GoLink;
 
-	public void Setup()
+	public void Setup(ParentMenu _menu)
 	{
-		if (GameObject.Find("TitleMenu") != null)
+
+		parentUi = _menu;
+		if (_menu.GetComponent<MainTitleUI>() != null)
 		{
-			mainUi = GameObject.Find("TitleMenu").GetComponent<MainTitleUI>();
-			SETUP = mainUi.PLAYERDAT.SETUP;
+			mainUi = _menu.GetComponent<MainTitleUI>();
 		}
+		SETUP = parentUi.PLAYERDAT.SETUP;
+
 		if (_coll = GetComponent<BoxCollider>())
 		{_coll.isTrigger = true;}
 		if (GetComponentInChildren<OTSprite>() != null)
@@ -55,7 +61,7 @@ public class MiscButton : MonoBehaviour {
 
 	void Update()
 	{
-		if (hasFocus == true && Input.GetKey(mainUi.PLAYERDAT.INPUT.EnterButton))
+		if (hasFocus == true && Input.GetKey(parentUi.PLAYERDAT.INPUT.EnterButton))
 	    {
 			checkAction();
 		}
@@ -188,6 +194,19 @@ public class MiscButton : MonoBehaviour {
 				mainUi.TranslateAllInScene();
 				break;
 			}
+			case buttonList.GoLink :
+			{
+				if (GoLink != null && buttonType == buttonList.GoLink)
+				{
+					Application.OpenURL(GoLink);
+				}
+				else if (buttonType == buttonList.GoLink)
+				{
+					Debug.LogError("Link button without url");
+					Debug.Break();
+				}
+				break;
+			}
 
 			}
 			//			print ("clicked" + buttonType);
@@ -228,7 +247,7 @@ public class MiscButton : MonoBehaviour {
 
 	public void giveFocus(bool state)
 	{
-		if (mainUi.padEntered == true)
+		if (parentUi != null && parentUi.padEntered == true)
 		{
 			hasFocus = state;		
 			if (hasFocus == true)

@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class MainTitleUI : MonoBehaviour 
+public class MainTitleUI : ParentMenu 
 {
 	private GameSetup SETUP;
 	private List<LevelInfo> levelInformations;
@@ -15,8 +15,6 @@ public class MainTitleUI : MonoBehaviour
 		LevelChooser
 	};
 	public MenuStates CurrentState;
-	public SubMenu currentActiveMenu;
-	[HideInInspector] public PlayerData PLAYERDAT;
 
 	[HideInInspector] public GameObject awayPlace;
 	[HideInInspector] public GameObject frontPlace;
@@ -24,28 +22,17 @@ public class MainTitleUI : MonoBehaviour
 	[HideInInspector] public SubMenu Landing;
 	[HideInInspector] public SubMenu LevelChooser;
 	[HideInInspector] public SubMenu Options;
-	public MiscButton currFocusedbtn;
-	public bool padEntered = false;
 	
 	void Awake () 
 	{
 		Screen.SetResolution(1366,768, false);
 		name = "TitleMenu";
+		base.Setup();
 		SETUP = Resources.Load ("Tuning/GameSetup") as GameSetup;
 		Chooser = FETool.findWithinChildren(gameObject, "LevelChooser").GetComponent<LevelChooser>();
 		SETUP.startTranslate(SETUP.ChosenLanguage);
 		SETUP.translateSceneText();	
 		levelInformations = new List<LevelInfo> ();
-
-		if (GameObject.FindGameObjectWithTag("PlayerData") == null)
-		{
-			GameObject _dataObj = Instantiate(Resources.Load("Presets/PlayerData")) as GameObject;
-			PLAYERDAT = _dataObj.GetComponent<PlayerData>();
-		}
-		else
-		{
-			PLAYERDAT = GameObject.FindGameObjectWithTag("PlayerData").GetComponent<PlayerData>();
-		}
 
 		if (GameObject.Find("Frameworks") == null)
 		{
@@ -64,6 +51,7 @@ public class MainTitleUI : MonoBehaviour
 		SubMenu[] subMn = GetComponentsInChildren<SubMenu>();
 		foreach (SubMenu sub in subMn)
 		{
+			sub.SetupSub(this);
 			sub.setupBtn();
 		}
 		if (Input.GetJoystickNames().Length > 0)
@@ -73,18 +61,7 @@ public class MainTitleUI : MonoBehaviour
 		}
 		TranslateAllInScene();
 		InvokeRepeating("checkPadMenu", 0f, 0.5f);
-		InvokeRepeating("checkPadAvailable", 0f, 1f);
 //		StartCoroutine("DelayMusic");
-	}
-
-	void checkPadAvailable()
-	{
-		if (Input.GetJoystickNames().Length > 0)
-		{
-			padEntered = true;
-			changeState(MenuStates.Start);
-			CancelInvoke("checkPadAvailable");
-		}
 	}
 
 	void checkPadMenu()

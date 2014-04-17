@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class MainMenu : MonoBehaviour {
+public class MainMenu : ParentMenu {
 	
 	private List<GameObject> listMenus;
 	public LevelManager _levman;

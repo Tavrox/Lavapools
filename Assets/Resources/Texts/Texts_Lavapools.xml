@@ -35,11 +35,11 @@
 <entry id='	SUCCEED	'>	<english>	You escaped from	</english>	<french>	Vous vous êtes enfui de	</french>	<info>	16	23	</info>	</entry>
 <entry id='	PLAY_LABEL	'>	<english>	Play	</english>	<french>	Jouer	</french>	<info>	4	5	</info>	</entry>
 <entry id='	GAME_WIP	'>	<english>	You reached the end of the Alpha !/n Please stay in touch to get further updates.	</english>	<french>	Vous avez atteint la fin de l'Alpha !/nRestez au courant pour jouer aux prochains niveaux	</french>	<info>	81	89	</info>	</entry>
-<entry id='		'>	<english>		</english>	<french>		</french>	<info>	0	0	</info>	</entry>
-<entry id='		'>	<english>		</english>	<french>		</french>	<info>	0	0	</info>	</entry>
-<entry id='		'>	<english>		</english>	<french>		</french>	<info>	0	0	</info>	</entry>
-<entry id='		'>	<english>		</english>	<french>		</french>	<info>	0	0	</info>	</entry>
-<entry id='		'>	<english>		</english>	<french>		</french>	<info>	0	0	</info>	</entry>
+<entry id='	BUY_GAME	'>	<english>	Support the Alpha	</english>	<french>	Soutenez l'alpha	</french>	<info>	17	16	</info>	</entry>
+<entry id='	END_ALPHA	'>	<english>	End of the Alpha,/n thanks for playing./n Leave us your feedback !	</english>	<french>	Fin de l'alpha,/n merci d'avoir joué !/n Laissez-nous vos commentaires.	</french>	<info>	66	71	</info>	</entry>
+<entry id='	BACK_MENU	'>	<english>	Back to main menu	</english>	<french>	Retour au menu	</french>	<info>	17	14	</info>	</entry>
+<entry id='	END_DEMO	'>	<english>	End of the demo,/n buy the alpha to play/n more levels !	</english>	<french>	Fin de la démo,/n achetez l'alpha pour jouer à/n plus de niveaux !	</french>	<info>	56	66	</info>	</entry>
+<entry id='	LEAVE_FEEDBACK	'>	<english>	Leave us a feedback	</english>	<french>	Envoyez un retour	</french>	<info>	19	17	</info>	</entry>
 <entry id='		'>	<english>		</english>	<french>		</french>	<info>	0	0	</info>	</entry>
 <entry id='		'>	<english>		</english>	<french>		</french>	<info>	0	0	</info>	</entry>
 <entry id='		'>	<english>		</english>	<french>		</french>	<info>	0	0	</info>	</entry>
