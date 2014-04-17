@@ -4,10 +4,62 @@
     <dict>
         <key>frames</key>
         <dict>
+            <key>fallingRock01.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{5,5},{59,51}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{59,51}}</string>
+                <key>sourceSize</key>
+                <string>{59,51}</string>
+            </dict>
+            <key>fallingRock02.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{69,5},{21,19}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{21,19}}</string>
+                <key>sourceSize</key>
+                <string>{21,19}</string>
+            </dict>
+            <key>fallingRock03.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{95,5},{8,17}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{8,17}}</string>
+                <key>sourceSize</key>
+                <string>{8,17}</string>
+            </dict>
+            <key>fallingRock04.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{108,5},{9,7}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{9,7}}</string>
+                <key>sourceSize</key>
+                <string>{9,7}</string>
+            </dict>
             <key>scenery00bubbles.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{5,5},{75,50}}</string>
+                <string>{{122,5},{75,50}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -20,7 +72,7 @@
             <key>scenery01bubbles.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{85,5},{75,50}}</string>
+                <string>{{202,5},{75,50}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -33,7 +85,7 @@
             <key>scenery02bubbles.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{165,5},{75,50}}</string>
+                <string>{{282,5},{75,50}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -46,7 +98,7 @@
             <key>scenery03bubbles.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{5,60},{75,50}}</string>
+                <string>{{362,5},{75,50}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -59,7 +111,7 @@
             <key>scenery04bubbles.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{85,60},{75,50}}</string>
+                <string>{{5,61},{75,50}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -72,7 +124,7 @@
             <key>scenery05bubbles.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{165,60},{75,50}}</string>
+                <string>{{85,61},{75,50}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -85,7 +137,7 @@
             <key>scenery06bubbles.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{5,115},{75,50}}</string>
+                <string>{{165,61},{75,50}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -98,7 +150,7 @@
             <key>scenery07bubbles.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{85,115},{75,50}}</string>
+                <string>{{245,61},{75,50}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -111,7 +163,7 @@
             <key>scenery08bubbles.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{165,115},{75,50}}</string>
+                <string>{{325,61},{75,50}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -124,7 +176,7 @@
             <key>scenery09bubbles.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{5,170},{75,50}}</string>
+                <string>{{405,61},{75,50}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -137,7 +189,7 @@
             <key>scenery10bubbles.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{85,170},{75,50}}</string>
+                <string>{{5,116},{75,50}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -150,7 +202,7 @@
             <key>scenery11bubbles.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{165,170},{75,50}}</string>
+                <string>{{85,116},{75,50}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -160,6 +212,84 @@
                 <key>sourceSize</key>
                 <string>{75,50}</string>
             </dict>
+            <key>scenery12wave.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{165,116},{222,148}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{222,148}}</string>
+                <key>sourceSize</key>
+                <string>{222,148}</string>
+            </dict>
+            <key>scenery13wave.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{5,269},{222,148}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{222,148}}</string>
+                <key>sourceSize</key>
+                <string>{222,148}</string>
+            </dict>
+            <key>scenery14wave.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{232,269},{222,148}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{222,148}}</string>
+                <key>sourceSize</key>
+                <string>{222,148}</string>
+            </dict>
+            <key>scenery15wave.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{5,422},{222,148}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{222,148}}</string>
+                <key>sourceSize</key>
+                <string>{222,148}</string>
+            </dict>
+            <key>scenery16wave.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{232,422},{222,148}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{222,148}}</string>
+                <key>sourceSize</key>
+                <string>{222,148}</string>
+            </dict>
+            <key>scenery17wave.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{5,575},{222,148}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{222,148}}</string>
+                <key>sourceSize</key>
+                <string>{222,148}</string>
+            </dict>
         </dict>
         <key>metadata</key>
         <dict>
@@ -168,9 +298,9 @@
             <key>realTextureFileName</key>
             <string>decor.png</string>
             <key>size</key>
-            <string>{256,256}</string>
+            <string>{512,1024}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:3e26e022741cb1b967a54525fbb8d56a:7989dce06190425d3784a9c0efcc2946:19d43f6530a109e9c20733abbf3d583e$</string>
+            <string>$TexturePacker:SmartUpdate:079382d252a774528ca89e421b7c28e1:7479d1db05931489f8c8cce85e697732:19d43f6530a109e9c20733abbf3d583e$</string>
             <key>textureFileName</key>
             <string>decor.png</string>
         </dict>

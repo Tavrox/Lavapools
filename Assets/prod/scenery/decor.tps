@@ -6,7 +6,7 @@
         <key>texturePackerVersion</key>
         <string>3.3.1</string>
         <key>fileName</key>
-        <string>C:/Users/Tavrox/Documents/GitHub/Lavapools/Assets/prod/tiles/decor.tps</string>
+        <string>C:/Users/Tavrox/Documents/GitHub/Lavapools/Assets/prod/scenery/decor.tps</string>
         <key>autoSDSettings</key>
         <array>
             <struct type="AutoSDSettings">
@@ -175,24 +175,28 @@
         </struct>
         <key>fileList</key>
         <array>
-            <filename>../scenery/scenery00bubbles.png</filename>
-            <filename>../scenery/scenery01bubbles.png</filename>
-            <filename>../scenery/scenery02bubbles.png</filename>
-            <filename>../scenery/scenery03bubbles.png</filename>
-            <filename>../scenery/scenery04bubbles.png</filename>
-            <filename>../scenery/scenery05bubbles.png</filename>
-            <filename>../scenery/scenery06bubbles.png</filename>
-            <filename>../scenery/scenery07bubbles.png</filename>
-            <filename>../scenery/scenery08bubbles.png</filename>
-            <filename>../scenery/scenery09bubbles.png</filename>
-            <filename>../scenery/scenery10bubbles.png</filename>
-            <filename>../scenery/scenery11bubbles.png</filename>
-            <filename>../scenery/scenery12wave.png</filename>
-            <filename>../scenery/scenery13wave.png</filename>
-            <filename>../scenery/scenery14wave.png</filename>
-            <filename>../scenery/scenery15wave.png</filename>
-            <filename>../scenery/scenery16wave.png</filename>
-            <filename>../scenery/scenery17wave.png</filename>
+            <filename>scenery11bubbles.png</filename>
+            <filename>scenery00bubbles.png</filename>
+            <filename>scenery01bubbles.png</filename>
+            <filename>scenery02bubbles.png</filename>
+            <filename>scenery03bubbles.png</filename>
+            <filename>scenery04bubbles.png</filename>
+            <filename>scenery05bubbles.png</filename>
+            <filename>scenery06bubbles.png</filename>
+            <filename>scenery07bubbles.png</filename>
+            <filename>scenery08bubbles.png</filename>
+            <filename>scenery09bubbles.png</filename>
+            <filename>scenery10bubbles.png</filename>
+            <filename>fallingRock01.png</filename>
+            <filename>fallingRock02.png</filename>
+            <filename>fallingRock03.png</filename>
+            <filename>fallingRock04.png</filename>
+            <filename>scenery12wave.png</filename>
+            <filename>scenery13wave.png</filename>
+            <filename>scenery14wave.png</filename>
+            <filename>scenery15wave.png</filename>
+            <filename>scenery16wave.png</filename>
+            <filename>scenery17wave.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>
