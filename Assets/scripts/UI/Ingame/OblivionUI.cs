@@ -32,11 +32,11 @@ public class OblivionUI : ParentMenu {
 		EndDemo = FETool.findWithinChildren(gameObject, "END_DEMO").GetComponent<TextUI>();
 
 
-		if (_profile.SETUP.alphaVersion == true)
+		if (_profile.SETUP.GameType == GameSetup.versionType.Alpha)
 		{
 			EndDemo.color = Color.clear;
 		}
-		if (_profile.SETUP.demoVersion == true)
+		if (_profile.SETUP.GameType == GameSetup.versionType.Demo)
 		{
 			EndAlpha.color = Color.clear;
 			

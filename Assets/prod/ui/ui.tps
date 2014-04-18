@@ -193,6 +193,18 @@
             <filename>btnMusicInactive.png</filename>
             <filename>btnOk_cancel.png</filename>
             <filename>btnOk_cancelAlt.png</filename>
+            <filename>btnPadAlt.png</filename>
+            <filename>btnMusicInactiveAlt.png</filename>
+            <filename>btnMusicActiveAlt.png</filename>
+            <filename>btnHomeAlt.png</filename>
+            <filename>btnFBAlt.png</filename>
+            <filename>btnCloseAlt.png</filename>
+            <filename>frenchAlt.png</filename>
+            <filename>englishAlt.png</filename>
+            <filename>btnTWAlt.png</filename>
+            <filename>btnSoundInactiveAlt.png</filename>
+            <filename>btnSoundActiveAlt.png</filename>
+            <filename>btnReplayAlt.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

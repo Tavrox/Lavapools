@@ -25,6 +25,12 @@ public class GameSetup : ScriptableObject {
 		french,
 		english
 	};
+	public enum versionType
+	{
+		Alpha,
+		Demo
+	};
+	public versionType GameType;
 	public Vector2 GameSize;
 	public float OrthelloSize;
 	public string gameversion;
@@ -34,8 +40,6 @@ public class GameSetup : ScriptableObject {
 	public string website_url;
 	public DialogSheet TextSheet;
 	public bool translated = false;
-	public bool demoVersion = false;
-	public bool alphaVersion = false;
 
 	public string changeLang( languageList _chosen)
 	{

@@ -178,6 +178,18 @@ public class Player : MonoBehaviour {
 		}
 	}
 
+	private bool checkDeadZone(float _input)
+	{
+		if (_input < 0.1f && _input > -0.1f)
+		{
+			return false;
+		}
+		else
+		{
+			return true;
+		}
+	}
+
 	IEnumerator StartCheckReset()
 	{
 		yield return new WaitForSeconds(LevelManager.GlobTuning.PlayerSpeedReset);
@@ -204,6 +216,8 @@ public class Player : MonoBehaviour {
 			lowSpeed = initLowSpeed;
 			medSpeed = initMedSpeed;
 			highSpeed = initHighSpeed;
+			currSpeed = initLowSpeed;
+			speedStack = 0f;
 			new OTTween(spr, 0.5f).Tween("alpha", 1f);
 			new OTTween(spr, 0.5f).Tween("size", new Vector2(originalSize.x,originalSize.y));
 			_notif.makeFadeOut();
@@ -218,6 +232,8 @@ public class Player : MonoBehaviour {
 			lowSpeed = initLowSpeed;
 			medSpeed = initMedSpeed;
 			highSpeed = initHighSpeed;
+			currSpeed = initLowSpeed;
+			speedStack = 0f;
 			new OTTween(spr, 0.5f).Tween("alpha", 0f);
 			new OTTween(spr, 0.5f).Tween("size", new Vector2(0.25f,0.25f));
 			_notif.makeFadeOut();
@@ -232,6 +248,8 @@ public class Player : MonoBehaviour {
 			lowSpeed = initLowSpeed;
 			medSpeed = initMedSpeed;
 			highSpeed = initHighSpeed;
+			currSpeed = initLowSpeed;
+			speedStack = 0f;
 			gameObject.transform.position = startPos;
 			new OTTween(spr, 0.5f).Tween("alpha", 1f);
 			new OTTween(spr, 0.5f).Tween("size", new Vector2(originalSize.x,originalSize.y));

@@ -31,8 +31,15 @@ public class SubMenu : MonoBehaviour {
 		{
 			child.Setup(_parent);
 			menuButtons.Add(child);
+			menuButtons.Sort(CompareListByName);
 		}
 	}
+	
+	private int CompareListByName(MiscButton i1, MiscButton i2)
+	{
+		return i1.name.CompareTo(i2.name); 
+	}
+
 	public MiscButton findNextBtn( MiscButton _btnSource)
 	{
 		MiscButton res = null;

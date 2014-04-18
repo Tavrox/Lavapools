@@ -168,6 +168,7 @@ public class MiscButton : MonoBehaviour {
 			}
 			case buttonList.BackHome :
 			{
+				print ("back home");
 				MasterAudio.PlaySound("click");
 				mainUi.changeState(MainTitleUI.MenuStates.Start);
 				mainUi.backHome();
@@ -175,10 +176,8 @@ public class MiscButton : MonoBehaviour {
 			}
 			case buttonList.RespawnBtn :
 			{
-				if (LevelManager.GAMESTATE == GameEventManager.GameState.GameOver)
-				{
-					GameEventManager.TriggerRespawn("DeadBtn");
-				}
+				GameObject.Find("LevelManager").GetComponent<LevelManager>().respawnPlayer("RespawnBtn");
+				print ("wat");
 				break;
 			}
 			case buttonList.ChangeLang :
@@ -252,11 +251,17 @@ public class MiscButton : MonoBehaviour {
 			hasFocus = state;		
 			if (hasFocus == true)
 			{
-				spr.frameName = altFrame;
+				if (spr != null)
+				{
+					spr.frameName = altFrame;
+				}
 			}
 			else
 			{
-				spr.frameName = stdFrame;
+				if (spr != null)
+				{
+					spr.frameName = stdFrame;
+				}
 			}
 		}
 	}

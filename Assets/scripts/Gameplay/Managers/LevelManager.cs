@@ -148,24 +148,12 @@ public class LevelManager : MonoBehaviour {
 	}
 
 	// Update is called once per frame
-	void Update () {
-
-
-//		print (GAMESTATE);
-	
+	void Update () 
+	{
 		updateScore();
-
-		if (GAMESTATE == GameEventManager.GameState.GameOver)
+		if (Input.GetKey(InputMan.KeyEnter) || Input.GetButton(InputMan.EnterButton))
 		{
-			if (Input.GetKey(InputMan.KeyEnter) || Input.GetButton(InputMan.EnterButton))
-			{
-				if (score == bestScore && score != 0)
-				{
-					string name = _player.playerName.Replace("%0d", "");
-					menuManager._GameOverUI._lb.SendScore(name, score, CurrentLevelInfo.levelID);
-				}
-				GameEventManager.TriggerRespawn(gameObject.name);
-			}
+			respawnPlayer("levman");
 		}
 		if (menuManager != null)
 		{
@@ -179,6 +167,21 @@ public class LevelManager : MonoBehaviour {
 			_player.playerName = menuManager._GameOverUI._RespawnUI._playerInput.text;
 		}
 
+	}
+
+	public void respawnPlayer(string way)
+	{
+		print ("1");
+		if (GAMESTATE == GameEventManager.GameState.GameOver)
+		{
+			print ("3");
+			if (score == bestScore && score != 0)
+			{
+				string name = _player.playerName.Replace("%0d", "");
+				menuManager._GameOverUI._lb.SendScore(name, score, CurrentLevelInfo.levelID);
+			}
+			GameEventManager.TriggerRespawn(way);
+		}
 	}
 	
 	public void updateScore()
