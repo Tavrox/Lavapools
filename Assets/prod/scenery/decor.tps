@@ -2,17 +2,33 @@
 <data version="1.0">
     <struct type="Settings">
         <key>fileFormatVersion</key>
-        <int>1</int>
-        <key>variation</key>
-        <string>main</string>
-        <key>verbose</key>
-        <false/>
+        <int>3</int>
+        <key>texturePackerVersion</key>
+        <string>3.3.2</string>
+        <key>fileName</key>
+        <string>C:/Users/repstyle/Documents/GitHub/Lavapools/Assets/prod/scenery/decor.tps</string>
         <key>autoSDSettings</key>
-        <array/>
+        <array>
+            <struct type="AutoSDSettings">
+                <key>scale</key>
+                <double>1</double>
+                <key>extension</key>
+                <string></string>
+                <key>spriteFilter</key>
+                <string></string>
+                <key>acceptFractionalValues</key>
+                <false/>
+                <key>maxTextureSize</key>
+                <QSize>
+                    <key>width</key>
+                    <int>-1</int>
+                    <key>height</key>
+                    <int>-1</int>
+                </QSize>
+            </struct>
+        </array>
         <key>allowRotation</key>
-        <false/>
-        <key>quiet</key>
-        <false/>
+        <true/>
         <key>premultiplyAlpha</key>
         <false/>
         <key>shapeDebug</key>
@@ -40,17 +56,19 @@
             </struct>
         </struct>
         <key>shapePadding</key>
-        <uint>5</uint>
+        <uint>2</uint>
         <key>jpgQuality</key>
         <uint>80</uint>
         <key>pngOptimizationLevel</key>
         <uint>0</uint>
+        <key>webpQualityLevel</key>
+        <uint>101</uint>
         <key>textureSubPath</key>
         <string></string>
         <key>textureFormat</key>
         <enum type="SettingsBase::TextureFormat">png</enum>
         <key>borderPadding</key>
-        <uint>5</uint>
+        <uint>2</uint>
         <key>maxTextureSize</key>
         <QSize>
             <key>width</key>
@@ -70,7 +88,7 @@
         <key>algorithmSettings</key>
         <struct type="AlgorithmSettings">
             <key>algorithm</key>
-            <enum type="AlgorithmSettings::AlgorithmId">Basic</enum>
+            <enum type="AlgorithmSettings::AlgorithmId">MaxRects</enum>
             <key>freeSizeMode</key>
             <enum type="AlgorithmSettings::AlgorithmFreeSizeMode">Best</enum>
             <key>sizeConstraints</key>
@@ -87,7 +105,7 @@
             <key>basic</key>
             <struct type="AlgorithmBasicSettings">
                 <key>sortBy</key>
-                <enum type="AlgorithmBasicSettings::SortBy">Name</enum>
+                <enum type="AlgorithmBasicSettings::SortBy">Best</enum>
                 <key>order</key>
                 <enum type="AlgorithmBasicSettings::Order">Ascending</enum>
             </struct>
@@ -98,8 +116,6 @@
             <enum type="AndEngine::MinFilter">Linear</enum>
             <key>packageName</key>
             <string>Texture</string>
-            <key>javaFileName</key>
-            <filename>../../gfx/decor.java</filename>
             <key>wrap</key>
             <struct type="AndEngineWrap">
                 <key>s</key>
@@ -110,12 +126,16 @@
             <key>magFilter</key>
             <enum type="AndEngine::MagFilter">MagLinear</enum>
         </struct>
-        <key>dataFileName</key>
-        <filename>../../gfx/decor.xml</filename>
+        <key>dataFileNames</key>
+        <map type="GFileNameMap">
+            <key>data</key>
+            <struct type="DataFile">
+                <key>name</key>
+                <filename>../../gfx/decor.xml</filename>
+            </struct>
+        </map>
         <key>multiPack</key>
         <false/>
-        <key>mainExtension</key>
-        <string></string>
         <key>forceIdenticalLayout</key>
         <false/>
         <key>outputFormat</key>
@@ -126,9 +146,11 @@
             <string></string>
         </struct>
         <key>autoAliasEnabled</key>
-        <false/>
+        <true/>
         <key>trimSpriteNames</key>
         <false/>
+        <key>cleanTransparentPixels</key>
+        <true/>
         <key>globalSpriteSettings</key>
         <struct type="SpriteSettings">
             <key>scale</key>
@@ -142,83 +164,85 @@
             <key>trimThreshold</key>
             <uint>1</uint>
             <key>trimMode</key>
-            <enum type="SpriteSettings::TrimMode">None</enum>
+            <enum type="SpriteSettings::TrimMode">Trim</enum>
             <key>heuristicMask</key>
             <false/>
+            <key>pivotPoint</key>
+            <enum type="SpriteSettings::PivotPoint">Center</enum>
         </struct>
         <key>fileList</key>
         <array>
-            <filename>59scenerywaveThird.png</filename>
-            <filename>60scenerywaveThird.png</filename>
-            <filename>61scenerywaveThird.png</filename>
-            <filename>62scenerywaveThird.png</filename>
-            <filename>63scenerywaveThird.png</filename>
-            <filename>64scenerywaveThird.png</filename>
-            <filename>65scenerywaveThird.png</filename>
-            <filename>66scenerywaveThird.png</filename>
-            <filename>67scenerywaveThird.png</filename>
-            <filename>68scenerywaveThird.png</filename>
-            <filename>69scenerywaveThird.png</filename>
-            <filename>70scenerywaveThird.png</filename>
-            <filename>00fallingRock.png</filename>
-            <filename>01fallingRock.png</filename>
-            <filename>02fallingRock.png</filename>
-            <filename>03fallingRock.png</filename>
-            <filename>04lavaborderBottomFirst.png</filename>
-            <filename>05lavaborderBottomFirst.png</filename>
-            <filename>06lavaborderBottomFirst.png</filename>
-            <filename>07lavaborderBottomFirst.png</filename>
-            <filename>08lavaborderBottomFirst.png</filename>
-            <filename>09lavaborderBottomFirst.png</filename>
-            <filename>10lavaborderBottomFirst.png</filename>
-            <filename>11lavaborderBottomFirst.png</filename>
-            <filename>12lavaborderBottomSecond.png</filename>
-            <filename>13lavaborderBottomSecond.png</filename>
-            <filename>14lavaborderBottomSecond.png</filename>
-            <filename>15lavaborderBottomSecond.png</filename>
-            <filename>16lavaborderBottomSecond.png</filename>
-            <filename>17lavaborderBottomSecond.png</filename>
-            <filename>18lavaborderBottomSecond.png</filename>
-            <filename>19lavaborderBottomSecond.png</filename>
-            <filename>20scenerybubblesFirst.png</filename>
-            <filename>21scenerybubblesFirst.png</filename>
-            <filename>22scenerybubblesFirst.png</filename>
-            <filename>23scenerybubblesFirst.png</filename>
-            <filename>24scenerybubblesFirst.png</filename>
-            <filename>25scenerybubblesFirst.png</filename>
-            <filename>26scenerybubblesFirst.png</filename>
-            <filename>27scenerybubblesFirst.png</filename>
-            <filename>28scenerybubblesFirst.png</filename>
-            <filename>29scenerybubblesFirst.png</filename>
-            <filename>30scenerybubblesFirst.png</filename>
-            <filename>31scenerybubblesFirst.png</filename>
-            <filename>32scenerywaveFirst.png</filename>
-            <filename>33scenerywaveFirst.png</filename>
-            <filename>34scenerywaveFirst.png</filename>
-            <filename>35scenerywaveFirst.png</filename>
-            <filename>36scenerywaveFirst.png</filename>
-            <filename>37scenerywaveFirst.png</filename>
-            <filename>38scenerywaveSecond.png</filename>
-            <filename>39scenerywaveSecond.png</filename>
-            <filename>40scenerywaveSecond.png</filename>
-            <filename>41scenerywaveSecond.png</filename>
-            <filename>42scenerywaveSecond.png</filename>
-            <filename>43scenerywaveSecond.png</filename>
-            <filename>44scenerywaveSecond.png</filename>
-            <filename>45scenerywaveSecond.png</filename>
-            <filename>46scenerywaveSecond.png</filename>
-            <filename>47scenerybubblesSecond.png</filename>
-            <filename>48scenerybubblesSecond.png</filename>
-            <filename>49scenerybubblesSecond.png</filename>
-            <filename>50scenerybubblesSecond.png</filename>
-            <filename>51scenerybubblesSecond.png</filename>
-            <filename>52scenerybubblesSecond.png</filename>
-            <filename>53scenerybubblesSecond.png</filename>
-            <filename>54scenerybubblesSecond.png</filename>
-            <filename>55scenerybubblesSecond.png</filename>
-            <filename>56scenerybubblesSecond.png</filename>
-            <filename>57scenerybubblesSecond.png</filename>
-            <filename>58scenerybubblesSecond.png</filename>
+            <filename>00_fallingRock_01.png</filename>
+            <filename>00_fallingRock_02.png</filename>
+            <filename>00_fallingRock_03.png</filename>
+            <filename>00_fallingRock_04.png</filename>
+            <filename>01_wave_00.png</filename>
+            <filename>01_wave_01.png</filename>
+            <filename>01_wave_02.png</filename>
+            <filename>01_wave_03.png</filename>
+            <filename>01_wave_04.png</filename>
+            <filename>01_wave_05.png</filename>
+            <filename>01_wave_06.png</filename>
+            <filename>01_wave_07.png</filename>
+            <filename>01_wave_08.png</filename>
+            <filename>02_wave_00.png</filename>
+            <filename>02_wave_01.png</filename>
+            <filename>02_wave_02.png</filename>
+            <filename>02_wave_03.png</filename>
+            <filename>02_wave_04.png</filename>
+            <filename>02_wave_05.png</filename>
+            <filename>02_wave_06.png</filename>
+            <filename>02_wave_07.png</filename>
+            <filename>02_wave_08.png</filename>
+            <filename>02_wave_09.png</filename>
+            <filename>02_wave_10.png</filename>
+            <filename>02_wave_11.png</filename>
+            <filename>03_wave_00.png</filename>
+            <filename>03_wave_01.png</filename>
+            <filename>03_wave_02.png</filename>
+            <filename>03_wave_03.png</filename>
+            <filename>03_wave_04.png</filename>
+            <filename>03_wave_05.png</filename>
+            <filename>04_bubble_00.png</filename>
+            <filename>04_bubble_01.png</filename>
+            <filename>04_bubble_02.png</filename>
+            <filename>04_bubble_03.png</filename>
+            <filename>04_bubble_04.png</filename>
+            <filename>04_bubble_05.png</filename>
+            <filename>04_bubble_06.png</filename>
+            <filename>04_bubble_07.png</filename>
+            <filename>04_bubble_08.png</filename>
+            <filename>04_bubble_09.png</filename>
+            <filename>04_bubble_10.png</filename>
+            <filename>04_bubble_11.png</filename>
+            <filename>05_borderlava_00.png</filename>
+            <filename>05_borderlava_01.png</filename>
+            <filename>05_borderlava_02.png</filename>
+            <filename>05_borderlava_03.png</filename>
+            <filename>05_borderlava_04.png</filename>
+            <filename>05_borderlava_05.png</filename>
+            <filename>05_borderlava_06.png</filename>
+            <filename>05_borderlava_07.png</filename>
+            <filename>06_borderlava_00.png</filename>
+            <filename>06_borderlava_01.png</filename>
+            <filename>06_borderlava_02.png</filename>
+            <filename>06_borderlava_03.png</filename>
+            <filename>06_borderlava_04.png</filename>
+            <filename>06_borderlava_05.png</filename>
+            <filename>06_borderlava_06.png</filename>
+            <filename>06_borderlava_07.png</filename>
+            <filename>07_bubble_00.png</filename>
+            <filename>07_bubble_01.png</filename>
+            <filename>07_bubble_02.png</filename>
+            <filename>07_bubble_03.png</filename>
+            <filename>07_bubble_04.png</filename>
+            <filename>07_bubble_05.png</filename>
+            <filename>07_bubble_06.png</filename>
+            <filename>07_bubble_07.png</filename>
+            <filename>07_bubble_08.png</filename>
+            <filename>07_bubble_09.png</filename>
+            <filename>07_bubble_10.png</filename>
+            <filename>07_bubble_11.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>
