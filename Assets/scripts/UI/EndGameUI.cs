@@ -57,9 +57,15 @@ public class EndGameUI : SubMenu {
 		{
 			if (Input.GetKeyDown(KeyCode.Return))
 			{
-
 				LevelInfo _lvlIn = _menuMan._levman._profile.PROFILE.ActivatedLevels[_menuMan._levman._profile.PROFILE.ActivatedLevels.FindIndex(lvl => lvl.LvlName == _menuMan._levman.NAME)+1];
-				Application.LoadLevel(_lvlIn.LvlName.ToString());
+				if (_menuMan._levman._profile.SETUP.GameType == GameSetup.versionType.Demo && _lvlIn.availableDemo == true)
+				{
+					Application.LoadLevel(_lvlIn.LvlName.ToString());
+				}
+				else
+				{
+					Application.LoadLevel(GameSetup.LevelList.Oblivion.ToString());
+				}
 			}
 		}
 

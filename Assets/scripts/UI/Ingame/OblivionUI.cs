@@ -13,6 +13,8 @@ public class OblivionUI : ParentMenu {
 	// Use this for initialization
 	void Start () {
 
+		base.Setup();
+
 		if (GameObject.FindGameObjectWithTag("PlayerData") == null)
 		{
 			GameObject _dataplayer = Instantiate(Resources.Load("Presets/PlayerData")) as GameObject;
