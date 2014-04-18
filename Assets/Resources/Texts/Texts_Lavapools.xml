@@ -22,7 +22,7 @@
 <entry id='	OPTIONS_BTN	'>	<english>	Options	</english>	<french>	Options	</french>	<info>	7	7	</info>	</entry>
 <entry id='	PAUL	'>	<english>	Paul Lagarrigue	</english>	<french>	Paul Lagarrigue	</french>	<info>	15	15	</info>	</entry>
 <entry id='	PAUL_LABEL	'>	<english>	Sound design - Music	</english>	<french>	Sound design - Music	</french>	<info>	20	20	</info>	</entry>
-<entry id='	PLAY_NEXT	'>	<english>	Press Enter to play Next Level	</english>	<french>	Appuyez sur Entrée pour jouer au prochain niveau	</french>	<info>	30	48	</info>	</entry>
+<entry id='	PLAY_NEXT	'>	<english>	Press Enter to play Next Level	</english>	<french>	Appuyez sur Entrée pour jouer/n au prochain niveau	</french>	<info>	30	50	</info>	</entry>
 <entry id='	PLAYER_NOTIF	'>	<english>	Where am I ?	</english>	<french>	Où suis-je ?	</french>	<info>	12	12	</info>	</entry>
 <entry id='	RESPAWN_CMD	'>	<english>	Press Enter to play again	</english>	<french>	Appuyez sur Entrée pour rejouer	</french>	<info>	25	31	</info>	</entry>
 <entry id='	RESPAWN_HEAD	'>	<english>	Krusty died miserably	</english>	<french>	Krusty est mort misérablement	</french>	<info>	21	29	</info>	</entry>

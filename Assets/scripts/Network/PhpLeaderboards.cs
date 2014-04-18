@@ -34,7 +34,7 @@ public class PhpLeaderboards : MonoBehaviour
 	{
 		StartCoroutine(GetScores(level_id));
 		updateScores(ref ListUser, ref ListEntries);
-//		sortLeaderboard(ref ListUser, 15);
+		sortLeaderboard(ref ListUser, 15);
 	}
 
  	private void updateScores(ref List<UserLeaderboard> _listLB,ref List<LBEntry> _listEntries)
@@ -66,6 +66,7 @@ public class PhpLeaderboards : MonoBehaviour
 				"&score=" + prse.ToString() +
 				"&hash=" + hash;
 
+		print (post_url);
 		WWW hs_post = new WWW(post_url);
 		yield return hs_post;
 		
@@ -132,10 +133,10 @@ public class PhpLeaderboards : MonoBehaviour
 		{
 			_usr.ranking = _listLb.IndexOf(_usr) + 1;
 		}
-		for (int i = 0; i <= length - 1; i++)
-		{
-			
-		}
+//		for (int i = 0; i <= length - 1; i++)
+//		{
+//			
+//		}
 	}
 
 	public void displayLeaderboard(List<UserLeaderboard> _listLb, ref TextUI[] _lines)

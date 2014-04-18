@@ -45,6 +45,7 @@ public class EndGameUI : SubMenu {
 		BackTwoIn = FETool.findWithinChildren(gameObject, "Background/newPosP2");
 		Succeed = FETool.findWithinChildren(gameObject, "SUCCEED").GetComponent<TextUI>();
 		CurrLvl = FETool.findWithinChildren(gameObject, "CURRLVL").GetComponent<TextUI>();
+		CurrLvl.text = LevelManager.CurrentLevelInfo.LvlName.ToString();
 
 		CrabbySpr = FETool.findWithinChildren(gameObject, "Crab").GetComponentInChildren<OTSprite>();
 		StrokeSpr = FETool.findWithinChildren(gameObject, "Door/Stroke").GetComponentInChildren<OTSprite>();

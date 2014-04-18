@@ -41,7 +41,6 @@ public class MiscButton : MonoBehaviour {
 
 	public void Setup(ParentMenu _menu)
 	{
-
 		parentUi = _menu;
 		if (_menu.GetComponent<MainTitleUI>() != null)
 		{

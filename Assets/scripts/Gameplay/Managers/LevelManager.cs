@@ -171,10 +171,8 @@ public class LevelManager : MonoBehaviour {
 
 	public void respawnPlayer(string way)
 	{
-		print ("1");
 		if (GAMESTATE == GameEventManager.GameState.GameOver)
 		{
-			print ("3");
 			if (score == bestScore && score != 0)
 			{
 				string name = _player.playerName.Replace("%0d", "");
