@@ -62,9 +62,14 @@ public class TextUI : MonoBehaviour {
 		text = SETUP.TextSheet.TranslateSingle(this);
 //		print ("translateSingle" + DIALOG_ID);
 	}
+
+	public void TranslateVar(string _dialogId)
+	{
+		text = SETUP.TextSheet.TranslateSingle(this);
+	}
+
 	public void TranslateAllInScene()
 	{
-		print ("translateScene");
 		SETUP.TextSheet.SetupTranslation(SETUP.ChosenLanguage);
 		TextUI[] allTxt = GameObject.FindObjectsOfType(typeof(TextUI)) as TextUI[];
 		SETUP.TextSheet.TranslateAll(ref allTxt);

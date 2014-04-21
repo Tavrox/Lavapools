@@ -12,15 +12,18 @@ public class MainMenu : ParentMenu {
 	[HideInInspector] public EntryUI _EntryUI;
 	[HideInInspector] public EndGameUI _EndGameUI;
 
+	public Vector3 IngamePlaceDemo = new Vector3(0f,1.37f, 0f);
+	public Vector3 LeaderboardPlaceDemo = new Vector3(-3.8f, -4.71f, -10f);
+
 	// Use this for initialization
-	public void Setup (LevelManager _lm) {
+	public void Setup (LevelManager _lm) 
+	{
 		name = "UI";
 		_levman = _lm;
 		
 		GameEventManager.GameStart += GameStart;
 		GameEventManager.GameOver += GameOver;
 		GameEventManager.Respawn += Respawn;
-
 
 		_IngameUI = FETool.findWithinChildren(this.gameObject, "Ingame").GetComponent<IngameUI>();
 		_GameOverUI = FETool.findWithinChildren(this.gameObject, "GameOver").GetComponent<GameOverUI>();
@@ -35,6 +38,12 @@ public class MainMenu : ParentMenu {
 		_EntryUI.Setup();
 		_EndGameUI.SetupSub(this);
 		_EndGameUI.Setup();
+		
+		if (_lm._profile.SETUP.GameType == GameSetup.versionType.Demo)
+		{
+			_IngameUI.initPos = IngamePlaceDemo;
+			_GameOverUI.lbInitpos = LeaderboardPlaceDemo;
+		}
 
 	}
 

@@ -56,16 +56,26 @@ public class EndGameUI : SubMenu {
 	{
 		if (LevelManager.GAMESTATE == GameEventManager.GameState.EndGame)
 		{
-			if (Input.GetKeyDown(KeyCode.Return))
+			print ("1");
+			if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(_menuMan._levman._profile.INPUT.EnterButton))
 			{
+				print ("2");
 				LevelInfo _lvlIn = _menuMan._levman._profile.PROFILE.ActivatedLevels[_menuMan._levman._profile.PROFILE.ActivatedLevels.FindIndex(lvl => lvl.LvlName == _menuMan._levman.NAME)+1];
 				if (_menuMan._levman._profile.SETUP.GameType == GameSetup.versionType.Demo && _lvlIn.availableDemo == true)
 				{
+					print ("A");
+					Application.LoadLevel(_lvlIn.LvlName.ToString());
+				}
+				else if (_menuMan._levman._profile.SETUP.GameType == GameSetup.versionType.Alpha)
+				{
+					print ("B");
 					Application.LoadLevel(_lvlIn.LvlName.ToString());
 				}
 				else
 				{
+					print ("C");
 					Application.LoadLevel(GameSetup.LevelList.Oblivion.ToString());
+
 				}
 			}
 		}

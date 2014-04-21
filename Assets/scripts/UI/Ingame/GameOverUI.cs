@@ -7,8 +7,8 @@ public class GameOverUI : SubMenu {
 	public RespawnUI _RespawnUI;
 	public PhpLeaderboards _lb;
 
-	private Vector3 lbInitpos;
-	private Vector3 lbOutPos;
+	public Vector3 lbInitpos;
+	public Vector3 lbOutPos;
 
 	private Vector3 respInitpos;
 	private Vector3 respOutPos;

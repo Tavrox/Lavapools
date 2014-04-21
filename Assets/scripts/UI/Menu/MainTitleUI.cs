@@ -18,14 +18,16 @@ public class MainTitleUI : ParentMenu
 
 	[HideInInspector] public GameObject awayPlace;
 	[HideInInspector] public GameObject frontPlace;
+	[HideInInspector] public TextUI versionDisplay;
 	[HideInInspector] public SubMenu Credits;
 	[HideInInspector] public SubMenu Landing;
 	[HideInInspector] public SubMenu LevelChooser;
 	[HideInInspector] public SubMenu Options;
+
 	
 	void Awake () 
 	{
-		Screen.SetResolution(1366,768, false);
+		Screen.SetResolution(800,600, false);
 		name = "TitleMenu";
 		base.Setup();
 		SETUP = Resources.Load ("Tuning/GameSetup") as GameSetup;
@@ -47,6 +49,7 @@ public class MainTitleUI : ParentMenu
 		Landing = FETool.findWithinChildren(gameObject, "Landing").GetComponent<SubMenu>();
 		LevelChooser = FETool.findWithinChildren(gameObject, "LevelChooser").GetComponent<SubMenu>();
 		Options = FETool.findWithinChildren(gameObject, "Options").GetComponent<SubMenu>();
+		versionDisplay = FETool.findWithinChildren(gameObject, "Landing/Underpanel/GAME_VERSION").GetComponent<TextUI>();
 
 		SubMenu[] subMn = GetComponentsInChildren<SubMenu>();
 		foreach (SubMenu sub in subMn)
@@ -60,6 +63,7 @@ public class MainTitleUI : ParentMenu
 			changeState(MenuStates.Start);
 		}
 		TranslateAllInScene();
+		versionDisplay.TranslateThis();
 		InvokeRepeating("checkPadMenu", 0f, 0.5f);
 //		StartCoroutine("DelayMusic");
 	}
