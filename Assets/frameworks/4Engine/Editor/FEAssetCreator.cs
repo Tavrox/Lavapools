@@ -49,6 +49,11 @@ public class FEAssetCreator {
 	{
 		ScriptableObjectUtility.CreateAsset<PlayerProfile>();
 	}
+	[MenuItem("Assets/Create/DisplayChanger")]
+	public static void CreateDisplayChanger ()
+	{
+		ScriptableObjectUtility.CreateAsset<DisplayChanger>();
+	}
 
 
 

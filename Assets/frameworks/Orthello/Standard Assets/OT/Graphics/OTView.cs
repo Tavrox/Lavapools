@@ -878,6 +878,26 @@ public class OTView : MonoBehaviour
         }
     }
 
+	public void changeToDemoRes()
+	{
+		customSize = 4f;
+		alwaysPixelPerfect = true;
+		pixelPerfectResolution = new Vector2(800f,600f);
+		Screen.SetResolution(800,600, false);
+		GameSetup stp = Resources.Load("Tuning/GameSetup") as GameSetup;
+		stp.GameType = GameSetup.versionType.Demo;
+	}
+	public void changeToFullRes()
+	{
+		customSize = 5.12f;
+		alwaysPixelPerfect = false;
+		pixelPerfectResolution = new Vector2(1366f,768f);
+		Screen.SetResolution(1366,768, false);
+		GameSetup stp = Resources.Load("Tuning/GameSetup") as GameSetup;
+		stp.GameType = GameSetup.versionType.Alpha;
+	}
+
+
 #if UNITY_EDITOR	
     void OnGUI()
     {

@@ -20,11 +20,11 @@ public class GameOverUI : SubMenu {
 		GameEventManager.GameOver += GameOver;
 		GameEventManager.Respawn += Respawn;
 		
-		_LeaderboardUI = FETool.findWithinChildren(this.gameObject, "Leaderboard").GetComponent<LeaderboardUI>();
-		_lb = FETool.findWithinChildren(this.gameObject, "Leaderboard/LB_Content").GetComponent<PhpLeaderboards>();
+		_LeaderboardUI = transform.parent.GetComponentInChildren<LeaderboardUI>();
+		_lb = transform.parent.GetComponentInChildren<PhpLeaderboards>();
 		_lb.Setup();
 
-		_RespawnUI = FETool.findWithinChildren(this.gameObject, "Respawn").GetComponent<RespawnUI>();
+		_RespawnUI = transform.parent.GetComponentInChildren<RespawnUI>();
 		_RespawnUI.Setup(this);
 
 		lbInitpos = _LeaderboardUI.transform.position;

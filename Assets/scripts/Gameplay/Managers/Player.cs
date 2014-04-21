@@ -108,73 +108,76 @@ public class Player : MonoBehaviour {
 
 	private void moveInput()
 	{
-		if (speedStack > playerSteps.x && speedStack < playerSteps.y )
+		if (this != null)
 		{
-			currSpeed = lowSpeed;
-		}
-		if (speedStack > playerSteps.y  && speedStack < playerSteps.z)
-		{
-			currSpeed = medSpeed;
-		}
-		if (speedStack > playerSteps.z)
-		{
-			currSpeed = highSpeed;
-		}
-//		_anims.playAnimation(_anims._STATIC);
-		if (Input.GetKey (InputMan.KeyRight) || Input.GetAxisRaw("X axis") < (InputMan.BigAxis * -1) || Input.GetAxisRaw("6th axis") < (InputMan.SmallAxis * -1)) 
-		{
-			StopCoroutine("StartCheckReset");
-			speedStack += 1f * Time.deltaTime;
-			mod.x += currSpeed;
-			_anims.playAnimation(_anims._WALK);
-		}
-		else if (Input.GetKeyUp (InputMan.KeyRight)) 
-		{
-			StartCoroutine("StartCheckReset");
-			mod.x = 10f;
-			_anims.playAnimation(_anims._STATIC);
-		}
-		
-		if (Input.GetKey (InputMan.KeyUp) || Input.GetAxisRaw("Y axis") > InputMan.BigAxis  || Input.GetAxisRaw("7th axis") > InputMan.SmallAxis) 
-		{
-			StopCoroutine("StartCheckReset");
-			speedStack += 1f * Time.deltaTime;
-			mod.y += currSpeed;
-			_anims.playAnimation(_anims._WALK);
-		}
-		else if (Input.GetKeyUp (InputMan.KeyUp)) 
-		{
-			StartCoroutine("StartCheckReset");
-			mod.y = 10f;
-			_anims.playAnimation(_anims._STATIC);
-		}
+			if (speedStack > playerSteps.x && speedStack < playerSteps.y )
+			{
+				currSpeed = lowSpeed;
+			}
+			if (speedStack > playerSteps.y  && speedStack < playerSteps.z)
+			{
+				currSpeed = medSpeed;
+			}
+			if (speedStack > playerSteps.z)
+			{
+				currSpeed = highSpeed;
+			}
+	//		_anims.playAnimation(_anims._STATIC);
+			if (Input.GetKey (InputMan.KeyRight) || Input.GetAxisRaw("X axis") < (InputMan.BigAxis * -1) || Input.GetAxisRaw("6th axis") < (InputMan.SmallAxis * -1)) 
+			{
+				StopCoroutine("StartCheckReset");
+				speedStack += 1f * Time.deltaTime;
+				mod.x += currSpeed;
+				_anims.playAnimation(_anims._WALK);
+			}
+			else if (Input.GetKeyUp (InputMan.KeyRight)) 
+			{
+				StartCoroutine("StartCheckReset");
+				mod.x = 10f;
+				_anims.playAnimation(_anims._STATIC);
+			}
+			
+			if (Input.GetKey (InputMan.KeyUp) || Input.GetAxisRaw("Y axis") > InputMan.BigAxis  || Input.GetAxisRaw("7th axis") > InputMan.SmallAxis) 
+			{
+				StopCoroutine("StartCheckReset");
+				speedStack += 1f * Time.deltaTime;
+				mod.y += currSpeed;
+				_anims.playAnimation(_anims._WALK);
+			}
+			else if (Input.GetKeyUp (InputMan.KeyUp)) 
+			{
+				StartCoroutine("StartCheckReset");
+				mod.y = 10f;
+				_anims.playAnimation(_anims._STATIC);
+			}
 
-		if (Input.GetKey (InputMan.KeyLeft) || Input.GetAxisRaw("X axis") > InputMan.BigAxis  || Input.GetAxisRaw("6th axis") > InputMan.SmallAxis ) 
-		{
-			speedStack += 1f * Time.deltaTime;
-			StopCoroutine("StartCheckReset");
-			mod.x -= currSpeed;
-			_anims.playAnimation(_anims._WALK);
-		}
-		else if (Input.GetKeyUp (InputMan.KeyLeft)) 
-		{
-			StartCoroutine("StartCheckReset");
-			mod.x = -10f;
-			_anims.playAnimation(_anims._STATIC);
-		}
-		
-		if (Input.GetKey (InputMan.KeyDown) || Input.GetAxisRaw("Y axis") < (InputMan.BigAxis * -1)  || Input.GetAxisRaw("7th axis") < (InputMan.SmallAxis * -1)  ) 
-		{
-			speedStack += 1f * Time.deltaTime;
-			StopCoroutine("StartCheckReset");
-			mod.y -= currSpeed;
-			_anims.playAnimation(_anims._WALK);
-		}
-		else if (Input.GetKeyUp (InputMan.KeyDown)) 
-		{
-			StartCoroutine("StartCheckReset");
-			mod.y = -10f;
-			_anims.playAnimation(_anims._STATIC);
+			if (Input.GetKey (InputMan.KeyLeft) || Input.GetAxisRaw("X axis") > InputMan.BigAxis  || Input.GetAxisRaw("6th axis") > InputMan.SmallAxis ) 
+			{
+				speedStack += 1f * Time.deltaTime;
+				StopCoroutine("StartCheckReset");
+				mod.x -= currSpeed;
+				_anims.playAnimation(_anims._WALK);
+			}
+			else if (Input.GetKeyUp (InputMan.KeyLeft)) 
+			{
+				StartCoroutine("StartCheckReset");
+				mod.x = -10f;
+				_anims.playAnimation(_anims._STATIC);
+			}
+			
+			if (Input.GetKey (InputMan.KeyDown) || Input.GetAxisRaw("Y axis") < (InputMan.BigAxis * -1)  || Input.GetAxisRaw("7th axis") < (InputMan.SmallAxis * -1)  ) 
+			{
+				speedStack += 1f * Time.deltaTime;
+				StopCoroutine("StartCheckReset");
+				mod.y -= currSpeed;
+				_anims.playAnimation(_anims._WALK);
+			}
+			else if (Input.GetKeyUp (InputMan.KeyDown)) 
+			{
+				StartCoroutine("StartCheckReset");
+				mod.y = -10f;
+				_anims.playAnimation(_anims._STATIC);
+			}
 		}
 	}
 

@@ -27,7 +27,7 @@ public class MainTitleUI : ParentMenu
 	
 	void Awake () 
 	{
-		Screen.SetResolution(800,600, false);
+		Screen.SetResolution(1366,768, false);
 		name = "TitleMenu";
 		base.Setup();
 		SETUP = Resources.Load ("Tuning/GameSetup") as GameSetup;

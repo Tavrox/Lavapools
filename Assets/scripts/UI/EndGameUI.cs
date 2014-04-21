@@ -18,11 +18,11 @@ public class EndGameUI : SubMenu {
 	public RespawnUI _RespawnUI;
 	public PhpLeaderboards _lb;
 
-	private Vector3 lbInitpos;
-	private Vector3 lbOutPos;
+	public Vector3 lbInitpos;
+	public Vector3 lbOutPos;
 	
-	private Vector3 respInitpos;
-	private Vector3 respOutPos;
+	public Vector3 respInitpos;
+	public Vector3 respOutPos;
 	
 	// Use this for initialization
 	public void Setup ()
@@ -31,12 +31,12 @@ public class EndGameUI : SubMenu {
 		GameEventManager.EndGame += EndGame;
 		subMenuList = submenus.EndGame;
 
-//		_LeaderboardUI = FETool.findWithinChildren(this.gameObject, "Leaderboard").GetComponent<LeaderboardUI>();
-//		_lb = FETool.findWithinChildren(this.gameObject, "Leaderboard/LB_Content").GetComponent<PhpLeaderboards>();
-		_RespawnUI = FETool.findWithinChildren(this.gameObject, "Respawn").GetComponent<RespawnUI>();
-		_RespawnUI.Setup(this);
-//		lbInitpos = _LeaderboardUI.transform.position;
-//		lbOutPos = new Vector3 (lbInitpos.x, lbInitpos.y-5f, lbInitpos.z);
+		_LeaderboardUI = transform.parent.GetComponentInChildren<LeaderboardUI>();
+		_lb = transform.parent.GetComponentInChildren<PhpLeaderboards>();
+		_RespawnUI = transform.parent.GetComponentInChildren<RespawnUI>();
+//		_RespawnUI.Setup(this);
+		lbInitpos = _LeaderboardUI.transform.position;
+		lbOutPos = new Vector3 (lbInitpos.x, lbInitpos.y-5f, lbInitpos.z);
 		respInitpos = _RespawnUI.transform.position;
 		respOutPos = new Vector3 (respInitpos.x-20f, respInitpos.y, respInitpos.z);
 		BackOne = FETool.findWithinChildren(gameObject, "Background/p1");
@@ -56,26 +56,22 @@ public class EndGameUI : SubMenu {
 	{
 		if (LevelManager.GAMESTATE == GameEventManager.GameState.EndGame)
 		{
-			print ("1");
 			if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(_menuMan._levman._profile.INPUT.EnterButton))
 			{
-				print ("2");
 				LevelInfo _lvlIn = _menuMan._levman._profile.PROFILE.ActivatedLevels[_menuMan._levman._profile.PROFILE.ActivatedLevels.FindIndex(lvl => lvl.LvlName == _menuMan._levman.NAME)+1];
 				if (_menuMan._levman._profile.SETUP.GameType == GameSetup.versionType.Demo && _lvlIn.availableDemo == true)
 				{
-					print ("A");
 					Application.LoadLevel(_lvlIn.LvlName.ToString());
 				}
 				else if (_menuMan._levman._profile.SETUP.GameType == GameSetup.versionType.Alpha)
 				{
-					print ("B");
 					Application.LoadLevel(_lvlIn.LvlName.ToString());
+					LevelInfo lvl = Resources.Load("Tuning/Levels/"+_lvlIn.LvlName.ToString()) as LevelInfo;
+					lvl.locked = false;
 				}
 				else
 				{
-					print ("C");
 					Application.LoadLevel(GameSetup.LevelList.Oblivion.ToString());
-
 				}
 			}
 		}
@@ -87,7 +83,7 @@ public class EndGameUI : SubMenu {
 		if (this != null)
 		{
 			new OTTween(_RespawnUI.gameObject.transform, 0.3f, OTEasing.QuadIn ).Tween("position", respOutPos);
-//			new OTTween(_LeaderboardUI.gameObject.transform, 0.3f, OTEasing.QuadIn ).Tween("position", lbOutPos);
+			new OTTween(_LeaderboardUI.gameObject.transform, 0.3f, OTEasing.QuadIn ).Tween("position", lbOutPos);
 			new OTTween(Succeed, 0.3f, OTEasing.QuadIn ).Tween("color", Color.clear);
 			new OTTween(CurrLvl, 0.3f, OTEasing.QuadIn ).Tween("color", Color.clear);
 		}
@@ -97,9 +93,11 @@ public class EndGameUI : SubMenu {
 	{
 		if (this != null)
 		{
-			print ("trigg");
+			_RespawnUI.RespawnTextCmd.TranslateThis("PLAY_CMD");
+			_RespawnUI.RespawnTextHead.TranslateThis("PLAY_NEXT");
+			_RespawnUI._playerScore.text = _menuMan._levman.score.ToString();
 			new OTTween(_RespawnUI.gameObject.transform, 0.3f, OTEasing.QuadIn ).Tween("position", respInitpos);
-//			new OTTween(_LeaderboardUI.gameObject.transform, 0.3f, OTEasing.QuadIn ).Tween("position", lbInitpos);
+			new OTTween(_LeaderboardUI.gameObject.transform, 0.3f, OTEasing.QuadIn ).Tween("position", lbInitpos);
 			new OTTween(BackOne.gameObject.transform, 0.3f, OTEasing.QuadIn ).Tween("position", BackOneIn.transform.position);
 			new OTTween(BackTwo.gameObject.transform, 0.3f, OTEasing.QuadIn ).Tween("position", BackTwoIn.transform.position);
 			new OTTween(Succeed, 0.3f, OTEasing.QuadIn ).Tween("color", Color.white);

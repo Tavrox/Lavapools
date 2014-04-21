@@ -167,7 +167,6 @@ public class MiscButton : MonoBehaviour {
 			}
 			case buttonList.BackHome :
 			{
-				print ("back home");
 				MasterAudio.PlaySound("click");
 				mainUi.changeState(MainTitleUI.MenuStates.Start);
 				mainUi.backHome();
@@ -189,6 +188,7 @@ public class MiscButton : MonoBehaviour {
 				{
 					SETUP.ChosenLanguage = GameSetup.languageList.french;	
 				}
+				spr.frameName = SETUP.ChosenLanguage.ToString();
 				mainUi.TranslateAllInScene();
 				break;
 			}
@@ -229,7 +229,7 @@ public class MiscButton : MonoBehaviour {
 
 	public void LockButtons()
 	{
-		print ("lock btn");
+//		print ("lock btn");
 		lockEveryButton();
 		StartCoroutine("unlockEveryButton");
 	}

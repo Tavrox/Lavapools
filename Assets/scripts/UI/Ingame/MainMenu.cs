@@ -43,6 +43,7 @@ public class MainMenu : ParentMenu {
 		{
 			_IngameUI.initPos = IngamePlaceDemo;
 			_GameOverUI.lbInitpos = LeaderboardPlaceDemo;
+			_EndGameUI.lbInitpos = LeaderboardPlaceDemo;
 		}
 
 	}

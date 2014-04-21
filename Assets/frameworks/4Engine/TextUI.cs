@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-[ExecuteInEditMode]
+//[ExecuteInEditMode]
 
 public class TextUI : MonoBehaviour {
 
@@ -61,6 +61,12 @@ public class TextUI : MonoBehaviour {
 	{
 		text = SETUP.TextSheet.TranslateSingle(this);
 //		print ("translateSingle" + DIALOG_ID);
+	}
+	public void TranslateThis(string _str)
+	{
+		DIALOG_ID = _str;
+		text = SETUP.TextSheet.TranslateSingle(this);
+		//		print ("translateSingle" + DIALOG_ID);
 	}
 
 	public void TranslateVar(string _dialogId)
