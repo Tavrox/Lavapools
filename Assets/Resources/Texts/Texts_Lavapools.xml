@@ -6,7 +6,8 @@
 <entry id='	CREDITS_BTN	'>	<english>	Credits	</english>	<french>	Crédits	</french>	<info>	7	7	</info>	</entry>
 <entry id='	CREDITS_LABEL	'>	<english>	Credits	</english>	<french>	Crédits	</french>	<info>	7	7	</info>	</entry>
 <entry id='	EXIT_BTN	'>	<english>	Exit	</english>	<french>	Quitter	</french>	<info>	4	7	</info>	</entry>
-<entry id='	GAME_VERSION	'>	<english>	Paid version/nAlpha_v2	</english>	<french>	Version Payante/nAlpha_v2	</french>	<info>	22	25	</info>	</entry>
+<entry id='	GAME_VERSION_ALPHA	'>	<english>	Paid version/n	</english>	<french>	Version Payante/n	</french>	<info>	14	17	</info>	</entry>
+<entry id='	GAME_VERSION_DEMO	'>	<english>	Demo version/n	</english>	<french>	Version Démo/n	</french>	<info>	14	14	</info>	</entry>
 <entry id='	JULIEN	'>	<english>	Julien Commerenc	</english>	<french>	Julien Commerenc	</french>	<info>	16	16	</info>	</entry>
 <entry id='	JULIEN_LABEL	'>	<english>	Music	</english>	<french>	Musique	</french>	<info>	5	7	</info>	</entry>
 <entry id='	LB_HEADER	'>	<english>	Leaderboard	</english>	<french>	Tableau scores	</french>	<info>	11	14	</info>	</entry>
