@@ -66,10 +66,10 @@ public class LevelManager : MonoBehaviour {
 
 		if (_profile.SETUP.GameType == GameSetup.versionType.Demo)
 		{
-			Screen.SetResolution(800,600, false);
-			GameObject.Find("Frameworks/OT/View").GetComponent<OTView>().pixelPerfectResolution = new Vector2(800f,600f);
-			GameObject.Find("Frameworks/OT/View").GetComponent<OTView>().alwaysPixelPerfect = true;
-			GameObject.Find("Frameworks/OT/View").GetComponent<OTView>().customSize = 4;
+//			Screen.SetResolution(800,600, false);
+//			GameObject.Find("Frameworks/OT/View").GetComponent<OTView>().pixelPerfectResolution = new Vector2(800f,600f);
+//			GameObject.Find("Frameworks/OT/View").GetComponent<OTView>().alwaysPixelPerfect = true;
+//			GameObject.Find("Frameworks/OT/View").GetComponent<OTView>().customSize = 4;
 		}
 
 

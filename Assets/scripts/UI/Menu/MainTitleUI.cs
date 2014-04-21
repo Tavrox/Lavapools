@@ -65,6 +65,13 @@ public class MainTitleUI : ParentMenu
 		TranslateAllInScene();
 		versionDisplay.TranslateThis();
 		InvokeRepeating("checkPadMenu", 0f, 0.5f);
+
+		if (SETUP.GameType == GameSetup.versionType.Demo)
+		{
+			frontPlace.transform.position = new Vector3(0f,-0.6f,-1.625f);
+			FETool.findWithinChildren(gameObject, "Title").transform.position = new Vector3(0f,3f, 0.16f);
+		}
+
 //		StartCoroutine("DelayMusic");
 	}
 
