@@ -57,9 +57,41 @@ public class Procedural : MonoBehaviour {
 	{
 		_CURRENTSTEP = _step;
 //		Debug.Log ("Triggered STEP" + _CURRENTSTEP.stepID);
-		foreach (ProceduralSteps.BrickStack _lb in _step.BricksDisabled)
+
+		disableBrickList();
+		enableBrickList();
+		setupSpeedBrickList();
+		invertWayList();
+		setupTowerList();
+
+
+		_levMan._player.lowSpeed = _levMan._player.lowSpeed * _CURRENTSTEP.Crab_SpeedMultiplier;
+		_levMan._player.medSpeed = _levMan._player.medSpeed * _CURRENTSTEP.Crab_SpeedMultiplier;
+		_levMan._player.highSpeed = _levMan._player.highSpeed * _CURRENTSTEP.Crab_SpeedMultiplier;
+		if (_levMan.menuManager != null)
 		{
-			if (_step.BricksDisabled != null)
+			_levMan.menuManager.changeLevelLabel(_CURRENTSTEP); 
+		}
+		if (_CURRENTSTEP.stepID > 1)
+		{
+			MasterAudio.PlaySound("Steps", 1f, 1f, 0f, "step_" + _CURRENTSTEP.levelLabel.ToString().ToLower());
+		}
+		if (_CURRENTSTEP.MusicSource != null)
+		{
+			MasterAudio.TriggerPlaylistClip(_CURRENTSTEP.MusicSource.name);
+		}
+
+		if (_CURRENTSTEP.LevelToUnlock != null)
+		{
+			_levMan.tools.UnlockLevel(_CURRENTSTEP.LevelToUnlock);
+		}
+	}
+
+	private void disableBrickList()
+	{
+		foreach (ProceduralSteps.BrickStack _lb in _CURRENTSTEP.BricksDisabled)
+		{
+			if (_CURRENTSTEP.BricksDisabled != null)
 			{
 				string brickToFetch = _lb.ToString().Replace("_", "/");
 				LevelBrick brk = _levMan.bricksMan.BricksList.Find ((LevelBrick obj) => obj.name == brickToFetch);
@@ -69,9 +101,12 @@ public class Procedural : MonoBehaviour {
 				}
 			}	
 		}
-		foreach (ProceduralSteps.BrickStack _lb in _step.BricksEnabled)
+	}
+	private void enableBrickList()
+	{
+		foreach (ProceduralSteps.BrickStack _lb in _CURRENTSTEP.BricksEnabled)
 		{
-			if (_step.BricksEnabled != null)
+			if (_CURRENTSTEP.BricksEnabled != null)
 			{
 				string brickToFetch = _lb.ToString().Replace("_", "/");
 				LevelBrick brk = _levMan.bricksMan.BricksList.Find ((LevelBrick obj) => obj.name == brickToFetch);
@@ -81,42 +116,46 @@ public class Procedural : MonoBehaviour {
 				}
 			}
 		}
+	}
+	private void setupSpeedBrickList()
+	{
 		foreach (LevelBrick _brick in _levMan.bricksMan.BricksList)
 		{
 			if (_brick.speed > 0)
 			{
-				_brick.speed = _brick.speed * _step.Enemies_SpeedMultiplier;
+				_brick.speed = _brick.speed * _CURRENTSTEP.Enemies_SpeedMultiplier;
 			}
-			_brick.initSpeed = _brick.initSpeed * _step.Enemies_SpeedMultiplier;
+			_brick.initSpeed = _brick.initSpeed * _CURRENTSTEP.Enemies_SpeedMultiplier;
 		}
-		foreach (ProceduralSteps.PathStack _wpm in _step.WaypointsToInvert)
+	}
+	private void invertWayList()
+	{
+		foreach (ProceduralSteps.PathStack _wpm in _CURRENTSTEP.WaypointsToInvert)
 		{
-			if (_step.WaypointsToInvert != null && _wpm != null)
+			if (_CURRENTSTEP.WaypointsToInvert != null && _wpm != null)
 			{
 				string pathToFetch = _wpm.ToString().Replace("_", "/");
 				WaypointManager man = _levMan.waypointsMan.Find((WaypointManager obj) => obj.name == pathToFetch);
 				man.invertWaypoints();
 			}	
 		}
-		_levMan._player.lowSpeed = _levMan._player.lowSpeed * _step.Crab_SpeedMultiplier;
-		_levMan._player.medSpeed = _levMan._player.medSpeed * _step.Crab_SpeedMultiplier;
-		_levMan._player.highSpeed = _levMan._player.highSpeed * _step.Crab_SpeedMultiplier;
-		if (_levMan.menuManager != null)
+	}
+	private void setupTowerList()
+	{
+		foreach (ProceduralSteps.BrickStack _lb in _CURRENTSTEP.ArrowTowerSetup)
 		{
-			_levMan.menuManager.changeLevelLabel(_CURRENTSTEP); 
-		}
-		if (_step.stepID > 1)
-		{
-			MasterAudio.PlaySound("Steps", 1f, 1f, 0f, "step_" + _step.levelLabel.ToString().ToLower());
-		}
-		if (_step.MusicSource != null)
-		{
-			MasterAudio.TriggerPlaylistClip(_step.MusicSource.name);
-		}
-
-		if (_step.LevelToUnlock != null)
-		{
-			_levMan.tools.UnlockLevel(_step.LevelToUnlock);
+			if (_CURRENTSTEP.ArrowTowerSetup != null)
+			{
+				string brickToFetch = _lb.ToString().Replace("_", "/");
+				LevelBrick brk = _levMan.bricksMan.BricksList.Find ((LevelBrick obj) => obj.name == brickToFetch);
+				if (brk != null)
+				{
+//					brk.enableBrick();
+					int currentIndex = _CURRENTSTEP.ArrowTowerSetup.IndexOf(_lb);
+					brk.GetComponent<ArrowTower>().enabledDirection.Clear();
+					brk.GetComponent<ArrowTower>().setupDirectionList(_CURRENTSTEP.ArrowTowerDirections[currentIndex]);
+				}
+			}
 		}
 	}
 

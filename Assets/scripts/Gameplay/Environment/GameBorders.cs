@@ -9,5 +9,9 @@ public class GameBorders : MonoBehaviour {
 		{
 			GameEventManager.TriggerGameOver(LevelTools.KillerList.GameBorders);
 		}
+		if (_other.GetComponent<Arrow>() != null)
+		{
+			_other.GetComponent<Arrow>().Reset();
+		}
 	}
 }

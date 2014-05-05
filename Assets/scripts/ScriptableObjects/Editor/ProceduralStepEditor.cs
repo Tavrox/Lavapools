@@ -9,6 +9,8 @@ public class ProceduralStepEditor : Editor
 	
 	public override void OnInspectorGUI()
 	{
+		Rect dragArea = GUILayoutUtility.GetRect(0f,25f,GUILayout.ExpandWidth(true));
+		GUI.Box (dragArea, "UDLR for Tower Direction");
 		base.OnInspectorGUI();
 		if (GUILayout.Button("Reset"))
 		{

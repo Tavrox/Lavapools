@@ -16,10 +16,10 @@ public class LevelTools : MonoBehaviour {
 	};
 	public enum DirectionList
 	{
-		Up,
-		Down,
-		Left,
-		Right
+		Up, 	//Up
+		Down,	//Down
+		Left,	//Left
+		Right	//Right
 	};
 	
 	public void disableBrick (LevelBrick _brickToEnable)

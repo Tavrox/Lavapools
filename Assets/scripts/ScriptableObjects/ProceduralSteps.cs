@@ -87,8 +87,9 @@ public class ProceduralSteps : ScriptableObject {
 	public float Enemies_SpeedMultiplier = 1f;
 	public List<BrickStack> BricksEnabled;
 	public List<BrickStack> BricksDisabled;
-	public List<PathStack> WaypointsToInvert;
-	public List<List<LevelTools.DirectionList>> ArrowTowerToChange;
+	public List<ProceduralSteps.PathStack> WaypointsToInvert;
+	public List<BrickStack> ArrowTowerSetup;
+	public List<string> ArrowTowerDirections;
 	public LevelInfo LevelToUnlock;
 
 	public void Reset()

@@ -519,7 +519,7 @@ public class MasterAudio : MonoBehaviour {
 				}
 				
 				if (clip.length != firstSongLength) {
-					Debug.LogError("Playlist '" + pl.playlistName + "' is marked as Synchronized but the clip lengths are not all the same within the Playlist. Clips may not synchronize as intended.");
+					Debug.LogWarning("Playlist '" + pl.playlistName + "' is marked as Synchronized but the clip lengths are not all the same within the Playlist. Clips may not synchronize as intended.");
 					break;
 				}
 			}

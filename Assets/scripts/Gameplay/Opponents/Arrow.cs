@@ -11,6 +11,14 @@ public class Arrow : MonoBehaviour {
 	public float speed;
 	public bool Busy = false;
 	public float delayBeforeExtinction = 10f;
+	private Vector3 initPos;
+
+	public void Setup(ArrowTower _tw, float _sp)
+	{
+		linkedTower = _tw;
+		speed = _sp;
+		initPos = transform.position;
+	}
 
 	void OnTriggerEnter(Collider _oth)
 	{
@@ -66,12 +74,21 @@ public class Arrow : MonoBehaviour {
 			break;
 			}
 		}
-		StartCoroutine("FadeAway");
+//		StartCoroutine("FadeAway");
+	}
+
+	public void Reset()
+	{
+		transform.position = initPos;
+		Busy = false;
 	}
 
 	IEnumerator FadeAway()
 	{
 		yield return new WaitForSeconds(delayBeforeExtinction);
-		Busy = false;
+		if (Busy != false)
+		{
+			Busy = false;
+		}
 	}
 }

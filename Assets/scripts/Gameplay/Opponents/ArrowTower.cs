@@ -32,6 +32,26 @@ public class ArrowTower : LevelBrick {
 		createArrows(maxPool);
 	}
 
+	public void setupDirectionList(string _grp)
+	{
+		if (_grp.Contains("U"))
+		{
+			enabledDirection.Add(LevelTools.DirectionList.Up);
+		}
+		if (_grp.Contains("D"))
+		{
+			enabledDirection.Add(LevelTools.DirectionList.Down);
+		}
+		if (_grp.Contains("L"))
+		{
+			enabledDirection.Add(LevelTools.DirectionList.Left);
+		}
+		if (_grp.Contains("R"))
+		{
+			enabledDirection.Add(LevelTools.DirectionList.Right);
+		}
+	}
+
 	private void createArrows(int poolSize)
 	{
 		// Create pool of Arrows with poolSize
@@ -41,8 +61,7 @@ public class ArrowTower : LevelBrick {
 			_arrow.transform.parent = FETool.findWithinChildren(gameObject,"Arrows").transform;
 			_arrow.name += i.ToString();
 			_arrow.transform.position = _levMan.OuterSpawn.transform.position;
-			_arrow.GetComponent<Arrow>().speed = LevelManager.LocalTuning.Arrow_Speed;
-			_arrow.GetComponent<Arrow>().linkedTower = this;
+			_arrow.GetComponent<Arrow>().Setup(this, LevelManager.LocalTuning.Arrow_Speed );
 			linkedArrow.Add(_arrow.GetComponent<Arrow>());
 		}
 	}
@@ -75,9 +94,9 @@ public class ArrowTower : LevelBrick {
 	private void ShootArrow()
 	{
 		// Shoot an Arrow
-		if (enabledDirection.Count > 0)
+		if (enabledDirection.Count > 0) // Check if direction are enabled
 		{
-			foreach (LevelTools.DirectionList dir in enabledDirection)
+			foreach (LevelTools.DirectionList dir in enabledDirection) // Will shoot in every direction found
 			{
 				List<Arrow> AvailableArrows = linkedArrow.FindAll( (Arrow obj) => obj.Busy == false);
 				if (AvailableArrows.Count > 0)
@@ -94,6 +113,14 @@ public class ArrowTower : LevelBrick {
 		CancelInvoke("ShootArrow");
 	}
 
+	private void resetAllArrows()
+	{
+		foreach (Arrow _arr in linkedArrow)
+		{
+			_arr.Reset();
+		}
+	}
+
 	
 	private void GameStart()
 	{
@@ -107,7 +134,7 @@ public class ArrowTower : LevelBrick {
 	{
 		if (this != null)
 		{
-			
+
 		}
 	}
 	
@@ -123,6 +150,7 @@ public class ArrowTower : LevelBrick {
 	{
 		if (this != null)
 		{
+			resetAllArrows();
 
 		}
 	}
