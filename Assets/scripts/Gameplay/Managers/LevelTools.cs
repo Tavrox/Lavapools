@@ -12,7 +12,8 @@ public class LevelTools : MonoBehaviour {
 		Bird,
 		GameBorders,
 		LevelManager,
-		Arrow
+		Arrow,
+		Fireball
 	};
 	public enum DirectionList
 	{

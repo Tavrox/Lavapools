@@ -60,6 +60,15 @@ public class ProceduralSteps : ScriptableObject {
 		ArrowTower_6,
 		ArrowTower_7,
 		ArrowTower_8,
+		FireTower_1,
+		FireTower_2,
+		FireTower_3,
+		FireTower_4,
+		FireTower_5,
+		FireTower_6,
+		FireTower_7,
+		FireTower_8,
+
 	};
 	public enum PathStack
 	{
@@ -88,9 +97,18 @@ public class ProceduralSteps : ScriptableObject {
 	public List<BrickStack> BricksEnabled;
 	public List<BrickStack> BricksDisabled;
 	public List<ProceduralSteps.PathStack> WaypointsToInvert;
+	// ARROW TOWERS
 	public List<BrickStack> ArrowTowerSetup;
 	public List<string> ArrowTowerDirections;
+	// FIRE TOWERS
+	public List<BrickStack> FireTowerSetup;
+	public List<int> FireTowerLength;
+	public List<string> FireTowerDirection;
+	public List<bool> FireTowerSwapRot;
+	// EDITOR TOOLS
 	public LevelInfo LevelToUnlock;
+
+	/* Foreach brick added, you must add in the [dictionnary , brick manager , typelist ]*/
 
 	public void Reset()
 	{

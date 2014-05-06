@@ -9,7 +9,8 @@ public class LevelBrick : MonoBehaviour {
 		Bird, 
 		Fields,
 		Chainsaw,
-		ArrowTower
+		ArrowTower,
+		FireTower
 	};
 	public typeList type;
 	public float speed;
@@ -77,7 +78,10 @@ public class LevelBrick : MonoBehaviour {
 	{
 		float initspeed = getSpeed(this, _bricksSpeed);
 		new OTTween(this, 0.5f).Tween("speed", initspeed );
-		animSpr.Play();
+		if (animSpr != null)
+		{
+			animSpr.Play();
+		}
 		isEnabled = true;
 	}
 

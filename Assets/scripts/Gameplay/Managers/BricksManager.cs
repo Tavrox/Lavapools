@@ -25,6 +25,10 @@ public class BricksManager : MonoBehaviour {
 			{
 				_brick.GetComponent<ArrowTower>().Setup();
 			}
+			if (_brick.GetComponent<FireTower>() != null)
+			{
+				_brick.GetComponent<FireTower>().Setup();
+			}
 			_brick.disableBrick();
 		}
 	}

@@ -63,7 +63,7 @@ public class Procedural : MonoBehaviour {
 		setupSpeedBrickList();
 		invertWayList();
 		setupTowerList();
-
+		setupFireTower();
 
 		_levMan._player.lowSpeed = _levMan._player.lowSpeed * _CURRENTSTEP.Crab_SpeedMultiplier;
 		_levMan._player.medSpeed = _levMan._player.medSpeed * _CURRENTSTEP.Crab_SpeedMultiplier;
@@ -157,6 +157,32 @@ public class Procedural : MonoBehaviour {
 				}
 			}
 		}
+	}
+
+	private void setupFireTower()
+	{
+		foreach (ProceduralSteps.BrickStack _lb in _CURRENTSTEP.FireTowerSetup)
+		{
+			if (_CURRENTSTEP.FireTowerSetup != null)
+			{
+				string brickToFetch = _lb.ToString().Replace("_", "/");
+				LevelBrick brk = _levMan.bricksMan.BricksList.Find ((LevelBrick obj) => obj.name == brickToFetch);
+				if (brk != null)
+				{
+					// brk.enableBrick();
+					int currentIndex = _CURRENTSTEP.FireTowerSetup.IndexOf(_lb);
+					brk.GetComponent<FireTower>().enabledDirection.Clear();
+					if (_CURRENTSTEP.FireTowerDirection[currentIndex] != "" &&
+					    _CURRENTSTEP.FireTowerDirection[currentIndex] != null &&
+					    _CURRENTSTEP.FireTowerLength[currentIndex] != null &&
+					    _CURRENTSTEP.FireTowerSwapRot[currentIndex] != null)
+					{
+						brk.GetComponent<FireTower>().stepChanger(_CURRENTSTEP.FireTowerLength[currentIndex], _CURRENTSTEP.FireTowerDirection[currentIndex], _CURRENTSTEP.FireTowerSwapRot[currentIndex]);
+					}
+				}
+			}
+		}
+
 	}
 
 	private void GameStart()

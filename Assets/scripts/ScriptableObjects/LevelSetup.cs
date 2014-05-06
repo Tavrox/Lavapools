@@ -13,6 +13,7 @@ public class LevelSetup : ScriptableObject
 	public float Chainsaw_Speed;
 	public float Arrow_Speed;
 	public float Arrow_FireRate;
+	public float Fire_RotationSpeed;
 	public float Gem_SpawnRate;
 	[Range(1,10)] public int Gem_MinimumInLevel;
 	public LevelSetup _lvlToCopy;
@@ -30,6 +31,7 @@ public class LevelSetup : ScriptableObject
 		_dicoBricks.Add(LevelBrick.typeList.Fields, Fields_Speed);
 		_dicoBricks.Add(LevelBrick.typeList.Chainsaw, Chainsaw_Speed);
 		_dicoBricks.Add(LevelBrick.typeList.ArrowTower, Arrow_FireRate);
+		_dicoBricks.Add(LevelBrick.typeList.FireTower, Fire_RotationSpeed);
 	}
 
 	public void CopySetup()
