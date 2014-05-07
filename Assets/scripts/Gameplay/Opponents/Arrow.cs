@@ -51,14 +51,14 @@ public class Arrow : MonoBehaviour {
 			case LevelTools.DirectionList.Up :
 			{
 			target = Vector3.up;
-			transform.rotation = Quaternion.Euler( new Vector3(0f,0f,270f));
+			transform.rotation = Quaternion.Euler( new Vector3(0f,0f,90f));
 //			transform.position += new Vector3(0f, Padding, 0f);
 			break;
 			}
 			case LevelTools.DirectionList.Down :
 			{
 			target = Vector3.down;
-			transform.rotation = Quaternion.Euler( new Vector3(0f,0f,90f));
+			transform.rotation = Quaternion.Euler( new Vector3(0f,0f,270f));
 			break;
 			}
 			case LevelTools.DirectionList.Left :

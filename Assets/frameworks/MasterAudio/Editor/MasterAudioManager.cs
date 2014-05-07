@@ -4,7 +4,9 @@ using System.Collections.Generic;
 using UnityEditor;
 
 public class MasterAudioManager : EditorWindow {
-	Vector2 scrollPos = Vector2.zero;
+    public const string MasterAudioFolderPath = "Assets/DarkTonic/MasterAudio";
+
+    Vector2 scrollPos = Vector2.zero;
 	
 	[MenuItem("Window/Master Audio Manager")]
 	static void Init()
@@ -18,21 +20,20 @@ public class MasterAudioManager : EditorWindow {
 				scrollPos, 
 				new Rect (0, 0, 520, 220)
 		);	
-		
+
 		PlaylistController.Instances = null;
 		var pcs = PlaylistController.Instances;
 		var plControllerInScene = pcs.Count > 0;
 
-		Texture header = (Texture) Resources.LoadAssetAtPath("Assets/MasterAudio/Sources/Textures/inspector_header_master_audio.png", typeof(Texture));
-		if (header != null) {
-			GUIHelper.ShowHeaderTexture(header);
+		if (MasterAudioInspectorResources.logoTexture != null) {
+			DTGUIHelper.ShowHeaderTexture(MasterAudioInspectorResources.logoTexture);
 		}
-		Texture settings = (Texture) Resources.LoadAssetAtPath("Assets/MasterAudio/Sources/Textures/gearIcon.png", typeof(Texture));
+        Texture settings = (Texture)Resources.LoadAssetAtPath(MasterAudioFolderPath + "/Sources/Textures/gearIcon.png", typeof(Texture));
 		
 		MasterAudio.Instance = null;
 		var ma = MasterAudio.Instance;
 		
-		GUIHelper.ShowColorWarning("The Master Audio prefab holds sound FX group and mixer controls. Add this first (only one per scene).");
+		DTGUIHelper.ShowColorWarning("The Master Audio prefab holds sound FX group and mixer controls. Add this first (only one per scene).");
 		EditorGUILayout.BeginHorizontal(EditorStyles.objectFieldThumb);
 		
 		EditorGUILayout.LabelField("Master Audio prefab", GUILayout.Width(300));
@@ -57,7 +58,7 @@ public class MasterAudioManager : EditorWindow {
 		EditorGUILayout.Separator();
 		
 		// Playlist Controller
-		GUIHelper.ShowColorWarning("The Playlist Controller prefab controls sets of songs (or other audio) and ducking. No limit per scene.");
+		DTGUIHelper.ShowColorWarning("The Playlist Controller prefab controls sets of songs (or other audio) and ducking. No limit per scene.");
 		EditorGUILayout.BeginHorizontal(EditorStyles.objectFieldThumb);
 		EditorGUILayout.LabelField("Playlist Controller prefab", GUILayout.Width(300));
 
@@ -70,12 +71,12 @@ public class MasterAudioManager : EditorWindow {
 		GUILayout.FlexibleSpace();
 		EditorGUILayout.EndHorizontal();
 		if (!plControllerInScene) {
-			GUIHelper.ShowColorWarning("*There is no Playlist Controller in the scene. Music will not play.");
+			DTGUIHelper.ShowRedError("*There is no Playlist Controller in the scene. Music will not play.");
 		}
 		
 		EditorGUILayout.Separator();
 		// Dynamic Sound Group Creators
-		GUIHelper.ShowColorWarning("The Dynamic Sound Group Creator prefab can create Sound Groups on the fly. No limit per scene.");
+		DTGUIHelper.ShowColorWarning("The Dynamic Sound Group Creator prefab can create Sound Groups on the fly. No limit per scene.");
 		EditorGUILayout.BeginHorizontal(EditorStyles.objectFieldThumb);
 		EditorGUILayout.LabelField("Dynamic Sound Group Creator prefab", GUILayout.Width(300));
 
@@ -106,15 +107,13 @@ public class MasterAudioManager : EditorWindow {
 		}
 		
 		GUI.EndScrollView();
-		
-		this.Repaint();
 	}
 	
 	private void DeleteAllUnusedFilterFX() {
 		var ma = MasterAudio.Instance;
 		
 		if (ma == null) {
-			GUIHelper.ShowAlert("There is no MasterAudio prefab in this scene. Try pressing this button on a different Scene.");
+			DTGUIHelper.ShowAlert("There is no MasterAudio prefab in this scene. Try pressing this button on a different Scene.");
 			return;
 		}
 		
@@ -198,16 +197,17 @@ public class MasterAudioManager : EditorWindow {
 			DestroyImmediate(filtersToDelete[i]);
 		}
 		
-		GUIHelper.ShowAlert(string.Format("{0} Filter FX Components deleted.", filtersToDelete.Count));
+		DTGUIHelper.ShowAlert(string.Format("{0} Filter FX Components deleted.", filtersToDelete.Count));
 	}
 	
 	private void CreateMasterAudio() {
-		var ma = Resources.LoadAssetAtPath("Assets/DarkTonic/MasterAudio/Prefabs/MasterAudio.prefab", typeof(GameObject));
+        var ma = Resources.LoadAssetAtPath(MasterAudioFolderPath + "/Prefabs/MasterAudio.prefab", typeof(GameObject));
 		if (ma == null) {
 			Debug.LogError("Could not find MasterAudio prefab. Please drag it into the scene yourself. It is located under MasterAudio/Prefabs.");
 			return;
 		}
-
+		
+		
         var go = GameObject.Instantiate(ma) as GameObject;
 
         UndoHelper.CreateObjectForUndo(go, "Create Master Audio prefab");
@@ -216,7 +216,7 @@ public class MasterAudioManager : EditorWindow {
 	}
 	
 	private void CreatePlaylistController() {
-		var pc = Resources.LoadAssetAtPath("Assets/DarkTonic/MasterAudio/Prefabs/PlaylistController.prefab", typeof(GameObject));
+        var pc = Resources.LoadAssetAtPath(MasterAudioFolderPath + "/Prefabs/PlaylistController.prefab", typeof(GameObject));
 		if (pc == null) {
 			Debug.LogError("Could not find PlaylistController prefab. Please drag it into the scene yourself. It is located under MasterAudio/Prefabs.");
 			return;
@@ -229,7 +229,7 @@ public class MasterAudioManager : EditorWindow {
 	}
 	
 	private void CreateDynamicSoundGroupCreator() {
-		var pc = Resources.LoadAssetAtPath("Assets/DarkTonic/MasterAudio/Prefabs/DynamicSoundGroupCreator.prefab", typeof(GameObject));
+        var pc = Resources.LoadAssetAtPath(MasterAudioFolderPath + "/Prefabs/DynamicSoundGroupCreator.prefab", typeof(GameObject));
 		if (pc == null) {
 			Debug.LogError("Could not find DynamicSoundGroupCreator prefab. Please drag it into the scene yourself. It is located under MasterAudio/Prefabs.");
 			return;

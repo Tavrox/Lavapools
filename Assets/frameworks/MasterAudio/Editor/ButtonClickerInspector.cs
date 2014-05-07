@@ -17,7 +17,7 @@ public class ButtonClickerInspector : Editor
 		
 		var ma = MasterAudio.Instance;
 		if (ma != null) {
-			GUIHelper.ShowHeaderTexture(ma.logoTexture);
+			DTGUIHelper.ShowHeaderTexture(MasterAudioInspectorResources.logoTexture);
 		}
 		
 		ButtonClicker sounds = (ButtonClicker)target;
@@ -33,108 +33,74 @@ public class ButtonClickerInspector : Editor
 			UndoHelper.RecordObjectPropertyForUndo(sounds, "change Resize On Click");
 			sounds.resizeOnClick = resizeOnClick;
 		}
-		
-		if (maInScene) {
-			var existingIndex = groupNames.IndexOf(sounds.mouseDownSound);
 
-			int? groupIndex = null;
-			
-			var noMatch = false;
-			
-			if (existingIndex >= 1) {
-				groupIndex = EditorGUILayout.Popup("Mouse Down Sound", existingIndex, groupNames.ToArray());
-			} else if (existingIndex == -1 && sounds.mouseDownSound == MasterAudio.NO_GROUP_NAME) {
-				groupIndex = EditorGUILayout.Popup("Mouse Down Sound", existingIndex, groupNames.ToArray());
-			} else { // non-match
-				noMatch = true;
+		var resizeOnHover = EditorGUILayout.Toggle("Resize On Hover", sounds.resizeOnHover);
 
-				var newMouseDown = EditorGUILayout.TextField("Mouse Down Sound", sounds.mouseDownSound);
-				if (newMouseDown != sounds.mouseDownSound) {
-					UndoHelper.RecordObjectPropertyForUndo(sounds, "change Sound Group");
-					sounds.mouseDownSound = newMouseDown;
-				}
-				var newIndex = EditorGUILayout.Popup("All Sound Types", -1, groupNames.ToArray());
-				if (newIndex >= 0) {
-					groupIndex = newIndex;
-				}
-			}
-			
-			if (noMatch) {
-				GUIHelper.ShowRedError("Sound Type found no match. Type in or choose one.");
-			}
-			
-			if (groupIndex.HasValue) {
-				if (existingIndex != groupIndex.Value) {
-					UndoHelper.RecordObjectPropertyForUndo(sounds, "change Sound Group");
-				}
-
-				if (groupIndex.Value == -1) {
-					sounds.mouseDownSound = MasterAudio.NO_GROUP_NAME;
-				} else {
-					sounds.mouseDownSound = groupNames[groupIndex.Value];
-				}
-			}
-		} else {
-			var newDown = EditorGUILayout.TextField("Mouse Down Sound", sounds.mouseDownSound);
-			if (newDown != sounds.mouseDownSound) {
-				UndoHelper.RecordObjectPropertyForUndo(sounds, "change Sound Group");
-				sounds.mouseDownSound = newDown;
-			}
+		if (resizeOnHover != sounds.resizeOnHover) {
+			UndoHelper.RecordObjectPropertyForUndo(sounds, "change Resize On Hover");
+			sounds.resizeOnHover = resizeOnHover;
 		}
 		
-		if (maInScene) {
-			var existingIndex = groupNames.IndexOf(sounds.mouseUpSound);
-
-			int? groupIndex = null;
-			
-			var noMatch = false;
-			
-			if (existingIndex >= 0) {
-				groupIndex = EditorGUILayout.Popup("Mouse Up Sound", existingIndex, groupNames.ToArray());
-			} else if (existingIndex == -1 && sounds.mouseUpSound == MasterAudio.NO_GROUP_NAME) {
-				groupIndex = EditorGUILayout.Popup("Mouse Up Sound", existingIndex, groupNames.ToArray());
-			} else { // non-match
-				noMatch = true;
-
-				var newMouseUp = EditorGUILayout.TextField("Mouse Up Sound", sounds.mouseUpSound);
-				if (newMouseUp != sounds.mouseUpSound) {
-					UndoHelper.RecordObjectPropertyForUndo(sounds, "change Sound Group");
-					sounds.mouseUpSound = newMouseUp;
-				}
-				var newIndex = EditorGUILayout.Popup("All Sound Types", -1, groupNames.ToArray());
-				if (newIndex >= 0) {
-					groupIndex = newIndex;
-				}
-			}
-			
-			if (noMatch) {
-				GUIHelper.ShowRedError("Sound Type found no match. Choose one from 'All Sound Types'.");			
-			}
-			
-			if (groupIndex.HasValue) {
-				if (existingIndex != groupIndex.Value) {
-					UndoHelper.RecordObjectPropertyForUndo(sounds, "change Sound Group");
-				}
-				if (groupIndex.Value == -1) {
-					sounds.mouseUpSound = MasterAudio.NO_GROUP_NAME;
-				} else {
-					sounds.mouseUpSound = groupNames[groupIndex.Value];
-				}
-			}
-		} else {
-			var newUp = EditorGUILayout.TextField("Mouse Up Sound", sounds.mouseUpSound);
-			if (newUp != sounds.mouseUpSound) {
-				sounds.mouseUpSound = newUp;
-				UndoHelper.RecordObjectPropertyForUndo(sounds, "change Sound Group");
-			}
-		}
+		EditSoundGroup(sounds, ref sounds.mouseDownSound, "Mouse Down Sound");
+		EditSoundGroup(sounds, ref sounds.mouseUpSound, "Mouse Up Sound");
+		EditSoundGroup(sounds, ref sounds.mouseClickSound, "Mouse Click Sound");
+		EditSoundGroup(sounds, ref sounds.mouseOverSound, "Mouse Over Sound");
+		EditSoundGroup(sounds, ref sounds.mouseOutSound, "Mouse Out Sound");
 		
 		if (GUI.changed) {
 			EditorUtility.SetDirty(target);
 		}
 
-		GUIHelper.RepaintIfUndoOrRedo(this);
-
 		//DrawDefaultInspector();
+	}
+
+	void EditSoundGroup(ButtonClicker sounds, ref string soundGroup, string label)
+	{
+		if (maInScene) {
+			var existingIndex = groupNames.IndexOf(soundGroup);
+
+			int? groupIndex = null;
+
+			var noMatch = false;
+
+			if (existingIndex >= 1) {
+				groupIndex = EditorGUILayout.Popup(label, existingIndex, groupNames.ToArray());
+			} else if (existingIndex == -1 && soundGroup == MasterAudio.NO_GROUP_NAME) {
+				groupIndex = EditorGUILayout.Popup(label, existingIndex, groupNames.ToArray());
+			} else { // non-match
+				noMatch = true;
+
+				var newGroup = EditorGUILayout.TextField(label, soundGroup);
+				if (newGroup != soundGroup) {
+					UndoHelper.RecordObjectPropertyForUndo(sounds, "change Sound Group");
+					soundGroup = newGroup;
+				}
+				var newIndex = EditorGUILayout.Popup("All Sound Types", -1, groupNames.ToArray());
+				if (newIndex >= 0) {
+					groupIndex = newIndex;
+				}
+			}
+
+			if (noMatch) {
+				DTGUIHelper.ShowRedError("Sound Type found no match. Choose one from 'All Sound Types'.");
+			}
+
+			if (groupIndex.HasValue) {
+				if (existingIndex != groupIndex.Value) {
+					UndoHelper.RecordObjectPropertyForUndo(sounds, "change Sound Group");
+				}
+				if (groupIndex.Value == -1) {
+					soundGroup = MasterAudio.NO_GROUP_NAME;
+				} else {
+					soundGroup = groupNames[groupIndex.Value];
+				}
+			}
+		} else {
+			var newGroup = EditorGUILayout.TextField(label, soundGroup);
+			if (newGroup != soundGroup) {
+				soundGroup = newGroup;
+				UndoHelper.RecordObjectPropertyForUndo(sounds, "change Sound Group");
+			}
+		}
 	}
 }

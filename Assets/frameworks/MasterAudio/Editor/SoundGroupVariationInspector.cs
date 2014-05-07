@@ -16,9 +16,13 @@ public class SoundGroupVariationInspector : Editor {
 		
 		_variation = (SoundGroupVariation)target;
 		
-		if (_variation.logoTexture != null) {
-			GUIHelper.ShowHeaderTexture(_variation.logoTexture);
+		if (MasterAudioInspectorResources.logoTexture != null) {
+			DTGUIHelper.ShowHeaderTexture(MasterAudioInspectorResources.logoTexture);
 		}
+		
+//		if (Application.isPlaying) {
+//			DTGUIHelper.ShowColorWarning(_variation.IsAvailableToPlay.ToString());
+//		}
 		
 		EditorGUILayout.BeginHorizontal(EditorStyles.toolbar);
 		GUI.contentColor = Color.green;
@@ -27,13 +31,13 @@ public class SoundGroupVariationInspector : Editor {
 		}	
 		GUILayout.FlexibleSpace();
 		GUI.contentColor = Color.white;
-
+		
 		var ma = MasterAudio.Instance;
 		if (ma != null) {
-			var buttonPressed = GUIHelper.AddVariationButtons(ma);
+			var buttonPressed = DTGUIHelper.AddVariationButtons();
 			
 			switch (buttonPressed) {
-				case GUIHelper.DTFunctionButtons.Play:
+				case DTGUIHelper.DTFunctionButtons.Play:
 					if (Application.isPlaying) {
 						MasterAudio.PlaySound(_variation.transform.parent.name, 1f, null, 0f, _variation.name);
 					} else {
@@ -46,7 +50,7 @@ public class SoundGroupVariationInspector : Editor {
 						}
 					}
 					break;
-				case GUIHelper.DTFunctionButtons.Stop:
+				case DTGUIHelper.DTFunctionButtons.Stop:
 					if (Application.isPlaying) {
 						MasterAudio.StopAllOfSound(_variation.transform.parent.name);
 					} else {
@@ -61,9 +65,9 @@ public class SoundGroupVariationInspector : Editor {
 		}
 		
 		EditorGUILayout.EndHorizontal();
-
+		
 		if (ma != null && !Application.isPlaying) {
-			GUIHelper.ShowColorWarning("*Fading & random settings are ignored by preview in edit mode.");
+			DTGUIHelper.ShowColorWarning("*Fading & random settings are ignored by preview in edit mode.");
 		}
 		
 		var oldLocation = _variation.audLocation;
@@ -119,10 +123,14 @@ public class SoundGroupVariationInspector : Editor {
 									continue;
 								}
 								
-								newFilename = aClip.name;
+								newFilename = DTGUIHelper.GetResourcePath(aClip);
+								if (string.IsNullOrEmpty(newFilename)) {
+									newFilename = aClip.name;
+								}
+						
 								if (newFilename != 	_variation.resourceFileName) {
 									UndoHelper.RecordObjectPropertyForUndo(_variation, "change Resource filename");
-								    _variation.resourceFileName = aClip.name;
+									_variation.resourceFileName = newFilename;
 								}
 								break;
 							}
@@ -158,18 +166,6 @@ public class SoundGroupVariationInspector : Editor {
 			_variation.audio.loop = newLoop;
 		}
 
-		var newRandomPitch = EditorGUILayout.Slider("Random Pitch", _variation.randomPitch, 0f, 3f);
-		if (newRandomPitch != _variation.randomPitch) {
-			UndoHelper.RecordObjectPropertyForUndo(_variation, "change Random Pitch");
-			_variation.randomPitch = newRandomPitch; 
-		}
-
-		var newRandomVolume = EditorGUILayout.Slider("Random Volume", _variation.randomVolume, 0f, 1f);
-		if (newRandomVolume != _variation.randomVolume) {
-			UndoHelper.RecordObjectPropertyForUndo(_variation, "change Random Volume");
-			_variation.randomVolume = newRandomVolume;
-		}
-
 		var newWeight = EditorGUILayout.IntSlider("Weight (Instances)", _variation.weight, 0, 100);
 		if (newWeight != _variation.weight) {
 			UndoHelper.RecordObjectPropertyForUndo(_variation, "change Weight");
@@ -183,26 +179,130 @@ public class SoundGroupVariationInspector : Editor {
 				_variation.fxTailTime = newFxTailTime;
 			}
 		}
-
+		
+		var newUseRndPitch = EditorGUILayout.BeginToggleGroup("Use Random Pitch", _variation.useRandomPitch);
+		if (newUseRndPitch != _variation.useRandomPitch) {
+			UndoHelper.RecordObjectPropertyForUndo(_variation, "toggle Use Random Pitch");
+			_variation.useRandomPitch = newUseRndPitch;
+		}
+		
+		if (_variation.useRandomPitch) {
+			var newMode = (SoundGroupVariation.RandomPitchMode) EditorGUILayout.EnumPopup("Pitch Compute Mode", _variation.randomPitchMode);
+			if (newMode != _variation.randomPitchMode) {
+				UndoHelper.RecordObjectPropertyForUndo(_variation, "change Pitch Compute Mode");
+				_variation.randomPitchMode = newMode;
+			}
+			
+			var newPitchMin = EditorGUILayout.Slider("Random Pitch Min", _variation.randomPitchMin, -3f, 3f);
+			if (newPitchMin != _variation.randomPitchMin) {
+				UndoHelper.RecordObjectPropertyForUndo(_variation, "change Random Pitch Min");
+				_variation.randomPitchMin = newPitchMin; 
+				if (_variation.randomPitchMax <= _variation.randomPitchMin) {
+					_variation.randomPitchMax = _variation.randomPitchMin;
+				}
+			}
+			
+			var newPitchMax = EditorGUILayout.Slider("Random Pitch Max", _variation.randomPitchMax, -3f, 3f);
+			if (newPitchMax != _variation.randomPitchMax) {
+				UndoHelper.RecordObjectPropertyForUndo(_variation, "change Random Pitch Max");
+				_variation.randomPitchMax = newPitchMax; 
+				if (_variation.randomPitchMin > _variation.randomPitchMax) {
+					_variation.randomPitchMin = _variation.randomPitchMax;
+				}
+			}
+		}
+		
+		EditorGUILayout.EndToggleGroup();
+		
+		var newUseRndVol = EditorGUILayout.BeginToggleGroup("Use Random Volume", _variation.useRandomVolume);
+		if (newUseRndVol != _variation.useRandomVolume) {
+			UndoHelper.RecordObjectPropertyForUndo(_variation, "toggle Use Random Volume");
+			_variation.useRandomVolume = newUseRndVol;
+		}
+		
+		if (_variation.useRandomVolume) {
+			var newMode = (SoundGroupVariation.RandomVolumeMode) EditorGUILayout.EnumPopup("Volume Compute Mode", _variation.randomVolumeMode);
+			if (newMode != _variation.randomVolumeMode) {
+				UndoHelper.RecordObjectPropertyForUndo(_variation, "change Volume Compute Mode");
+				_variation.randomVolumeMode = newMode;
+			}
+			
+			var volMin = 0f;
+			if (_variation.randomVolumeMode == SoundGroupVariation.RandomVolumeMode.AddToClipVolume) {
+				volMin = -1f;
+			}
+			
+			var newVolMin = EditorGUILayout.Slider("Random Volume Min", _variation.randomVolumeMin, volMin, 1f);
+			if (newVolMin != _variation.randomVolumeMin) {
+				UndoHelper.RecordObjectPropertyForUndo(_variation, "change Random Volume Min");
+				_variation.randomVolumeMin = newVolMin; 
+				if (_variation.randomVolumeMax <= _variation.randomVolumeMin) {
+					_variation.randomVolumeMax = _variation.randomVolumeMin;
+				}
+			}
+			
+			var newVolMax = EditorGUILayout.Slider("Random Volume Max", _variation.randomVolumeMax, volMin, 1f);
+			if (newVolMax != _variation.randomVolumeMax) {
+				UndoHelper.RecordObjectPropertyForUndo(_variation, "change Random Volume Max");
+				_variation.randomVolumeMax = newVolMax; 
+				if (_variation.randomVolumeMin > _variation.randomVolumeMax) {
+					_variation.randomVolumeMin = _variation.randomVolumeMax;
+				}
+			}
+		}
+		
+		EditorGUILayout.EndToggleGroup();
+		
+		var newSilence = EditorGUILayout.BeginToggleGroup("Use Random Delay", _variation.useIntroSilence);
+		if (newSilence != _variation.useIntroSilence) {
+			UndoHelper.RecordObjectPropertyForUndo(_variation, "toggle Use Random Delay");
+			_variation.useIntroSilence = newSilence;
+		}
+		
+		if (_variation.useIntroSilence) {
+			var newSilenceMin = EditorGUILayout.Slider("Delay Min (sec)", _variation.introSilenceMin, 0f, 100f);
+			if (newSilenceMin != _variation.introSilenceMin) {
+				UndoHelper.RecordObjectPropertyForUndo(_variation, "change Delay Min (sec)");
+				_variation.introSilenceMin = newSilenceMin;
+				if (_variation.introSilenceMin > _variation.introSilenceMax) {
+					_variation.introSilenceMax = newSilenceMin;
+				}
+			}
+			
+			var newSilenceMax = EditorGUILayout.Slider("Delay Max (sec)", _variation.introSilenceMax, 0f, 100f);
+			if (newSilenceMax != _variation.introSilenceMax) {
+				UndoHelper.RecordObjectPropertyForUndo(_variation, "change Delay Max (sec)");
+				_variation.introSilenceMax = newSilenceMax;
+				if (_variation.introSilenceMax < _variation.introSilenceMin) {
+					_variation.introSilenceMin = newSilenceMax;
+				}
+			}
+		}
+		
+		EditorGUILayout.EndToggleGroup();
+		
+		
 		var newUseFades = EditorGUILayout.BeginToggleGroup("Use Custom Fading", _variation.useFades);
 		if (newUseFades != _variation.useFades) {
 			UndoHelper.RecordObjectPropertyForUndo(_variation, "toggle Use Custom Fading");
 			_variation.useFades = newUseFades;
 		}
-
-		var newFadeIn = EditorGUILayout.Slider("Fade In Time (sec)", _variation.fadeInTime, 0f, 10f);
-		if (newFadeIn != _variation.fadeInTime) {
-			UndoHelper.RecordObjectPropertyForUndo(_variation, "change Fade In Time");
-			_variation.fadeInTime = newFadeIn;
-		}
 		
-		if (_variation.audio.loop) {
-			GUIHelper.ShowColorWarning("*Looped clips cannot have a custom fade out.");
-		} else {
-			var newFadeOut = EditorGUILayout.Slider("Fade Out time (sec)", _variation.fadeOutTime, 0f, 10f);
-			if (newFadeOut != _variation.fadeOutTime) {
-				UndoHelper.RecordObjectPropertyForUndo(_variation, "change Fade Out Time");
-				_variation.fadeOutTime = newFadeOut;
+		if (_variation.useFades) {
+			var newFadeIn = EditorGUILayout.Slider("Fade In Time (sec)", _variation.fadeInTime, 0f, 10f);
+			if (newFadeIn != _variation.fadeInTime) {
+				UndoHelper.RecordObjectPropertyForUndo(_variation, "change Fade In Time");
+				_variation.fadeInTime = newFadeIn;
+			}
+			
+			if (_variation.audio.loop) {
+				DTGUIHelper.ShowColorWarning("*Looped clips cannot have a custom fade out.");
+			} else {
+				var newFadeOut = EditorGUILayout.Slider("Fade Out time (sec)", _variation.fadeOutTime, 0f, 10f);
+				if (newFadeOut != _variation.fadeOutTime) {
+					UndoHelper.RecordObjectPropertyForUndo(_variation, "change Fade Out Time");
+					_variation.fadeOutTime = newFadeOut;
+				}
 			}
 		}
 
@@ -243,9 +343,7 @@ public class SoundGroupVariationInspector : Editor {
 		if (GUI.changed || isDirty) {
 			EditorUtility.SetDirty(target);
 		}	
-
-		GUIHelper.RepaintIfUndoOrRedo(this);
-
+		
 		//DrawDefaultInspector();
     }
 	

@@ -42,7 +42,7 @@
 <entry id='	BACK_MENU	'>	<english>	Back to main menu	</english>	<french>	Retour au menu	</french>	<info>	17	14	</info>	</entry>
 <entry id='	END_DEMO	'>	<english>	End of the demo,/n buy the alpha to play/n more levels !	</english>	<french>	Fin de la démo,/n achetez l'alpha pour jouer à/n plus de niveaux !	</french>	<info>	56	66	</info>	</entry>
 <entry id='	LEAVE_FEEDBACK	'>	<english>	Leave us a feedback	</english>	<french>	Envoyez un retour	</french>	<info>	19	17	</info>	</entry>
-<entry id='		'>	<english>		</english>	<french>		</french>	<info>	0	0	</info>	</entry>
+<entry id='	LANGUAGE_CHOOSE	'>	<english>	Language	</english>	<french>	Langue	</french>	<info>	8	6	</info>	</entry>
 <entry id='		'>	<english>		</english>	<french>		</french>	<info>	0	0	</info>	</entry>
 <entry id='		'>	<english>		</english>	<french>		</french>	<info>	0	0	</info>	</entry>
 <entry id='		'>	<english>		</english>	<french>		</french>	<info>	0	0	</info>	</entry>

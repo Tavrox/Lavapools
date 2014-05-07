@@ -4,16 +4,21 @@ using System.Collections.Generic;
 
 public class MasterAudioGroup : MonoBehaviour {
 	public const string NO_BUS = "[NO BUS]";
-	
-	public Texture logoTexture;
-	public Texture settingsTexture;
-	public Texture deleteTexture;
+
 	public int busIndex = -1;
 	
 	public bool isExpanded = true;
 	public float groupMasterVolume = 1f;
 	public int retriggerPercentage = 50;
 	public VariationMode curVariationMode = VariationMode.Normal;
+	
+	public float chainLoopDelayMin;
+	public float chainLoopDelayMax;
+	public ChainedLoopLoopMode chainLoopMode = ChainedLoopLoopMode.Endless;
+	public int chainLoopNumLoops = 0;
+	public bool useDialogFadeOut = false;
+	public float dialogFadeOutTime = .5f;
+	
 	public VariationSequence curVariationSequence = VariationSequence.Randomized;
 	public bool useInactivePeriodPoolRefill = false;
 	public float inactivePeriodSeconds = 5f;
@@ -24,6 +29,7 @@ public class MasterAudioGroup : MonoBehaviour {
 	public LimitMode limitMode = LimitMode.None;
 	public int limitPerXFrames = 1;
 	public float minimumTimeBetween = 0.1f;
+	public bool useClipAgePriority = false;
 	
 	public bool limitPolyphony = false;
 	public int voiceLimitCount = 1;
@@ -32,7 +38,8 @@ public class MasterAudioGroup : MonoBehaviour {
 	public bool isMuted = false;
 	
 	private List<int> activeAudioSourcesIds = new List<int>();
-
+	private int chainLoopCount = 0;
+	
 	public enum VariationSequence {
 		Randomized,
 		TopToBottom
@@ -40,7 +47,13 @@ public class MasterAudioGroup : MonoBehaviour {
 
 	public enum VariationMode {
 		Normal,
-		LoopedChain				
+		LoopedChain,
+		Dialog
+	}
+	
+	public enum ChainedLoopLoopMode {
+		Endless,
+		NumberOfLoops
 	}
 	
 	public enum LimitMode {
@@ -49,34 +62,63 @@ public class MasterAudioGroup : MonoBehaviour {
 		TimeBased
 	}
 	
-	public bool HasVoicesRemaining {
+	public int ActiveVoices {
 		get {
-			if (busIndex < MasterAudio.HARD_CODED_BUS_OPTIONS || !Application.isPlaying) {
-				return true; // no bus, so no voice limit
-			}
-			
-			var bus = MasterAudio.GroupBuses[busIndex - MasterAudio.HARD_CODED_BUS_OPTIONS];
-			
-			if (bus.voiceLimit <= 0) { 
-				return true; // no voice limit set
-			}
-			
-			return bus.voiceLimit > activeAudioSourcesIds.Count;
+			return activeAudioSourcesIds.Count;
 		}
 	}
 	
-	public void AddActiveAudioSourceId(SoundGroupVariation variation) {
-		var id = variation.GetInstanceID();
-		
-		if (activeAudioSourcesIds.Contains(id)) {
+	public int TotalVoices {
+		get {
+			return this.transform.childCount;
+		}
+	}
+	
+	public void AddActiveAudioSourceId(int varInstanceId) {
+        if (activeAudioSourcesIds.Contains(varInstanceId))
+        {
 			return;
 		}
+
+        activeAudioSourcesIds.Add(varInstanceId);
 		
-		activeAudioSourcesIds.Add(id);
+		var bus = BusForGroup;
+		if (bus != null) {
+            bus.AddActiveAudioSourceId(varInstanceId);	
+		}
 	}
 	
-	public void RemoveActiveAudioSourceId(SoundGroupVariation variation) {
-		var id = variation.GetInstanceID();
-		activeAudioSourcesIds.Remove(id);
+	public void RemoveActiveAudioSourceId(int _varInstanceId) {
+		activeAudioSourcesIds.Remove(_varInstanceId);
+		
+		var bus = BusForGroup;
+		if (bus != null) {
+			bus.RemoveActiveAudioSourceId(_varInstanceId);	
+		}
+	}
+	
+	public GroupBus BusForGroup {
+		get {
+			if (busIndex <= MasterAudio.HARD_CODED_BUS_OPTIONS || !Application.isPlaying) {
+				return null; // no bus, so no voice limit
+			}
+			
+			var index = busIndex - MasterAudio.HARD_CODED_BUS_OPTIONS;
+
+			if (index >= MasterAudio.GroupBuses.Count) { // this happens only with Dynamic SGC item removal
+				return null;
+			}
+			
+			return MasterAudio.GroupBuses[index];
+		}
+	}
+	
+	public int ChainLoopCount {
+		get {
+			return chainLoopCount;
+		}
+		set {
+			chainLoopCount = value;
+		}
 	}
 }

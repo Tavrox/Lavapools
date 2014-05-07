@@ -8,6 +8,10 @@ public class ArrowTower : OppTower {
 	public List<Arrow> linkedArrow;
 	public Arrow launchArrow;
 	public int maxPool = 50;
+	public OTSprite dirUp;
+	public OTSprite dirLeft;
+	public OTSprite dirDown;
+	public OTSprite dirRight;
 	
 	// Use this for initialization
 	public void Setup () 
@@ -19,6 +23,11 @@ public class ArrowTower : OppTower {
 		GameEventManager.GameOver += GameOver;
 		GameEventManager.Respawn += Respawn;
 		GameEventManager.EndGame += EndGame;
+
+		dirUp = FETool.findWithinChildren(gameObject, "Direction/up").GetComponentInChildren<OTSprite>();
+		dirLeft = FETool.findWithinChildren(gameObject, "Direction/left").GetComponentInChildren<OTSprite>();
+		dirDown = FETool.findWithinChildren(gameObject, "Direction/down").GetComponentInChildren<OTSprite>();
+		dirRight = FETool.findWithinChildren(gameObject, "Direction/right").GetComponentInChildren<OTSprite>();
 		createArrows(maxPool);
 	}
 

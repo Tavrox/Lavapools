@@ -2,21 +2,35 @@ using UnityEngine;
 using System;
 using System.Collections;
 
+/// <summary>
+/// This class contains the actual Audio Source, Unity Filter FX components and other convenience methods having to do with playing sound effects.
+/// </summary>
 public class SoundGroupVariation : MonoBehaviour
 {
-    public Texture logoTexture;
     public int weight = 1;
-    public float randomPitch = 0f;
-    public float randomVolume = 0f;
-    public MasterAudio.AudioLocation audLocation = MasterAudio.AudioLocation.Clip;
+    
+	public bool useRandomPitch = false;
+	public RandomPitchMode randomPitchMode = RandomPitchMode.AddToClipPitch;
+	public float randomPitchMin = 0f;
+    public float randomPitchMax = 0f;
+
+	public bool useRandomVolume = false;
+	public RandomVolumeMode randomVolumeMode = RandomVolumeMode.AddToClipVolume;
+	public float randomVolumeMin = 0f;
+    public float randomVolumeMax = 0f;
+    
+	public MasterAudio.AudioLocation audLocation = MasterAudio.AudioLocation.Clip;
     public string resourceFileName;
     public float fxTailTime = 0f;
-	public bool useFades = false;
+    public bool useFades = false;
     public float fadeInTime = 0f;
     public float fadeOutTime = 0f;
-    public float original_Pitch;
+    public float original_Pitch = 0f;
+    public bool useIntroSilence = false;
+    public float introSilenceMin = 0f;
+    public float introSilenceMax = 0f;
 
-    private AudioSource _audio;
+    private AudioSource _audioSource = null;
     private float fadeMaxVolume;
     private FadeMode curFadeMode = FadeMode.None;
     private DetectEndMode curDetectEndMode = DetectEndMode.None;
@@ -28,14 +42,26 @@ public class SoundGroupVariation : MonoBehaviour
     private AudioLowPassFilter lpFilter;
     private AudioReverbFilter reverbFilter;
     private AudioChorusFilter chorusFilter;
-
+    private bool isWaitingForDelay = false;
+	private float _maxVol = 1f;
+	private int _instanceId = -1;
+	private bool audioLoops = false;
+	
     public delegate void SoundFinishedEventHandler();
+
+    /// <summary>
+    /// Subscribe to this event to be notified when the sound stops playing.
+    /// </summary>
     public event SoundFinishedEventHandler SoundFinished;
-	
-	private Transform trans;
-	private Transform objectToFollow = null;
+
+    private Transform _trans;
+    private Transform objectToFollow = null;
+    private Transform objectToTriggerFrom = null;
 	private MasterAudioGroup parentGroupScript;
-	
+    private int timesLocationUpdated = 0;
+    private bool attachToSource = false;
+    private float lastTimePlayed = 0f;
+
     public class PlaySoundParams
     {
         public string soundType;
@@ -45,9 +71,10 @@ public class SoundGroupVariation : MonoBehaviour
         public bool attachToSource;
         public float delaySoundTime;
         public bool isChainLoop;
-        public float groupCalcVolume;
-
-        public PlaySoundParams(string _soundType, float _volPercent, float _groupCalcVolume, float? _pitch, Transform _sourceTrans, bool _attach, float _delaySoundTime, bool _isChainLoop)
+        public bool isSingleSubscribedPlay;
+		public float groupCalcVolume;
+		
+        public PlaySoundParams(string _soundType, float _volPercent, float _groupCalcVolume, float? _pitch, Transform _sourceTrans, bool _attach, float _delaySoundTime, bool _isChainLoop, bool _isSingleSubscribedPlay)
         {
             soundType = _soundType;
             volumePercentage = _volPercent;
@@ -57,6 +84,7 @@ public class SoundGroupVariation : MonoBehaviour
             attachToSource = _attach;
             delaySoundTime = _delaySoundTime;
             isChainLoop = _isChainLoop;
+			isSingleSubscribedPlay = _isSingleSubscribedPlay;
         }
     }
 
@@ -67,7 +95,17 @@ public class SoundGroupVariation : MonoBehaviour
         FadeOutEarly,
         GradualFade
     }
+	
+	public enum RandomPitchMode {
+		AddToClipPitch,
+		IgnoreClipPitch
+	}
 
+	public enum RandomVolumeMode {
+		AddToClipVolume,
+		IgnoreClipVolume
+	}
+	
     public enum DetectEndMode
     {
         None,
@@ -76,18 +114,20 @@ public class SoundGroupVariation : MonoBehaviour
 
     void Awake()
     {
-        _audio = this.audio;
-		this.trans = this.transform;
+        this.original_Pitch = VarAudio.pitch;
+
+		this.audioLoops = VarAudio.loop;
     }
 
     void Start()
     {
-		// this code needs to wait for cloning (for weight).
-		var theParent = this.trans.parent;
-		if (theParent == null) {
-			Debug.LogError("Sound Variation '" + this.name + "' has no parent!");
-			return;
-		}
+        // this code needs to wait for cloning (for weight).
+        var theParent = this.Trans.parent;
+        if (theParent == null)
+        {
+            Debug.LogError("Sound Variation '" + this.name + "' has no parent!");
+            return;
+        }
     }
 
     void OnDestroy()
@@ -112,7 +152,9 @@ public class SoundGroupVariation : MonoBehaviour
 
     void OnDrawGizmos()
     {
-        Gizmos.DrawIcon(this.transform.position, MasterAudio.GIZMO_FILE_NAME, true);
+		if (MasterAudio.Instance.showGizmos) {
+        	Gizmos.DrawIcon(this.transform.position, MasterAudio.GIZMO_FILE_NAME, true);
+		}
     }
 
     /// <summary>
@@ -122,57 +164,104 @@ public class SoundGroupVariation : MonoBehaviour
     public void Play(float? pitch, float maxVolume, PlaySoundParams playParams = null)
     {
         SoundFinished = null; // clear it out so subscribers don't have to clean up
-        playSndParams = playParams;
+        isWaitingForDelay = false;
+		playSndParams = playParams;
 
         // compute pitch
-        if (pitch.HasValue)
-        {
-            _audio.pitch = pitch.Value;
-        }
-        else
-        {
-            var randPitch = 0f;
-
-            if (randomPitch != 0f)
-            {
-                randPitch = UnityEngine.Random.Range(-randomPitch, randomPitch);
-            }
-            _audio.pitch = OriginalPitch + randPitch;
-        }
+        if (pitch.HasValue) {
+            VarAudio.pitch = pitch.Value;
+        } else if (useRandomPitch) {
+            var randPitch = UnityEngine.Random.Range(randomPitchMin, randomPitchMax);
+            
+			switch (randomPitchMode) {
+				case RandomPitchMode.AddToClipPitch:
+					randPitch += OriginalPitch;
+					break;
+			}
+			
+			VarAudio.pitch = randPitch;
+        } else { // non random pitch
+			VarAudio.pitch = OriginalPitch;
+		}
 
         // set fade mode
         this.curFadeMode = FadeMode.None;
         curDetectEndMode = DetectEndMode.DetectEnd;
-
-        if (audLocation == MasterAudio.AudioLocation.ResourceFile)
-        {
-            AudioResourceOptimizer.PopulateSourcesWithResourceClip(resourceFileName);
-        }
+		_maxVol = maxVolume;
 
         StopAllCoroutines();
+		
+        if (audLocation == MasterAudio.AudioLocation.Clip) {
+			FinishSetupToPlay();
+			return;
+		}
+		
+		AudioResourceOptimizer.PopulateSourcesWithResourceClip(resourceFileName, this);
+		
+		if (audLocation == MasterAudio.AudioLocation.ResourceFile) {
+			FinishSetupToPlay();
+		}
+    }
+	
+	public void FinishSetupToPlay() {
+		timesLocationUpdated = 0;
 
-        if (!_audio.isPlaying && _audio.time > 0f)
+        if (!VarAudio.isPlaying && VarAudio.time > 0f)
         {
             // paused. Do nothing except Play
         }
         else if (useFades && (fadeInTime > 0f || fadeOutTime > 0f))
         {
-            fadeMaxVolume = maxVolume;
-            _audio.volume = 0f;
+            fadeMaxVolume = _maxVol;
+            VarAudio.volume = 0f;
             StartCoroutine(FadeInOut());
         }
-
-        if (playSndParams != null && playSndParams.isChainLoop)
-        {
-            _audio.loop = false;
+		
+		VarAudio.loop = this.audioLoops; // restore original loop setting in case it got lost by loop setting code below for a previous play.
+		
+        if (playSndParams != null && (playSndParams.isChainLoop || playSndParams.isSingleSubscribedPlay)) {
+            VarAudio.loop = false;
         }
-		
-		ParentGroup.AddActiveAudioSourceId(this);
-		
-        StartCoroutine(DetectSoundFinished(playParams.delaySoundTime));
-		if (playParams.attachToSource) {
-			StartCoroutine(FollowSoundMaker());
-		}
+
+        if (playSndParams == null)
+        {
+            return; // has already been "stop" 'd.
+        }
+
+        ParentGroup.AddActiveAudioSourceId(InstanceId);
+
+        StartCoroutine(DetectSoundFinished(playSndParams.delaySoundTime));
+
+        attachToSource = false;
+
+        bool useClipAgePriority = MasterAudio.Instance.prioritizeOnDistance && (MasterAudio.Instance.useClipAgePriority || ParentGroup.useClipAgePriority);
+        if (playSndParams.attachToSource || useClipAgePriority)
+        {
+            attachToSource = playSndParams.attachToSource;
+	        if (ObjectToFollow != null) {
+                if (ObjectToFollow.root.GetInstanceID() == MasterAudio.ListenerID) {
+				    AudioUpdater updater = gameObject.AddComponent<AudioUpdater>();
+				    updater.FollowTransform = ObjectToFollow;
+				    attachToSource = false;	// Do not modify playParams as the sound group may contain more variations
+				    ObjectToFollow = null;
+                }
+			}
+            StartCoroutine(FollowSoundMaker());
+        }
+	}
+	
+    /// <summary>
+    /// This method allows you to jump to a specific time in an already playing or just triggered Audio Clip.
+    /// </summary>
+    /// <param name="timeToJumpTo">The time in seconds to jump to.</param>
+    public void JumpToTime(float timeToJumpTo)
+    {
+        if (!audio.isPlaying || playSndParams == null)
+        {
+            return;
+        }
+
+        audio.time = timeToJumpTo;
     }
 
     /// <summary>
@@ -187,7 +276,7 @@ public class SoundGroupVariation : MonoBehaviour
         }
 
         var newVol = playSndParams.groupCalcVolume * volumePercentage;
-        _audio.volume = newVol;
+        VarAudio.volume = newVol;
 
         playSndParams.volumePercentage = volumePercentage;
     }
@@ -202,10 +291,11 @@ public class SoundGroupVariation : MonoBehaviour
             Stop();
             return;
         }
-		
-        _audio.Pause();
-        this.curFadeMode = FadeMode.None;
 
+        VarAudio.Pause();
+        this.curFadeMode = FadeMode.None;
+		this.curDetectEndMode = DetectEndMode.None; // necessary so that the clip can be unpaused.
+		
         MaybeUnloadClip();
     }
 
@@ -222,22 +312,26 @@ public class SoundGroupVariation : MonoBehaviour
     /// </summary>
     public void Stop(bool stopEndDetection = false)
     {
-        if (stopEndDetection)
+        if (stopEndDetection || isWaitingForDelay)
         {
             curDetectEndMode = DetectEndMode.None; // turn off the chain loop endless repeat
         }
 		
-		ParentGroup.RemoveActiveAudioSourceId(this);
+		objectToFollow = null;	
+        objectToTriggerFrom = null;
+		ParentGroup.RemoveActiveAudioSourceId(InstanceId);
 		
-        _audio.Stop();
-
+        VarAudio.Stop();
+		VarAudio.time = 0f;
+		
         playSndParams = null;
-		
+
         if (SoundFinished != null)
         {
             SoundFinished(); // parameters aren't used
-        }
-		
+			SoundFinished = null; // clear it out so subscribers don't have to clean up
+		}
+
         MaybeUnloadClip();
     }
 
@@ -249,7 +343,7 @@ public class SoundGroupVariation : MonoBehaviour
     public void FadeToVolume(float newVolume, float fadeTime)
     {
         this.curFadeMode = FadeMode.GradualFade;
-
+		
         StartCoroutine(FadeOverTimeToVolume(newVolume, fadeTime));
     }
 
@@ -257,8 +351,8 @@ public class SoundGroupVariation : MonoBehaviour
     {
         if (fadeTime <= MasterAudio.INNER_LOOP_CHECK_INTERVAL)
         {
-            _audio.volume = targetVolume; // time really short, just do it at once.
-            if (_audio.volume <= 0f)
+            VarAudio.volume = targetVolume; // time really short, just do it at once.
+            if (VarAudio.volume <= 0f)
             {
                 Stop();
             }
@@ -266,13 +360,13 @@ public class SoundGroupVariation : MonoBehaviour
             yield break;
         }
 
-        yield return new WaitForSeconds(MasterAudio.INNER_LOOP_CHECK_INTERVAL); // wait for the clip to start playing :)
+		yield return StartCoroutine(CoroutineHelper.WaitForRealSeconds(MasterAudio.INNER_LOOP_CHECK_INTERVAL)); // wait for clip to start playing.
 
-        var volStep = (targetVolume - _audio.volume) / (fadeTime / MasterAudio.INNER_LOOP_CHECK_INTERVAL);
+        var volStep = (targetVolume - VarAudio.volume) / (fadeTime / MasterAudio.INNER_LOOP_CHECK_INTERVAL);
         float newVol;
-        while (_audio.volume != targetVolume && curFadeMode == FadeMode.GradualFade)
+        while (VarAudio.volume != targetVolume && curFadeMode == FadeMode.GradualFade)
         {
-            newVol = _audio.volume + volStep;
+            newVol = VarAudio.volume + volStep;
 
             if (volStep > 0f)
             {
@@ -283,12 +377,12 @@ public class SoundGroupVariation : MonoBehaviour
                 newVol = Math.Max(newVol, targetVolume);
             }
 
-            _audio.volume = newVol;
+            VarAudio.volume = newVol;
 
-            yield return new WaitForSeconds(MasterAudio.INNER_LOOP_CHECK_INTERVAL); // wait for the clip to start playing :)
+			yield return StartCoroutine(CoroutineHelper.WaitForRealSeconds(MasterAudio.INNER_LOOP_CHECK_INTERVAL)); // wait for clip to start playing.
         }
 
-        if (_audio.volume <= 0f)
+        if (VarAudio.volume <= 0f)
         {
             Stop();
         }
@@ -323,6 +417,8 @@ public class SoundGroupVariation : MonoBehaviour
         {
             return;
         }
+
+		StopCoroutine("FadeOutEarly"); // in case it's already fading.
         StartCoroutine(FadeOutEarly(fadeTime));
     }
 
@@ -330,15 +426,15 @@ public class SoundGroupVariation : MonoBehaviour
     {
         curFadeMode = FadeMode.FadeOutEarly; // cancel the FadeInOut loop, if it's going.
 
-        var stepVolumeDown = _audio.volume / fadeTime * MasterAudio.INNER_LOOP_CHECK_INTERVAL;
+        var stepVolumeDown = VarAudio.volume / fadeTime * MasterAudio.INNER_LOOP_CHECK_INTERVAL;
 
-        while (_audio.isPlaying && curFadeMode == FadeMode.FadeOutEarly)
+        while (VarAudio.isPlaying && curFadeMode == FadeMode.FadeOutEarly && VarAudio.volume > 0)
         {
-            _audio.volume -= stepVolumeDown;
-            yield return new WaitForSeconds(MasterAudio.INNER_LOOP_CHECK_INTERVAL);
+            VarAudio.volume -= stepVolumeDown;
+			yield return StartCoroutine(CoroutineHelper.WaitForRealSeconds(MasterAudio.INNER_LOOP_CHECK_INTERVAL)); 
         }
 
-        _audio.volume = 0f;
+        VarAudio.volume = 0f;
         Stop();
 
         if (curFadeMode != FadeMode.FadeOutEarly)
@@ -351,9 +447,9 @@ public class SoundGroupVariation : MonoBehaviour
 
     private IEnumerator FadeInOut()
     {
-        var fadeOutStartTime = _audio.clip.length - (fadeOutTime * _audio.pitch);
+        var fadeOutStartTime = VarAudio.clip.length - (fadeOutTime * VarAudio.pitch);
 
-        yield return new WaitForSeconds(MasterAudio.INNER_LOOP_CHECK_INTERVAL); // wait for the clip to start playing :)
+		yield return StartCoroutine(CoroutineHelper.WaitForRealSeconds(MasterAudio.INNER_LOOP_CHECK_INTERVAL)); // wait for clip to start playing
 
         var stepVolumeUp = fadeMaxVolume / fadeInTime * MasterAudio.INNER_LOOP_CHECK_INTERVAL;
 
@@ -361,10 +457,10 @@ public class SoundGroupVariation : MonoBehaviour
 
         if (fadeInTime > 0f)
         {
-            while (_audio.isPlaying && curFadeMode == FadeMode.FadeInOut && _audio.time < fadeInTime)
+            while (VarAudio.isPlaying && curFadeMode == FadeMode.FadeInOut && VarAudio.time < fadeInTime)
             {
-                _audio.volume += stepVolumeUp;
-                yield return new WaitForSeconds(MasterAudio.INNER_LOOP_CHECK_INTERVAL);
+                VarAudio.volume += stepVolumeUp;
+				yield return StartCoroutine(CoroutineHelper.WaitForRealSeconds(MasterAudio.INNER_LOOP_CHECK_INTERVAL));
             }
         }
 
@@ -373,17 +469,17 @@ public class SoundGroupVariation : MonoBehaviour
             yield break; // in case another fade cancelled this one
         }
 
-        _audio.volume = fadeMaxVolume; // just in case it didn't align exactly
+        VarAudio.volume = fadeMaxVolume; // just in case it didn't align exactly
 
-        if (fadeOutTime == 0f || _audio.loop)
+        if (fadeOutTime == 0f || VarAudio.loop)
         {
             yield break; // nothing more to do!
         }
 
         // wait for fade out time.
-        while (_audio.isPlaying && curFadeMode == FadeMode.FadeInOut && _audio.time < fadeOutStartTime)
+        while (VarAudio.isPlaying && curFadeMode == FadeMode.FadeInOut && VarAudio.time < fadeOutStartTime)
         {
-            yield return new WaitForSeconds(MasterAudio.INNER_LOOP_CHECK_INTERVAL);
+			yield return StartCoroutine(CoroutineHelper.WaitForRealSeconds(MasterAudio.INNER_LOOP_CHECK_INTERVAL));
         }
 
         if (curFadeMode != FadeMode.FadeInOut)
@@ -393,10 +489,10 @@ public class SoundGroupVariation : MonoBehaviour
 
         var stepVolumeDown = fadeMaxVolume / fadeOutTime * MasterAudio.INNER_LOOP_CHECK_INTERVAL;
 
-        while (_audio.isPlaying && curFadeMode == FadeMode.FadeInOut)
+        while (VarAudio.isPlaying && curFadeMode == FadeMode.FadeInOut && VarAudio.volume > 0)
         {
-            _audio.volume -= stepVolumeDown;
-            yield return new WaitForSeconds(MasterAudio.INNER_LOOP_CHECK_INTERVAL);
+            VarAudio.volume -= stepVolumeDown;
+			yield return StartCoroutine(CoroutineHelper.WaitForRealSeconds(MasterAudio.INNER_LOOP_CHECK_INTERVAL));
         }
 
         audio.volume = 0f;
@@ -409,64 +505,142 @@ public class SoundGroupVariation : MonoBehaviour
 
         curFadeMode = FadeMode.None;
     }
-	
-	private void UpdateAudioLocation() {
-		if (objectToFollow != null) {
-			this.trans.position = objectToFollow.position;
-		} 
-	}
-	
-	private IEnumerator FollowSoundMaker() {
-		UpdateAudioLocation();
 
-		while (curDetectEndMode == DetectEndMode.DetectEnd) {
-			yield return new WaitForSeconds(MasterAudio.INNER_LOOP_CHECK_INTERVAL);
-			
-			UpdateAudioLocation();
-		}
-	}
-	
+    private void UpdateAudioLocationAndPriority(bool rePrioritize, bool updateLocation)
+    {
+        // update location
+        if (updateLocation && objectToFollow != null)
+        {
+            this.Trans.position = objectToFollow.position;
+        }
+
+        // re-set priority
+        if (!MasterAudio.Instance.prioritizeOnDistance || !rePrioritize)
+        {
+            return;
+        }
+
+        timesLocationUpdated++;
+
+        if (timesLocationUpdated > MasterAudio.Instance.rePrioritizeEverySecIndex)
+        {
+            AudioPrioritizer.Set3dPriority(VarAudio);
+            timesLocationUpdated = 0;
+        }
+    }
+
+    private IEnumerator FollowSoundMaker()
+    {
+        UpdateAudioLocationAndPriority(false, attachToSource);
+
+        while (curDetectEndMode == DetectEndMode.DetectEnd)
+        {
+			var timeToWait = MasterAudio.INNER_LOOP_CHECK_INTERVAL;
+			yield return StartCoroutine(CoroutineHelper.WaitForRealSeconds(timeToWait)); 
+
+            UpdateAudioLocationAndPriority(true, attachToSource);
+        }
+    }
+
     private IEnumerator DetectSoundFinished(float delaySound)
     {
+        if (useIntroSilence && introSilenceMax > 0f)
+        {
+            var rndSilence = UnityEngine.Random.Range(introSilenceMin, introSilenceMax);
+            isWaitingForDelay = true;
+            
+			yield return StartCoroutine(CoroutineHelper.WaitForRealSeconds(rndSilence)); 
+
+			isWaitingForDelay = false;
+        }
+
         if (delaySound > 0f)
         {
-            yield return new WaitForSeconds(delaySound);
-        }
-		
-        _audio.Play();
-		
-		var clipLength = _audio.clip.length / _audio.pitch;
-		yield return new WaitForSeconds(clipLength); // wait for clip to play
-		
-		if (HasActiveFXFilter && fxTailTime > 0f) {
-			yield return new WaitForSeconds(fxTailTime);
-		}
-		
-        var playSnd = playSndParams;
+            isWaitingForDelay = true;
 
-        if (!_audio.loop || (playSndParams != null && playSndParams.isChainLoop))
-        {
-			Stop();
+			yield return StartCoroutine(CoroutineHelper.WaitForRealSeconds(delaySound)); 
+
+			isWaitingForDelay = false;
         }
 
         if (curDetectEndMode != DetectEndMode.DetectEnd)
         {
             yield break;
         }
+		
+		VarAudio.Play();
 
+		lastTimePlayed = Time.time;
+		
+        // sound play worked! Duck music if a ducking sound.
+		MasterAudio.DuckSoundGroup(ParentGroup.name, VarAudio);
+		
+		var clipLength = Math.Abs(VarAudio.clip.length / VarAudio.pitch);
+
+		yield return StartCoroutine(CoroutineHelper.WaitForRealSeconds(clipLength)); // wait for clip to play
+		
+        if (HasActiveFXFilter && fxTailTime > 0f)
+        {
+			yield return StartCoroutine(CoroutineHelper.WaitForRealSeconds(fxTailTime)); 
+        }
+
+        var playSnd = playSndParams;
+
+        if (curDetectEndMode != DetectEndMode.DetectEnd)
+        {
+            yield break;
+        }
+		
+        if (!VarAudio.loop || (playSndParams != null && playSndParams.isChainLoop))
+        {
+            Stop();
+        }
+		
         if (playSnd != null && playSnd.isChainLoop)
         {
+			// check if loop count is over.
+			if (ParentGroup.chainLoopMode == MasterAudioGroup.ChainedLoopLoopMode.NumberOfLoops && ParentGroup.ChainLoopCount >= ParentGroup.chainLoopNumLoops) {
+				// done looping
+				yield break;
+			}
+			
+            var rndDelay = playSnd.delaySoundTime;
+            if (ParentGroup.chainLoopDelayMin > 0f || ParentGroup.chainLoopDelayMax > 0f)
+            {
+                rndDelay = UnityEngine.Random.Range(ParentGroup.chainLoopDelayMin, ParentGroup.chainLoopDelayMax);
+            }
+
+            // cannot use "AndForget" methods! Chain loop needs to check the status.
             if (playSnd.attachToSource || playSnd.sourceTrans != null)
             {
-                MasterAudio.PlaySound3D(playSnd.soundType, playSnd.sourceTrans, playSnd.attachToSource, playSnd.volumePercentage, playSnd.pitch, playSnd.delaySoundTime);
+                if (playSnd.attachToSource)
+                {
+                    MasterAudio.PlaySound3DFollowTransform(playSnd.soundType, playSnd.sourceTrans, playSnd.volumePercentage, playSnd.pitch, rndDelay, null, true);
+                }
+                else
+                {
+                    MasterAudio.PlaySound3DAtTransform(playSnd.soundType, playSnd.sourceTrans, playSnd.volumePercentage, playSnd.pitch, rndDelay, null, true);
+                }
             }
             else
             {
-                MasterAudio.PlaySound(playSnd.soundType, playSnd.volumePercentage, playSnd.pitch, playSnd.delaySoundTime);
+                MasterAudio.PlaySound(playSnd.soundType, playSnd.volumePercentage, playSnd.pitch, rndDelay, null, true);
             }
         }
     }
+	
+	public bool WasTriggeredFromTransform(Transform trans) {
+		if (ObjectToFollow == trans || ObjectToTriggerFrom == trans) {
+			return true;
+		}
 
+		var updater = this.GetComponent<AudioUpdater>();
+		if (updater != null && updater.FollowTransform == trans) {
+			return true;
+		}
+		return false;
+	}
+	
     /// <summary>
     /// This property returns you a lazy-loaded reference to the Unity Distortion Filter FX component.
     /// </summary>
@@ -563,61 +737,143 @@ public class SoundGroupVariation : MonoBehaviour
         }
     }
 	
-	public Transform ObjectToFollow {
+    public Transform ObjectToFollow
+    {
+        get
+        {
+            return objectToFollow;
+        }
+        set
+        {
+            objectToFollow = value;
+        }
+    }
+	
+	public Transform ObjectToTriggerFrom {
 		get {
-			return objectToFollow;
+			return objectToTriggerFrom;
 		}
 		set {
-			objectToFollow = value;
+			objectToTriggerFrom = value;
+		}
+	}
+			
+    public bool HasActiveFXFilter
+    {
+        get
+        {
+            if (HighPassFilter != null && HighPassFilter.enabled)
+            {
+                return true;
+            }
+            if (LowPassFilter != null && LowPassFilter.enabled)
+            {
+                return true;
+            }
+            if (ReverbFilter != null && ReverbFilter.enabled)
+            {
+                return true;
+            }
+            if (DistortionFilter != null && DistortionFilter.enabled)
+            {
+                return true;
+            }
+            if (EchoFilter != null && EchoFilter.enabled)
+            {
+                return true;
+            }
+            if (ChorusFilter != null && ChorusFilter.enabled)
+            {
+                return true;
+            }
+
+            return false;
+        }
+    }
+
+    public MasterAudioGroup ParentGroup
+    {
+        get
+        {
+            if (this.parentGroupScript == null)
+            {
+                this.parentGroupScript = this.Trans.parent.GetComponent<MasterAudioGroup>();
+            }
+
+            if (this.parentGroupScript == null)
+            {
+                Debug.LogError("The Group that Sound Variation '" + this.name + "' is in does not have a MasterAudioGroup script in it!");
+            }
+
+            return this.parentGroupScript;
+        }
+    }
+
+    public float OriginalPitch
+    {
+        get
+        {
+            if (this.original_Pitch == 0f) { // lazy lookup for race conditions.
+                original_Pitch = VarAudio.pitch;
+            }
+
+            return this.original_Pitch;
+        }
+    }
+
+    public bool IsAvailableToPlay
+    {
+        get
+        {
+            if (weight == 0)
+            {
+                return false;
+            }
+
+            if (!VarAudio.isPlaying)
+            {
+                return true;
+            }
+
+            return AudioUtil.GetAudioPlayedPercentage(VarAudio) >= ParentGroup.retriggerPercentage;
+        }
+    }
+
+    public float LastTimePlayed
+    {
+        get
+        {
+            return lastTimePlayed;
+        }
+    }
+	
+	private int InstanceId {
+		get {
+			if (this._instanceId < 0) {
+				this._instanceId = this.GetInstanceID();
+			}
+			
+			return this._instanceId;
 		}
 	}
 	
-	public bool HasActiveFXFilter {
+	public Transform Trans {
 		get {
-			if (HighPassFilter != null && HighPassFilter.enabled) {
-				return true;
-			}
-			if (LowPassFilter != null && LowPassFilter.enabled) {
-				return true;
-			}
-			if (ReverbFilter != null && ReverbFilter.enabled) {
-				return true;
-			}
-			if (DistortionFilter != null && DistortionFilter.enabled) {
-				return true;
-			}
-			if (EchoFilter != null && EchoFilter.enabled) {
-				return true;
-			}
-			if (ChorusFilter != null && ChorusFilter.enabled) {
-				return true;
+	        if (this._trans == null) { 
+				this._trans = this.transform;
 			}
 			
-			return false;
+			return this._trans;
 		}
 	}
 	
-	public MasterAudioGroup ParentGroup {
+	public AudioSource VarAudio {
 		get {
-			if (this.parentGroupScript == null) {
-				this.parentGroupScript = this.trans.parent.GetComponent<MasterAudioGroup>();
+			if (_audioSource == null) {
+				_audioSource = this.audio;
 			}
 			
-			if (this.parentGroupScript == null) {
-				Debug.LogError("The Group that Sound Variation '" + this.name + "' is in does not have a MasterAudioGroup script in it!");
-			}
-			
-			return this.parentGroupScript;
-		}
-	}
-	
-	public float OriginalPitch {
-		get {
-			if (this.original_Pitch == 0f) {
-		        original_Pitch = _audio.pitch;
-			}
-			
-			return this.original_Pitch;
+			return this._audioSource;
 		}
 	}
 }

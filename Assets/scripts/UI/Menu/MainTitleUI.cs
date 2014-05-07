@@ -63,24 +63,10 @@ public class MainTitleUI : ParentMenu
 			changeState(MenuStates.Start);
 		}
 		versionDisplay.TranslateThis();
-		InvokeRepeating("checkPadMenu", 0f, 0.5f);
-
-		if (SETUP.GameType == GameSetup.versionType.Demo)
-		{
-			frontPlace.transform.position = new Vector3(0f,-0.6f,-1.625f);
-			FETool.findWithinChildren(gameObject, "Title").transform.position = new Vector3(0f,3f, 0.16f);
-			FETool.findWithinChildren(gameObject, "Sidebar/FB").transform.position = new Vector3(-4.71f,3.53f, 0f);
-			FETool.findWithinChildren(gameObject, "Sidebar/Twitter").transform.position = new Vector3(-4.71f,2.68f, 0f);
-			FETool.findWithinChildren(gameObject, "Sidebar/Pad").transform.position = new Vector3(4.79f,3.53f, 0.16f);
-			versionDisplay.DIALOG_ID = "GAME_VERSION_DEMO";
-		}
-		else
-		{
-			versionDisplay.DIALOG_ID = "GAME_VERSION_ALPHA";
-		}
-		
+		InvokeRepeating("checkPadMenu", 0f, 0.5f);		
 		TranslateAllInScene();
 		versionDisplay.text += SETUP.gameversion;
+		GameEventManager.TriggerGameStart("MainTitle");
 //		StartCoroutine("DelayMusic");
 	}
 
@@ -141,6 +127,7 @@ public class MainTitleUI : ParentMenu
 		{
 			currentActiveMenu = Credits;
 			currFocusedbtn = currentActiveMenu.GetComponent<SubMenu>().menuButtons[0];
+			currFocusedbtn.resetAllFocus();
 			currFocusedbtn.giveFocus(true);
 			break;
 		}
@@ -154,6 +141,7 @@ public class MainTitleUI : ParentMenu
 		{
 			currentActiveMenu = Options;
 			currFocusedbtn = currentActiveMenu.GetComponent<SubMenu>().menuButtons[0];
+			currFocusedbtn.resetAllFocus();
 			currFocusedbtn.giveFocus(true);
 			break;
 		}
@@ -161,6 +149,7 @@ public class MainTitleUI : ParentMenu
 		{
 			currentActiveMenu = Landing;
 			currFocusedbtn = currentActiveMenu.GetComponent<SubMenu>().menuButtons[0];
+			currFocusedbtn.resetAllFocus();
 			currFocusedbtn.giveFocus(true);
 			break;
 		}
@@ -169,6 +158,19 @@ public class MainTitleUI : ParentMenu
 
 	public void TranslateAllInScene()
 	{
+		if (SETUP.GameType == GameSetup.versionType.Demo)
+		{
+			frontPlace.transform.position = new Vector3(0f,-0.6f,-1.625f);
+			FETool.findWithinChildren(gameObject, "Title").transform.position = new Vector3(0f,3f, 0.16f);
+			FETool.findWithinChildren(gameObject, "Sidebar/FB").transform.position = new Vector3(-4.71f,3.53f, 0f);
+			FETool.findWithinChildren(gameObject, "Sidebar/Twitter").transform.position = new Vector3(-4.71f,2.68f, 0f);
+			FETool.findWithinChildren(gameObject, "Sidebar/Pad").transform.position = new Vector3(4.79f,3.53f, 0.16f);
+			versionDisplay.DIALOG_ID = "GAME_VERSION_DEMO";
+		}
+		else
+		{
+			versionDisplay.DIALOG_ID = "GAME_VERSION_ALPHA";
+		}
 		SETUP.TextSheet.SetupTranslation(SETUP.ChosenLanguage);
 		TextUI[] allTxt = GameObject.FindObjectsOfType(typeof(TextUI)) as TextUI[];
 		SETUP.TextSheet.TranslateAll(ref allTxt);

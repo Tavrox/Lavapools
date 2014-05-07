@@ -15,6 +15,7 @@ public class LevelSetup : ScriptableObject
 	public float Arrow_FireRate;
 	public float Fire_RotationSpeed;
 	public float Gem_SpawnRate;
+	public float Carpet_Speed;
 	[Range(1,10)] public int Gem_MinimumInLevel;
 	public LevelSetup _lvlToCopy;
 	public bool OblivionLevel;
@@ -32,6 +33,7 @@ public class LevelSetup : ScriptableObject
 		_dicoBricks.Add(LevelBrick.typeList.Chainsaw, Chainsaw_Speed);
 		_dicoBricks.Add(LevelBrick.typeList.ArrowTower, Arrow_FireRate);
 		_dicoBricks.Add(LevelBrick.typeList.FireTower, Fire_RotationSpeed);
+		_dicoBricks.Add(LevelBrick.typeList.Carpet, Carpet_Speed);
 	}
 
 	public void CopySetup()

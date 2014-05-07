@@ -15,7 +15,7 @@ public class AudioCalcEventInspector : Editor {
 
 		var ma = MasterAudio.Instance;
 		if (ma != null) {
-			GUIHelper.ShowHeaderTexture(ma.logoTexture);
+			DTGUIHelper.ShowHeaderTexture(MasterAudioInspectorResources.logoTexture);
 		}
 		
 		EventCalcSounds sounds = (EventCalcSounds)target;
@@ -86,7 +86,7 @@ public class AudioCalcEventInspector : Editor {
 					}
 					
 					if (noMatch) {
-						GUIHelper.ShowRedError("Sound Group found no match. Type in or choose one.");
+						DTGUIHelper.ShowRedError("Sound Group found no match. Type in or choose one.");
 					}
 					
 					if (groupIndex.HasValue) {
@@ -121,7 +121,7 @@ public class AudioCalcEventInspector : Editor {
 				}
 
 				if (sounds.audioSourceEndedSound.useFixedPitch) {
-					GUIHelper.ShowColorWarning("*Random pitches for the variation will not be used.");
+					DTGUIHelper.ShowColorWarning("*Random pitches for the variation will not be used.");
 					var newFixedPitch = EditorGUILayout.Slider("Pitch", sounds.audioSourceEndedSound.pitch, -3f, 3f);
 					if (newFixedPitch != sounds.audioSourceEndedSound.pitch) {
 						UndoHelper.RecordObjectPropertyForUndo(sounds, "change Pitch");
@@ -153,8 +153,6 @@ public class AudioCalcEventInspector : Editor {
 		if (GUI.changed) {
 			EditorUtility.SetDirty(target);
 		}
-
-		GUIHelper.RepaintIfUndoOrRedo(this);
 
 		//DrawDefaultInspector();
     }

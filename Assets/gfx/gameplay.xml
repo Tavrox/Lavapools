@@ -111,7 +111,7 @@
             <key>gatePart08.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{253,5},{26,36}}</string>
+                <string>{{5,46},{26,36}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -124,7 +124,7 @@
             <key>gatePart09.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{284,5},{26,36}}</string>
+                <string>{{36,46},{26,36}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -137,7 +137,7 @@
             <key>gatePart10.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{315,5},{26,36}}</string>
+                <string>{{67,46},{26,36}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -150,7 +150,7 @@
             <key>gatePart11.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{346,5},{26,36}}</string>
+                <string>{{98,46},{26,36}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -163,7 +163,7 @@
             <key>gatePart12.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{377,5},{26,36}}</string>
+                <string>{{129,46},{26,36}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -176,7 +176,7 @@
             <key>gatePart13.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{408,5},{26,36}}</string>
+                <string>{{160,46},{26,36}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -189,7 +189,7 @@
             <key>gatePart14.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{439,5},{26,36}}</string>
+                <string>{{191,46},{26,36}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -202,7 +202,7 @@
             <key>gatePart15.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{470,5},{26,36}}</string>
+                <string>{{222,46},{26,36}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -215,7 +215,7 @@
             <key>gatePart16.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{5,46},{26,36}}</string>
+                <string>{{5,87},{26,36}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -228,7 +228,7 @@
             <key>gatePart17.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{36,46},{26,36}}</string>
+                <string>{{36,87},{26,36}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -241,7 +241,7 @@
             <key>gatePart18.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{67,46},{26,36}}</string>
+                <string>{{67,87},{26,36}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -254,7 +254,7 @@
             <key>gatePart19.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{98,46},{26,36}}</string>
+                <string>{{98,87},{26,36}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -267,7 +267,7 @@
             <key>path00drowning.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{129,46},{75,75}}</string>
+                <string>{{129,87},{75,75}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -280,7 +280,7 @@
             <key>path01drowning.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{209,46},{75,75}}</string>
+                <string>{{5,167},{75,75}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -293,7 +293,7 @@
             <key>path02drowning.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{289,46},{75,75}}</string>
+                <string>{{85,167},{75,75}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -306,7 +306,7 @@
             <key>path03drowning.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{369,46},{75,75}}</string>
+                <string>{{165,167},{75,75}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -319,7 +319,7 @@
             <key>path04drowning.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{5,126},{75,75}}</string>
+                <string>{{5,247},{75,75}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -332,7 +332,7 @@
             <key>path05drowning.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{85,126},{75,75}}</string>
+                <string>{{85,247},{75,75}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -345,7 +345,7 @@
             <key>path06drowning.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{165,126},{75,75}}</string>
+                <string>{{165,247},{75,75}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -358,7 +358,7 @@
             <key>path07drowning.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{245,126},{75,75}}</string>
+                <string>{{5,327},{75,75}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -371,7 +371,7 @@
             <key>path08drowning.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{325,126},{75,75}}</string>
+                <string>{{85,327},{75,75}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -384,7 +384,7 @@
             <key>path09drowning.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{405,126},{75,75}}</string>
+                <string>{{165,327},{75,75}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -397,7 +397,7 @@
             <key>path10drowning.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{5,206},{75,75}}</string>
+                <string>{{5,407},{75,75}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -410,7 +410,7 @@
             <key>path11drowning.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{85,206},{75,75}}</string>
+                <string>{{85,407},{75,75}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -423,7 +423,7 @@
             <key>path12drowning.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{165,206},{75,75}}</string>
+                <string>{{165,407},{75,75}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -436,7 +436,7 @@
             <key>path13drowning.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{245,206},{75,75}}</string>
+                <string>{{5,487},{75,75}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -449,7 +449,7 @@
             <key>path14drowning.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{325,206},{75,75}}</string>
+                <string>{{85,487},{75,75}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -462,7 +462,7 @@
             <key>path15drowning.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{405,206},{75,75}}</string>
+                <string>{{165,487},{75,75}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -475,7 +475,7 @@
             <key>path16drowning.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{5,286},{75,75}}</string>
+                <string>{{5,567},{75,75}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -488,7 +488,7 @@
             <key>path17drowning.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{85,286},{75,75}}</string>
+                <string>{{85,567},{75,75}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -501,7 +501,7 @@
             <key>path18drowning.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{165,286},{75,75}}</string>
+                <string>{{165,567},{75,75}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -514,7 +514,7 @@
             <key>path19drowning.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{245,286},{75,75}}</string>
+                <string>{{5,647},{75,75}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -527,7 +527,7 @@
             <key>path20drowning.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{325,286},{75,75}}</string>
+                <string>{{85,647},{75,75}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -540,7 +540,7 @@
             <key>path21drowning.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{405,286},{75,75}}</string>
+                <string>{{165,647},{75,75}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -553,7 +553,7 @@
             <key>path22drowning.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{5,366},{75,75}}</string>
+                <string>{{5,727},{75,75}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -566,7 +566,7 @@
             <key>path23drowning.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{85,366},{75,75}}</string>
+                <string>{{85,727},{75,75}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -579,7 +579,7 @@
             <key>path24drowning.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{165,366},{75,75}}</string>
+                <string>{{165,727},{75,75}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -592,7 +592,7 @@
             <key>path25drowning.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{245,366},{75,75}}</string>
+                <string>{{5,807},{75,75}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -605,7 +605,7 @@
             <key>path26drowning.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{325,366},{75,75}}</string>
+                <string>{{85,807},{75,75}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -618,7 +618,7 @@
             <key>path27drowning.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{405,366},{75,75}}</string>
+                <string>{{165,807},{75,75}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -631,7 +631,7 @@
             <key>tinyhotel.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{5,446},{37,25}}</string>
+                <string>{{5,887},{37,25}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -641,6 +641,19 @@
                 <key>sourceSize</key>
                 <string>{37,25}</string>
             </dict>
+            <key>xplateforme.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{47,887},{96,99}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{96,99}}</string>
+                <key>sourceSize</key>
+                <string>{96,99}</string>
+            </dict>
         </dict>
         <key>metadata</key>
         <dict>
@@ -649,9 +662,9 @@
             <key>realTextureFileName</key>
             <string>gameplay.png</string>
             <key>size</key>
-            <string>{512,512}</string>
+            <string>{256,1024}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:72dc5318b6258c55c1800f455d561838:e24bae5e037ac61aefa8bea50dd3dbb6:e5cf3cba82ad0660ff9df1afd691b27d$</string>
+            <string>$TexturePacker:SmartUpdate:1f3277f8773b4189d57a79873544108b:1/1$</string>
             <key>textureFileName</key>
             <string>gameplay.png</string>
         </dict>

@@ -2,6 +2,249 @@ MASTER AUDIO PLUGIN - By DarkTonic, Inc. (c) 2012-2013
 
 - Code by Brian Hunsaker
 
+-V 3.5.3.3 - Fixed bug where trying to preview a new Sound Group in Master Audio prefab generated an error.
+		   - Fixed bug where having a custom fade in or fade out time for a Variation would ignore the Sound Group Volume and use full volume.
+
+-V 3.5.3.2 - Performance increase of about 94% on the very first sound effect played!
+	   - Fixed bug in Sound Group Variation with lazy load parameter.
+
+-V 3.5.3.1 - Performance increases by about 40% on playing sound effects.
+
+-V 3.5.3 - Added code to delete "duplicate" Master Audio and Playlist Controller prefabs that may exist when changing Scenes when you don't use a Bootstrapper Scene. A white "info" is logged when this happens to tell the user in case they didn't plan for that to happen.
+	 	 - Added methods to Master Audio: PlaySoundAndWaitUntilFinished, PlaySound3DAtTransformAndWaitUntilFinished, & PlaySound3DFollowTransformAndWaitUntilFinished. These need to be called with StartCoroutine and will wait until a sound finishes playing (or can't play), before continuing. This way you can chain any number of sounds together.
+	 	 - Added a checkbox for "Bus Dialog Mode", only visible and available if you have bus voice limit set to 1. If you check the box, the bus will now behave like a Dialog Sound Group. In other words, every time a sound is about to be played through the bus, all sounds already being played by the bus will be stopped.
+	 	 - Changed colors of buses so they're distinct from Sound Groups on the mixer.
+		 - Mixer's Group active voice count now shows red any time all Variations are busy, not just when the optional Polyphony limit has been reached.
+		
+-V 3.5.2 - Put Master Audio Manager object creation back to "not hooked to the prefab" so that updating the plugin doesn't delete your settings. A couple customers reported this happening.
+		 - Fixed SoundGroupAttribute so it works even in a Scene with no Master Audio prefab.
+		 - In Clip Manager, changed filter text field to filter on full path (folder name as well as file name).
+		 - In Clip Manager, added a folder dropdown filter to select a single folder to view, or view all.
+		 - Added Mechanim State Entered Event to EventSounds. You can add any number to a single component. Only works on layer 0, you specify the state name.
+		 - Fixed bug where disabled Custom Events in EventSounds would still show expanded.
+
+-V 3.5.1 - Fixed memory leak error on Clip Manager. Now it's been tested with over 4Gb of audio files, and no crash in Unity. Previously I couldn't even import 1Gb.
+		 - Fixed bug with Playlist Controller sometimes not starting a song at beginning when changing Playlists.
+		 - Added retrigger limit modes to EventSounds. You can choose X frames or X seconds (or neither - the default) which is the minimum amount of frames or time that must pass before the event will be allowed to execute the actions you specified.
+
+-V 3.5   - Added checkbox to disable Variation gizmos in Scene view, located in Master Audio Inspector under Fast GUI Refresh setting.
+		 - Added "Show Advanced" section in Master Audio Inspector, which contains everything above the Mixer except for the 3 Master sliders. Defaults to "Show".
+		 - V3.4.9 had an error. The Mouse Click event in EventSounds is not for NGUI, it's for Unity GUI. Renaming it to "Mouse Down".
+		 - Renamed Collision event in EventSounds to "Collision Enter".
+		 - Renamed Collision 2D event in EventSounds to "Collision Enter 2D".
+		 - Added Collision Exit, Collision Exit 2D, Mouse Exit, Mouse Up & Mouse Drag events to EventSounds.
+		 - Added UnpauseAllSoundsOfTransform and UnpauseSoundGroupOfTransform methods to MasterAudio.
+		 - For Mouse Up event in Event Sounds, added controls to stop or fade the Mouse Drag event if you also used it. That way you make the Mouse Drag sound seamless into the Mouse Up sound, even when looping the former.
+		 - Added NGUI events to EventSounds: NGUI Mouse Click, NGUI Mouse Down, NGUI Mouse Up, NGUI Mouse Enter, NGUI Mouse Exit. There's a checkbox to hide all NGUI events as well.
+		 - Added to EventSounds: StopAllSoundsOfTransform, StopSoundGroupOfTransform, PauseAllSoundsOfTransform, PauseSoundGroupOfTransform, UnpauseAllSoundsOfTransform, UnpauseSoundGroupOfTransform, FadeOutSoundGroupOfTransform. 
+		 - Fixed Start event in EventSounds for Playlist Control commands: PlayClip, PlayRandomSong, PlayNextSong, Pause, Stop. They didn't work with non-persistant Master Audio prefab.
+		 - Fixed bug: Sync Group code to align layered Playlist Controllers got overwritten by song transition code - didn't syncrhonize layers properly.
+		 - Fixed bug: At zero time scale and zero crossfade, Playlist Controller wouldn't advance to the next song.					
+																																
+-V 3.4.9 - Added optional package MA_DFGUI for Daikon Forge GUI integration. Created DF_ButtonClicker script. It works exactly the same as the included ButtonClicker, but is for DF-GUI instead of NGUI.
+		 - Made a new version of EventSounds for DFGUI users. It's in the MA_DFGUI package. It adds the following events: DFGUI Click, DFGUI Double Click, DFGUI Mouse Down, DFGUI Mouse Up, DFGUI Mouse Enter, DFGUI Mouse Leave, DFGUI Drag Start, DFGUI Drag End.
+		 - Turned off "log everything" and Fast GUI Refresh in Master Audio for default settings.
+		 - Renamed "Mouse Click" event in EventSounds to "NGUI Mouse Click".
+		 - Fade Group To Volume now works with zero time scale.
+		 - Fade Bus To Volume now works with zero time scale.
+		 - Fade Playlist To Volume now works with zero time scale.
+		 - PlaySound commands now work with all options at zero time scale.
+		 - LED's on mixer now work with zero time scale.
+		 - Made Master Mixer Volume, Master Playlist Volume and Master Crossfade Time controls in Master Audio Inspector able to accept typing in the value.
+		 - Fixed bug: Fading a playlist with less then full Master Playlist Volume doesn't hit the right target volume on the individual playlist.
+
+-V 3.4.8 - Greatly improved all other Inspectors performance (unnecessary "repaint" was there).
+		 - Fixed the performance hiccup on streaming songs when changing songs on PlaylistController (CoRoutine now used).
+		 - Improved performance hiccup on Resource loading.
+		 - Added "Fire Custom Event" Playmaker Custom Action (the EventSounds no code action already existed but not Playmaker).
+		 - Fixed bug where pausing a SFX would not let it resume when unpausing the Sound Group.
+		 - Added PauseMixer, UnpauseMixer, StopMixer, StopEverything, PauseEverything, UnpauseEverything, MuteEverything, & UnmuteEverything methods. The "Everything" methods affect all Sound Groups and Playlists as well.
+		 - Added Playmaker Custom Actions: MasterAudioMixerPause, MasterAudioMixerStop, MasterAudioMixerUnpause, MasterAudioEverythingMute, MasterAudioEverythingPause, MasterAudioEverythingStop, MasterAudioEverythingUnmute, MasterAudioEverythingUnpause
+		 - Added Global Command action type to EventSounds. Global Command types are: PauseMixer, UnpauseMixer, StopMixer, StopEverything, PauseEverything, UnpauseEverything, MuteEverything, UnmuteEverything 
+		 - Now showing the full path and file extension for all clips in the Clip Manager window when you hover over the Clip Name column.
+		 - Now in the Clip Manager window, auto-selecting the audio clip when you modify any field, and showing the clip properties in the Inspector.
+		 - Deleted upgrade wizard and deprecated classes in Dynamic Sound Group Creator.
+		 - Upgrade note: Please check your settings for random pitch in all Variations and take note of what they are before upgrading - they will be lost. Now there are 4 settings: Use random pitch, random pitch min, random pitch max, and Pitch compute mode: choices are Add to clip pitch (default) and Ignore clip pitch.
+		 - Upgrade note: Please check your settings for random volume in all Variations and take note of what they are before upgrading - they will be lost. Now there are 4 settings: Use random volume, random volume min, random volume max, and Pitch compute mode: choices are Add to clip volume (default) and Ignore clip volume.
+
+-V 3.4.7 - Removed the 2 methods in MasterAudio.cs that have been deprecated for a few months now.
+		 - Added a new Master Audio Clip Manager tool under the Window menu. This lets you see all your project's Audio Clips, and do bulk operations on them like change sample rate, load type, etc.
+
+-V 3.4.6 - Note: Please delete the Master Audio folder before upgrading to this version or some files may not be in the right place.
+		 - Breaking change: Added the ability to specify multiple actions to trigger in Event Sounds script for each event, which get executed in order when the event occurs. By "breaking change" I mean that any EventSounds settings you had set up before will be lost after upgrading. You'll need to set them up again. This was unavoidable. So take note of what you have before upgrading.
+		 - Fixed bug: SoundFinished callback in Variation didn't clear the subscription when calling it. This caused bugs when loading a Scene after the sound is finished (3 callbacks occurred).
+		 - Added MutePlaylist, UnmutePlaylist and ToggleMutePlaylist methods to PlaylistController and MasterAudio.
+		 - Added Playlist Mute, Playlist Unmute and Playlist Toggle Mute Playmaker Custom Actions.
+		 - Added Playlist Mute, Playlist Unmute and Playlist Toggle Mute to EventSounds.
+		 - Changed normal logging of sounds (diagnostics) to info instead of warnings (white text).
+		 - Moved icon back to top-level Gizmos folder because it wasn't working for the EventSounds components.
+
+-V 3.4.5 - Fixed bug: Removal of a new bus Dynamic SGC threw an error. 
+		 - Fixed bug: When changing to a different Playlist, the first song should always start at the beginning. It did not, depending on Song Transition Type.
+	 	 - Added temporary / dynamic Playlist creation to Dynamic Sound Group Creator prefab. You cannot add to an existing Playlist though.
+
+-V 3.4.4 - Added RemoveItems method to Dynamic Sound Group Creator script. You can manually call this if you don't want to wait before the end of the Scene (or when the Dynamic SGC is disabled) to remove all the temporary items.
+	 - Fixed bug: Dragging songs into playlist clip section in Resource File mode didn't populate their folder name.
+	 - Fixed bug: Dragging clips into Variation Inspector in Resource File mode didn't populate their folder name.
+	 - Fixed bug: Dragging clips into Sound Group Inspector in Resource File mode didn't populate their folder name.
+	 - Fixed bug: An all resource file Playlist gives errors when playing tracks from it.
+	 - Fixed bug: Playlist fading had divide by zero error if already at zero volume.
+	 - Redid Hierarchy "M" renderer for much better performance. Thanks to user Bryan Wilkins for sending me the fix!
+	 - Updated 2D Toolkit integration package to work with latest 2DTK. It was broken.
+	 - Made resource file playlist clip "names" able to play them without specifying the resource folder name. Just the clip name. 
+	 
+-V 3.4.3 - Add optional fade out time for dialog variation mode. Now you can have the previous dialog clip fade out while the new one starts.
+	 - Fixed bug where a Variation's FadeOutNow command wouldn't work if it was already fading (called twice quickly).
+	 - Made a friendlier error when you have a custom property drawer with no MA in the scene. No Null Exception.
+	 - Added MasterAudio.CreateGroupVariationFromClip method to create additional variations at runtime.
+
+-V 3.4.2 - Changed Master Audio logging info to warnings instead of errors.
+		- Added MasterAudio.ChangeBusPitch method, which changes the pitch of all Variations in all Sound Groups in a bus.
+		- Added MasterAudio.ChangePlaylistPitch method, which changes the pitch of all songs in a Playlist. This does not affect any already playing clips however.
+		- Bug fix: Retrigger Percentage should be ignored for Chained Loop Sound Groups. Made this work properly and hid the Retrigger Percentage for Chained Loop types.
+		- Bug fix: made Replay Limit Mode ignored when not in normal Variation Mode, where it's not visible.
+		- Bug fix: made Limit Polyphony ignored when not in in normal Variation Mode, where it's not visible.
+		- Added 3rd Variation Mode to Sound Groups: "Dialog". This stops all other Variations in the Sound Group whenever you play one. This is very useful for a single character's dialog and makes sure they're only saying one thing at a time. Normal mode doesn't work properly for this without calling StopAllOfSound every time you play the Sound Group to be sure.
+
+-V 3.4.1.9 - Added option to Master Audio Inspector "fast GUI refresh" which defaults to on. You can uncheck it for less intensive CPU usage.
+		   - Fixed icons. Play icon was in place of speaker icon for previews.
+
+-V 3.4.1.8 - Attention: Please delete the following folder: MasterAudio/Sources/Textures. They have been moved to Editor Default Resources so they won't take up room in builds.
+		   - Added method: FadeOutSoundGroupOfTransform to MasterAudio. This operates on all sounds following or triggered at the location of a given Transform.
+		   - Revised WasTriggeredFromTransform method to include embedded Audio Listener objects as well for that scenario.
+		   - Fixed a bug to allow playing of samples backward, using negative pitch. Note that this only works when loop is turned on for the clip, otherwise nothing is heard. Unity only allows it when that's on. I have no idea why.
+		   - Fixed bug where dragging Resource files into a Playlist wouldn't use the folder name, so the song wouldn't load at runtime.
+
+-V 3.4.1.7 - Optimized CoRoutine speed by creating the yield instruction up front.
+		   - Fixed bug where ducking did not work when playing Resource file clips.
+		   - Added MasterAudio methods StopAllSoundsOfTransform and StopSoundGroupOfTransform. These stop all sounds following or triggered at the location of a given Transform.
+		   - Added MasterAudio methods PauseAllSoundsOfTransform and PauseSoundGroupOfTransform. These pause all sounds following or triggered at the location of a given Transform.
+
+-V 3.4.1.6 - Breaking Change: Make sure you delete your "MasterAudio Icon" in the top-level Gizmos folder before updating. It has been moved to an inner folder.
+		   - Breaking Change: Makre sure to delete GUIHelper.cs from the MasterAudio/Editor folder. It has been renamed to DTGUIHelper.cs for a naming conflict with another plugin.
+   		   - Fixed bug where AudioResourceOptimizer would lose track of where resource files were located when populating.
+		   - Added SongEnded event you can subscribe to in PlaylistController. 
+		   - Added a DelayBetweenSongs script you can use to have a random delay between songs in a PlaylistController. You must turn auto-advance off for the controller for this to work properly.
+		   - Changed MasterAudioManager window to use PrefabUtility.Instantiate so that prefabs created will be linked to the Master Audio source prefabs.
+		   - Performance increase for Resource files! Asyncronous loading of resource clip so it doesn't cause as much frame rate drop while loading (sometimes none now).
+
+-V 3.4.1.5 - Fixed bug where songs in a playlist not set to auto-advance would not fade out when "fade out last song" was checked.
+	   - Fixed bug where the pitch of already playing Variations was not affects by ChangeVariationPitch Playmaker Custom Action (or calling it from code).
+		   - Auto "Fade out last song" in Playlist Controller now puts the volume of the Controller back to pre-fade volume after the fade.
+		
+-V 3.4.1.4 - Fixed bug where a single bus on a Dynamic SGC sound would cause an error when the scene changed.
+		- Breaking Change (only if you're calling it from your code) 
+		- changed MasterAudio.CrossfadeTime property to MasterAudio.MasterCrossfadeTime
+		- Relabeled Crossfade time on Master Audio Inspector to Master Crossfade Time.
+		- Added "every frame" to all Playmaker custom actions where it makes sense (only about 5).
+		- Added controls to override the Master Crossfade Time on each playlist (or not).
+		- Added checkbox to each playlist for "fade in first song" and "fade out last song".
+		- Functionality change: you now must have the "fade out last song" checkbox checked for the last song to fade out. Before it always did.
+		
+-V 3.4.1.3 - Changed the default 3D settings of SoundGroupVariations to match the other Audio Sources used by Master Audio for consistency.
+	   - Fixed bug with CoRoutine never ending with custom fade times and FadeOutAllOfSoundGroup called.
+	   - Fixed C# comments and intellisense for deprecated PlaySound3D methods.
+	   - Fixed bug where Auto-advance with 1 clip in a playlist tries to crossfade same song.
+	   - Fixed bug where resource clips in a playlist were not released auto-advance is turned off.
+	   - Fixed caching problem with Playlist Controller Inspector. It wouldn't always show the latest Playlists in the dropdown.
+	   - Fixed bug where extra Audio Manager RAM was used when MasterAudio Inspector is selected in Hierarchy (jukebox section).
+	   - Fixed bug where deleting a Sound Group from the Master Audio Inspector wouldn't remove the duck group.
+	   - Major performance increase in the code that makes the AudioUpdater follow (embedded AudioListener on caller triggers this).
+       - Changed list of sound sources back to Dictionary (performance increase).
+	   - As a side effect of the item above, all PlaySoundByIndex methods are removed.
+	   - Made EventSounds playlist controller functions with no Playlist Controller name specified "just work" if there's only one Controller, in a Boostrapper Scene configuration.
+	   - For Unity 4 users, we have added a CustomPropertyDrawer attribute of "SoundGroupAttribute", so you can decorate public strings that are Sound Groups in your Inspectors like this: [SoundGroupAttribute] public string laserSound;
+	   - Added "Controller Sync Group" field to Playlist Controllers. It's optional and is a number 1-4. If you assign a number, then whenever a new song is played, it's time will be set to the first matching Playlist Controller's (with the same Sync Group and a clip playing) time marker. This will also help align layered Resource clips more precisely.
+
+-V 3.4.1.2 - Added a "loop playlists" checkbox to Playlist Controllers, defaults to on. If you turn it off, the Playlist will crossfade out the last song and stop.
+		   - Fixed bug: FadePlaylistToVolume doesn't use the right time when Master Playlist Volume is < 1.
+		   - Added new Playmaker Custom Action "MasterAudioPlaylistGetCurrentClipName", which stores the result in a string variable for your use.
+
+-V 3.4.1.1 - Added a method to get the length in seconds of a Variation, taking pitch into account. MasterAudio.GetVariationLength(string soundGroupName, string variationName);
+	   - Fixed compile error from missing AudioUpdate file.
+
+-V 3.4.1 - Added controls to specify number of loops for chained loop Groups instead of only endlessly looping.
+
+-V 3.4 - Added a random delay min and max fields to each Variation. If you use these, an additional random delay will be used before the sound is heard. I say additional becuase this is on top of any random chained loop delays or delay times you pass into PlaySound methods or specify with EventSounds.
+	- Added Bootstrapper Scene / Game Scene to the example scenes folder. This shows you how to set up per-scene sounds and music that can play across scenes!
+
+-V 3.3.9 - Updated ButtonClicker (NGUI event script) to include OnHover and OnClick events as well. Thanks to Mike Breitkreutz for providing this update!
+	 - Added QueuePlaylistClip method to MasterAudio and PlaylistController. This allows you to play a song after the current song reaches the end. Loop is turned off for current song. Requires auto-advance to be on. You can add as many songs as you like to the queue and they will be played in order. Queued clips are all cleared when you change Playlists.
+	 - Made playing a variation by name find a non-busy Variation before giving up. Before it only looked at the first one it found.
+	 - Added display of active playing voices to each SoundGroup in the mixer, and a total at the bottom. When polyphony limit is reached, number is red.
+	 - Fixed Bus voice limit feature. It didn't work properly if you had more than one Group assigned to that bus.
+	 - Added display of bus active voices. When bus voice limit is reached, number is red.
+
+-V 3.3.8 - Fixed bug where PlaySound "AndForget" methods would not take a played Variation out of the randomizer. Not as random as it should be!
+	 - Fixed PlaySound "AndForget" methods to try all remaining Variations when the first one tried is busy.
+	 - Fixed ducking to work with "AndForget" methods.
+	 - Fixed Equalize Clip Volumes function to not assign zero volume and NaN volumes when one of the clips was streaming or compressed.
+	 - Added missing Resource folder detection to Group Variation and Dynamic SGC Variation Inspectors when in Resource folder mode.
+	 - Made random Variation pool refilling work by adding items back to random pool by ascending last played date. This way the when the first chosen is busy, the others will be tried in last played order. Most likely to work on second try.
+	 - Updated Playmaker Custom Actions to inclide a TooltipAttribute so they will still work on Unity 4.5.
+	 - Added a patch to update location more frequently when the Variation is following a prefab with the Audio Listener in it.
+
+-V 3.3.7 - Fixed bug where calling a PlaySound "AndForget" method would play all Variations!
+	 - Fixed mislabeled "Hierarchy View" warnings that were actually Project View.
+	 - Fixed "Windows App Store" compilation error hopefully.
+
+-V 3.3.6 - Fixed bug (again) where Calling MasterAudio.StopAllOfSound would not cancel scheduled sounds that haven't started playing (delay parameter > 0).
+	 - Fixed it so that when you change playlists on a Playlist Controller, cross-fading still works.
+	 - Fixed Dynamic SGC so that in Project view you cannot click "Upgrade data" or drag-create groups, since those don't work there. It tells you to drag the prefab into the scene instead, when selected.
+	 - Fixed MasterAudio prefabs so that in Project view you cannot click "Upgrade data" or drag-create groups, since those don't work there. It tells you to drag the prefab into the scene instead, when selected.
+
+-V 3.3.5 - Fixed bug where Chained Loop Groups no longer worked properly after V 3.3.4
+	 - Added Clip change delay min & max for Chained Loop groups. This will specify a range for random pausing between the chained clips. 
+
+-V 3.3.4 - Upgraded the optional AudioSource prioritizer to include clip age (time since clip started) in priority calculation. This is all optional, and settable per Sound Group.
+	 - Added an optional callback method to MasterAudio.FadeSoundGroupToVolume so you can execute code when the fade is finished.
+	 - Added an optional callback method to MasterAudio.FadeBusToVolume so you can execute code when the fade is finished.
+	 - Added a Text Group Filter field to the mixer section so you can type a wildcard part of a Sound Group name and filter all results to only those that match.
+	 - Added many new PlaySound methods: PlaySoundAndForget, PlaySound3DAndForget, PlaySoundAtTransform, PlaySoundAtTransformAndForget, PlaySoundFollowTransform, PlaySoundFollowTransformAndForget. The "AndForget" methods don't create a PlaySoundResult (return type is void). Marked PlaySound3D methods as deprecated. You will need to change those to PlaySoundAtTransform or PlaySoundFollowTransform to be able to compile.
+	 - Updated EventSounds and Playmaker Custom Actions to use the new PlaySound methods.
+	 - Performance upgrade, got rid of repeatedly called CoRoutine in PlaylistController. Now there are no more of these in MA.
+	 - Added checkbox for "Log Missing Events" on EventSounds. Defaults to on. If you are creating Custom Events during, turn this off if you want to use them in that EventSounds script.
+	 - Fixed bug where manually calling CreateItems on Dynamic SGC would not do anything in certain cases.
+	 - Fixed example scene so that the Dynamic Sound Group Creator clip is not missing.
+	 - Added Disable Logging checkbox for release builds.
+	 - Calling MasterAudio.StopAllOfSound now will cancel scheduled sounds that haven't started playing as well (delay parameter > 0).
+
+-V 3.3.3 - Added numerous performance upgrades. Note: you now need to check if PlaySoundResult is not null before checking it's SoundPlayed, SoundScheduled and ActingVariation properties or you will get a null reference error.
+
+-V 3.3.2 - Added button at top of Dynamic SGC Group to go back to Dynamic SGC (quick navigation).
+
+-V 3.3.1 - Breaking Change: If you don't want to start from scratch with your Dynamic SGCS by deleting them and recreating from Master Audio Manager window, switch to debug mode in the upper right of the Inspector, then drag the 2 "Dymamic" templates from Sources/Prefab into the debug mode of Dynamic Sound Group Creator prefabs you are using. While you're at it, drag the 4 new icons to their places. Delete Texture field = Sources/Textures/deleteIcon, Settings Texture field = Sources/Textures/gearIcon, Play Texture field = Sources/Textures/speakerIcon, Stop Track Texture = Sources/Textures/stopIcon, Group Template field = Sources/Prefabs/DynamicSoundGroup, Variation Template field = Sources/Prefabs/DynamicGroupVariation. Then switch back to normal mode and you're good without losing your work.
+	 - Added full bus controls to Dynamic Sound Group Creator.
+ 	 - Added full 3-level hierarchy to Dynamic Sound Group Creator, just like the Master Audio prefab. Now you can specify filter FX per Variation. 
+	 - Old configuration for Dynamic Sound Group Creator is no longer shown or used. However there is a "Upgrade Data" button to migrate it into the new format.
+	 - Also logging a red error in the console if you attempt to run with "old data" Dynamic SGC telling you to click "Upgrade Data" to fix it.
+	 - Fixed Dynamic Sound Group Creator and Sound Group Variations so that custom rolloff curves work with the weight property. Previously this was broken.
+	 - Made all "previewing-only audio sources" lowest priority always.
+
+-V 3.3 - Cranked up AudioSource priority of PlaylistController's 2 to the max. Music should never be muted by SFX. Ducking can handle "soft muting".
+       - Added Experimental feature "auto-prioritize by distance" added. It defaults to off. Turning it on means sounds played 2D and PlaylistController Audio is top priority. Everything else (3D SFX) is given a sliding priority based on distance from AudioListener so Unity can decide to mute the lower-priority sounds when more than 32 voices are playing (Unity limit). 
+       - Added a control for how often sounds that are following a "sound-maker" are re-evaluated for priority. That defaults to 0.1 seconds and can go up to 1 second.
+
+-V 3.2 - Added Custom Events to MasterAudio. You can receive or send the events with EventSounds or any other script, any number of receivers. No coding required if using EventSounds!
+       - Fixed incorrectly pathed images in Master Audio Manager window.
+       - Fixed bug where EventSounds didn't allow Unity 3 users to use delay sound.
+       - Fixed bug where cross-fade "fading clip" would jump down in level suddenly if Master Playlist Volume or Playlist Controller volume were not full.
+       - Added per-Scene Custom Events to Dynamic Sound Group Creator.
+       - Added missing pan level 3D setting into Dynamic Sound Group Creator.
+       - Added constant variable for path to MasterAudio folder for people who move it around. Changing this in one place (MasterAudioManager.cs) will ensure everything works fine.
+       - Added MasterAudio icon to the Hierarchy to find MasterAudio prefab quickly.
+       - Changed color of collapsible section and made it different colors when expanded or collapsed. More intuitive.
+
+-V 3.1.9 - Fixed broken Add Duck Group Playmaker Custom Action.
+	 - Fixed bug where playing the same clip in a Playlist Controller would cause the Playlist to stop after cross-fading.
+	 - Fixed bug where crossfading wouldn't work right after a couple crossfades. This was introduced in V3.1.8 accidentally.
+	 - Fixed bug where changing synchronized Playlist clip during a cross-fade wouldn't keep the time in the new clip.
+	 - Added JumpToTime method to SoundGroupVariation to jump to a specific time in an already playing Audio Clip.
+
+-V 3.1.8 - Fixed bug where Playlist auto-advance to the next song didn't work when timeScale is set to zero.
+	 - Added setting for default begin ducking percentage, which will be used for any new groups you add to Ducking.
+	 - Added configurable begin ducking time in Dynamic Sound Group Creator groups, defaults to the default begin unduck percentage if MA prefab can be located in the Scene.
+
 -V 3.1.7 - Added Resource file support to Playlists! Automatic memory management, same as Sound Groups. Drag and drop!
 	 - Fixed unneccessary error in Playlist Controller when no Playlist is set up.
 	 - Fixed bug where a looped Sound Group Variation would fade out before looping. Looped clips should ignore fade out time. Also put a note in the UI so the user knows this.

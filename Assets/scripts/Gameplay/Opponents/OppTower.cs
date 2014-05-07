@@ -5,19 +5,10 @@ using System.Collections.Generic;
 public class OppTower : LevelBrick {
 	
 	public List<LevelTools.DirectionList> enabledDirection;
-	public OTSprite dirUp;
-	public OTSprite dirLeft;
-	public OTSprite dirDown;
-	public OTSprite dirRight;
 
 	public void Setup()
 	{
 		base.Setup();
-		
-		dirUp = FETool.findWithinChildren(gameObject, "Direction/up").GetComponentInChildren<OTSprite>();
-		dirLeft = FETool.findWithinChildren(gameObject, "Direction/left").GetComponentInChildren<OTSprite>();
-		dirDown = FETool.findWithinChildren(gameObject, "Direction/down").GetComponentInChildren<OTSprite>();
-		dirRight = FETool.findWithinChildren(gameObject, "Direction/right").GetComponentInChildren<OTSprite>();
 
 	}
 

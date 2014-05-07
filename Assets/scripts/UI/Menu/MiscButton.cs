@@ -91,15 +91,33 @@ public class MiscButton : MonoBehaviour {
 			case buttonList.MuteGlobal :
 			{
 				MasterAudio.PlaySound("click");
+				OTSprite sprite = GetComponentInChildren<OTSprite>();
 				mainUi = GameObject.Find("TitleMenu").GetComponent<MainTitleUI>();
 				mainUi.PLAYERDAT.MuteGlobal();
+				if (mainUi.PLAYERDAT.globalVolMuted == true)
+				{
+					sprite.frameName = "btnSoundInactive";
+				}
+				else
+				{
+					sprite.frameName = "btnSoundActive";
+				}
 				break;
 			}
 			case buttonList.MuteMusic :
 			{
 				MasterAudio.PlaySound("click");
+				OTSprite sprite = GetComponentInChildren<OTSprite>();
 				mainUi = GameObject.Find("TitleMenu").GetComponent<MainTitleUI>();
 				mainUi.PLAYERDAT.MuteMusic();
+				if (mainUi.PLAYERDAT.musicVolMuted == true)
+				{
+					sprite.frameName = "btnMusicInactive";
+				}
+				else
+				{
+					sprite.frameName = "btnMusicActive";
+				}
 				break;
 			}
 			case buttonList.Twitter :
@@ -247,6 +265,7 @@ public class MiscButton : MonoBehaviour {
 	{
 		if (parentUi != null && parentUi.padEntered == true)
 		{
+			resetAllFocus();
 			hasFocus = state;		
 			if (hasFocus == true)
 			{
@@ -262,6 +281,19 @@ public class MiscButton : MonoBehaviour {
 					spr.frameName = stdFrame;
 				}
 			}
+		}
+	}
+
+	public void resetAllFocus()
+	{
+		MiscButton[] btn = FindObjectsOfType<MiscButton>();
+		foreach (MiscButton bt in btn)
+		{
+			if (bt.stdFrame != null)
+			{
+				bt.spr.frameName = bt.stdFrame;
+			}
+			bt.hasFocus = false;
 		}
 	}
 

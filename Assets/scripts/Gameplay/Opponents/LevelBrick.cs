@@ -10,7 +10,8 @@ public class LevelBrick : MonoBehaviour {
 		Fields,
 		Chainsaw,
 		ArrowTower,
-		FireTower
+		FireTower,
+		Carpet
 	};
 	public typeList type;
 	public float speed;

@@ -10,11 +10,13 @@ public class FireTower : OppTower {
 	public List<Fireball> FbListDown = new List<Fireball>();
 	public List<Fireball> FbListRight = new List<Fireball>();
 	public List<Fireball> FbListLeft = new List<Fireball>();
+
 	public GameObject FbHead;
 	public GameObject parUp;
 	public GameObject parLeft;
 	public GameObject parRight;
 	public GameObject parDown;
+	public GameObject Hat;
 	public float marginUp;
 	public float marginDown;
 	public float marginLeft;
@@ -31,11 +33,12 @@ public class FireTower : OppTower {
 		base.Setup();
 		type = typeList.FireTower;
 
-		FbHead = FETool.findWithinChildren(gameObject, "Head/Fireballs");
+		FbHead = FETool.findWithinChildren(gameObject, "Head");
 		parUp = FETool.findWithinChildren(gameObject, "Head/Fireballs/up");
 		parLeft = FETool.findWithinChildren(gameObject, "Head/Fireballs/left");
 		parRight = FETool.findWithinChildren(gameObject, "Head/Fireballs/right");
 		parDown = FETool.findWithinChildren(gameObject, "Head/Fireballs/down");
+		Hat = FETool.findWithinChildren(gameObject, "Hat");
 
 		moveMarUp = new Vector3(0f, marginUp,0f);
 		moveMarLeft = new Vector3(marginLeft * -1f, 0f,0f);
@@ -84,6 +87,7 @@ public class FireTower : OppTower {
 	{
 		Vector3 vec = new Vector3(0f,0f,speed);
 		FbHead.transform.Rotate(vec);
+		Hat.transform.Rotate(vec);
 	}
 
 	public void Update()
@@ -158,21 +162,25 @@ public class FireTower : OppTower {
 				case LevelTools.DirectionList.Down :
 				{
 					fb.transform.localPosition = (moveMarDown * currInd ) ;
+					fb.transform.localRotation = Quaternion.Euler( new Vector3(0f,0f,180f));
 					break;
 				}
 				case LevelTools.DirectionList.Up :
 				{
 					fb.transform.localPosition = (moveMarUp * currInd ) ;
+					fb.transform.localRotation = Quaternion.Euler( new Vector3(0f,0f,0f));
 					break;
 				}
 				case LevelTools.DirectionList.Right :
 				{
 					fb.transform.localPosition = (moveMarRight * currInd ) ;
+					fb.transform.localRotation = Quaternion.Euler( new Vector3(0f,0f,270f));
 					break;
 				}
 				case LevelTools.DirectionList.Left :
 				{
 					fb.transform.localPosition = (moveMarLeft * currInd ) ;
+					fb.transform.localRotation = Quaternion.Euler( new Vector3(0f,0f,90f));
 					break;
 				}
 				}

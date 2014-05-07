@@ -152,7 +152,10 @@ public class Procedural : MonoBehaviour {
 				{
 //					brk.enableBrick();
 					int currentIndex = _CURRENTSTEP.ArrowTowerSetup.IndexOf(_lb);
-					brk.GetComponent<ArrowTower>().enabledDirection.Clear();
+					if (brk.GetComponent<ArrowTower>().enabledDirection != null)
+					{
+						brk.GetComponent<ArrowTower>().enabledDirection.Clear();
+					}
 					brk.GetComponent<ArrowTower>().setupDirectionList(_CURRENTSTEP.ArrowTowerDirections[currentIndex]);
 				}
 			}
