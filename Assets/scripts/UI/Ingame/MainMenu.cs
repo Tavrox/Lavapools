@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -80,7 +80,7 @@ public class MainMenu : ParentMenu {
 		_thing.gameObject.SetActive(false);
 	}
 
-	public void changeLevelLabel(ProceduralSteps _step)
+	public void changeLevelLabel(LinearStep _step)
 	{
 		_IngameUI.LevelTxt.text = "" + _step.levelLabel + "";
 		_IngameUI.TriggerLvText();

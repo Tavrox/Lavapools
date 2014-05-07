@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -30,7 +30,7 @@ public class LevelManager : MonoBehaviour {
 	public List<CollectiblePlaces> collecPlaces = new List<CollectiblePlaces>();
 	[HideInInspector] public LevelTools tools;
 	[HideInInspector] public LevelTools.KillerList killer;
-	[HideInInspector] public Procedural proc;
+	[HideInInspector] public LinearStepTrigger proc;
 	[HideInInspector] public MainMenu menuManager;
 	[HideInInspector] public PlayerData _profile;
 	[HideInInspector] public Player _player;
@@ -79,7 +79,7 @@ public class LevelManager : MonoBehaviour {
 		LocalTuning.initScript();
 		InputMan = Resources.Load("Tuning/InputManager") as InputManager;
 		CurrentLevelInfo = Instantiate(Resources.Load("Tuning/Levels/" + NAME)) as LevelInfo;
-		proc = gameObject.AddComponent<Procedural>();
+		proc = gameObject.AddComponent<LinearStepTrigger>();
 		proc._levMan = this;
 		proc.Setup();
 

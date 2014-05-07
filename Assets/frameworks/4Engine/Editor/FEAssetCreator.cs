@@ -12,7 +12,7 @@ public class FEAssetCreator {
 	[MenuItem("Assets/Create/ProceduralSteps")]
 	public static void CreateStep ()
 	{
-		ScriptableObjectUtility.CreateAsset<ProceduralSteps>();
+		ScriptableObjectUtility.CreateAsset<LinearStep>();
 	}
 	[MenuItem("Assets/Create/LevelSetup")]
 	public static void CreateLevelSetup ()

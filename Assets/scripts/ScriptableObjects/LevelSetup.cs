@@ -24,7 +24,7 @@ public class LevelSetup : ScriptableObject
 	[HideInInspector] public float Fields_FrequencySpawn;
 	[HideInInspector] public float Fields_DelaySpawn;
 	[HideInInspector] public Dictionary<LevelBrick.typeList, float> _dicoBricks = new Dictionary<LevelBrick.typeList, float>();
-	[HideInInspector] public List<ProceduralSteps> Procedural_Steps;
+	[HideInInspector] public List<LinearStep> Procedural_Steps;
 
 	// Use this for initialization
 	public void initScript () {
@@ -54,7 +54,7 @@ public class LevelSetup : ScriptableObject
 		string path = "Procedural/" + NAME + "/";
 		for (int i = 1; i <= numberOfSteps ; i++)
 		{
-			ProceduralSteps _stp = Resources.Load( path + i) as ProceduralSteps;
+			LinearStep _stp = Resources.Load( path + i) as LinearStep;
 			_stp.Reset();
 			_stp.ScoreCondition = (_stp.stepID * 5) - 5;
 		}
