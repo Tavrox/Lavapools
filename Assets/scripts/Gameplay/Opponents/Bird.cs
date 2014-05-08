@@ -27,7 +27,7 @@ public class Bird : PatrolBrick {
 		if ( FETool.findWithinChildren(gameObject, "Waves") != null)
 		{
 			WavesSpr = FETool.findWithinChildren(gameObject, "Waves").GetComponentInChildren<OTAnimatingSprite>();
-			WavesSpr.alpha = 1f;
+			WavesSpr.alpha = 0f;
 		}
 	}
 
@@ -40,7 +40,7 @@ public class Bird : PatrolBrick {
 	
 	public void fadeDelay()
 	{
-		new OTTween(WavesSpr,LevelManager.GlobTuning.fadeAfterDelay).Tween("alpha", 0f);
+//		new OTTween(WavesSpr, LevelManager.GlobTuning.fadeAfterDelay).Tween("alpha", 0f);
 	}
 
 	public override void enableBrick ()

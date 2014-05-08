@@ -19,17 +19,13 @@ public class LevelSetup : ScriptableObject
 	[Range(1,10)] public int Gem_MinimumInLevel;
 	public LevelSetup _lvlToCopy;
 	public bool OblivionLevel;
-	
-	[HideInInspector] public float Fields_Speed;
-	[HideInInspector] public float Fields_FrequencySpawn;
-	[HideInInspector] public float Fields_DelaySpawn;
+
 	[HideInInspector] public Dictionary<LevelBrick.typeList, float> _dicoBricks = new Dictionary<LevelBrick.typeList, float>();
 	[HideInInspector] public List<LinearStep> Procedural_Steps;
 
 	// Use this for initialization
 	public void initScript () {
 		_dicoBricks.Add(LevelBrick.typeList.Bird, Bird_Speed);
-		_dicoBricks.Add(LevelBrick.typeList.Fields, Fields_Speed);
 		_dicoBricks.Add(LevelBrick.typeList.Chainsaw, Chainsaw_Speed);
 		_dicoBricks.Add(LevelBrick.typeList.ArrowTower, Arrow_FireRate);
 		_dicoBricks.Add(LevelBrick.typeList.FireTower, Fire_RotationSpeed);
@@ -44,9 +40,6 @@ public class LevelSetup : ScriptableObject
 		Player_Speed_high = _lvlToCopy.Player_Speed_high;
 		Bird_Speed = _lvlToCopy.Bird_Speed;
 		Chainsaw_Speed = _lvlToCopy.Chainsaw_Speed;
-		Fields_Speed = _lvlToCopy.Fields_Speed;
-		Fields_FrequencySpawn = _lvlToCopy.Fields_FrequencySpawn;
-		Fields_DelaySpawn = _lvlToCopy.Fields_DelaySpawn;
 		Gem_SpawnRate = _lvlToCopy.Gem_SpawnRate;
 	}
 	public void ResetAllSteps()
@@ -55,7 +48,6 @@ public class LevelSetup : ScriptableObject
 		for (int i = 1; i <= numberOfSteps ; i++)
 		{
 			LinearStep _stp = Resources.Load( path + i) as LinearStep;
-			_stp.Reset();
 			_stp.ScoreCondition = (_stp.stepID * 5) - 5;
 		}
 	}

@@ -54,22 +54,15 @@ public class LevelTools : MonoBehaviour {
 	public WaypointManager findWpManager(LevelBrick.typeList _type)
 	{
 		WaypointManager res = null;
-		res = _levMan.waypointsMan.Find( delegate(WaypointManager obj) 
+		res = _levMan.wpDirector.waypointsMan.Find( delegate(WaypointManager obj) 
 		{
-			if (_type == LevelBrick.typeList.Fields)
-			{
-				return obj.GetComponent<FieldManager>() == true;
-			}
-			else
-			{
-				return obj.relatedBrick.type == _type;
-			}
+			return obj.relatedBrick.type == _type;
 		});
 		return res;
 	}
 	public WaypointManager pickRandomWP(LevelBrick.typeList _type)
 	{
-		List<WaypointManager> _wpm  = _levMan.waypointsMan.FindAll((WaypointManager obj) => obj.type == _type);
+		List<WaypointManager> _wpm  = _levMan.wpDirector.waypointsMan.FindAll((WaypointManager obj) => obj.type == _type);
 		return _wpm[Random.Range(0,_wpm.Count)];
 	}
 

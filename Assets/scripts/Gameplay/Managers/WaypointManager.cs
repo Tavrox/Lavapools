@@ -18,7 +18,7 @@ public class WaypointManager : MonoBehaviour {
 	{
 		transform.position = new Vector3(transform.position.x, transform.position.y, 0f);
 		relatedWaypoints = GetWpList();
-		id = gameObject.name.Split('/')[1];
+		id = gameObject.name.Split('_')[1];
 		_levMan = man;
 	}
 

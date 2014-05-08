@@ -54,6 +54,11 @@ public class FEAssetCreator {
 	{
 		ScriptableObjectUtility.CreateAsset<DisplayChanger>();
 	}
+	[MenuItem("Assets/Create/GUIEditorSkin")]
+	public static void CreateGUIEditorSkin ()
+	{
+		ScriptableObjectUtility.CreateAsset<GUIEditorSkin>();
+	}
 
 
 

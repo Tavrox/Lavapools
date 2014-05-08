@@ -1,13 +1,15 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class BrickStepParam : ScriptableObject 
+[System.Serializable]
+public class BrickStepParam 
 {
-	public LevelBrick.typeList Brick;
-	public string WaypointsAttributed;
-	public bool Enable;
-	public bool Disable;
-	public string Directions;
-	public int TowerLength;
-	public bool TowerSwapRot;
+	[SerializeField] public LevelBrick.typeList Brick;
+	[SerializeField] public int ID;
+	[SerializeField] public string WaypointsAttributed;
+	[SerializeField] public bool Enable;
+	[SerializeField] public bool Disable;
+	[SerializeField] public string Directions;
+	[SerializeField] public int TowerLength;
+	[SerializeField] public bool TowerSwapRot;
 }

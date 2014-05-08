@@ -18,14 +18,13 @@ public class LevelManager : MonoBehaviour {
 	[HideInInspector] public float bestScore = 0f;
 	[HideInInspector] public float collecSum = 0f;
 	[HideInInspector] public int gemCounter = 0;
-	[HideInInspector] public int fieldsCaptured = 0;
 	[HideInInspector] public int centSecondsElapsed;
 	[HideInInspector] public int SecondsElapsed;
 	[HideInInspector] public int OvertimeScoreElapsed;
 	[HideInInspector] public int bestTime;
 	[HideInInspector] public string timeString;
 	[HideInInspector] public BricksManager bricksMan;
-	[HideInInspector] public List<WaypointManager> waypointsMan = new List<WaypointManager>();
+	[HideInInspector] public WaypointDirector wpDirector;
 	[HideInInspector] public List<Collectible> CollectibleGathered = new List<Collectible>();
 	public List<CollectiblePlaces> collecPlaces = new List<CollectiblePlaces>();
 	[HideInInspector] public LevelTools tools;
@@ -36,10 +35,6 @@ public class LevelManager : MonoBehaviour {
 	[HideInInspector] public Player _player;
 	[HideInInspector] public SpaceGate Gate;
 	[HideInInspector] public GameObject OuterSpawn;
-
-	
-	private FieldManager fieldMan;
-	private Fields spawningField;
 	
 
 	// Use this for initialization
@@ -93,16 +88,7 @@ public class LevelManager : MonoBehaviour {
 		tools._levMan = this;
 		TranslateAllInScene();
 
-		WaypointManager[] waypointsManagers = FETool.findWithinChildren(this.gameObject, "LevelBricks/Waypoints").GetComponentsInChildren<WaypointManager>();
-		foreach (WaypointManager wpm in waypointsManagers)
-		{
-			waypointsMan.Add(wpm);
-			wpm.Setup(this);
-			if (wpm.GetComponent<FieldManager>() != null)
-			{
-				fieldMan = wpm.GetComponent<FieldManager>();
-			}
-		}
+
 
 		bricksMan = FETool.findWithinChildren(this.gameObject, "LevelBricks/Bricks").GetComponent<BricksManager>();
 		bricksMan.Setup();
@@ -114,6 +100,9 @@ public class LevelManager : MonoBehaviour {
 		}
 		Gate = GameObject.FindGameObjectWithTag("SpaceGate").GetComponent<SpaceGate>();
 		Gate.Setup();
+
+		wpDirector = GetComponentInChildren<WaypointDirector>();
+		wpDirector.Setup(this);
 
 		if (LocalTuning.OblivionLevel == false)
 		{
@@ -252,17 +241,9 @@ public class LevelManager : MonoBehaviour {
 		}
 	}
 
-	public void spawnFields()
-	{
-		if (GameEventManager.gameOver != true )
-		{
-//			spawningField = fieldMan.respawnField();
-		}
-	}
-
 	private void managerChecker()
 	{
-		if (Application.loadedLevelName != NAME.ToString() || waypointsMan == null || _player == null)
+		if (Application.loadedLevelName != NAME.ToString() || wpDirector.waypointsMan == null || _player == null)
 		{
 			Debug.Log("LevMan bad setup");
 		}
@@ -285,12 +266,7 @@ public class LevelManager : MonoBehaviour {
 		if (this != null)
 		{
 			_player.gameObject.SetActive(false);
-			if (spawningField != null)
-			{
-				Destroy(spawningField.gameObject.transform.parent.gameObject);
-			}
 			CancelInvoke("updateTime");
-			CancelInvoke("spawnFields");
 			CancelInvoke("UpdateScoreOverTime");
 			StopCoroutine("delayedSpawnGem");
 		}
@@ -305,7 +281,6 @@ public class LevelManager : MonoBehaviour {
 			InvokeRepeating("updateTime", 0f, 0.01f);
 			_player.gameObject.SetActive(true);
 			score = 0f;
-			fieldsCaptured = 0;
 			centSecondsElapsed = 0;
 			SecondsElapsed = 0;
 			collecSum = 0;

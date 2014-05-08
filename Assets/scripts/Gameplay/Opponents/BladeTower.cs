@@ -2,14 +2,14 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class FireTower : OppTower {
+public class BladeTower : OppTower {
 
-	public List<Fireball> FbList = new List<Fireball>();
-	public List<List<Fireball>> FbDirList = new List<List<Fireball>>();
-	public List<Fireball> FbListUp = new List<Fireball>();
-	public List<Fireball> FbListDown = new List<Fireball>();
-	public List<Fireball> FbListRight = new List<Fireball>();
-	public List<Fireball> FbListLeft = new List<Fireball>();
+	public List<BladePart> FbList = new List<BladePart>();
+	public List<List<BladePart>> FbDirList = new List<List<BladePart>>();
+	public List<BladePart> FbListUp = new List<BladePart>();
+	public List<BladePart> FbListDown = new List<BladePart>();
+	public List<BladePart> FbListRight = new List<BladePart>();
+	public List<BladePart> FbListLeft = new List<BladePart>();
 
 	public GameObject FbHead;
 	public GameObject parUp;
@@ -34,7 +34,7 @@ public class FireTower : OppTower {
 		type = typeList.FireTower;
 
 		FbHead = FETool.findWithinChildren(gameObject, "Head");
-		parUp = FETool.findWithinChildren(gameObject, "Head/Fireballs/up");
+		parUp = FETool.findWithinChildren(gameObject, "Head/FirebBladesalls/up");
 		parLeft = FETool.findWithinChildren(gameObject, "Head/Fireballs/left");
 		parRight = FETool.findWithinChildren(gameObject, "Head/Fireballs/right");
 		parDown = FETool.findWithinChildren(gameObject, "Head/Fireballs/down");
@@ -64,23 +64,27 @@ public class FireTower : OppTower {
 		CancelInvoke("pivotHead");
 	}
 
-	public void stepChanger(int _length, string _dir, bool _swapRot)
+	public void setupBladePart(int _length)
 	{
-		destroyAllFireBalls(FbList);
-		List<LevelTools.DirectionList> dirList = setupDirectionList(_dir);
-		foreach (LevelTools.DirectionList dirChosen in dirList)
+		destroyAllBladePart(FbList);
+		foreach (LevelTools.DirectionList dirChosen in enabledDirection)
 		{
-			createFireBalls(_length, dirChosen);
+			createBladePart(_length, dirChosen);
 		}
 		FbDirList.Add(FbListLeft);
 		FbDirList.Add(FbListDown);
 		FbDirList.Add(FbListRight);
 		FbDirList.Add(FbListUp);
+
+		moveFireballs(FbDirList);
+	}
+
+	public void swapRotation(bool _swapRot)
+	{
 		if (_swapRot == true)
 		{
 			speed = speed * -1f;
 		}
-		moveFireballs(FbDirList);
 	}
 
 	public void pivotHead()
@@ -96,9 +100,9 @@ public class FireTower : OppTower {
 //		transform.Rotate(vec);
 	}
 
-	public void destroyAllFireBalls(List<Fireball> _list)
+	public void destroyAllBladePart(List<BladePart> _list)
 	{
-		foreach (Fireball fb in _list)
+		foreach (BladePart fb in _list)
 		{
 			Destroy(fb.gameObject);
 		}
@@ -110,12 +114,12 @@ public class FireTower : OppTower {
 		_list.Clear();
 	}
 
-	public void createFireBalls(int _nbFireballs, LevelTools.DirectionList _dir)
+	public void createBladePart(int _nbFireballs, LevelTools.DirectionList _dir)
 	{
 		for (int i = 0; i < _nbFireballs ; i++)
 		{
 			GameObject gameo = Instantiate(Resources.Load("Bricks/Opponent/Fireball")) as GameObject;
-			Fireball fb = gameo.GetComponent<Fireball>();
+			BladePart fb = gameo.GetComponent<BladePart>();
 			fb.Direction = _dir;
 			switch (fb.Direction)
 			{
@@ -150,11 +154,11 @@ public class FireTower : OppTower {
 		}
 	}
 
-	private void moveFireballs(List<List<Fireball>> listDir)
+	private void moveFireballs(List<List<BladePart>> listDir)
 	{
-		foreach (List<Fireball> _list in listDir)
+		foreach (List<BladePart> _list in listDir)
 		{
-			foreach (Fireball fb in _list)
+			foreach (BladePart fb in _list)
 			{
 				int currInd = _list.IndexOf(fb);
 				switch (fb.Direction)

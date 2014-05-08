@@ -7,7 +7,6 @@ public class LevelBrick : MonoBehaviour {
 	public enum typeList
 	{
 		Bird, 
-		Fields,
 		Chainsaw,
 		ArrowTower,
 		FireTower,

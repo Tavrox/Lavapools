@@ -10,6 +10,8 @@ public class LinearStepTrigger : MonoBehaviour {
 
 	[HideInInspector] public List<LinearStep> _listSteps;
 	private LevelSetup SETUP;
+	private BrickStepParam currParam;
+	private LevelBrick currModBrick;
 
 	// Use this for initialization
 	public void Setup () 
@@ -58,6 +60,7 @@ public class LinearStepTrigger : MonoBehaviour {
 		_CURRENTSTEP = _step;
 //		Debug.Log ("Triggered STEP" + _CURRENTSTEP.stepID);
 
+		triggerList();
 //		disableBrickList();
 //		enableBrickList();
 //		setupSpeedBrickList();
@@ -86,6 +89,65 @@ public class LinearStepTrigger : MonoBehaviour {
 			_levMan.tools.UnlockLevel(_CURRENTSTEP.LevelToUnlock);
 		}
 	}
+
+	private void triggerList()
+	{
+		if (_CURRENTSTEP.ListBricks != null)
+		{
+			foreach (BrickStepParam prm in _CURRENTSTEP.ListBricks)
+			{
+				currParam = prm;
+				currModBrick = findBrick();
+				attributeWaypoint();
+				enableBrick();
+//				disableBrick();
+//				giveDirections();
+//				setupTowerLength();
+//				swapTowerRotation();
+			}
+		}
+	}
+
+	private LevelBrick findBrick()
+	{
+		LevelBrick res = null;
+		string typeToFetch = currParam.Brick.ToString();
+		string idToFetch = "_" + currParam.ID.ToString();
+		currModBrick = _levMan.bricksMan.BricksList.Find ((LevelBrick obj) => obj.name == typeToFetch + idToFetch);
+		res = currModBrick;
+		return res;
+	}
+
+	private void attributeWaypoint()
+	{
+		if (currModBrick.GetComponent<PatrolBrick>() != null)
+		{
+			string typeToFetch = currParam.Brick.ToString();
+			string idToFetch = "_" + currParam.WaypointsAttributed;
+			currModBrick.GetComponent<PatrolBrick>().brickPath = _levMan.wpDirector.waypointsMan.Find((WaypointManager mana) => mana.name == typeToFetch + idToFetch);
+		}
+	}
+	private void enableBrick()
+	{
+		currModBrick.enableBrick();
+	}
+	private void disableBrick()
+	{
+		currModBrick.disableBrick();
+	}
+	private void giveDirections()
+	{
+		currModBrick.GetComponent<OppTower>().setupDirectionList(currParam.Directions);
+	}
+	private void setupTowerLength()
+	{
+		currModBrick.GetComponent<BladeTower>().setupBladePart(currParam.TowerLength);
+	}
+	private void swapTowerRotation()
+	{
+		currModBrick.GetComponent<BladeTower>().swapRotation(currParam.TowerSwapRot);
+	}
+
 
 	/*
 

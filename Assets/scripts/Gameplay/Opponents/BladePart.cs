@@ -1,7 +1,7 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
-public class Fireball : MonoBehaviour {
+public class BladePart : MonoBehaviour {
 
 	public LevelTools.DirectionList Direction;
 

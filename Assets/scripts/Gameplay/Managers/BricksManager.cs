@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -25,9 +25,9 @@ public class BricksManager : MonoBehaviour {
 			{
 				_brick.GetComponent<ArrowTower>().Setup();
 			}
-			if (_brick.GetComponent<FireTower>() != null)
+			if (_brick.GetComponent<BladeTower>() != null)
 			{
-				_brick.GetComponent<FireTower>().Setup();
+				_brick.GetComponent<BladeTower>().Setup();
 			}
 			_brick.disableBrick();
 		}

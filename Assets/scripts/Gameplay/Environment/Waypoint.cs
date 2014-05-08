@@ -26,10 +26,7 @@ public class Waypoint : MonoBehaviour {
 	}
 	public void lateSetup()
 	{
-		if (linkedManager.type != LevelBrick.typeList.Fields)
-		{
-			nextWP = linkedManager.findNextWaypoint(this);
-		}
+		nextWP = linkedManager.findNextWaypoint(this);
 	}
 
 	void OnTriggerEnter(Collider _other)
@@ -39,7 +36,7 @@ public class Waypoint : MonoBehaviour {
 			PatrolBrick _collBrick = _other.GetComponent<PatrolBrick>();
 //			print ("[" + _collBrick.type + " VS " + LevelBrick.typeList.Fields + "]");
 
-			if (_collBrick.type != LevelBrick.typeList.Fields && linkedManager.relatedBrick != null)
+			if (linkedManager.relatedBrick != null)
 			{
 //				print ("[" + linkedManager.relatedBrick + " VS " + _collBrick + "]");
 //				if (linkedManager.relatedBrick != _collBrick)
