@@ -31,7 +31,7 @@ public class BladeTower : OppTower {
 	public void Setup () 
 	{
 		base.Setup();
-		type = typeList.FireTower;
+		type = typeList.BladeTower;
 
 		FbHead = FETool.findWithinChildren(gameObject, "Head");
 		parUp = FETool.findWithinChildren(gameObject, "Head/FirebBladesalls/up");

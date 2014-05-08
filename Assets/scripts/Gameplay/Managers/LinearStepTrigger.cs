@@ -58,15 +58,7 @@ public class LinearStepTrigger : MonoBehaviour {
 	public void triggerStep(LinearStep _step)
 	{
 		_CURRENTSTEP = _step;
-//		Debug.Log ("Triggered STEP" + _CURRENTSTEP.stepID);
-
 		triggerList();
-//		disableBrickList();
-//		enableBrickList();
-//		setupSpeedBrickList();
-//		invertWayList();
-//		setupTowerList();
-//		setupFireTower();
 
 		_levMan._player.lowSpeed = _levMan._player.lowSpeed * _CURRENTSTEP.Crab_SpeedMultiplier;
 		_levMan._player.medSpeed = _levMan._player.medSpeed * _CURRENTSTEP.Crab_SpeedMultiplier;
@@ -92,18 +84,19 @@ public class LinearStepTrigger : MonoBehaviour {
 
 	private void triggerList()
 	{
-		if (_CURRENTSTEP.ListBricks != null)
+		if (SETUP.ListBricks != null)
 		{
-			foreach (BrickStepParam prm in _CURRENTSTEP.ListBricks)
+			List<BrickStepParam> paramlist = SETUP.ListBricks.FindAll((BrickStepParam para) => para.stepID == _CURRENTSTEP.stepID);
+			foreach (BrickStepParam _parameter in paramlist)
 			{
-				currParam = prm;
+				currParam = _parameter;
 				currModBrick = findBrick();
 				attributeWaypoint();
 				enableBrick();
-//				disableBrick();
-//				giveDirections();
-//				setupTowerLength();
-//				swapTowerRotation();
+				//				disableBrick();
+				//				giveDirections();
+				//				setupTowerLength();
+				//				swapTowerRotation();
 			}
 		}
 	}
@@ -125,32 +118,62 @@ public class LinearStepTrigger : MonoBehaviour {
 
 	private void attributeWaypoint()
 	{
-		if (currModBrick.GetComponent<PatrolBrick>() != null)
+		if (currModBrick.GetComponent<PatrolBrick>() != null && currParam.WaypointsAttributed != "")
 		{
 			string typeToFetch = currParam.Brick.ToString();
-			string idToFetch = "_" + currParam.WaypointsAttributed;
+			string idToFetch = "_" + currParam.WaypointsAttributed.ToUpper();
 			currModBrick.GetComponent<PatrolBrick>().brickPath = _levMan.wpDirector.waypointsMan.Find((WaypointManager mana) => mana.name == typeToFetch + idToFetch);
 		}
 	}
 	private void enableBrick()
 	{
-		currModBrick.enableBrick();
+		if (currParam.Enable != true && currParam.ID != 0)
+		{
+			currModBrick.enableBrick();
+		}
 	}
 	private void disableBrick()
 	{
-		currModBrick.disableBrick();
+		if (currParam.Disable != true && currParam.ID != 0)
+		{
+			currModBrick.disableBrick();
+		}
 	}
 	private void giveDirections()
 	{
-		currModBrick.GetComponent<OppTower>().setupDirectionList(currParam.Directions);
+		if (currModBrick.type == LevelBrick.typeList.BladeTower || currModBrick.type == LevelBrick.typeList.ArrowTower)
+		{
+			if (currParam.Directions.Contains("U") || currParam.Directions.Contains("D") ||
+			    currParam.Directions.Contains("L") || currParam.Directions.Contains("R") )
+			{
+				currModBrick.GetComponent<OppTower>().setupDirectionList(currParam.Directions);
+			}
+		}
 	}
 	private void setupTowerLength()
 	{
-		currModBrick.GetComponent<BladeTower>().setupBladePart(currParam.TowerLength);
+		if (currModBrick.type == LevelBrick.typeList.BladeTower)
+		{
+			currModBrick.GetComponent<BladeTower>().setupBladePart(currParam.TowerLength);
+		}
 	}
 	private void swapTowerRotation()
 	{
-		currModBrick.GetComponent<BladeTower>().swapRotation(currParam.TowerSwapRot);
+		if (currParam.Invert == true)
+		{
+			if (currModBrick.type == LevelBrick.typeList.BladeTower)
+			{
+				currModBrick.GetComponent<BladeTower>().swapRotation(currParam.Invert);
+			}
+			if (currModBrick.type == LevelBrick.typeList.Chainsaw || currModBrick.type == LevelBrick.typeList.Bird )
+			{
+				string typeToFetch = currParam.Brick.ToString();
+				string idToFetch = "_" + currParam.WaypointsAttributed.ToUpper();
+				WaypointManager manplz = _levMan.wpDirector.waypointsMan.Find((WaypointManager mana) => mana.name == typeToFetch + idToFetch);
+				manplz.invertWaypoints();
+
+			}
+		}
 	}
 
 

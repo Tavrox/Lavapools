@@ -5,7 +5,7 @@ using UnityEditor;
 
 class LevelBuilder : Editor {
 
-	public string MapToBuild;
+//	public string MapToBuild;
 
 	public override void OnInspectorGUI() 
 	{

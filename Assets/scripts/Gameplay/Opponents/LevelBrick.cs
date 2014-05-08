@@ -9,7 +9,7 @@ public class LevelBrick : MonoBehaviour {
 		Bird, 
 		Chainsaw,
 		ArrowTower,
-		FireTower,
+		BladeTower,
 		Carpet
 	};
 	public typeList type;

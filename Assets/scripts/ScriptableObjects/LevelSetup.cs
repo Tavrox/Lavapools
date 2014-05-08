@@ -13,13 +13,16 @@ public class LevelSetup : ScriptableObject
 	public float Chainsaw_Speed;
 	public float Arrow_Speed;
 	public float Arrow_FireRate;
-	public float Fire_RotationSpeed;
+	public float Blade_RotationSpeed;
 	public float Gem_SpawnRate;
 	public float Carpet_Speed;
 	[Range(1,10)] public int Gem_MinimumInLevel;
 	public LevelSetup _lvlToCopy;
-	public bool OblivionLevel;
 
+	[HideInInspector] public BrickStepParam BrickParam;
+	[HideInInspector] public BrickStepParam ParamAdd;
+	[HideInInspector] public List<BrickStepParam> ListBricks = new List<BrickStepParam>();
+	
 	[HideInInspector] public Dictionary<LevelBrick.typeList, float> _dicoBricks = new Dictionary<LevelBrick.typeList, float>();
 	[HideInInspector] public List<LinearStep> Procedural_Steps;
 
@@ -28,7 +31,7 @@ public class LevelSetup : ScriptableObject
 		_dicoBricks.Add(LevelBrick.typeList.Bird, Bird_Speed);
 		_dicoBricks.Add(LevelBrick.typeList.Chainsaw, Chainsaw_Speed);
 		_dicoBricks.Add(LevelBrick.typeList.ArrowTower, Arrow_FireRate);
-		_dicoBricks.Add(LevelBrick.typeList.FireTower, Fire_RotationSpeed);
+		_dicoBricks.Add(LevelBrick.typeList.BladeTower, Blade_RotationSpeed);
 		_dicoBricks.Add(LevelBrick.typeList.Carpet, Carpet_Speed);
 	}
 

@@ -103,7 +103,7 @@ public class LevelManager : MonoBehaviour {
 		bricksMan = FETool.findWithinChildren(this.gameObject, "LevelBricks/Bricks").GetComponent<BricksManager>();
 		bricksMan.Setup();
 
-		if (LocalTuning.OblivionLevel == false)
+		if (LocalTuning.NAME != GameSetup.LevelList.Oblivion)
 		{
 			if (GameObject.Find("UI") == null)
 			{

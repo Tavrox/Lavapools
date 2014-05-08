@@ -40,9 +40,6 @@ public class LinearStep : ScriptableObject {
 	public float TimerCondition;
 	public float Crab_SpeedMultiplier = 1f;
 	public float Enemies_SpeedMultiplier = 1f;
-	[Range(10,600)] public float wishedGUISize = 480f;
-	[HideInInspector] public BrickStepParam BrickParam;
-	[HideInInspector] public List<BrickStepParam> ListBricks = new List<BrickStepParam>();
 
 	// EDITOR TOOLS
 	public LevelInfo LevelToUnlock;
