@@ -7,7 +7,7 @@ public class WaypointManager : MonoBehaviour {
 	[HideInInspector] public LevelManager _levMan;
 
 	[HideInInspector] public string id;
-	[HideInInspector] public LevelBrick.typeList type;
+	public LevelBrick.typeList type;
 	[HideInInspector] public LevelBrick relatedBrick;
 	public List<Waypoint> relatedWaypoints = new List<Waypoint>();
 	[HideInInspector] public Waypoint lastWp;

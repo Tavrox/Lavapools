@@ -114,6 +114,11 @@ public class LinearStepTrigger : MonoBehaviour {
 		string typeToFetch = currParam.Brick.ToString();
 		string idToFetch = "_" + currParam.ID.ToString();
 		currModBrick = _levMan.bricksMan.BricksList.Find ((LevelBrick obj) => obj.name == typeToFetch + idToFetch);
+		if (currModBrick == null)
+		{
+			Debug.LogError("The brick " + typeToFetch + idToFetch + " hasn't been found");
+			Debug.Break();
+		}
 		res = currModBrick;
 		return res;
 	}

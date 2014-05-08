@@ -40,14 +40,12 @@ public class LinearStep : ScriptableObject {
 	public float TimerCondition;
 	public float Crab_SpeedMultiplier = 1f;
 	public float Enemies_SpeedMultiplier = 1f;
-	[Range(10,600)] public float wishedGUISize = 300f;
+	[Range(10,600)] public float wishedGUISize = 480f;
 	[HideInInspector] public BrickStepParam BrickParam;
-	public List<BrickStepParam> ListBricks = new List<BrickStepParam>();
-	public List<string> SetuppedBricks = new List<string>();
+	[HideInInspector] public List<BrickStepParam> ListBricks = new List<BrickStepParam>();
 
 	// EDITOR TOOLS
 	public LevelInfo LevelToUnlock;
-
 	/* Foreach brick added, you must add in the [dictionnary , brick manager , typelist ]*/
 
 	void Update()

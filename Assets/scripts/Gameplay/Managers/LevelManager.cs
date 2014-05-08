@@ -89,10 +89,6 @@ public class LevelManager : MonoBehaviour {
 		TranslateAllInScene();
 
 
-
-		bricksMan = FETool.findWithinChildren(this.gameObject, "LevelBricks/Bricks").GetComponent<BricksManager>();
-		bricksMan.Setup();
-
 		CollectiblePlaces[] collecPla = FETool.findWithinChildren(this.gameObject, "Enviro/CollectiblePlaces").GetComponentsInChildren<CollectiblePlaces>();
 		foreach (CollectiblePlaces cpl in collecPla)
 		{
@@ -103,6 +99,9 @@ public class LevelManager : MonoBehaviour {
 
 		wpDirector = GetComponentInChildren<WaypointDirector>();
 		wpDirector.Setup(this);
+
+		bricksMan = FETool.findWithinChildren(this.gameObject, "LevelBricks/Bricks").GetComponent<BricksManager>();
+		bricksMan.Setup();
 
 		if (LocalTuning.OblivionLevel == false)
 		{

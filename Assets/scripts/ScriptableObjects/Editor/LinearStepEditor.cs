@@ -15,44 +15,70 @@ public class LinearStepEditor : Editor
 		step = (LinearStep)target;
 		maxSize = step.wishedGUISize;
 		boxSize = step.wishedGUISize / 8 ;
+		GUIEditorSkin customSkin = Resources.Load("Tools/Skins/LvlEditor") as GUIEditorSkin;
 
 //		base.DrawDefaultInspector();
 		base.OnInspectorGUI();
 
-		if (step.BrickParam != null)
+		if (step.ListBricks.Count > 0)
 		{
-			// NOTES FOR DESIGNER
-			GUILayout.Box("NEW THINGS", GUILayout.ExpandWidth(true));
-			EditorGUILayout.BeginHorizontal(GUILayout.Width(maxSize));
-			GUILayout.Box("Type",GUILayout.Width(boxSize));
-			GUILayout.Box("ID",GUILayout.Width(boxSize) );
-			GUILayout.Box("Waypoint",GUILayout.Width(boxSize) );
-			GUILayout.Box("Enable", GUILayout.Width(boxSize));
-			GUILayout.Box("Disabled", GUILayout.Width(boxSize));
-			GUILayout.FlexibleSpace();
-			if (step.BrickParam.Brick == LevelBrick.typeList.FireTower || step.BrickParam.Brick == LevelBrick.typeList.ArrowTower )
+			GUI.color = customSkin.col1;
+			EditorGUILayout.BeginVertical(GUILayout.ExpandWidth(true));
+			GUILayout.Box("Bricks setupped", GUILayout.ExpandWidth(true));
+			GUI.color = customSkin.col3;
+			foreach(BrickStepParam prmtr in step.ListBricks)
 			{
-				GUILayout.Box("Direction", GUILayout.Width(boxSize));
-				if (step.BrickParam.Brick == LevelBrick.typeList.FireTower)
+				if (prmtr != null)
 				{
-
-					GUILayout.Box("TowLength", GUILayout.Width(boxSize));
-					GUILayout.Box("TowSwapRot", GUILayout.Width(boxSize));
+					EditorGUILayout.BeginHorizontal(GUILayout.ExpandWidth(true));
+					GUILayout.Box(serializeBrickSetup(prmtr), GUILayout.ExpandWidth(true));
+					if (GUILayout.Button("Remove", GUILayout.ExpandWidth(true)))
+					{
+						step.ListBricks.Remove(prmtr);
+					}
+					EditorGUILayout.EndHorizontal();
 				}
 			}
-			GUILayout.Box("", GUILayout.Width(boxSize));
-			EditorGUILayout.EndHorizontal();
+			EditorGUILayout.EndVertical();
+		}
 
-			// FIELDS TO ENTER
-			EditorGUILayout.BeginHorizontal(GUILayout.Width(maxSize));
-			displayBrickInfo(step.BrickParam);
-			if (GUILayout.Button("Save", GUILayout.Width(boxSize)))
+		// NOTES FOR DESIGNER
+		GUI.color = customSkin.col2;
+		GUILayout.Box("Add a new brick", GUILayout.ExpandWidth(true));
+		EditorGUILayout.BeginHorizontal(GUILayout.Width(maxSize));
+		GUILayout.Box("Type",GUILayout.Width(boxSize));
+		GUILayout.Box("ID",GUILayout.Width(boxSize) );
+		GUILayout.Box("WayP",GUILayout.Width(boxSize) );
+		GUILayout.Box("Enable", GUILayout.Width(boxSize));
+		GUILayout.Box("Disabled", GUILayout.Width(boxSize));
+		if (step.BrickParam.Brick == LevelBrick.typeList.FireTower || step.BrickParam.Brick == LevelBrick.typeList.ArrowTower )
+		{
+			GUILayout.Box("Direction", GUILayout.Width(boxSize));
+			if (step.BrickParam.Brick == LevelBrick.typeList.FireTower)
+			{
+				GUILayout.Box("Length", GUILayout.Width(boxSize));
+				GUILayout.Box("SwapRot", GUILayout.Width(boxSize));
+			}
+		}
+		GUILayout.Box("", GUILayout.Width(boxSize));
+		EditorGUILayout.EndHorizontal();
+
+		// FIELDS TO ENTER
+		EditorGUILayout.BeginHorizontal(GUILayout.Width(maxSize));
+		displayBrickInfo(step.BrickParam);
+		if (GUILayout.Button("Save", GUILayout.Width(boxSize)))
+		{
+			if (step.BrickParam.Directions.Contains("U") || step.BrickParam.Directions.Contains("D") ||
+			    step.BrickParam.Directions.Contains("L") || step.BrickParam.Directions.Contains("R") || step.BrickParam.Directions == ""  )
 			{
 				step.ListBricks.Add(step.BrickParam);
-				step.SetuppedBricks.Add(serializeBrickSetup(step.BrickParam));
 			}
-			EditorGUILayout.EndHorizontal();
+			else
+			{
+				Debug.LogError("Direction wrong setup");
+			}
 		}
+		EditorGUILayout.EndHorizontal();
 	}
 
 	private void displayBrickInfo(BrickStepParam _prm)
@@ -86,31 +112,35 @@ public class LinearStepEditor : Editor
 	{
 		// SERIALIZE BRICK INFO TO DISPLAY ENABLED BRICKS.
 		string res = "";
+		res += "[";
 		res += _brk.Brick.ToString();
-		res += "/";
+		res += "] [ID=";
 		res += _brk.ID.ToString();
-		res += "/";
+		res += "] [WP=";
 		res += _brk.WaypointsAttributed;
-		res += "/";
+		res += "]";
 		if (_brk.Enable == true)
 		{
-			res += "enabled";
-			res += "/";
+			res += "[Enabled] ";
 		}
 		if (_brk.Disable == true)
 		{
-			res += "disabled";
-			res += "/";
+			res += " [Disabled]";
 		}
+		res += "[Dir=";
 		res += _brk.Directions;
-		res += "/";
+		res += "] [TwLen_";
 		res += _brk.TowerLength.ToString();
-		res += "/";
+		res += "]";
 		if (_brk.TowerSwapRot == true)
 		{
-			res += "TowerSwapped";
-			res += "/";
+			res += " [TwSwapped]";
 		}
 		return res;
+	}
+
+	private Color randomColor()
+	{
+		return new Color(Random.Range(0f, 255f), Random.Range(0f,255f), 255f);
 	}
 }
