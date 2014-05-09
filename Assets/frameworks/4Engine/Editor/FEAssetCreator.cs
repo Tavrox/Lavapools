@@ -59,7 +59,10 @@ public class FEAssetCreator {
 	{
 		ScriptableObjectUtility.CreateAsset<GUIEditorSkin>();
 	}
-
-
+	[MenuItem("Assets/Create/StepParam")]
+	public static void CreateBrickStepParam ()
+	{
+		ScriptableObjectUtility.CreateAsset<BrickStepParam>();
+	}
 
 }

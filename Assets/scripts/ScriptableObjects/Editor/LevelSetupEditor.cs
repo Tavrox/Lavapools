@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEditor;
 
 [CustomEditor(typeof(LevelSetup))]
@@ -9,19 +10,21 @@ public class LevelSetupEditor : Editor
 	private float maxSize = 600f;
 	private float boxSize;
 	private GUIStyle style;
-	private BrickStepParam brpm = new BrickStepParam();
+	[SerializeField] private BrickStepParam brpm;
 	
 	public override void OnInspectorGUI()
 	{
 		step = (LevelSetup)target;
 		boxSize = maxSize / 10 ;
 		GUIEditorSkin customSkin = Resources.Load("Tools/Skins/LvlEditor") as GUIEditorSkin;
+		brpm = BrickStepParam.CreateInstance("BrickStepParam") as BrickStepParam;
+
 		base.OnInspectorGUI();
 
 		if (step.ListBricks.Count > 0)
 		{
 			GUI.color = customSkin.col1;
-			EditorGUILayout.BeginVertical(GUILayout.Width(maxSize));
+			EditorGUILayout.BeginVertical(GUILayout.Width(maxSize)); // Start
 			GUILayout.Box("Bricks setupped", GUILayout.Width(maxSize));
 			GUI.color = customSkin.col3;
 			displayBrickHeader(brpm);
@@ -34,16 +37,18 @@ public class LevelSetupEditor : Editor
 					else return 0;
 				});
 			}
-			EditorGUILayout.EndHorizontal();
+			EditorGUILayout.EndHorizontal(); // End
 			foreach(BrickStepParam _prm in step.ListBricks)
 			{
 				if (_prm != null)
 				{
 					EditorGUILayout.BeginHorizontal(GUILayout.Width(maxSize));
-					displayBrickInfo(_prm);
-
+					displayBrickInfo(AssetDatabase.LoadAssetAtPath( AssetDatabase.GetAssetPath(_prm), typeof(BrickStepParam)) as BrickStepParam);
+					EditorUtility.SetDirty(AssetDatabase.LoadAssetAtPath( AssetDatabase.GetAssetPath(_prm), typeof(BrickStepParam)) as BrickStepParam);
 					if (GUILayout.Button("Remove", GUILayout.Width(boxSize)))
 					{
+//						DestroyObject(_prm);
+						AssetDatabase.DeleteAsset(AssetDatabase.GetAssetPath(_prm));
 						step.ListBricks.Remove(_prm);
 					}
 					EditorGUILayout.EndHorizontal();
@@ -52,18 +57,26 @@ public class LevelSetupEditor : Editor
 			EditorGUILayout.EndVertical();
 		}
 
-		BrickStepParam newParam = new BrickStepParam();
 
 //		GUILayout.Box("Add a new brick", GUILayout.Width(maxSize));
-//		displayBrickHeader(newParam);
+//		displayBrickHeader(brpm);
 //		EditorGUILayout.EndHorizontal();
 
-//		EditorGUILayout.BeginHorizontal(GUILayout.Width(maxSize));
-//		displayBrickInfo(newParam);
+		EditorGUILayout.BeginHorizontal(GUILayout.Width(maxSize));
+//		displayBrickInfo(brpm);
 		if (GUILayout.Button("Add a brick", GUILayout.ExpandWidth(true)))
 		{
-			step.ListBricks.Add(newParam);
+			if (step.ListBricks == null)
+			{
+				step.ListBricks = new List<BrickStepParam>();
+			}
+//			Instantiate(Resources.Load("Tools/Parameters/test/Param"))
+			AssetDatabase.CreateAsset(brpm , "Assets/Resources/Tools/Parameters/" + step.NAME + "/" + Random.Range(0,1000000).ToString() +".asset");
+			EditorUtility.SetDirty(brpm);
+			step.ListBricks.Add(brpm);
 		}
+		EditorGUILayout.EndHorizontal();
+		EditorUtility.SetDirty(step);
 	}
 
 	private void displayBrickHeader(BrickStepParam _prm)

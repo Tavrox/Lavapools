@@ -19,10 +19,15 @@ public class LevelSetup : ScriptableObject
 	[Range(1,10)] public int Gem_MinimumInLevel;
 	public LevelSetup _lvlToCopy;
 
-	[HideInInspector] public BrickStepParam BrickParam;
-	[HideInInspector] public BrickStepParam ParamAdd;
-	[HideInInspector] public List<BrickStepParam> ListBricks = new List<BrickStepParam>();
+	public BrickStepParam BrickParam;
+	public BrickStepParam ParamAdd;
 	
+	[SerializeField] private List<BrickStepParam> _ListBricks;
+	[SerializeField] public List<BrickStepParam> ListBricks
+	{
+		get { return _ListBricks; }
+		set { _ListBricks = value; }
+	}
 	[HideInInspector] public Dictionary<LevelBrick.typeList, float> _dicoBricks = new Dictionary<LevelBrick.typeList, float>();
 	[HideInInspector] public List<LinearStep> Procedural_Steps;
 

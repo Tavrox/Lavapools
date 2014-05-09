@@ -89,6 +89,7 @@ public class LinearStepTrigger : MonoBehaviour {
 			List<BrickStepParam> paramlist = SETUP.ListBricks.FindAll((BrickStepParam para) => para.stepID == _CURRENTSTEP.stepID);
 			foreach (BrickStepParam _parameter in paramlist)
 			{
+				print ("olo");
 				currParam = _parameter;
 				currModBrick = findBrick();
 				attributeWaypoint();
