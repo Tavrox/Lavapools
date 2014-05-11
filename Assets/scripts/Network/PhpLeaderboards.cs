@@ -66,7 +66,7 @@ public class PhpLeaderboards : MonoBehaviour
 				"&score=" + prse.ToString() +
 				"&hash=" + hash;
 
-		print (post_url);
+//		print (post_url);
 		WWW hs_post = new WWW(post_url);
 		yield return hs_post;
 		

@@ -34,10 +34,10 @@ public class BladeTower : OppTower {
 		type = typeList.BladeTower;
 
 		FbHead = FETool.findWithinChildren(gameObject, "Head");
-		parUp = FETool.findWithinChildren(gameObject, "Head/FirebBladesalls/up");
-		parLeft = FETool.findWithinChildren(gameObject, "Head/Fireballs/left");
-		parRight = FETool.findWithinChildren(gameObject, "Head/Fireballs/right");
-		parDown = FETool.findWithinChildren(gameObject, "Head/Fireballs/down");
+		parUp = FETool.findWithinChildren(gameObject, "Head/Blades/up");
+		parLeft = FETool.findWithinChildren(gameObject, "Head/Blades/left");
+		parRight = FETool.findWithinChildren(gameObject, "Head/Blades/right");
+		parDown = FETool.findWithinChildren(gameObject, "Head/Blades/down");
 		Hat = FETool.findWithinChildren(gameObject, "Hat");
 
 		moveMarUp = new Vector3(0f, marginUp,0f);
@@ -55,6 +55,7 @@ public class BladeTower : OppTower {
 	override public void enableBrick()
 	{
 		isEnabled = true;
+		speed = getSpeed(this, _bricksSpeed);
 		triggerRotation();
 	}
 	
@@ -89,6 +90,7 @@ public class BladeTower : OppTower {
 
 	public void pivotHead()
 	{
+		print ("goth");
 		Vector3 vec = new Vector3(0f,0f,speed);
 		FbHead.transform.Rotate(vec);
 		Hat.transform.Rotate(vec);
@@ -118,7 +120,7 @@ public class BladeTower : OppTower {
 	{
 		for (int i = 0; i < _nbFireballs ; i++)
 		{
-			GameObject gameo = Instantiate(Resources.Load("Bricks/Opponent/Fireball")) as GameObject;
+			GameObject gameo = Instantiate(Resources.Load("Bricks/Opponent/BladePart")) as GameObject;
 			BladePart fb = gameo.GetComponent<BladePart>();
 			fb.Direction = _dir;
 			switch (fb.Direction)

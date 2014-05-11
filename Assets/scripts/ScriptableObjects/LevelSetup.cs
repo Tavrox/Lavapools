@@ -32,7 +32,8 @@ public class LevelSetup : ScriptableObject
 	[HideInInspector] public List<LinearStep> Procedural_Steps;
 
 	// Use this for initialization
-	public void initScript () {
+	public void initScript () 
+	{
 		_dicoBricks.Add(LevelBrick.typeList.Bird, Bird_Speed);
 		_dicoBricks.Add(LevelBrick.typeList.Chainsaw, Chainsaw_Speed);
 		_dicoBricks.Add(LevelBrick.typeList.ArrowTower, Arrow_FireRate);

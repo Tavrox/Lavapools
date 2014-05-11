@@ -87,15 +87,15 @@ public class LinearStepTrigger : MonoBehaviour {
 		if (SETUP.ListBricks != null)
 		{
 			List<BrickStepParam> paramlist = SETUP.ListBricks.FindAll((BrickStepParam para) => para.stepID == _CURRENTSTEP.stepID);
+
 			foreach (BrickStepParam _parameter in paramlist)
 			{
-				print ("olo");
 				currParam = _parameter;
 				currModBrick = findBrick();
 				attributeWaypoint();
 				enableBrick();
-				//				disableBrick();
-				//				giveDirections();
+				disableBrick();
+				giveDirections();
 				//				setupTowerLength();
 				//				swapTowerRotation();
 			}
@@ -128,14 +128,18 @@ public class LinearStepTrigger : MonoBehaviour {
 	}
 	private void enableBrick()
 	{
-		if (currParam.Enable != true && currParam.ID != 0)
+		if (currParam.Enable == true && currParam.ID != 0)
 		{
+			if (currModBrick.type == LevelBrick.typeList.BladeTower)
+			{
+				currModBrick.GetComponent<BladeTower>().setupBladePart(currParam.TowerLength);
+			}
 			currModBrick.enableBrick();
 		}
 	}
 	private void disableBrick()
 	{
-		if (currParam.Disable != true && currParam.ID != 0)
+		if (currParam.Disable == true && currParam.ID != 0)
 		{
 			currModBrick.disableBrick();
 		}
@@ -144,10 +148,15 @@ public class LinearStepTrigger : MonoBehaviour {
 	{
 		if (currModBrick.type == LevelBrick.typeList.BladeTower || currModBrick.type == LevelBrick.typeList.ArrowTower)
 		{
+			currParam.Directions.ToUpper();
 			if (currParam.Directions.Contains("U") || currParam.Directions.Contains("D") ||
 			    currParam.Directions.Contains("L") || currParam.Directions.Contains("R") )
 			{
 				currModBrick.GetComponent<OppTower>().setupDirectionList(currParam.Directions);
+				if (currModBrick.type == LevelBrick.typeList.ArrowTower)
+				{
+					currModBrick.GetComponent<ArrowTower>().displayDirections(currParam.Directions);
+				}
 			}
 		}
 	}

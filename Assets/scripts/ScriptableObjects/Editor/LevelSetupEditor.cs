@@ -7,7 +7,7 @@ using UnityEditor;
 public class LevelSetupEditor : Editor
 {
 	private LevelSetup step;
-	private float maxSize = 600f;
+	private float maxSize = 550f;
 	private float boxSize;
 	private GUIStyle style;
 	[SerializeField] private BrickStepParam brpm;
@@ -25,7 +25,7 @@ public class LevelSetupEditor : Editor
 		{
 			GUI.color = customSkin.col1;
 			EditorGUILayout.BeginVertical(GUILayout.Width(maxSize)); // Start
-			GUILayout.Box("Bricks setupped", GUILayout.Width(maxSize));
+//			GUILayout.Box("Bricks setupped", GUILayout.Width(maxSize));
 			GUI.color = customSkin.col3;
 			displayBrickHeader(brpm);
 			if (GUILayout.Button("SortID", GUILayout.Width(boxSize)))
@@ -83,21 +83,21 @@ public class LevelSetupEditor : Editor
 	{
 		// NOTES FOR DESIGNER
 		EditorGUILayout.BeginHorizontal(GUILayout.Width(maxSize));
-		GUILayout.Box("Type",GUILayout.Width(boxSize));
-		GUILayout.Box("StepID",GUILayout.Width(boxSize) );
-		GUILayout.Box("ID",GUILayout.Width(boxSize) );
+		GUILayout.Box("Type",GUILayout.Width(boxSize * 1.5f));
+		GUILayout.Box("Step",GUILayout.Width(boxSize / 1.5f));
+		GUILayout.Box("ID",GUILayout.Width(boxSize));
 		GUILayout.Box("WayP",GUILayout.Width(boxSize) );
 		GUILayout.Box("Enable", GUILayout.Width(boxSize));
 		GUILayout.Box("Disabled", GUILayout.Width(boxSize));
-		GUILayout.Box("Direction", GUILayout.Width(boxSize));
+		GUILayout.Box("Directio", GUILayout.Width(boxSize));
 		GUILayout.Box("Length", GUILayout.Width(boxSize));
 		GUILayout.Box("Invert", GUILayout.Width(boxSize));
 	}
 	
 	private void displayBrickInfo(BrickStepParam _prm)
 	{
-		_prm.Brick 					= (LevelBrick.typeList)System.Enum.Parse(typeof(LevelBrick.typeList) , EditorGUILayout.EnumPopup("", _prm.Brick, GUILayout.Width(boxSize)).ToString());
-		_prm.stepID					= EditorGUILayout.IntField("", _prm.stepID, GUILayout.Width(boxSize));
+		_prm.Brick 					= (LevelBrick.typeList)System.Enum.Parse(typeof(LevelBrick.typeList) , EditorGUILayout.EnumPopup("", _prm.Brick, GUILayout.Width(boxSize*1.5f)).ToString());
+		_prm.stepID					= EditorGUILayout.IntField("", _prm.stepID, GUILayout.Width(boxSize / 1.5f));
 		_prm.ID						= EditorGUILayout.IntField("", _prm.ID, GUILayout.Width(boxSize));
 		_prm.WaypointsAttributed 	= EditorGUILayout.TextField("", _prm.WaypointsAttributed, GUILayout.Width(boxSize));
 		_prm.Enable 				= EditorGUILayout.Toggle("", _prm.Enable, GUILayout.Width(boxSize));

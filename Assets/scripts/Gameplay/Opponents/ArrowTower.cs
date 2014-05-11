@@ -47,6 +47,7 @@ public class ArrowTower : OppTower {
 
 	override public void enableBrick()
 	{
+		speed = getSpeed(this, _bricksSpeed);
 		isEnabled = true;
 		triggerShooting();
 	}
@@ -60,6 +61,7 @@ public class ArrowTower : OppTower {
 	public void triggerShooting()
 	{
 		// Setup the frequency of shoots
+		print ("triggShoot");
 		InvokeRepeating("ShootArrow", 0f, speed);
 	}
 
@@ -78,6 +80,46 @@ public class ArrowTower : OppTower {
 					launchArrow.giveDirection(dir);
 				}
 			}
+		}
+	}
+
+	public void displayDirections(string _dir)
+	{
+		string _grp = _dir;
+		if (_grp.Contains("U"))
+		{
+			dirUp.alpha = 1f;
+		}
+		else
+		{
+			dirUp.alpha = 0f;
+		}
+
+		if (_grp.Contains("D"))
+		{
+			dirDown.alpha = 1f;
+		}
+		else
+		{
+			dirDown.alpha = 0f;
+		}
+
+		if (_grp.Contains("L"))
+		{
+			dirLeft.alpha = 1f;
+		}
+		else
+		{
+			dirLeft.alpha = 0f;
+		}
+
+		if (_grp.Contains("R"))
+		{
+			dirRight.alpha = 1f;
+		}
+		else
+		{
+			dirRight.alpha = 0f;
 		}
 	}
 

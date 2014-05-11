@@ -70,6 +70,11 @@ public class LevelBrick : MonoBehaviour {
 	public float getSpeed(LevelBrick _brick, Dictionary<LevelBrick.typeList, float> _dico)
 	{
 		float res = 0f;
+		if (_dico.ContainsKey(_brick.type) == false)
+		{
+			Debug.LogError("Couldn't find " + type.ToString() + " speed");
+			Debug.Break();
+		}
 		res = _dico[_brick.type];
 		return res;
 	}
@@ -82,6 +87,7 @@ public class LevelBrick : MonoBehaviour {
 		{
 			animSpr.Play();
 		}
+		print (type + "lol");
 		isEnabled = true;
 	}
 
