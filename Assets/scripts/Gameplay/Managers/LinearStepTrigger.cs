@@ -93,9 +93,9 @@ public class LinearStepTrigger : MonoBehaviour {
 				currParam = _parameter;
 				currModBrick = findBrick();
 				attributeWaypoint();
+				giveDirections();
 				enableBrick();
 				disableBrick();
-				giveDirections();
 				//				setupTowerLength();
 				//				swapTowerRotation();
 			}

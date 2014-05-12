@@ -25,6 +25,7 @@ public class BladeTower : OppTower {
 	private Vector3 moveMarDown;
 	private Vector3 moveMarLeft;
 	private Vector3 moveMarRight;
+	private float currRot;
 
 
 	// Use this for initialization
@@ -67,7 +68,9 @@ public class BladeTower : OppTower {
 
 	public void setupBladePart(int _length)
 	{
+		print ("setup");
 		destroyAllBladePart(FbList);
+//		print ("tr" + enabledDirection[0]);
 		foreach (LevelTools.DirectionList dirChosen in enabledDirection)
 		{
 			createBladePart(_length, dirChosen);
@@ -118,6 +121,8 @@ public class BladeTower : OppTower {
 
 	public void createBladePart(int _nbFireballs, LevelTools.DirectionList _dir)
 	{
+		print ("_create");
+		print ("_crea" + _nbFireballs);
 		for (int i = 0; i < _nbFireballs ; i++)
 		{
 			GameObject gameo = Instantiate(Resources.Load("Bricks/Opponent/BladePart")) as GameObject;
@@ -162,30 +167,30 @@ public class BladeTower : OppTower {
 		{
 			foreach (BladePart fb in _list)
 			{
-				int currInd = _list.IndexOf(fb);
+				int currInd = _list.IndexOf(fb) + 2;
 				switch (fb.Direction)
 				{
 				case LevelTools.DirectionList.Down :
 				{
-					fb.transform.localPosition = (moveMarDown * currInd ) ;
+					fb.transform.localPosition += (moveMarDown * currInd ) ;
 					fb.transform.localRotation = Quaternion.Euler( new Vector3(0f,0f,180f));
 					break;
 				}
 				case LevelTools.DirectionList.Up :
 				{
-					fb.transform.localPosition = (moveMarUp * currInd ) ;
+					fb.transform.localPosition += (moveMarUp * currInd ) ;
 					fb.transform.localRotation = Quaternion.Euler( new Vector3(0f,0f,0f));
 					break;
 				}
 				case LevelTools.DirectionList.Right :
 				{
-					fb.transform.localPosition = (moveMarRight * currInd ) ;
+					fb.transform.localPosition += (moveMarRight * currInd ) ;
 					fb.transform.localRotation = Quaternion.Euler( new Vector3(0f,0f,270f));
 					break;
 				}
 				case LevelTools.DirectionList.Left :
 				{
-					fb.transform.localPosition = (moveMarLeft * currInd ) ;
+					fb.transform.localPosition += (moveMarLeft * currInd ) ;
 					fb.transform.localRotation = Quaternion.Euler( new Vector3(0f,0f,90f));
 					break;
 				}
