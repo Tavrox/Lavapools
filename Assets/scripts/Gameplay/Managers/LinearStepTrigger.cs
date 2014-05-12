@@ -124,6 +124,7 @@ public class LinearStepTrigger : MonoBehaviour {
 			string typeToFetch = currParam.Brick.ToString();
 			string idToFetch = "_" + currParam.WaypointsAttributed.ToUpper();
 			currModBrick.GetComponent<PatrolBrick>().brickPath = _levMan.wpDirector.waypointsMan.Find((WaypointManager mana) => mana.name == typeToFetch + idToFetch);
+			currModBrick.GetComponent<PatrolBrick>().brickPath.type = currModBrick.type;
 		}
 	}
 	private void enableBrick()

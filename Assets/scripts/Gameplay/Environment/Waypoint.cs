@@ -8,7 +8,7 @@ public class Waypoint : MonoBehaviour {
 	{
 		Normal,
 		Initial,
-		Switchpoint
+		GoToAndStop
 	};
 	public TypeList WPType;
 	[HideInInspector] public int id;
@@ -34,8 +34,6 @@ public class Waypoint : MonoBehaviour {
 		if (activated && _other.GetComponent<PatrolBrick>() != null)
 		{
 			PatrolBrick _collBrick = _other.GetComponent<PatrolBrick>();
-//			print ("[" + _collBrick.type + " VS " + LevelBrick.typeList.Fields + "]");
-
 			if (linkedManager.relatedBrick != null)
 			{
 //				print ("[" + linkedManager.relatedBrick + " VS " + _collBrick + "]");
@@ -43,6 +41,10 @@ public class Waypoint : MonoBehaviour {
 //				{
 					if (_collBrick.type == linkedManager.relatedBrick.type && _collBrick.brickPathId == linkedManager.id)
 					{
+						if (_collBrick.type == LevelBrick.typeList.Carpet && _collBrick.GetComponent<Carpet>().Stopped == false)
+						{
+							_collBrick.GetComponent<Carpet>().ReachAndStop();
+						}
 						passedUpon = true;
 						StartCoroutine("delayRetrigger");
 						_collBrick.GoToWaypoint(linkedManager.findNextWaypoint(this));

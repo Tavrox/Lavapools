@@ -78,6 +78,7 @@ public class BladeTower : OppTower {
 		FbDirList.Add(FbListUp);
 
 		moveFireballs(FbDirList);
+		createBladeKiller(FbList);
 	}
 
 	public void swapRotation(bool _swapRot)
@@ -90,7 +91,6 @@ public class BladeTower : OppTower {
 
 	public void pivotHead()
 	{
-		print ("goth");
 		Vector3 vec = new Vector3(0f,0f,speed);
 		FbHead.transform.Rotate(vec);
 		Hat.transform.Rotate(vec);
@@ -191,6 +191,14 @@ public class BladeTower : OppTower {
 				}
 				}
 			}
+		}
+	}
+
+	private void createBladeKiller(List<BladePart> _listpt)
+	{
+		foreach (BladePart pt in _listpt)
+		{
+			pt.GetComponent<ColliderKiller>().Setup(this);
 		}
 	}
 

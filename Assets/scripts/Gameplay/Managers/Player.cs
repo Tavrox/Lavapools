@@ -36,6 +36,12 @@ public class Player : MonoBehaviour {
 		Static
 	};
 	[HideInInspector] public playerState _state;
+	public enum Shield
+	{
+		Shielded,
+		Naked
+	};
+	public Shield hasShield;
 
 	private UserLeaderboard _playerSheet;
 
@@ -104,6 +110,14 @@ public class Player : MonoBehaviour {
 			mod.y *= friction.y;
 			this.gameObject.transform.position += mod * Time.deltaTime;
 		}
+	}
+
+	public void looseGems(int _rm)
+	{
+		// Trigger instantiate of tiny gems
+		// Random
+
+		Vector3[] RandDir;
 	}
 
 	private void moveInput()
@@ -210,6 +224,11 @@ public class Player : MonoBehaviour {
 	{
 		yield return new WaitForSeconds(_time);
 		_notif.makeFadeOut();
+	}
+
+	public void giveShield()
+	{
+//		hasShield = Shield.Shielded;
 	}
 
 	private void GameStart()

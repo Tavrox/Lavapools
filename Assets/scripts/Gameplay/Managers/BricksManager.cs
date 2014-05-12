@@ -29,6 +29,10 @@ public class BricksManager : MonoBehaviour {
 			{
 				_brick.GetComponent<BladeTower>().Setup();
 			}
+			if (_brick.GetComponent<Carpet>() != null)
+			{
+				_brick.GetComponent<Carpet>().Setup();
+			}
 			_brick.disableBrick();
 		}
 	}

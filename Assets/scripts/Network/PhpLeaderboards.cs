@@ -72,14 +72,14 @@ public class PhpLeaderboards : MonoBehaviour
 		
 		if (hs_post.error != null)
 		{
-			print("There was an error posting the high score: " + hs_post.error);
+//			print("There was an error posting the high score: " + hs_post.error);
 		}
 		else
 		{
-			print ("Record envoyé"
+//			print ("Record envoyé"
 //			       + level_id.ToString() + "]["
-			       + name  + "]["
-			       + score + "]");
+//			       + name  + "]["
+//			       + score + "]");
 		}
 	}
 	

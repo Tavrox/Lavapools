@@ -87,7 +87,6 @@ public class LevelBrick : MonoBehaviour {
 		{
 			animSpr.Play();
 		}
-		print (type + "lol");
 		isEnabled = true;
 	}
 

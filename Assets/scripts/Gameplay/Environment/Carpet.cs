@@ -2,8 +2,11 @@
 using System.Collections;
 
 public class Carpet : PatrolBrick {
-	
-	public void Start () 
+
+	private float DistToWp;
+	public bool Stopped = false;
+
+	public void Setup () 
 	{
 		base.Setup();
 		type = typeList.Carpet;
@@ -21,8 +24,46 @@ public class Carpet : PatrolBrick {
 		{
 			Debug.Log("The path of "+gameObject.name+" is missing.");
 		}
-
+		InvokeRepeating("checkWpDistance", 0f, 0.05f);
 		setupPath();
+	}
+
+	private void checkWpDistance()
+	{
+//		DistToWp = Vector3.Distance(gameObject.transform.position , brickPath.findNextWaypoint(currentWP).transform.position);
+//		print (DistToWp);
+		if (Stopped == false)
+		{
+//			if (DistToWp < 1f)
+//			{
+//				print ("stop");
+//	//			StartCoroutine("StopAndGo");
+//			}
+//			else if (DistToWp < 4f)
+//			{
+//				print ("slowin");
+//				speed = initSpeed / 1.5f;
+//			}
+//			else
+//			{
+//				print ("normal");
+//				speed = initSpeed;
+//			}
+		}
+	}
+
+	public void ReachAndStop()
+	{
+		Stopped = true;
+		StartCoroutine(StopAndGo());
+	}
+
+	IEnumerator StopAndGo()
+	{
+		speed = 0f;
+		yield return new WaitForSeconds (2f);
+		Stopped = false;
+		speed = initSpeed;
 	}
 
 	private void GameStart()
