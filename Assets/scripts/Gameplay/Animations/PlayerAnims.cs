@@ -6,10 +6,10 @@ public class PlayerAnims : MonoBehaviour {
 	private OTAnimation _animations;
 	private OTAnimatingSprite _animSprite;
 
-	public OTAnimationFrameset _STATIC;
-	public OTAnimationFrameset _WALK;
-	public OTAnimationFrameset _MAXWALK;
-	public OTAnimationFrameset _CURR;
+	public string _STATIC;
+	public string _WALK;
+	public string _MAXWALK;
+	public string _CURR;
 
 
 	// Use this for initialization
@@ -18,17 +18,17 @@ public class PlayerAnims : MonoBehaviour {
 
 		_animations = GameObject.Find("Frameworks/OT/Animations/player").GetComponent<OTAnimation>();
 		_animSprite = GetComponentInChildren<OTAnimatingSprite>();
-		_STATIC = _animations.GetFrameset("static");
-		_WALK = _animations.GetFrameset("walk");
-		_MAXWALK = _animations.GetFrameset("maxwalk");
-		_CURR = _animations.GetFrameset("walk");
+		_STATIC = "static";
+		_WALK = "walk";
+		_MAXWALK = "maxwalk";
+		_CURR = "walk";
 	}
 
-	public void playAnimation(OTAnimationFrameset _anim)
+	public void playAnimation(string _anim)
 	{
-		if (_animSprite.animationFrameset != _anim.name)
+		if (_animSprite.animationFrameset != _anim)
 		{
-			_animSprite.animationFrameset = _anim.name;
+			_animSprite.Play (_anim);
 		}
 	}
 }
