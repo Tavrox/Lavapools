@@ -6,7 +6,7 @@ public class Bird : PatrolBrick {
 	private float displayWaveTime = 0.5f;
 	private OTAnimatingSprite WavesSpr;
 
-	public void Start () 
+	public void Setup () 
 	{
 		base.Setup();
 		type = typeList.Bird;
@@ -40,7 +40,7 @@ public class Bird : PatrolBrick {
 	
 	public void fadeDelay()
 	{
-//		new OTTween(WavesSpr, LevelManager.GlobTuning.fadeAfterDelay).Tween("alpha", 0f);
+		new OTTween(WavesSpr, LevelManager.GlobTuning.fadeAfterDelay).Tween("alpha", 0f);
 	}
 
 	public override void enableBrick ()

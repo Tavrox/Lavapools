@@ -68,7 +68,6 @@ public class BladeTower : OppTower {
 
 	public void setupBladePart(int _length)
 	{
-		print ("setup");
 		destroyAllBladePart(FbList);
 //		print ("tr" + enabledDirection[0]);
 		foreach (LevelTools.DirectionList dirChosen in enabledDirection)

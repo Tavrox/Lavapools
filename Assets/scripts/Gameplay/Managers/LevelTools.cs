@@ -97,11 +97,15 @@ public class LevelTools : MonoBehaviour {
 				_place.distToPlayer = Vector2.Distance(placeVec, playerVec);
 			}
 			PlacesToSpawn.Sort(delegate (CollectiblePlaces x, CollectiblePlaces y)
-			                      {
+			{
 				if (x.distToPlayer < y.distToPlayer) return -1;
 				if (x.distToPlayer > y.distToPlayer) return 1;
 				else return 0;
 			});
+			if (PlacesToSpawn.Count <= 0)
+			{
+				Debug.LogError("Places To spawn setupped too high");
+			}
 			int rando = Random.Range(0, PlacesToSpawn.Count);
 			_chosen = PlacesToSpawn[rando];
 		}
