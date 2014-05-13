@@ -19,18 +19,19 @@ public class ColliderKiller : MonoBehaviour {
 			{
 				if (_parent.type == LevelBrick.typeList.Bird)
 				{
-	//				_parent._levMan.tools.tryDeath(LevelTools.KillerList.Bird);
-					GameEventManager.TriggerGameOver(LevelTools.KillerList.Bird);
+					_parent._levMan.tools.tryDeath(LevelTools.KillerList.Bird);
 				}
 				if (_parent.type == LevelBrick.typeList.Chainsaw)
 				{
-	//				_parent._levMan.tools.tryDeath(LevelTools.KillerList.Chainsaw);
-					GameEventManager.TriggerGameOver(LevelTools.KillerList.Chainsaw);
+					_parent._levMan.tools.tryDeath(LevelTools.KillerList.Chainsaw);
 				}
 				if (_parent.type == LevelBrick.typeList.BladeTower)
 				{
-					//				_parent._levMan.tools.tryDeath(LevelTools.KillerList.Chainsaw);
-					GameEventManager.TriggerGameOver(LevelTools.KillerList.Fireball);
+					_parent._levMan.tools.tryDeath(LevelTools.KillerList.Fireball);
+				}
+				if (_parent.type == LevelBrick.typeList.ArrowTower)
+				{
+					_parent._levMan.tools.tryDeath(LevelTools.KillerList.Arrow);
 				}
 			}
 		}

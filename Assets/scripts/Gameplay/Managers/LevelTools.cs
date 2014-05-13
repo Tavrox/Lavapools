@@ -22,12 +22,7 @@ public class LevelTools : MonoBehaviour {
 		Left,	//Left
 		Right	//Right
 	};
-	
-	public void disableBrick (LevelBrick _brickToEnable)
-	{
-		
-	}
-	
+
 	public void disableAllBrick ()
 	{
 		foreach (LevelBrick brk in _levMan.bricksMan.BricksList)
@@ -36,44 +31,14 @@ public class LevelTools : MonoBehaviour {
 		}
 	}
 
+	public void lootStack(int _stk)
+	{
+		_levMan.collecSum += _stk * 1f;
+	}
+
 	public void tryDeath(LevelTools.KillerList _kl)
 	{
-		Player pl = _levMan._player;
-		switch (pl.hasShield)
-		{
-		case Player.Shield.Shielded :
-		{
-			int _gemCt = Mathf.RoundToInt(_levMan.score);
-			pl.looseGems(_gemCt);
-			gemLoss(5);
-			break;
-		}
-		case Player.Shield.Naked :
-		{
-			
-			break;
-		}
-		}
-	}
-
-	private void gemLoss(float _rm)
-	{
-		_levMan.score -= _rm;
-	}
-
-	public void enableBrick (LevelBrick _brickToEnable)
-	{
-		
-	}
-
-	public void enableBrick (string _brickToEnable)
-	{
-		
-	}
-
-	public void fetchWaypoints(LevelBrick.typeList _type)
-	{
-
+		GameEventManager.TriggerGameOver(_kl);
 	}
 
 	public WaypointManager findWpManager(LevelBrick.typeList _type)

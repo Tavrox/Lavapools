@@ -97,7 +97,7 @@ public class LinearStepTrigger : MonoBehaviour {
 				enableBrick();
 				disableBrick();
 				//				setupTowerLength();
-				//				swapTowerRotation();
+				swapTowerRotation();
 			}
 		}
 	}
@@ -163,7 +163,7 @@ public class LinearStepTrigger : MonoBehaviour {
 	}
 	private void setupTowerLength()
 	{
-		if (currModBrick.type == LevelBrick.typeList.BladeTower)
+		if (currModBrick.type == LevelBrick.typeList.BladeTower && currParam.TowerLength > 0)
 		{
 			currModBrick.GetComponent<BladeTower>().setupBladePart(currParam.TowerLength);
 		}

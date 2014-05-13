@@ -22,7 +22,7 @@
         <key>dataFormat</key>
         <string>cocos2d</string>
         <key>textureFileName</key>
-        <filename>../gfx/player.png</filename>
+        <filename>../../gfx/player.png</filename>
         <key>flipPVR</key>
         <false/>
         <key>ditherType</key>
@@ -111,7 +111,7 @@
             <enum type="AndEngine::MagFilter">MagLinear</enum>
         </struct>
         <key>dataFileName</key>
-        <filename>../gfx/player.xml</filename>
+        <filename>../../gfx/player.xml</filename>
         <key>multiPack</key>
         <false/>
         <key>mainExtension</key>
@@ -160,6 +160,12 @@
             <filename>player09walk.png</filename>
             <filename>player10walk.png</filename>
             <filename>player11walk.png</filename>
+            <filename>player17walkmax.png</filename>
+            <filename>player12walkmax.png</filename>
+            <filename>player13walkmax.png</filename>
+            <filename>player14walkmax.png</filename>
+            <filename>player15walkmax.png</filename>
+            <filename>player16walkmax.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

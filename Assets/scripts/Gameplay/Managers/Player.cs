@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class Player : MonoBehaviour {
 	
@@ -15,6 +16,13 @@ public class Player : MonoBehaviour {
 	public float initHighSpeed;
 	public float currSpeed;
 
+	public enum speedList
+	{
+		Low,
+		Med,
+		High
+	};
+	public speedList currSp;
 	private RaycastHit hit;
 	private Vector3 pos;
 	private int layer;
@@ -29,6 +37,7 @@ public class Player : MonoBehaviour {
 	private Notification _notif;
 	private PlayerAnims _anims;
 	private float speedStack = 0f;
+	private GameObject Explosion;
 
 	[HideInInspector] public enum playerState
 	{
@@ -39,6 +48,7 @@ public class Player : MonoBehaviour {
 	public enum Shield
 	{
 		Shielded,
+		Transition,
 		Naked
 	};
 	public Shield hasShield;
@@ -71,7 +81,7 @@ public class Player : MonoBehaviour {
 		initHighSpeed = highSpeed;
 		playerSteps = LevelManager.GlobTuning.PlayerSteps;
 		InputMan = Resources.Load("Tuning/InputManager") as InputManager;
-
+		Explosion = FETool.findWithinChildren(gameObject ,"Explosion");
 		 
 		_anims = gameObject.AddComponent<PlayerAnims>() as PlayerAnims;
 		_anims.Setup();
@@ -80,6 +90,7 @@ public class Player : MonoBehaviour {
 		startPos = gameObject.transform.position;
 		friction.x = LevelManager.GlobTuning.Player_Friction.x;
 		friction.y = LevelManager.GlobTuning.Player_Friction.y;
+		hasShield = Shield.Naked;
 
 		
 		GameEventManager.GameStart += GameStart;
@@ -103,7 +114,7 @@ public class Player : MonoBehaviour {
 		{
 			if (OnPlatforms <= 0)
 			{
-				GameEventManager.TriggerGameOver(LevelTools.KillerList.Lava);
+				_levMan.tools.tryDeath(LevelTools.KillerList.Lava);
 			}
 			moveInput();
 			mod.x *= friction.x;
@@ -112,13 +123,11 @@ public class Player : MonoBehaviour {
 		}
 	}
 
-	public void looseGems(int _rm)
+	public void lootStack(int _stk)
 	{
-		// Trigger instantiate of tiny gems
-		// Random
-
-		Vector3[] RandDir;
+		triggerNotification(_stk * 1f);
 	}
+
 
 	private void moveInput()
 	{
@@ -127,14 +136,17 @@ public class Player : MonoBehaviour {
 			if (speedStack > playerSteps.x && speedStack < playerSteps.y )
 			{
 				currSpeed = lowSpeed;
+				_anims._CURR = _anims._WALK;
 			}
 			if (speedStack > playerSteps.y  && speedStack < playerSteps.z)
 			{
 				currSpeed = medSpeed;
+				_anims._CURR = _anims._WALK;
 			}
 			if (speedStack > playerSteps.z)
 			{
 				currSpeed = highSpeed;
+				_anims._CURR = _anims._MAXWALK;
 			}
 	//		_anims.playAnimation(_anims._STATIC);
 			if (Input.GetKey (InputMan.KeyRight) || Input.GetAxisRaw("X axis") < (InputMan.BigAxis * -1) || Input.GetAxisRaw("6th axis") < (InputMan.SmallAxis * -1)) 
@@ -142,7 +154,7 @@ public class Player : MonoBehaviour {
 				StopCoroutine("StartCheckReset");
 				speedStack += 1f * Time.deltaTime;
 				mod.x += currSpeed;
-				_anims.playAnimation(_anims._WALK);
+				_anims.playAnimation(_anims._CURR);
 			}
 			else if (Input.GetKeyUp (InputMan.KeyRight)) 
 			{
@@ -156,7 +168,7 @@ public class Player : MonoBehaviour {
 				StopCoroutine("StartCheckReset");
 				speedStack += 1f * Time.deltaTime;
 				mod.y += currSpeed;
-				_anims.playAnimation(_anims._WALK);
+				_anims.playAnimation(_anims._CURR);
 			}
 			else if (Input.GetKeyUp (InputMan.KeyUp)) 
 			{
@@ -170,7 +182,7 @@ public class Player : MonoBehaviour {
 				speedStack += 1f * Time.deltaTime;
 				StopCoroutine("StartCheckReset");
 				mod.x -= currSpeed;
-				_anims.playAnimation(_anims._WALK);
+				_anims.playAnimation(_anims._CURR);
 			}
 			else if (Input.GetKeyUp (InputMan.KeyLeft)) 
 			{
@@ -184,7 +196,7 @@ public class Player : MonoBehaviour {
 				speedStack += 1f * Time.deltaTime;
 				StopCoroutine("StartCheckReset");
 				mod.y -= currSpeed;
-				_anims.playAnimation(_anims._WALK);
+				_anims.playAnimation(_anims._CURR);
 			}
 			else if (Input.GetKeyUp (InputMan.KeyDown)) 
 			{
@@ -228,7 +240,7 @@ public class Player : MonoBehaviour {
 
 	public void giveShield()
 	{
-//		hasShield = Shield.Shielded;
+		hasShield = Shield.Shielded;
 	}
 
 	private void GameStart()

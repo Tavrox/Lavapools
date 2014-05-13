@@ -4,11 +4,18 @@ using System.Collections;
 public class Gatepart : Collectible {
 
 	private CollectiblePlaces collPlace;
+	public enum partType
+	{
+		Spawner,
+		Recup
+	};
+	public partType thisType;
 	
 	// Use this for initialization
 	public void Setup (LevelManager _lm, CollectiblePlaces _place) 
 	{
 		base.Setup(_lm);
+		thisType = partType.Spawner;
 		collPlace = _place;
 		PlaceCollectibleToGo = PlacesCollect.Stargate;
 		Pop();
@@ -18,15 +25,45 @@ public class Gatepart : Collectible {
 	{
 		if (_other.CompareTag("Player") && picked == false)
 		{
-			collPlace.occupied = false;
-			_levMan.tools.CollectObject(this);
-			_levMan.triggerSpawnGem(collPlace);
-			MasterAudio.PlaySound("door_piece_pick");
-			if (_levMan._player.hasShield == Player.Shield.Naked)
+			if (thisType == partType.Spawner)
 			{
-				_levMan._player.giveShield();
+				collPlace.occupied = false;
+				_levMan.tools.CollectObject(this);
+				_levMan.triggerSpawnGem(collPlace);
+				MasterAudio.PlaySound("door_piece_pick");
+				if (_levMan._player.hasShield == Player.Shield.Naked)
+				{
+					_levMan._player.giveShield();
+				}
+				Vanish();
 			}
-			Vanish();
+			else
+			{
+				_levMan.collecSum += 1f;
+				Vanish();
+			}
 		}
+	}
+
+	public void fadeAfterFail(float _time)
+	{
+		thisType = partType.Recup;
+		busy = true;
+		StartCoroutine(Unbusy(_time));
+	}
+
+	IEnumerator Unbusy(float _time)
+	{
+		yield return new WaitForSeconds(_time);
+		if (_spr != null)
+		{
+			new OTTween(this._spr, _time * 4f).Tween("alpha", 0f);
+		}
+		else if (_animSpr != null)
+		{
+			new OTTween(this._animSpr, _time * 4f).Tween("alpha", 0f);
+		}
+		busy = false;
+		Destroy(gameObject, _time * 3f);
 	}
 }

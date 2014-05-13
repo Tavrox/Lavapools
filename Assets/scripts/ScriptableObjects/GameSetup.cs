@@ -18,7 +18,9 @@ public class GameSetup : ScriptableObject {
 		Amirani, 
 		Olympus,
 		GameEnding,
-		Oblivion
+		Oblivion,
+		Test,
+		Trailer
 	};
 	public enum languageList
 	{

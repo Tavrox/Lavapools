@@ -20,6 +20,7 @@ public class Collectible : MonoBehaviour {
 	public LevelManager _levMan;
 	public CollectiblePlaces _relatedPlace;
 	public bool picked = false;
+	public bool busy = false;
 	public OTSprite _spr;
 	public OTAnimatingSprite _animSpr;
 
@@ -53,7 +54,7 @@ public class Collectible : MonoBehaviour {
 
 	public void Vanish()
 	{
-		if (picked == false)
+		if (picked == false && busy == false)
 		{
 			picked = true;
 

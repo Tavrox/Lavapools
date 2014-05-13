@@ -18,14 +18,7 @@ public class Arrow : MonoBehaviour {
 		linkedTower = _tw;
 		speed = _sp;
 		initPos = transform.position;
-	}
-
-	void OnTriggerEnter(Collider _oth)
-	{
-		if (_oth.CompareTag("Player") == true)
-		{
-			GameEventManager.TriggerGameOver(LevelTools.KillerList.Arrow);
-		}
+		GetComponent<ColliderKiller>().Setup(linkedTower);
 	}
 
 	void Update()
