@@ -36,20 +36,17 @@ public class Waypoint : MonoBehaviour {
 			PatrolBrick _collBrick = _other.GetComponent<PatrolBrick>();
 			if (linkedManager.relatedBrick != null)
 			{
-//				print ("[" + linkedManager.relatedBrick + " VS " + _collBrick + "]");
-//				if (linkedManager.relatedBrick != _collBrick)
-//				{
-					if (_collBrick.type == linkedManager.relatedBrick.type && _collBrick.brickPathId == linkedManager.id)
+				if (_collBrick.type == linkedManager.relatedBrick.type && _collBrick.brickPathId == linkedManager.id)
+				{
+					if (_collBrick.type == LevelBrick.typeList.Carpet && _collBrick.GetComponent<Carpet>().Stopped == false)
 					{
-						if (_collBrick.type == LevelBrick.typeList.Carpet && _collBrick.GetComponent<Carpet>().Stopped == false)
-						{
-							_collBrick.GetComponent<Carpet>().ReachAndStop();
-						}
-						passedUpon = true;
-						StartCoroutine("delayRetrigger");
-						_collBrick.GoToWaypoint(linkedManager.findNextWaypoint(this));
+						_collBrick.GetComponent<Carpet>().ReachAndStop();
 					}
-//				}
+					print ("ping");
+					passedUpon = true;
+					StartCoroutine("delayRetrigger");
+					_collBrick.GoToWaypoint(linkedManager.findNextWaypoint(this));
+				}
 			}
 		}
 	}

@@ -264,7 +264,6 @@ public class LevelManager : MonoBehaviour {
 	{
 		if (this != null)
 		{
-			_player.gameObject.SetActive(false);
 			CancelInvoke("updateTime");
 			CancelInvoke("UpdateScoreOverTime");
 			StopCoroutine("delayedSpawnGem");
@@ -278,7 +277,6 @@ public class LevelManager : MonoBehaviour {
 			OvertimeScoreElapsed = 0;
 			InvokeRepeating("UpdateScoreOverTime", 0f, 0.1f);
 			InvokeRepeating("updateTime", 0f, 0.01f);
-			_player.gameObject.SetActive(true);
 			score = 0f;
 			centSecondsElapsed = 0;
 			SecondsElapsed = 0;

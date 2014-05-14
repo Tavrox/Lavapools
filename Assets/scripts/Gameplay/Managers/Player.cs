@@ -7,14 +7,15 @@ public class Player : MonoBehaviour {
 	[HideInInspector] public LevelManager _levMan;
 	[HideInInspector] public InputManager InputMan;
 	public int OnPlatforms;
-
-	public float lowSpeed;
-	public float medSpeed;
-	public float highSpeed;
-	public float initLowSpeed;
-	public float initMedSpeed;
-	public float initHighSpeed;
-	public float currSpeed;
+	
+	public playerState _state;
+	[HideInInspector] public float lowSpeed;
+	[HideInInspector] public float medSpeed;
+	[HideInInspector] public float highSpeed;
+	[HideInInspector] public float initLowSpeed;
+	[HideInInspector] public float initMedSpeed;
+	[HideInInspector] public float initHighSpeed;
+	[HideInInspector] public float currSpeed;
 
 	public enum speedList
 	{
@@ -22,7 +23,7 @@ public class Player : MonoBehaviour {
 		Med,
 		High
 	};
-	public speedList currSp;
+	[HideInInspector] public speedList currSp;
 	private RaycastHit hit;
 	private Vector3 pos;
 	private int layer;
@@ -37,21 +38,12 @@ public class Player : MonoBehaviour {
 	private Notification _notif;
 	private PlayerAnims _anims;
 	private float speedStack = 0f;
-	private GameObject Explosion;
 
 	[HideInInspector] public enum playerState
 	{
-		Walk,
-		Static
+		Alive,
+		Dead
 	};
-	[HideInInspector] public playerState _state;
-	public enum Shield
-	{
-		Shielded,
-		Transition,
-		Naked
-	};
-	public Shield hasShield;
 
 	private UserLeaderboard _playerSheet;
 
@@ -81,7 +73,6 @@ public class Player : MonoBehaviour {
 		initHighSpeed = highSpeed;
 		playerSteps = LevelManager.GlobTuning.PlayerSteps;
 		InputMan = Resources.Load("Tuning/InputManager") as InputManager;
-		Explosion = FETool.findWithinChildren(gameObject ,"Explosion");
 		 
 		_anims = gameObject.AddComponent<PlayerAnims>() as PlayerAnims;
 		_anims.Setup();
@@ -90,7 +81,6 @@ public class Player : MonoBehaviour {
 		startPos = gameObject.transform.position;
 		friction.x = LevelManager.GlobTuning.Player_Friction.x;
 		friction.y = LevelManager.GlobTuning.Player_Friction.y;
-		hasShield = Shield.Naked;
 
 		
 		GameEventManager.GameStart += GameStart;
@@ -98,28 +88,23 @@ public class Player : MonoBehaviour {
 		GameEventManager.Respawn += Respawn;
 		GameEventManager.EndGame += EndGame;
 	}
-	
-	// Update is called once per frame
-	void Update () {	
-	
-		pos = gameObject.transform.position;
-//		print ("Platforms[" + OnPlatforms+"]");
 
-		if (medSpeed == 0)
+	void Update () 
+	{	
+		if (_state == playerState.Alive)
 		{
-//			Debug.Log("Speed of crab is 0");
-		}
-
-		if (LevelManager.GAMESTATE == GameEventManager.GameState.Live )
-		{
-			if (OnPlatforms <= 0)
+			pos = gameObject.transform.position;
+			if (LevelManager.GAMESTATE == GameEventManager.GameState.Live )
 			{
-				_levMan.tools.tryDeath(LevelTools.KillerList.Lava);
+				if (OnPlatforms <= 0)
+				{
+					_levMan.tools.tryDeath(LevelTools.KillerList.Lava);
+				}
+				moveInput();
+				mod.x *= friction.x;
+				mod.y *= friction.y;
+				this.gameObject.transform.position += mod * Time.deltaTime;
 			}
-			moveInput();
-			mod.x *= friction.x;
-			mod.y *= friction.y;
-			this.gameObject.transform.position += mod * Time.deltaTime;
 		}
 	}
 
@@ -148,7 +133,7 @@ public class Player : MonoBehaviour {
 				currSpeed = highSpeed;
 				_anims._CURR = _anims._MAXWALK;
 			}
-	//		_anims.playAnimation(_anims._STATIC);
+
 			if (Input.GetKey (InputMan.KeyRight) || Input.GetAxisRaw("X axis") < (InputMan.BigAxis * -1) || Input.GetAxisRaw("6th axis") < (InputMan.SmallAxis * -1)) 
 			{
 				StopCoroutine("StartCheckReset");
@@ -238,15 +223,11 @@ public class Player : MonoBehaviour {
 		_notif.makeFadeOut();
 	}
 
-	public void giveShield()
-	{
-		hasShield = Shield.Shielded;
-	}
-
 	private void GameStart()
 	{
 		if (this != null)
 		{
+			_state = playerState.Alive;
 			lowSpeed = initLowSpeed;
 			medSpeed = initMedSpeed;
 			highSpeed = initHighSpeed;
@@ -263,6 +244,8 @@ public class Player : MonoBehaviour {
 	{
 		if (this != null)
 		{
+			print (_state);
+			_state = playerState.Dead;
 			lowSpeed = initLowSpeed;
 			medSpeed = initMedSpeed;
 			highSpeed = initHighSpeed;
@@ -279,6 +262,7 @@ public class Player : MonoBehaviour {
 	{
 		if (this != null)
 		{
+			_state = playerState.Alive;
 			lowSpeed = initLowSpeed;
 			medSpeed = initMedSpeed;
 			highSpeed = initHighSpeed;
@@ -288,7 +272,7 @@ public class Player : MonoBehaviour {
 			new OTTween(spr, 0.5f).Tween("alpha", 1f);
 			new OTTween(spr, 0.5f).Tween("size", new Vector2(originalSize.x,originalSize.y));
 			_notif.makeFadeOut();
-	//		OnPlatforms = 0;
+//			OnPlatforms = 0;
 		}
 	}
 

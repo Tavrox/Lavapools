@@ -25,8 +25,7 @@ public class PatrolBrick : LevelBrick {
 		if (brickPath == null)
 		{
 			Debug.LogError("The path on " +name+ " is missing");
-			brickPath = _levMan.wpDirector.waypointsMan.Find( (WaypointManager wpm) => wpm.type == typeList.Bird);
-			print (brickPath);
+			assignPath(_levMan.wpDirector.waypointsMan.Find( (WaypointManager wpm) => wpm.type == typeList.Bird));
 		}
 
 		GameEventManager.GameStart += GameStart;
@@ -68,6 +67,11 @@ public class PatrolBrick : LevelBrick {
 
 		initPath = brickPath;
 		setupTarget();
+	}
+
+	public void assignPath(WaypointManager wpm)
+	{
+		brickPath = wpm;
 	}
 
 	public void setupTarget()

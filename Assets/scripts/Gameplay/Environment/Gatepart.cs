@@ -31,10 +31,6 @@ public class Gatepart : Collectible {
 				_levMan.tools.CollectObject(this);
 				_levMan.triggerSpawnGem(collPlace);
 				MasterAudio.PlaySound("door_piece_pick");
-				if (_levMan._player.hasShield == Player.Shield.Naked)
-				{
-					_levMan._player.giveShield();
-				}
 				Vanish();
 			}
 			else

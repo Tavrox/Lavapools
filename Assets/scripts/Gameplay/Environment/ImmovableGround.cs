@@ -17,7 +17,7 @@ public class ImmovableGround : MonoBehaviour {
 
 	public void OnTriggerEnter(Collider _other)
 	{
-		if (_other.CompareTag("Player") && _other != null & this != null && killer != true)
+		if (_other.CompareTag("Player") && _other != null & this != null)
 		{
 			_other.GetComponent<Player>().OnPlatforms += 1;
 		}

@@ -8,7 +8,7 @@ public class WaypointManager : MonoBehaviour {
 
 	[HideInInspector] public string id;
 	public LevelBrick.typeList type;
-	[HideInInspector] public LevelBrick relatedBrick;
+	public LevelBrick relatedBrick;
 	public List<Waypoint> relatedWaypoints = new List<Waypoint>();
 	[HideInInspector] public Waypoint lastWp;
 	public bool inverted = false;
@@ -18,6 +18,7 @@ public class WaypointManager : MonoBehaviour {
 	{
 		transform.position = new Vector3(transform.position.x, transform.position.y, 0f);
 		relatedWaypoints = GetWpList();
+		type = parseWpmName(gameObject.name.Split('_')[0]);
 		id = gameObject.name.Split('_')[1];
 		_levMan = man;
 	}
@@ -46,6 +47,7 @@ public class WaypointManager : MonoBehaviour {
 		Waypoint res = null;
 		if (_wpSource.id != relatedWaypoints[0].id)
 		{
+
 			res = relatedWaypoints.Find(wp => wp.id == _wpSource.id-1);
 		}
 		else
@@ -128,6 +130,31 @@ public class WaypointManager : MonoBehaviour {
 			sortDescendant();
 		}
 		return inverted;
+	}
+
+	private LevelBrick.typeList parseWpmName(string _st)
+	{
+		if (_st == "Chainsaw")
+		{
+			return LevelBrick.typeList.Chainsaw;
+		}
+		else if (_st == "Bird")
+		{
+			return LevelBrick.typeList.Bird;
+		}
+		else if (_st == "ArrowTower")
+		{
+			return LevelBrick.typeList.ArrowTower;
+			
+		}
+		else if (_st == "BladeTower")
+		{
+			return LevelBrick.typeList.BladeTower;
+		}
+		else
+		{
+			return LevelBrick.typeList.Carpet;
+		}
 	}
 
 	public Waypoint pickRandomWP()
