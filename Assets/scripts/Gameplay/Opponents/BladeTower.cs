@@ -120,8 +120,6 @@ public class BladeTower : OppTower {
 
 	public void createBladePart(int _nbFireballs, LevelTools.DirectionList _dir)
 	{
-		print ("_create");
-		print ("_crea" + _nbFireballs);
 		for (int i = 0; i < _nbFireballs ; i++)
 		{
 			GameObject gameo = Instantiate(Resources.Load("Bricks/Opponent/BladePart")) as GameObject;

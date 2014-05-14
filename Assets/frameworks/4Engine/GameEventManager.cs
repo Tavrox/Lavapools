@@ -11,7 +11,8 @@ public static class GameEventManager {
 		Live,
 		GameOver,
 		MainMenu,
-		EndGame
+		EndGame,
+		Trailer
 	};
 	public static bool gameOver = false;
 	

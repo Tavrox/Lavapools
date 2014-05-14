@@ -24,7 +24,7 @@ public class PatrolBrick : LevelBrick {
 
 		if (brickPath == null)
 		{
-			Debug.LogError("The path on " +name+ " is missing");
+			Debug.Log("The path on " +name+ " is missing");
 			assignPath(_levMan.wpDirector.waypointsMan.Find( (WaypointManager wpm) => wpm.type == typeList.Bird));
 		}
 

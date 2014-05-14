@@ -641,10 +641,23 @@
                 <key>sourceSize</key>
                 <string>{37,25}</string>
             </dict>
+            <key>tomb.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{47,887},{44,42}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{44,42}}</string>
+                <key>sourceSize</key>
+                <string>{44,42}</string>
+            </dict>
             <key>xplateforme.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{47,887},{96,99}}</string>
+                <string>{{96,887},{96,99}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -664,7 +677,7 @@
             <key>size</key>
             <string>{256,1024}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:1f3277f8773b4189d57a79873544108b:1/1$</string>
+            <string>$TexturePacker:SmartUpdate:f49e3ae23458e8ab33de41c021925a5b:1/1$</string>
             <key>textureFileName</key>
             <string>gameplay.png</string>
         </dict>

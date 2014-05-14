@@ -80,6 +80,21 @@ public class LevelTools : MonoBehaviour {
 		}
 	}
 
+	public Lootstack createStack()
+	{
+		GameObject initStack = Instantiate(Resources.Load("Bricks/Environment/Lootstack")) as GameObject;
+		initStack.transform.position = Vector3.zero;
+		Lootstack lts = initStack.GetComponent<Lootstack>();
+		return lts;
+	}
+
+	public Lootstack modifyStack(ref Lootstack stk)
+	{
+		stk.stackValue = Mathf.FloorToInt(_levMan.score);
+		stk.transform.position = _levMan._player.transform.position;
+		return stk;
+	}
+
 	public CollectiblePlaces calculateFarSpawnPlace(ref List<CollectiblePlaces> _AllPlace, Player _player)
 	{
 		Vector2 playerVec = new Vector2(_player.transform.position.x, _player.transform.position.y);

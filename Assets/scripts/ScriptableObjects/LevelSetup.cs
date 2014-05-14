@@ -16,7 +16,7 @@ public class LevelSetup : ScriptableObject
 	public float Blade_RotationSpeed;
 	public float Gem_SpawnRate;
 	public float Carpet_Speed;
-	[Range(1,10)] public int Gem_MinimumInLevel;
+	[Range(1,100)] public int Gem_MinimumInLevel;
 	public LevelSetup _lvlToCopy;
 
 	public BrickStepParam BrickParam;

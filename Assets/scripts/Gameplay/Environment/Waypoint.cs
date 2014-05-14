@@ -42,7 +42,6 @@ public class Waypoint : MonoBehaviour {
 					{
 						_collBrick.GetComponent<Carpet>().ReachAndStop();
 					}
-					print ("ping");
 					passedUpon = true;
 					StartCoroutine("delayRetrigger");
 					_collBrick.GoToWaypoint(linkedManager.findNextWaypoint(this));

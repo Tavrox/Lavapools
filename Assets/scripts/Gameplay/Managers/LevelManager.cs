@@ -26,7 +26,7 @@ public class LevelManager : MonoBehaviour {
 	[HideInInspector] public BricksManager bricksMan;
 	[HideInInspector] public WaypointDirector wpDirector;
 	[HideInInspector] public List<Collectible> CollectibleGathered = new List<Collectible>();
-	public List<CollectiblePlaces> collecPlaces = new List<CollectiblePlaces>();
+	[HideInInspector] public List<CollectiblePlaces> collecPlaces = new List<CollectiblePlaces>();
 	[HideInInspector] public LevelTools tools;
 	[HideInInspector] public LevelTools.KillerList killer;
 	[HideInInspector] public LinearStepTrigger proc;
@@ -35,6 +35,7 @@ public class LevelManager : MonoBehaviour {
 	[HideInInspector] public Player _player;
 	[HideInInspector] public SpaceGate Gate;
 	[HideInInspector] public GameObject OuterSpawn;
+	public Lootstack Loot;
 	
 
 	// Use this for initialization
@@ -72,7 +73,7 @@ public class LevelManager : MonoBehaviour {
 		GlobTuning = Instantiate(Resources.Load("Tuning/Global")) as LPTuning;
 		LocalTuning = Instantiate(Resources.Load("Procedural/" + NAME + "/Setup")) as LevelSetup;
 		LocalTuning.initScript();
-		InputMan = Resources.Load("Tuning/InputManager") as InputManager;
+		InputMan = Instantiate(Resources.Load("Tuning/InputManager")) as InputManager;
 		CurrentLevelInfo = Instantiate(Resources.Load("Tuning/Levels/" + NAME)) as LevelInfo;
 		proc = gameObject.AddComponent<LinearStepTrigger>();
 		proc._levMan = this;
@@ -138,6 +139,8 @@ public class LevelManager : MonoBehaviour {
 		{
 			GameEventManager.TriggerGameStart("LM");
 		}
+		Loot = tools.createStack();
+		Loot.Setup();
 		InvokeRepeating("updateTime", 0f, 0.01f);
 		InvokeRepeating("UpdateScoreOverTime", 0f, 0.1f);
 	}
@@ -264,6 +267,7 @@ public class LevelManager : MonoBehaviour {
 	{
 		if (this != null)
 		{
+			tools.modifyStack(ref Loot);
 			CancelInvoke("updateTime");
 			CancelInvoke("UpdateScoreOverTime");
 			StopCoroutine("delayedSpawnGem");

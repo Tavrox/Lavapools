@@ -228,6 +228,7 @@ public class Player : MonoBehaviour {
 		if (this != null)
 		{
 			_state = playerState.Alive;
+			_anims.playAnimation(_anims._STATIC);
 			lowSpeed = initLowSpeed;
 			medSpeed = initMedSpeed;
 			highSpeed = initHighSpeed;
@@ -236,7 +237,6 @@ public class Player : MonoBehaviour {
 			new OTTween(spr, 0.5f).Tween("alpha", 1f);
 			new OTTween(spr, 0.5f).Tween("size", new Vector2(originalSize.x,originalSize.y));
 			_notif.makeFadeOut();
-			OnPlatforms = 0;
 		}
 	}
 	
@@ -244,8 +244,8 @@ public class Player : MonoBehaviour {
 	{
 		if (this != null)
 		{
-			print (_state);
 			_state = playerState.Dead;
+			_anims.playAnimation(_anims._STATIC);
 			lowSpeed = initLowSpeed;
 			medSpeed = initMedSpeed;
 			highSpeed = initHighSpeed;
@@ -254,7 +254,6 @@ public class Player : MonoBehaviour {
 			new OTTween(spr, 0.5f).Tween("alpha", 0f);
 			new OTTween(spr, 0.5f).Tween("size", new Vector2(0.25f,0.25f));
 			_notif.makeFadeOut();
-			OnPlatforms = 0;
 		}
 	}
 	
@@ -263,6 +262,7 @@ public class Player : MonoBehaviour {
 		if (this != null)
 		{
 			_state = playerState.Alive;
+			_anims.playAnimation(_anims._STATIC);
 			lowSpeed = initLowSpeed;
 			medSpeed = initMedSpeed;
 			highSpeed = initHighSpeed;
@@ -272,7 +272,6 @@ public class Player : MonoBehaviour {
 			new OTTween(spr, 0.5f).Tween("alpha", 1f);
 			new OTTween(spr, 0.5f).Tween("size", new Vector2(originalSize.x,originalSize.y));
 			_notif.makeFadeOut();
-//			OnPlatforms = 0;
 		}
 	}
 

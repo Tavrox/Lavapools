@@ -198,6 +198,7 @@
             <filename>path26drowning.png</filename>
             <filename>path27drowning.png</filename>
             <filename>xplateforme.png</filename>
+            <filename>tomb.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>
