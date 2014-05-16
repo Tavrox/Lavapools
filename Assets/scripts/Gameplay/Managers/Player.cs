@@ -92,6 +92,7 @@ public class Player : MonoBehaviour {
 
 	void Update () 
 	{	
+		_notif.color = Color.white;
 		if (_state == playerState.Alive)
 		{
 			pos = gameObject.transform.position;
@@ -123,16 +124,19 @@ public class Player : MonoBehaviour {
 			{
 				currSpeed = lowSpeed;
 				_anims._CURR = _anims._WALK;
+				_anims.changeAnimSpeed(_anims._CURR, 1f);
 			}
 			if (speedStack > playerSteps.y  && speedStack < playerSteps.z)
 			{
 				currSpeed = medSpeed;
 				_anims._CURR = _anims._WALK;
+				_anims.changeAnimSpeed(_anims._CURR, 1f);
 			}
 			if (speedStack > playerSteps.z)
 			{
 				currSpeed = highSpeed;
 				_anims._CURR = _anims._MAXWALK;
+				_anims.changeAnimSpeed(_anims._CURR, 0.5f);
 			}
 
 			if (Input.GetKey (InputMan.KeyRight) || Input.GetAxisRaw("X axis") < (InputMan.BigAxis * -1) || Input.GetAxisRaw("6th axis") < (InputMan.SmallAxis * -1)) 
@@ -214,8 +218,8 @@ public class Player : MonoBehaviour {
 	public void triggerNotification(float _value)
 	{
 		_notif.text = "+" + _value.ToString();
-//		_notif.makeFadeIn();
-//		StartCoroutine(WaitFadeSec(2f));
+		_notif.makeFadeIn();
+		StartCoroutine(WaitFadeSec(2f));
 	}
 
 	IEnumerator WaitFadeSec(float _time)

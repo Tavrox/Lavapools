@@ -36,11 +36,17 @@ public class Trailer : MonoBehaviour {
 		{
 			triggZoom(0f);
 		}
+		if (Input.GetKey(KeyCode.Keypad5))
+		{
+			triggZoom(z1);
+		}
 	}
 
 	private void triggZoom(float newval)
 	{
 		OTView view = GameObject.Find("Frameworks/OT/View").GetComponent<OTView>();
-		new OTTween(view, 0.75f, OTEasing.QuartOut).Tween("zoom", newval).Wait(5f);
+		new OTTween(view, 0.75f, OTEasing.QuartOut).Tween("zoom", newval).Wait(6f);
 	}
+
+
 }

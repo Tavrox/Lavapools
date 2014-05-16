@@ -15,7 +15,6 @@ public class PlayerAnims : MonoBehaviour {
 	// Use this for initialization
 	public void Setup () 
 	{
-
 		_animations = GameObject.Find("Frameworks/OT/Animations/player").GetComponent<OTAnimation>();
 		_animSprite = GetComponentInChildren<OTAnimatingSprite>();
 		_STATIC = "static";
@@ -29,6 +28,14 @@ public class PlayerAnims : MonoBehaviour {
 		if (_animSprite.animationFrameset != _anim)
 		{
 			_animSprite.Play (_anim);
+		}
+	}
+
+	public void changeAnimSpeed(string _anim, float _speed)
+	{
+		if (_animSprite.animationFrameset != _anim)
+		{
+			_animSprite.speed = _speed;
 		}
 	}
 }

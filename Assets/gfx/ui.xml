@@ -381,10 +381,23 @@
                 <key>sourceSize</key>
                 <string>{40,41}</string>
             </dict>
+            <key>bulle_dial.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{5,101},{120,60}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{120,60}}</string>
+                <key>sourceSize</key>
+                <string>{120,60}</string>
+            </dict>
             <key>english.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{5,101},{40,41}}</string>
+                <string>{{130,101},{40,41}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -397,7 +410,7 @@
             <key>englishAlt.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{50,101},{40,41}}</string>
+                <string>{{175,101},{40,41}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -410,7 +423,7 @@
             <key>entrypanel.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{95,101},{800,125}}</string>
+                <string>{{5,166},{800,125}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -423,7 +436,7 @@
             <key>etnaPreview.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{900,101},{99,60}}</string>
+                <string>{{810,166},{99,60}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -436,7 +449,7 @@
             <key>french.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{5,231},{40,41}}</string>
+                <string>{{914,166},{40,41}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -449,7 +462,7 @@
             <key>frenchAlt.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{50,231},{40,41}}</string>
+                <string>{{959,166},{40,41}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -462,7 +475,7 @@
             <key>grensdalurPreview.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{900,101},{99,60}}</string>
+                <string>{{810,166},{99,60}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -475,7 +488,7 @@
             <key>icon_lavapools.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{95,231},{50,50}}</string>
+                <string>{{5,296},{50,50}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -488,7 +501,7 @@
             <key>lock.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{150,231},{59,65}}</string>
+                <string>{{60,296},{59,65}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -501,7 +514,7 @@
             <key>logo_4edges.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{214,231},{260,158}}</string>
+                <string>{{124,296},{260,158}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -514,7 +527,7 @@
             <key>lvlSelectleft.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{479,231},{64,71}}</string>
+                <string>{{389,296},{64,71}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -527,7 +540,7 @@
             <key>lvlSelectleftAlt.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{548,231},{64,71}}</string>
+                <string>{{458,296},{64,71}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -540,7 +553,7 @@
             <key>lvlSelectright.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{617,231},{64,71}}</string>
+                <string>{{527,296},{64,71}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -553,7 +566,7 @@
             <key>lvlSelectrightAlt.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{686,231},{64,71}}</string>
+                <string>{{596,296},{64,71}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -566,7 +579,7 @@
             <key>panLvlTitle.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{5,394},{338,50}}</string>
+                <string>{{665,296},{338,50}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -579,7 +592,7 @@
             <key>panStartQuit.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{348,394},{231,240}}</string>
+                <string>{{5,459},{231,240}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -592,7 +605,7 @@
             <key>pan_leaderboard.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{5,639},{636,151}}</string>
+                <string>{{241,459},{636,151}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -605,7 +618,7 @@
             <key>pan_leaderboard_title.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{646,639},{271,169}}</string>
+                <string>{{5,704},{271,169}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -618,7 +631,7 @@
             <key>pan_ok_pad.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{5,813},{191,90}}</string>
+                <string>{{281,704},{191,90}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -631,7 +644,7 @@
             <key>pan_scoring.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{201,813},{800,50}}</string>
+                <string>{{5,878},{800,50}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -644,7 +657,7 @@
             <key>pan_version.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{5,908},{231,82}}</string>
+                <string>{{5,933},{231,82}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -657,7 +670,7 @@
             <key>sq.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{241,908},{1,1}}</string>
+                <string>{{241,933},{1,1}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -670,7 +683,7 @@
             <key>stat_player.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{5,995},{800,179}}</string>
+                <string>{{5,1020},{800,179}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -683,7 +696,7 @@
             <key>thumb_etna.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{810,995},{98,60}}</string>
+                <string>{{810,1020},{98,60}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -696,7 +709,7 @@
             <key>thumb_grensdalur.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{810,995},{98,60}}</string>
+                <string>{{810,1020},{98,60}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -709,7 +722,7 @@
             <key>thumb_vesuvio.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{810,995},{98,60}}</string>
+                <string>{{810,1020},{98,60}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -722,7 +735,7 @@
             <key>tileLvlSelect.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{5,1179},{275,204}}</string>
+                <string>{{5,1204},{275,204}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -735,7 +748,7 @@
             <key>title.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{285,1179},{610,110}}</string>
+                <string>{{285,1204},{610,110}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -755,7 +768,7 @@
             <key>size</key>
             <string>{1024,2048}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:6e63a61a109c920d5e267266243c41c7:1/1$</string>
+            <string>$TexturePacker:SmartUpdate:f045f428c6562217b094a8fb40e37a67:1/1$</string>
             <key>textureFileName</key>
             <string>ui.png</string>
         </dict>
