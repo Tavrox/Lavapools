@@ -5,6 +5,14 @@ using System.Collections.Generic;
 public class LevelSetup : ScriptableObject 
 {
 	public GameSetup.LevelList NAME;
+	public enum levelTypeList
+	{
+		Linear,
+		Procedural,
+		Maze,
+		Debuggin
+	};
+	public levelTypeList levelType;
 	public int numberOfSteps;
 	public float Player_Speed_low;
 	public float Player_Speed_med;

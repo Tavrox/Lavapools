@@ -104,7 +104,7 @@ public class LevelManager : MonoBehaviour {
 		bricksMan = FETool.findWithinChildren(this.gameObject, "LevelBricks/Bricks").GetComponent<BricksManager>();
 		bricksMan.Setup();
 
-		if (LocalTuning.NAME != GameSetup.LevelList.Oblivion)
+		if (LocalTuning.levelType != LevelSetup.levelTypeList.Debuggin)
 		{
 			if (GameObject.Find("UI") == null)
 			{
@@ -139,8 +139,8 @@ public class LevelManager : MonoBehaviour {
 		{
 			GameEventManager.TriggerGameStart("LM");
 		}
-		Loot = tools.createStack();
-		Loot.Setup();
+//		Loot = tools.createStack();
+//		Loot.Setup();
 		InvokeRepeating("updateTime", 0f, 0.01f);
 		InvokeRepeating("UpdateScoreOverTime", 0f, 0.1f);
 	}
@@ -174,7 +174,10 @@ public class LevelManager : MonoBehaviour {
 			if (score == bestScore && score != 0)
 			{
 				string name = _player.playerName.Replace("%0d", "");
-				menuManager._GameOverUI._lb.SendScore(name, score, CurrentLevelInfo.levelID);
+				if (menuManager._GameOverUI != null)
+				{
+					menuManager._GameOverUI._lb.SendScore(name, score, CurrentLevelInfo.levelID);
+				}
 			}
 			GameEventManager.TriggerRespawn(way);
 		}
@@ -267,7 +270,7 @@ public class LevelManager : MonoBehaviour {
 	{
 		if (this != null)
 		{
-			tools.modifyStack(ref Loot);
+//			tools.modifyStack(ref Loot);
 			CancelInvoke("updateTime");
 			CancelInvoke("UpdateScoreOverTime");
 			StopCoroutine("delayedSpawnGem");

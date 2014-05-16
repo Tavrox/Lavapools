@@ -14,14 +14,14 @@ public class FEDebug : MonoBehaviour {
 
 	void OnGUI()
 	{
-		if (GUI.Toggle(new Rect(100f,100f,100f,100f), GodMode ,"GodMode"))
-		{
-			GodMode = true;
-		}
-		else
-		{
-			GodMode = false;
-		}
+//		if (GUI.Toggle(new Rect(100f,100f,100f,100f), GodMode ,"GodMode"))
+//		{
+//			GodMode = true;
+//		}
+//		else
+//		{
+//			GodMode = false;
+//		}
 
 		if (Input.GetKeyDown(KeyCode.A))
 		{
@@ -36,6 +36,18 @@ public class FEDebug : MonoBehaviour {
 			gate.triggTransition(1);
 			gate.triggTransition(2);
 			gate.triggTransition(3);
+		}
+		if (Input.GetKeyDown(KeyCode.C))
+		{
+			GameObject.Find("UI").SetActive(false);
+		}
+		if (Input.GetKeyDown(KeyCode.D))
+		{
+			GodMode = true;
+		}
+		if (Input.GetKeyDown(KeyCode.Escape))
+		{
+			Application.LoadLevel(0);
 		}
 		           
 	}

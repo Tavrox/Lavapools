@@ -3,10 +3,10 @@ using System.Collections;
 
 public class Trailer : MonoBehaviour {
 
-	public float z1 = 2.44f;
-	public float z2 = 0.63f;
-	public float z3 = -0.161f;
-	public float z4 = -0.78f;
+	public float z1 = 2.36f;
+	public float z2 = 0.69f;
+	public float z3 = -0.12f;
+	public float z4 = -0.769f;
 
 	// Use this for initialization
 	void Start () {
@@ -41,6 +41,6 @@ public class Trailer : MonoBehaviour {
 	private void triggZoom(float newval)
 	{
 		OTView view = GameObject.Find("Frameworks/OT/View").GetComponent<OTView>();
-		new OTTween(view, 1f).Tween("zoom", newval);
+		new OTTween(view, 0.75f, OTEasing.QuartOut).Tween("zoom", newval).Wait(5f);
 	}
 }

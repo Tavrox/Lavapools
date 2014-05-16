@@ -77,6 +77,7 @@ public class Player : MonoBehaviour {
 		_anims = gameObject.AddComponent<PlayerAnims>() as PlayerAnims;
 		_anims.Setup();
 		_notif = GetComponentInChildren<Notification>();
+		_notif.color = Color.white;
 
 		startPos = gameObject.transform.position;
 		friction.x = LevelManager.GlobTuning.Player_Friction.x;
@@ -213,8 +214,8 @@ public class Player : MonoBehaviour {
 	public void triggerNotification(float _value)
 	{
 		_notif.text = "+" + _value.ToString();
-		_notif.makeFadeIn();
-		StartCoroutine(WaitFadeSec(2f));
+//		_notif.makeFadeIn();
+//		StartCoroutine(WaitFadeSec(2f));
 	}
 
 	IEnumerator WaitFadeSec(float _time)

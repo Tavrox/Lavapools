@@ -32,6 +32,13 @@ public class GameSetup : ScriptableObject {
 		Alpha,
 		Demo
 	};
+	public enum GameModeEnum
+	{
+		Linear,
+		Procedural,
+		Maze,
+		VerticalScroller
+	}
 	public versionType GameType;
 	public Vector2 GameSize;
 	public float OrthelloSize;

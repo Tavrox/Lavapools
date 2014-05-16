@@ -83,7 +83,7 @@ public class LevelTools : MonoBehaviour {
 	public Lootstack createStack()
 	{
 		GameObject initStack = Instantiate(Resources.Load("Bricks/Environment/Lootstack")) as GameObject;
-		initStack.transform.position = Vector3.zero;
+		initStack.transform.position = new Vector3(1000f,1000f,1000f);
 		Lootstack lts = initStack.GetComponent<Lootstack>();
 		return lts;
 	}

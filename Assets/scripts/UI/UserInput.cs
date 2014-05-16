@@ -95,7 +95,7 @@ public class UserInput : TextUI {
 
 	private void GameOver()
 	{
-		if (this != null)
+		if (this != null && this.enabled == true)
 		{
 			StartCoroutine("EnableInput");
 			InvokeRepeating("switchColor", 0f, 0.5f);
