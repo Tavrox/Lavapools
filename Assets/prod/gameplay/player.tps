@@ -160,12 +160,10 @@
             <filename>player09walk.png</filename>
             <filename>player10walk.png</filename>
             <filename>player11walk.png</filename>
-            <filename>player17walkmax.png</filename>
             <filename>player12walkmax.png</filename>
             <filename>player13walkmax.png</filename>
             <filename>player14walkmax.png</filename>
             <filename>player15walkmax.png</filename>
-            <filename>player16walkmax.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>
