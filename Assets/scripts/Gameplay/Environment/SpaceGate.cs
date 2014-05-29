@@ -4,6 +4,7 @@ using System.Collections;
 public class SpaceGate : MonoBehaviour {
 
 	private OTSprite _spr;
+	public LevelManager _levMan;
 
 	private GameObject firstStep;
 	private GameObject secondStep;
@@ -15,9 +16,10 @@ public class SpaceGate : MonoBehaviour {
 
 	public OTAnimatingSprite Vortex;
 
-	public void Setup()
+	public void Setup(LevelManager _lev)
 	{
 		_spr = FETool.findWithinChildren(gameObject, "TheGate").GetComponentInChildren<OTSprite>();
+		_levMan = _lev;
 		GameEventManager.Respawn += Respawn;
 		GameEventManager.GameOver += GameOver;
 

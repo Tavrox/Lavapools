@@ -14,10 +14,10 @@ public class FEAssetCreator {
 	{
 		ScriptableObjectUtility.CreateAsset<LinearStep>();
 	}
-	[MenuItem("Assets/Create/LevelSetup")]
-	public static void CreateLevelSetup ()
+	[MenuItem("Assets/Create/LinearLevelSetu")]
+	public static void CreateLinearLevelSetup ()
 	{
-		ScriptableObjectUtility.CreateAsset<LevelSetup>();
+		ScriptableObjectUtility.CreateAsset<LinearLevelSetup>();
 	}
 	[MenuItem("Assets/Create/BrickInfo")]
 	public static void CreateBrickInfo ()
@@ -63,6 +63,11 @@ public class FEAssetCreator {
 	public static void CreateBrickStepParam ()
 	{
 		ScriptableObjectUtility.CreateAsset<BrickStepParam>();
+	}
+	[MenuItem("Assets/Create/LevelParameters")]
+	public static void CreateLevelParameters ()
+	{
+		ScriptableObjectUtility.CreateAsset<LevelParameters>();
 	}
 
 }

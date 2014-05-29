@@ -92,7 +92,7 @@ public class Player : MonoBehaviour {
 
 	void Update () 
 	{	
-		_notif.color = Color.white;
+//		_notif.color = Color.white;
 		if (_state == playerState.Alive)
 		{
 			pos = gameObject.transform.position;
@@ -218,8 +218,8 @@ public class Player : MonoBehaviour {
 	public void triggerNotification(float _value)
 	{
 		_notif.text = "+" + _value.ToString();
-		_notif.makeFadeIn();
-		StartCoroutine(WaitFadeSec(2f));
+//		_notif.makeFadeIn();
+//		StartCoroutine(WaitFadeSec(2f));
 	}
 
 	IEnumerator WaitFadeSec(float _time)

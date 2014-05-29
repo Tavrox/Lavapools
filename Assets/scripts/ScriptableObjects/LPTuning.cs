@@ -14,6 +14,7 @@ public class LPTuning : ScriptableObject {
 	public float finishSecondStep = 15f;
 	public float finishThirdStep = 25f;
 	public float fadeAfterDelay = 4f;
+	public float percentageLootStack;
 
 	public Color ColPlayer;
 	public Color ColRank;

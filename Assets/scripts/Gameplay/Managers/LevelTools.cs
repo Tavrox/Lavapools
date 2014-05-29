@@ -56,6 +56,23 @@ public class LevelTools : MonoBehaviour {
 		return _wpm[Random.Range(0,_wpm.Count)];
 	}
 
+	public void modifyFromGameType(LevelParameters.levelTypeList _type)
+	{
+		switch (_type)
+		{
+		case LevelParameters.levelTypeList.Linear :
+		{
+			
+			break;
+		}
+		case LevelParameters.levelTypeList.Maze :
+		{
+			GameObject.Find("Frameworks/OT/View").GetComponent<OTView>().movementTarget = _levMan._player.gameObject;
+			break;
+		}
+		}
+	}
+
 	public void CollectObject(Collectible _thing)
 	{
 		switch (_thing.typeCollectible)
@@ -90,8 +107,9 @@ public class LevelTools : MonoBehaviour {
 
 	public Lootstack modifyStack(ref Lootstack stk)
 	{
-		stk.stackValue = Mathf.FloorToInt(_levMan.score);
+		stk.stackValue = Mathf.FloorToInt((_levMan.score * LevelManager.GlobTuning.percentageLootStack));
 		stk.transform.position = _levMan._player.transform.position;
+//		List<LinearStep> stpList = _levMan.proc._listSteps.Find( (LinearStep obj) => obj.ScoreCondition < stk.stackValue);
 		return stk;
 	}
 

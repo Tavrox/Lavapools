@@ -20,7 +20,7 @@ public static class GameEventManager {
 	{
 		if(GameStart != null)
 		{
-//			Debug.LogWarning("GAMESTART "  + _trigger);
+			Debug.LogWarning("GAMESTART "  + _trigger);
 			gameOver = false;
 			LevelManager.GAMESTATE = GameState.MainMenu;
 			GameStart();
@@ -60,7 +60,7 @@ public static class GameEventManager {
 	{
 		if(Respawn != null)
 		{
-//			Debug.LogWarning("RESPAWN " + _trigger);
+			Debug.LogWarning("RESPAWN " + _trigger);
 			gameOver = false;
 			LevelManager.GAMESTATE = GameState.Live;
 			Respawn();

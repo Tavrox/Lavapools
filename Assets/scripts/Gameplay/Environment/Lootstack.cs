@@ -1,9 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class Lootstack : MonoBehaviour {
 
 	public int stackValue;
+	private LevelManager levMan;
 	public enum StateList
 	{
 		Picked,
@@ -12,10 +14,13 @@ public class Lootstack : MonoBehaviour {
 	public StateList State;
 	private BoxCollider coll;
 	private OTSprite spr;
+	public List<BrickStepParam> paramToTrigger;
 	
 	// Use this for initialization
-	public void Setup () 
+	public void Setup (LevelManager _lev) 
 	{
+		levMan = _lev;
+		paramToTrigger = new List<BrickStepParam>();
 		spr = GetComponentInChildren<OTSprite>();
 		GameEventManager.GameStart += GameStart;
 		GameEventManager.GameOver += GameOver;
@@ -63,6 +68,7 @@ public class Lootstack : MonoBehaviour {
 	{
 		if (this != null)
 		{
+			State = StateList.Unpicked;
 			GetComponent<BoxCollider>().enabled = true;
 			spr.alpha = 1f;
 		}

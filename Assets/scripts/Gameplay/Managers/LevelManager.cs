@@ -5,13 +5,14 @@ using System.Collections.Generic;
 public class LevelManager : MonoBehaviour {
 
 	public static LPTuning GlobTuning;
-	public static LevelSetup LocalTuning;
+	public static LevelParameters LocalTuning;
 	public static LevelInfo CurrentLevelInfo;
 	public static InputManager InputMan;
 	public static GameEventManager.GameState GAMESTATE;
 
 	public GameEventManager.GameState _EditorState ;
 	public GameSetup.LevelList NAME;
+	public LevelParameters.levelTypeList GAMETYPE;
 
 	[HideInInspector] public bool GemHasSpawned = false;
 	public float score = 0f;
@@ -29,7 +30,7 @@ public class LevelManager : MonoBehaviour {
 	[HideInInspector] public List<CollectiblePlaces> collecPlaces = new List<CollectiblePlaces>();
 	[HideInInspector] public LevelTools tools;
 	[HideInInspector] public LevelTools.KillerList killer;
-	[HideInInspector] public LinearStepTrigger proc;
+	[HideInInspector] public LinearStepTrigger linearTrigger;
 	[HideInInspector] public MainMenu menuManager;
 	[HideInInspector] public PlayerData _profile;
 	[HideInInspector] public Player _player;
@@ -71,13 +72,13 @@ public class LevelManager : MonoBehaviour {
 		GAMESTATE = _EditorState;
 		_player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
 		GlobTuning = Instantiate(Resources.Load("Tuning/Global")) as LPTuning;
-		LocalTuning = Instantiate(Resources.Load("Procedural/" + NAME + "/Setup")) as LevelSetup;
+		LocalTuning = Instantiate(Resources.Load("Linear/" + NAME + "/Setup")) as LevelParameters;
 		LocalTuning.initScript();
 		InputMan = Instantiate(Resources.Load("Tuning/InputManager")) as InputManager;
 		CurrentLevelInfo = Instantiate(Resources.Load("Tuning/Levels/" + NAME)) as LevelInfo;
-		proc = gameObject.AddComponent<LinearStepTrigger>();
-		proc._levMan = this;
-		proc.Setup();
+		linearTrigger = gameObject.AddComponent<LinearStepTrigger>();
+		linearTrigger._levMan = this;
+		linearTrigger.Setup();
 
 		
 		GameObject OutSpw = new GameObject("OuterSpawn");
@@ -96,7 +97,7 @@ public class LevelManager : MonoBehaviour {
 			collecPlaces.Add(cpl);
 		}
 		Gate = GameObject.FindGameObjectWithTag("SpaceGate").GetComponent<SpaceGate>();
-		Gate.Setup();
+		Gate.Setup(this);
 
 		wpDirector = GetComponentInChildren<WaypointDirector>();
 		wpDirector.Setup(this);
@@ -104,7 +105,7 @@ public class LevelManager : MonoBehaviour {
 		bricksMan = FETool.findWithinChildren(this.gameObject, "LevelBricks/Bricks").GetComponent<BricksManager>();
 		bricksMan.Setup();
 
-		if (LocalTuning.levelType != LevelSetup.levelTypeList.Debuggin)
+		if (LocalTuning.levelType != LevelParameters.levelTypeList.Debuggin)
 		{
 			if (GameObject.Find("UI") == null)
 			{
@@ -122,7 +123,7 @@ public class LevelManager : MonoBehaviour {
 			menuManager.Setup(this);
 		}
 		managerChecker();
-		proc.triggerStep(proc._listSteps[0]);
+//		proc.triggerStep(proc._listSteps[0]);
 		_player.Setup();
 		Setup();
 	}
@@ -139,8 +140,11 @@ public class LevelManager : MonoBehaviour {
 		{
 			GameEventManager.TriggerGameStart("LM");
 		}
-//		Loot = tools.createStack();
-//		Loot.Setup();
+		Loot = tools.createStack();
+		Loot.Setup(this);
+
+		tools.modifyFromGameType(GAMETYPE);
+
 		InvokeRepeating("updateTime", 0f, 0.01f);
 		InvokeRepeating("UpdateScoreOverTime", 0f, 0.1f);
 	}
@@ -163,6 +167,13 @@ public class LevelManager : MonoBehaviour {
 				menuManager._IngameUI.BestScore.text = bestScore.ToString();
 			}
 			_player.playerName = menuManager._GameOverUI._RespawnUI._playerInput.text;
+		}
+		if (LocalTuning.levelType == LevelParameters.levelTypeList.Debuggin)
+		{
+			if (Input.GetKeyDown(LevelManager.InputMan.EnterButton) || Input.GetKeyDown(LevelManager.InputMan.KeyEnter) ) 
+			{
+				GameEventManager.TriggerRespawn("Enter Game");
+			}
 		}
 
 	}
@@ -270,7 +281,7 @@ public class LevelManager : MonoBehaviour {
 	{
 		if (this != null)
 		{
-//			tools.modifyStack(ref Loot);
+			tools.modifyStack(ref Loot);
 			CancelInvoke("updateTime");
 			CancelInvoke("UpdateScoreOverTime");
 			StopCoroutine("delayedSpawnGem");

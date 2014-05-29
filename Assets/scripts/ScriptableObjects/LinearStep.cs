@@ -40,6 +40,7 @@ public class LinearStep : ScriptableObject {
 	public float TimerCondition;
 	public float Crab_SpeedMultiplier = 1f;
 	public float Enemies_SpeedMultiplier = 1f;
+	public bool Triggered;
 
 	// EDITOR TOOLS
 	public LevelInfo LevelToUnlock;
