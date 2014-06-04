@@ -10,6 +10,7 @@ public class LinearLevelSetupEditor : Editor
 	private LinearLevelSetup step;
 	private float maxSize = 550f;
 	private float boxSize;
+	private float stepSize;
 	private GUIStyle style;
 	[SerializeField] private BrickStepParam brpm;
 	
@@ -17,25 +18,46 @@ public class LinearLevelSetupEditor : Editor
 	{
 		step = (LinearLevelSetup)target;
 		boxSize = maxSize / 10 ;
+		stepSize = maxSize / 6;
 		GUIEditorSkin customSkin = Resources.Load("Tools/Skins/LvlEditor") as GUIEditorSkin;
 		brpm = BrickStepParam.CreateInstance("BrickStepParam") as BrickStepParam;
 
 		base.OnInspectorGUI();
-
-		if (GUILayout.Button("FindSteps", GUILayout.ExpandWidth(true)))
+		if (step.LvlParam == null)
 		{
-//			LinearStep[] listSteps = Resources.LoadAll<LinearStep>("Linear/" + step.NAME +"/Steps/");
-//			foreach (LinearStep stp in listSteps)
-//			{
-//
-//			}
+			Debug.Log("Check for parameters in setups");
+		}
+
+		if (GUILayout.Button("LoadSteps", GUILayout.ExpandWidth(true)))
+		{
+			LinearStep[] listSteps = Resources.LoadAll<LinearStep>("Linear/" + step.LvlParam.NAME +"/Steps/");
+			step.Procedural_Steps.Clear();
+			foreach (LinearStep stp in listSteps)
+			{
+				step.Procedural_Steps.Add(stp);
+			}
+			step.Procedural_Steps.Sort(delegate (LinearStep x, LinearStep y)
+			                           {
+				if (x.stepID < y.stepID) return -1;
+				if (x.stepID > y.stepID) return 1;
+				else return 0;
+			});
+		}
+		
+		if (step.Procedural_Steps.Count > 0)
+		{
+			
+			EditorGUILayout.BeginVertical(GUILayout.Width(maxSize)); 
+			displayStepHeader();
+			displayStepInfo(step.Procedural_Steps);
+			EditorGUILayout.EndVertical();
+
 		}
 
 		if (step.ListBricks.Count > 0)
 		{
 			GUI.color = customSkin.col1;
-			EditorGUILayout.BeginVertical(GUILayout.Width(maxSize)); // Start
-//			GUILayout.Box("Bricks setupped", GUILayout.Width(maxSize));
+			EditorGUILayout.BeginVertical(GUILayout.Width(maxSize)); 
 			GUI.color = customSkin.col3;
 			displayBrickHeader(brpm);
 			if (GUILayout.Button("SortID", GUILayout.Width(boxSize)))
@@ -79,7 +101,10 @@ public class LinearLevelSetupEditor : Editor
 			step.ListBricks.Add(brpm);
 		}
 		EditorGUILayout.EndHorizontal();
+
+
 		EditorUtility.SetDirty(step);
+		EditorUtility.SetDirty(step.LvlParam);
 	}
 
 	private void displayBrickHeader(BrickStepParam _prm)
@@ -136,6 +161,32 @@ public class LinearLevelSetupEditor : Editor
 		{
 			GUILayout.Box("",GUILayout.Width(boxSize));
 			_prm.Invert = false;
+		}
+	}
+	
+	private void displayStepHeader()
+	{
+		EditorGUILayout.BeginHorizontal(GUILayout.Width(maxSize));
+		GUILayout.Box("StepID",GUILayout.Width(stepSize));
+		GUILayout.Box("Music",GUILayout.Width(stepSize));
+		GUILayout.Box("Score Condition",GUILayout.Width(stepSize));
+		GUILayout.Box("CrabSpeed*",GUILayout.Width(stepSize));
+		GUILayout.Box("EnemiesSpeed*",GUILayout.Width(stepSize) );
+		EditorGUILayout.EndHorizontal();
+	}
+
+	private void displayStepInfo(List<LinearStep> _stpList)
+	{
+		foreach (LinearStep _stp in _stpList)
+		{
+			EditorGUILayout.BeginHorizontal(GUILayout.Width(maxSize));
+			_stp.stepID 				= EditorGUILayout.IntField("", _stp.stepID, GUILayout.Width(stepSize));
+			_stp.MusicSource			= (AudioClip) EditorGUILayout.ObjectField(_stp.MusicSource, typeof(AudioClip),false, GUILayout.Width(stepSize));
+			_stp.ScoreCondition			= EditorGUILayout.FloatField("", _stp.ScoreCondition, GUILayout.Width(stepSize));
+			_stp.Crab_SpeedMultiplier	= EditorGUILayout.FloatField("", _stp.Crab_SpeedMultiplier, GUILayout.Width(stepSize));
+			_stp.Enemies_SpeedMultiplier= EditorGUILayout.FloatField("", _stp.Enemies_SpeedMultiplier, GUILayout.Width(stepSize));
+			EditorGUILayout.EndHorizontal();
+			EditorUtility.SetDirty(_stp);
 		}
 	}
 	

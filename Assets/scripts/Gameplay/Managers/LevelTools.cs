@@ -34,6 +34,7 @@ public class LevelTools : MonoBehaviour {
 	public void lootStack(int _stk)
 	{
 		_levMan.collecSum += _stk * 1f;
+		checkLevelCompletion();
 	}
 
 	public void tryDeath(LevelTools.KillerList _kl)
@@ -54,23 +55,6 @@ public class LevelTools : MonoBehaviour {
 	{
 		List<WaypointManager> _wpm  = _levMan.wpDirector.waypointsMan.FindAll((WaypointManager obj) => obj.type == _type);
 		return _wpm[Random.Range(0,_wpm.Count)];
-	}
-
-	public void modifyFromGameType(LevelParameters.levelTypeList _type)
-	{
-		switch (_type)
-		{
-		case LevelParameters.levelTypeList.Linear :
-		{
-			
-			break;
-		}
-		case LevelParameters.levelTypeList.Maze :
-		{
-			GameObject.Find("Frameworks/OT/View").GetComponent<OTView>().movementTarget = _levMan._player.gameObject;
-			break;
-		}
-		}
 	}
 
 	public void CollectObject(Collectible _thing)
@@ -107,6 +91,7 @@ public class LevelTools : MonoBehaviour {
 
 	public Lootstack modifyStack(ref Lootstack stk)
 	{
+		checkLevelCompletion();
 		stk.stackValue = Mathf.FloorToInt((_levMan.score * LevelManager.GlobTuning.percentageLootStack));
 		stk.transform.position = _levMan._player.transform.position;
 //		List<LinearStep> stpList = _levMan.proc._listSteps.Find( (LinearStep obj) => obj.ScoreCondition < stk.stackValue);
@@ -152,15 +137,15 @@ public class LevelTools : MonoBehaviour {
 
 	public void checkLevelCompletion()
 	{
-		if (_levMan.score == LevelManager.GlobTuning.finishFirstStep)
+		if (_levMan.score >= LevelManager.GlobTuning.finishFirstStep && _levMan.Gate.firstStepTrigg != true)
 		{
 			_levMan.Gate.triggTransition(1);
 		}
-		if (_levMan.score == LevelManager.GlobTuning.finishSecondStep)
+		if (_levMan.score >= LevelManager.GlobTuning.finishSecondStep  && _levMan.Gate.secondStepTrigg != true)
 		{
 			_levMan.Gate.triggTransition(2);
 		}
-		if (_levMan.score == LevelManager.GlobTuning.finishThirdStep)
+		if (_levMan.score >= LevelManager.GlobTuning.finishThirdStep  && _levMan.Gate.thirdStepTrigg != true)
 		{
 			_levMan.Gate.triggTransition(3);
 		}

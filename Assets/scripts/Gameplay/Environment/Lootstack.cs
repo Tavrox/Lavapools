@@ -36,6 +36,7 @@ public class Lootstack : MonoBehaviour {
 			Player pl = _oth.GetComponent<Player>();
 			pl.lootStack(stackValue);
 			pl._levMan.tools.lootStack(stackValue);
+			pl._levMan.tools.checkLevelCompletion();
 			Fade();
 		}
 	}

@@ -30,13 +30,16 @@ public class LevelManager : MonoBehaviour {
 	[HideInInspector] public List<CollectiblePlaces> collecPlaces = new List<CollectiblePlaces>();
 	[HideInInspector] public LevelTools tools;
 	[HideInInspector] public LevelTools.KillerList killer;
-	[HideInInspector] public LinearStepTrigger linearTrigger;
 	[HideInInspector] public MainMenu menuManager;
 	[HideInInspector] public PlayerData _profile;
 	[HideInInspector] public Player _player;
 	[HideInInspector] public SpaceGate Gate;
 	[HideInInspector] public GameObject OuterSpawn;
 	public Lootstack Loot;
+
+	// GAME MODES
+	[HideInInspector] public LinearStepTrigger linearTrigger;
+	[HideInInspector] public VerticalScroller VerticalManager;
 	
 
 	// Use this for initialization
@@ -76,9 +79,40 @@ public class LevelManager : MonoBehaviour {
 		LocalTuning.initScript();
 		InputMan = Instantiate(Resources.Load("Tuning/InputManager")) as InputManager;
 		CurrentLevelInfo = Instantiate(Resources.Load("Tuning/Levels/" + NAME)) as LevelInfo;
-		linearTrigger = gameObject.AddComponent<LinearStepTrigger>();
-		linearTrigger._levMan = this;
-		linearTrigger.Setup();
+		GAMETYPE = LocalTuning.levelType;
+
+		switch (GAMETYPE)
+		{
+			case LevelParameters.levelTypeList.Debuggin :
+			{
+			linearTrigger = gameObject.AddComponent<LinearStepTrigger>();
+			linearTrigger.Setup(this);
+			break;
+			}
+			case LevelParameters.levelTypeList.Linear :
+			{
+			linearTrigger = gameObject.AddComponent<LinearStepTrigger>();
+			linearTrigger.Setup(this);
+			break;
+			}
+			case LevelParameters.levelTypeList.Maze :
+			{
+			
+			break;
+			}
+			case LevelParameters.levelTypeList.Procedural :
+			{
+			
+			break;
+			}
+			case LevelParameters.levelTypeList.Vertical :
+			{
+			VerticalManager = gameObject.AddComponent<VerticalScroller>();
+			VerticalManager.Setup(this);
+			break;
+			}
+		}
+
 
 		
 		GameObject OutSpw = new GameObject("OuterSpawn");
@@ -142,8 +176,6 @@ public class LevelManager : MonoBehaviour {
 		}
 		Loot = tools.createStack();
 		Loot.Setup(this);
-
-		tools.modifyFromGameType(GAMETYPE);
 
 		InvokeRepeating("updateTime", 0f, 0.01f);
 		InvokeRepeating("UpdateScoreOverTime", 0f, 0.1f);

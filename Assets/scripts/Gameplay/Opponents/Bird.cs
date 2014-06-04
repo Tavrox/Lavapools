@@ -5,6 +5,9 @@ public class Bird : PatrolBrick {
 
 	private float displayWaveTime = 0.5f;
 	private OTAnimatingSprite WavesSpr;
+	public float _diffX = 0f;
+	public float _diffY = 0f;
+	public float _angle = 0f;
 
 	public void Setup () 
 	{
@@ -32,9 +35,12 @@ public class Bird : PatrolBrick {
 	}
 
 
-	public void turnToward(GameObject _target)
+	public void rotateTowardMouse(Vector3 targ ,Transform _trsf)
 	{
-
+		_diffX = targ.x - _trsf.transform.position.x;
+		_diffY = _trsf.transform.position.y - targ.y;
+		_angle = Mathf.Atan2( _diffX, _diffY) * Mathf.Rad2Deg;
+		_trsf.rotation = Quaternion.Euler(0f, 0f, _angle - 90);
 	}
 
 	

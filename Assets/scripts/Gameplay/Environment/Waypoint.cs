@@ -44,7 +44,12 @@ public class Waypoint : MonoBehaviour {
 					}
 					passedUpon = true;
 					StartCoroutine("delayRetrigger");
-					_collBrick.GoToWaypoint(linkedManager.findNextWaypoint(this));
+					Waypoint findWp = linkedManager.findNextWaypoint(this);
+					_collBrick.GoToWaypoint(findWp);
+					if (_collBrick.type == LevelBrick.typeList.Bird)
+					{
+						_collBrick.GetComponent<Bird>().rotateTowardMouse(findWp.transform.position, _collBrick.transform);
+					}
 				}
 			}
 		}

@@ -40,7 +40,6 @@ public class LevelBrick : MonoBehaviour {
 		}
 		_levMan = GameObject.Find("LevelManager").GetComponent<LevelManager>();
 		_bricksSpeed = LevelManager.LocalTuning._dicoBricks;
-		
 
 		initPos = gameObject.transform.position;
 
@@ -76,6 +75,10 @@ public class LevelBrick : MonoBehaviour {
 			Debug.Break();
 		}
 		res = _dico[_brick.type];
+		if (res == 0)
+		{
+			Debug.Log("Might be an error with" + type.ToString() + "speed");
+		}
 		return res;
 	}
 

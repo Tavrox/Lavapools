@@ -10,6 +10,10 @@ public class SpaceGate : MonoBehaviour {
 	private GameObject secondStep;
 	private GameObject thirdStep;
 
+	public bool firstStepTrigg = false;
+	public bool secondStepTrigg = false;
+	public bool thirdStepTrigg = false;
+
 	private OTSprite[] spriteFirstStep = new OTSprite[0];
 	private OTSprite[] spriteSecondStep = new OTSprite[0];
 	private OTSprite[] spriteThirdStep = new OTSprite[0];
@@ -52,6 +56,9 @@ public class SpaceGate : MonoBehaviour {
 		{
 			case 0: // FOR ALL
 			{
+				firstStepTrigg = _isEnabled;
+				secondStepTrigg = _isEnabled;
+				thirdStepTrigg = _isEnabled;
 				firstStep.GetComponent<BoxCollider>().enabled = _isEnabled;
 				secondStep.GetComponent<BoxCollider>().enabled = _isEnabled;
 				thirdStep.GetComponent<BoxCollider>().enabled = _isEnabled;
@@ -62,18 +69,21 @@ public class SpaceGate : MonoBehaviour {
 			}
 			case 1:
 			{
+				firstStepTrigg = _isEnabled;
 				firstStep.GetComponent<BoxCollider>().enabled = _isEnabled;
 				fadeSprites(spriteFirstStep, _toAlpha);
 				break;
 			}
 			case 2:
 			{
+				secondStepTrigg = _isEnabled;
 				secondStep.GetComponent<BoxCollider>().enabled = _isEnabled;
 				fadeSprites(spriteSecondStep, _toAlpha);
 				break;
 			}
 			case 3:
 			{
+				thirdStepTrigg = _isEnabled;
 				thirdStep.GetComponent<BoxCollider>().enabled = _isEnabled;
 				fadeSprites(spriteThirdStep, _toAlpha);
 				Vortex.PlayLoop("active");
