@@ -75,39 +75,49 @@ public class LevelManager : MonoBehaviour {
 		GAMESTATE = _EditorState;
 		_player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
 		GlobTuning = Instantiate(Resources.Load("Tuning/Global")) as LPTuning;
-		LocalTuning = Instantiate(Resources.Load("Linear/" + NAME + "/Setup")) as LevelParameters;
-		LocalTuning.initScript();
 		InputMan = Instantiate(Resources.Load("Tuning/InputManager")) as InputManager;
 		CurrentLevelInfo = Instantiate(Resources.Load("Tuning/Levels/" + NAME)) as LevelInfo;
-		GAMETYPE = LocalTuning.levelType;
 
+		string pathSetup = GAMETYPE.ToString();
+		LocalTuning = Instantiate(Resources.Load( pathSetup + "/" + NAME + "/Setup")) as LevelParameters;
+		LocalTuning.initScript();
+		if (GAMETYPE != LocalTuning.levelType)
+		{
+			Debug.Log("Type of LevelMana & Setup scrip arent't the same");
+		}
+		GAMETYPE = LocalTuning.levelType;
 		switch (GAMETYPE)
 		{
 			case LevelParameters.levelTypeList.Debuggin :
 			{
+			pathSetup = "Linear";
 			linearTrigger = gameObject.AddComponent<LinearStepTrigger>();
 			linearTrigger.Setup(this);
 			break;
 			}
 			case LevelParameters.levelTypeList.Linear :
-			{
+		{
+			pathSetup = "Linear";
 			linearTrigger = gameObject.AddComponent<LinearStepTrigger>();
 			linearTrigger.Setup(this);
 			break;
 			}
 			case LevelParameters.levelTypeList.Maze :
 			{
-			
+			pathSetup = "Maze";
 			break;
 			}
 			case LevelParameters.levelTypeList.Procedural :
 			{
-			
+			pathSetup = "Procedural";
 			break;
 			}
 			case LevelParameters.levelTypeList.Vertical :
-			{
-			VerticalManager = gameObject.AddComponent<VerticalScroller>();
+		{
+			pathSetup = "Vertical";
+			GameObject vm = new GameObject("VerticalManager");
+			VerticalManager = vm.AddComponent<VerticalScroller>();
+			vm.transform.parent = this.transform;
 			VerticalManager.Setup(this);
 			break;
 			}

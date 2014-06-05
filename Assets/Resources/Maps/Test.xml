@@ -688,12 +688,12 @@
   </data>
  </layer>
  <objectgroup name="Collider_0" width="17" height="40">
-  <object x="88" y="236" width="264" height="188"/>
-  <object x="345" y="230" width="300" height="52"/>
+  <object x="88" y="236" width="267" height="200"/>
+  <object x="354" y="237" width="300" height="52"/>
   <object x="609" y="270" width="45" height="303"/>
   <object x="348" y="385" width="152" height="42"/>
-  <object x="470" y="433" width="33" height="448"/>
-  <object x="242" y="430" width="39" height="358"/>
+  <object x="470" y="383" width="36" height="502"/>
+  <object x="240" y="426" width="47" height="389"/>
   <object x="282" y="767" width="355" height="45"/>
   <object x="33" y="2891" width="982" height="94"/>
   <object x="779" y="2806" width="233" height="76"/>

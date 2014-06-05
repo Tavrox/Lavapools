@@ -69,5 +69,10 @@ public class FEAssetCreator {
 	{
 		ScriptableObjectUtility.CreateAsset<LevelParameters>();
 	}
+	[MenuItem("Assets/Create/VerticalLevelSetup")]
+	public static void CreateVerticalLevelSetup ()
+	{
+		ScriptableObjectUtility.CreateAsset<VerticalLevelSetup>();
+	}
 
 }

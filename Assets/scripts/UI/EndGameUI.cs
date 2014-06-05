@@ -34,11 +34,13 @@ public class EndGameUI : SubMenu {
 		_LeaderboardUI = transform.parent.GetComponentInChildren<LeaderboardUI>();
 		_lb = transform.parent.GetComponentInChildren<PhpLeaderboards>();
 		_RespawnUI = transform.parent.GetComponentInChildren<RespawnUI>();
-//		_RespawnUI.Setup(this);
-		lbInitpos = _LeaderboardUI.transform.position;
+
+		lbInitpos = _LeaderboardUI.transform.localPosition;
 		lbOutPos = new Vector3 (lbInitpos.x, lbInitpos.y-5f, lbInitpos.z);
-		respInitpos = _RespawnUI.transform.position;
+
+		respInitpos = _RespawnUI.transform.localPosition;
 		respOutPos = new Vector3 (respInitpos.x-20f, respInitpos.y, respInitpos.z);
+
 		BackOne = FETool.findWithinChildren(gameObject, "Background/p1");
 		BackTwo = FETool.findWithinChildren(gameObject, "Background/p2");
 		BackOneIn = FETool.findWithinChildren(gameObject, "Background/newPosP1");
@@ -96,10 +98,10 @@ public class EndGameUI : SubMenu {
 			_RespawnUI.RespawnTextCmd.TranslateThis("PLAY_CMD");
 			_RespawnUI.RespawnTextHead.TranslateThis("PLAY_NEXT");
 			_RespawnUI._playerScore.text = _menuMan._levman.score.ToString();
-			new OTTween(_RespawnUI.gameObject.transform, 0.3f, OTEasing.QuadIn ).Tween("position", respInitpos);
-			new OTTween(_LeaderboardUI.gameObject.transform, 0.3f, OTEasing.QuadIn ).Tween("position", lbInitpos);
-			new OTTween(BackOne.gameObject.transform, 0.3f, OTEasing.QuadIn ).Tween("position", BackOneIn.transform.position);
-			new OTTween(BackTwo.gameObject.transform, 0.3f, OTEasing.QuadIn ).Tween("position", BackTwoIn.transform.position);
+			new OTTween(_RespawnUI.gameObject.transform, 0.3f, OTEasing.QuadIn ).Tween("localPosition", respInitpos);
+			new OTTween(_LeaderboardUI.gameObject.transform, 0.3f, OTEasing.QuadIn ).Tween("localPosition", lbInitpos);
+			new OTTween(BackOne.gameObject.transform, 0.3f, OTEasing.QuadIn ).Tween("localPosition", BackOneIn.transform.position);
+			new OTTween(BackTwo.gameObject.transform, 0.3f, OTEasing.QuadIn ).Tween("localPosition", BackTwoIn.transform.position);
 			new OTTween(Succeed, 0.3f, OTEasing.QuadIn ).Tween("color", Color.white);
 			new OTTween(CurrLvl, 0.3f, OTEasing.QuadIn ).Tween("color", CurrLvl.initColor);
 			new OTTween(CrabbySpr, 0.3f ).Tween("alpha", 1f);

@@ -31,7 +31,7 @@ public class LevelParameters : ScriptableObject
 	public LinearLevelSetup 		LinkedLinear;
 //	public MazeLevelSetup		 	LinkedMaze;
 //	public ProceduralLevelSetup 	LinkedProcedural;
-//	public VerticalLevelSetup 		LinkedVertical;
+	public VerticalLevelSetup 		LinkedVertical;
 	
 	public void initScript () 
 	{

@@ -34,6 +34,10 @@ public class ColliderKiller : MonoBehaviour {
 					_parent._levMan.tools.tryDeath(LevelTools.KillerList.Arrow);
 				}
 			}
+			if (this.name == "VerticalKiller")
+			{
+				GameObject.Find("LevelManager").GetComponent<LevelTools>().tryDeath(LevelTools.KillerList.VerticalSlider);
+			}
 		}
 	}
 }

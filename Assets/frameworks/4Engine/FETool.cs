@@ -22,6 +22,13 @@ public class FETool : MonoBehaviour {
 		}
 	}
 
+	public static GameObject createGameObject(string _name, Component _compo = null, GameObject giveParent = null)
+	{
+		GameObject Gameo = new GameObject(_name);
+		Gameo.transform.parent = giveParent.transform;
+		return Gameo;
+	}
+
 
 	public static GameObject findWithinChildren(GameObject _go, string _fetch)
 	{
@@ -113,6 +120,10 @@ public class FETool : MonoBehaviour {
 	{
 		float mult = Mathf.Round(value*4)/4f;
 		return mult;
+	}
+	public static Color randomColor()
+	{
+		return new Color(Random.Range(0,1f), Random.Range(0,1f), Random.Range(0,1f));
 	}
 
 }

@@ -41,6 +41,7 @@ public class Bird : PatrolBrick {
 		_diffY = _trsf.transform.position.y - targ.y;
 		_angle = Mathf.Atan2( _diffX, _diffY) * Mathf.Rad2Deg;
 		_trsf.rotation = Quaternion.Euler(0f, 0f, _angle - 90);
+//		new OTTween(_trsf, 0.5f).Tween("rotation", Quaternion.Euler(0f, 0f, _angle - 90));
 	}
 
 	

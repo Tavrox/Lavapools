@@ -20,6 +20,7 @@ public class MainMenu : ParentMenu {
 	{
 		name = "UI";
 		_levman = _lm;
+		transform.position = new Vector3(Camera.main.transform.position.x, Camera.main.transform.position.y, -100f);
 		
 		GameEventManager.GameStart += GameStart;
 		GameEventManager.GameOver += GameOver;

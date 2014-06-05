@@ -19,7 +19,7 @@ public class IngameUI : SubMenu {
 
 	public void Setup()
 	{
-		initPos = gameObject.transform.position;
+		initPos = gameObject.transform.localPosition;
 		outPos = new Vector3 (initPos.x, initPos.y + 1f, initPos.z);
 
 		Score = FETool.findWithinChildren(this.gameObject, "Score/SCORE_CONT").GetComponent<TextUI>();
@@ -48,7 +48,7 @@ public class IngameUI : SubMenu {
 		if (this != null && gameObject != null)
 		{
 			LevelTxt._mesh.characterSize = origLabelSize;
-			new OTTween(gameObject.transform, 0.3f, OTEasing.QuadIn ).Tween("position", outPos);
+			new OTTween(gameObject.transform, 0.3f, OTEasing.QuadIn ).Tween("localPosition", outPos);
 		}
 	}
 	void GameOver()
@@ -56,7 +56,7 @@ public class IngameUI : SubMenu {
 		if (this != null)
 		{
 			LevelTxt._mesh.characterSize = origLabelSize;
-			new OTTween(gameObject.transform, 0.3f, OTEasing.QuadIn ).Tween("position", outPos);
+			new OTTween(gameObject.transform, 0.3f, OTEasing.QuadIn ).Tween("localPosition", outPos);
 		}
 	}
 	void Respawn()
@@ -64,7 +64,7 @@ public class IngameUI : SubMenu {
 		if (this != null)
 		{
 			LevelTxt._mesh.characterSize = origLabelSize;
-			new OTTween(gameObject.transform, 0.3f, OTEasing.QuadIn ).Tween("position", initPos);
+			new OTTween(gameObject.transform, 0.3f, OTEasing.QuadIn ).Tween("localPosition", initPos);
 		}
 	}
 

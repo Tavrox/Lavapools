@@ -27,10 +27,10 @@ public class GameOverUI : SubMenu {
 		_RespawnUI = transform.parent.GetComponentInChildren<RespawnUI>();
 		_RespawnUI.Setup(this);
 
-		lbInitpos = _LeaderboardUI.transform.position;
+		lbInitpos = _LeaderboardUI.transform.localPosition;
 		lbOutPos = new Vector3 (lbInitpos.x, lbInitpos.y-5f, lbInitpos.z);
 		
-		respInitpos = _RespawnUI.transform.position;
+		respInitpos = _RespawnUI.transform.localPosition;
 		respOutPos = new Vector3 (respInitpos.x-20f, respInitpos.y, respInitpos.z);
 	}
 
@@ -38,16 +38,16 @@ public class GameOverUI : SubMenu {
 	{
 		if (this != null)
 		{
-			new OTTween(_RespawnUI.gameObject.transform, 0.3f, OTEasing.QuadIn ).Tween("position", respOutPos);
-			new OTTween(_LeaderboardUI.gameObject.transform, 0.3f, OTEasing.QuadIn ).Tween("position", lbOutPos);
+			new OTTween(_RespawnUI.gameObject.transform, 0.3f, OTEasing.QuadIn ).Tween("localPosition", respOutPos);
+			new OTTween(_LeaderboardUI.gameObject.transform, 0.3f, OTEasing.QuadIn ).Tween("localPosition", lbOutPos);
 		}
 	}
 	public void GameOver()
 	{
 		if (this != null)
 		{
-			new OTTween(_RespawnUI.gameObject.transform, 0.3f, OTEasing.QuadIn ).Tween("position", respInitpos);
-			new OTTween(_LeaderboardUI.gameObject.transform, 0.3f).Tween("position", lbInitpos);
+			new OTTween(_RespawnUI.gameObject.transform, 0.3f, OTEasing.QuadIn ).Tween("localPosition", respInitpos);
+			new OTTween(_LeaderboardUI.gameObject.transform, 0.3f).Tween("localPosition", lbInitpos);
 		}
 	}
 	public void Respawn()
@@ -55,8 +55,8 @@ public class GameOverUI : SubMenu {
 		if (this != null)
 		{
 			_lb.GatherScores(LevelManager.CurrentLevelInfo.levelID);
-			new OTTween(_RespawnUI.gameObject.transform, 0.3f, OTEasing.QuadIn ).Tween("position", respOutPos);
-			new OTTween(_LeaderboardUI.gameObject.transform, 0.3f, OTEasing.QuadIn ).Tween("position", lbOutPos);
+			new OTTween(_RespawnUI.gameObject.transform, 0.3f, OTEasing.QuadIn ).Tween("localPosition", respOutPos);
+			new OTTween(_LeaderboardUI.gameObject.transform, 0.3f, OTEasing.QuadIn ).Tween("localPosition", lbOutPos);
 		}
 	}
 }
