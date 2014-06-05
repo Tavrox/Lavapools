@@ -96,7 +96,7 @@ public class LinearLevelSetupEditor : Editor
 			{
 				step.ListBricks = new List<BrickStepParam>();
 			}
-			AssetDatabase.CreateAsset(brpm , "Assets/Resources/Tools/Parameters/" + step.LvlParam.NAME + "/" + Random.Range(0,1000000).ToString() +".asset");
+			AssetDatabase.CreateAsset(brpm , "Assets/Resources/Linear/" + step.LvlParam.NAME + "/Parameters/" + Random.Range(0,1000000).ToString() +".asset");
 			EditorUtility.SetDirty(brpm);
 			step.ListBricks.Add(brpm);
 		}

@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class RespawnUI : MonoBehaviour {
+public class RespawnUI : SubMenu {
 
 	private PlayerData Pdata;
 	private SubMenu parentSub;

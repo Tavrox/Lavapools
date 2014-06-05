@@ -71,8 +71,37 @@ public class SubMenu : MonoBehaviour {
 		{
 			res = menuButtons[currBtn-1];
 		}
-		
+
 		return res;
+	}
+
+	public void appearAll(GameObject target = null)
+	{
+		TextUI[] listTxt = GetComponentsInChildren<TextUI>();
+		OTSprite[] listSpr = GetComponentsInChildren<OTSprite>();
+		foreach(TextUI txt in listTxt )
+		{
+			txt.color = txt.initColor;
+		}
+		foreach (OTSprite spr in listSpr)
+		{
+			spr.alpha = 1f;
+		}
+	}
+
+	public void clearAll(GameObject target = null)
+	{
+		TextUI[] listTxt = GetComponentsInChildren<TextUI>();
+		OTSprite[] listSpr = GetComponentsInChildren<OTSprite>();
+		LBEntry[] listEntry = GetComponentsInChildren<LBEntry>();
+		foreach(TextUI txt in listTxt)
+		{
+			txt.color = Color.clear;
+		}
+		foreach (OTSprite spr in listSpr)
+		{
+			spr.alpha = 0f;
+		}
 	}
 
 }

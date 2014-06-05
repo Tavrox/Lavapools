@@ -30,6 +30,10 @@ public class TextEditor : Editor
 		{
 			text.SetupDialogIDFromGameObject();
 		}
+		if (GUILayout.Button("SetupDefault"))
+		{
+			text.setupDefault();
+		}
 	}
 
 }

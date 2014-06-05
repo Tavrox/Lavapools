@@ -111,4 +111,14 @@ public class TextUI : MonoBehaviour {
 			_tx.DIALOG_ID = _tx.gameObject.name;
 		}			
 	}
+
+	public void setupDefault()
+	{
+		_mesh = GetComponent<TextMesh>();
+		color = _mesh.color;
+		text = gameObject.name;
+		initColor = color;
+		dontTranslate = true;
+		DIALOG_ID = text;
+	}
 }

@@ -43,6 +43,11 @@ public class EntryUI : SubMenu {
 			_EnterUI.Objective.TranslateThis("OBJECTIVE");
 			break;
 		}
+		case LevelParameters.levelTypeList.Vertical :
+		{
+			_EnterUI.Objective.TranslateThis("OBJECTIVE_VERTICAL");
+			break;
+		}
 		}
 	}
 

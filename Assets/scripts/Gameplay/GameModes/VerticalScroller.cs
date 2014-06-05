@@ -77,7 +77,7 @@ public class VerticalScroller : MonoBehaviour {
 		}
 		if (levMan.menuManager != null)
 		{
-			levMan.menuManager.transform.position = mainCam.transform.position;
+			levMan.menuManager.transform.position = new Vector3(mainCam.transform.position.x, mainCam.transform.position.y, levMan.menuManager.transform.position.z);
 		}
 	}
 

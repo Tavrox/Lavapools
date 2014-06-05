@@ -46,6 +46,8 @@ public class GameOverUI : SubMenu {
 	{
 		if (this != null)
 		{
+			_RespawnUI.appearAll();
+			_LeaderboardUI.appearAll();
 			new OTTween(_RespawnUI.gameObject.transform, 0.3f, OTEasing.QuadIn ).Tween("localPosition", respInitpos);
 			new OTTween(_LeaderboardUI.gameObject.transform, 0.3f).Tween("localPosition", lbInitpos);
 		}
@@ -54,6 +56,8 @@ public class GameOverUI : SubMenu {
 	{
 		if (this != null)
 		{
+			_RespawnUI.clearAll();
+			_LeaderboardUI.clearAll();
 			_lb.GatherScores(LevelManager.CurrentLevelInfo.levelID);
 			new OTTween(_RespawnUI.gameObject.transform, 0.3f, OTEasing.QuadIn ).Tween("localPosition", respOutPos);
 			new OTTween(_LeaderboardUI.gameObject.transform, 0.3f, OTEasing.QuadIn ).Tween("localPosition", lbOutPos);
