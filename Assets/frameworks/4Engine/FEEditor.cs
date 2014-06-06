@@ -23,7 +23,7 @@ public class FEEditor : MonoBehaviour {
 
 	void OnDrawGizmos () 
 	{
-		Debug.Log("CAREFUL : GIZMO PREVENT INVERTING WAYPOINTS");
+//		Debug.Log("CAREFUL : GIZMO PREVENT INVERTING WAYPOINTS");
 		if (drawGizmos == true)
 		{
 			drawWaypointLines();

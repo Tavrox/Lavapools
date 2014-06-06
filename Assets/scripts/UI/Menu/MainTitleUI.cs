@@ -74,22 +74,22 @@ public class MainTitleUI : ParentMenu
 	{
 		if (currFocusedbtn != null)
 		{
-			if(Input.GetAxisRaw("X axis") > PLAYERDAT.INPUT.X_AxisPos_Btn)
+			if(Input.GetAxisRaw("X axis") > PLAYERDAT.INPUT.BigAxisPos)
 			{
 
 			}
-			if(Input.GetAxisRaw("X axis") < PLAYERDAT.INPUT.X_AxisNeg_Btn )
+			if(Input.GetAxisRaw("X axis") < PLAYERDAT.INPUT.BigAxisNeg )
 			{
 
 			}
 			
-			if(Input.GetAxisRaw("Y axis") > PLAYERDAT.INPUT.Y_AxisPos_Btn)
+			if(Input.GetAxisRaw("Y axis") > PLAYERDAT.INPUT.BigAxisPos)
 			{
 				currFocusedbtn.giveFocus(false);
 				currFocusedbtn = currentActiveMenu.findPrevBtn(currFocusedbtn);
 				currFocusedbtn.giveFocus(true);
 			}
-			if(Input.GetAxisRaw("Y axis") < PLAYERDAT.INPUT.Y_AxisNeg_Btn)
+			if(Input.GetAxisRaw("Y axis") < PLAYERDAT.INPUT.BigAxisNeg)
 			{
 				currFocusedbtn.giveFocus(false);
 				currFocusedbtn = currentActiveMenu.findNextBtn(currFocusedbtn);

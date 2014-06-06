@@ -3,25 +3,13 @@ using System.Collections;
 
 public class InputManager : ScriptableObject {
 
-	public float BigAxis;
-	public float X_AxisPos_Sensibility;
-	public float X_AxisNeg_Sensibility;
-	public float Y_AxisPos_Sensibility;
-	public float Y_AxisNeg_Sensibility;
+	public float BigAxisPos;
+	public float BigAxisNeg;
 
-	public float SmallAxis;
+	public float SmallAxisPos;
+	public float SmallAxisNeg;
 
 	public float BtnAxis;
-	public float X_AxisPos_Btn;
-	public float X_AxisNeg_Btn;
-	public float Y_AxisPos_Btn;
-	public float Y_AxisNeg_Btn;
-
-	public float DeadSens;
-	public float X_AxisPos_DeadSens;
-	public float X_AxisNeg_DeadSens;
-	public float Y_AxisPos_DeadSens;
-	public float Y_AxisNeg_DeadSens;
 
 	public string EnterButton = "joystick button 0";
 	public string BackButton = "joystick button 1";

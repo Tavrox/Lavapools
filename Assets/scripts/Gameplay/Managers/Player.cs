@@ -39,6 +39,12 @@ public class Player : MonoBehaviour {
 	private PlayerAnims _anims;
 	private float speedStack = 0f;
 
+	public float bigAxNeg;
+	public float bigAxPos;
+	public float smallAxNeg;
+	public float smallAxPos;
+
+
 	[HideInInspector] public enum playerState
 	{
 		Alive,
@@ -73,6 +79,11 @@ public class Player : MonoBehaviour {
 		initHighSpeed = highSpeed;
 		playerSteps = LevelManager.GlobTuning.PlayerSteps;
 		InputMan = Resources.Load("Tuning/InputManager") as InputManager;
+
+		bigAxNeg = InputMan.BigAxisNeg;
+		bigAxPos = InputMan.BigAxisPos;
+		smallAxNeg = InputMan.SmallAxisNeg;
+		smallAxPos = InputMan.SmallAxisPos;
 		 
 		_anims = gameObject.AddComponent<PlayerAnims>() as PlayerAnims;
 		_anims.Setup();
@@ -102,7 +113,10 @@ public class Player : MonoBehaviour {
 				{
 					_levMan.tools.tryDeath(LevelTools.KillerList.Lava);
 				}
-				moveInput();
+				speedChecker();
+				keyboardInput();
+				XboxInput();
+				noMoveChecker();
 				mod.x *= friction.x;
 				mod.y *= friction.y;
 				this.gameObject.transform.position += mod * Time.deltaTime;
@@ -115,8 +129,7 @@ public class Player : MonoBehaviour {
 		triggerNotification(_stk * 1f);
 	}
 
-
-	private void moveInput()
+	private void speedChecker()
 	{
 		if (this != null)
 		{
@@ -138,8 +151,15 @@ public class Player : MonoBehaviour {
 				_anims._CURR = _anims._MAXWALK;
 				_anims.changeAnimSpeed(_anims._CURR, 0.5f);
 			}
+		}
+	}
 
-			if (Input.GetKey (InputMan.KeyRight) || Input.GetAxisRaw("X axis") < (InputMan.BigAxis * -1) || Input.GetAxisRaw("6th axis") < (InputMan.SmallAxis * -1)) 
+
+	private void keyboardInput()
+	{
+		if (this != null)
+		{
+			if (Input.GetKey (InputMan.KeyRight)) 
 			{
 				StopCoroutine("StartCheckReset");
 				speedStack += 1f * Time.deltaTime;
@@ -153,7 +173,7 @@ public class Player : MonoBehaviour {
 				_anims.playAnimation(_anims._STATIC);
 			}
 			
-			if (Input.GetKey (InputMan.KeyUp) || Input.GetAxisRaw("Y axis") > InputMan.BigAxis  || Input.GetAxisRaw("7th axis") > InputMan.SmallAxis) 
+			if (Input.GetKey (InputMan.KeyUp)) 
 			{
 				StopCoroutine("StartCheckReset");
 				speedStack += 1f * Time.deltaTime;
@@ -167,7 +187,7 @@ public class Player : MonoBehaviour {
 				_anims.playAnimation(_anims._STATIC);
 			}
 
-			if (Input.GetKey (InputMan.KeyLeft) || Input.GetAxisRaw("X axis") > InputMan.BigAxis  || Input.GetAxisRaw("6th axis") > InputMan.SmallAxis ) 
+			if (Input.GetKey (InputMan.KeyLeft)) 
 			{
 				speedStack += 1f * Time.deltaTime;
 				StopCoroutine("StartCheckReset");
@@ -181,7 +201,7 @@ public class Player : MonoBehaviour {
 				_anims.playAnimation(_anims._STATIC);
 			}
 			
-			if (Input.GetKey (InputMan.KeyDown) || Input.GetAxisRaw("Y axis") < (InputMan.BigAxis * -1)  || Input.GetAxisRaw("7th axis") < (InputMan.SmallAxis * -1)  ) 
+			if (Input.GetKey (InputMan.KeyDown)) 
 			{
 				speedStack += 1f * Time.deltaTime;
 				StopCoroutine("StartCheckReset");
@@ -197,15 +217,138 @@ public class Player : MonoBehaviour {
 		}
 	}
 
-	private bool checkDeadZone(float _input)
+	private void XboxInput()
 	{
-		if (_input < 0.1f && _input > -0.1f)
+		
+		if (this != null)
 		{
-			return false;
+			if ( Input.GetAxisRaw("X axis") < bigAxNeg) 
+			{
+				StopCoroutine("StartCheckReset");
+				speedStack += 1f * Time.deltaTime;
+				mod.x += currSpeed;
+				_anims.playAnimation(_anims._CURR);
+			}
+			else if (Input.GetAxisRaw("X axis") > bigAxPos) 
+			{
+				speedStack += 1f * Time.deltaTime;
+				StopCoroutine("StartCheckReset");
+				mod.x -= currSpeed;
+				_anims.playAnimation(_anims._CURR);
+			}
+			else if (Input.GetAxisRaw("Y axis") > bigAxPos) 
+			{
+				StopCoroutine("StartCheckReset");
+				speedStack += 1f * Time.deltaTime;
+				mod.y += currSpeed;
+				_anims.playAnimation(_anims._CURR);
+			}
+			else if (Input.GetAxisRaw("Y axis") < bigAxNeg) 
+			{
+				speedStack += 1f * Time.deltaTime;
+				StopCoroutine("StartCheckReset");
+				mod.y -= currSpeed;
+				_anims.playAnimation(_anims._CURR);
+			}
+
+			if (Input.GetAxisRaw("Y axis") > bigAxPos  && Input.GetAxisRaw("X axis") > bigAxPos )
+			{
+				mod.y = (currSpeed) * 1f;
+				mod.x = (currSpeed) * -1f;
+			}
+			else if (Input.GetAxisRaw("Y axis") < bigAxNeg  && Input.GetAxisRaw("X axis") < bigAxNeg )
+			{
+				mod.y = (currSpeed) * -1f;
+				mod.x = (currSpeed) * 1f;
+			}
+			else if (Input.GetAxisRaw("Y axis") > bigAxPos  && Input.GetAxisRaw("X axis") < bigAxNeg )
+			{
+				mod.y = (currSpeed) * 1f;
+				mod.x = (currSpeed) * 1f;
+			}
+			else if (Input.GetAxisRaw("Y axis") < bigAxNeg  && Input.GetAxisRaw("X axis") > bigAxPos )
+			{
+				mod.y = (currSpeed) * -1f;
+				mod.x = (currSpeed) * -1f;
+			}
+
+
+			// KEY D PAD ON XBOX JOYSTICK
+
+
+			if (Input.GetAxisRaw("6th axis") < smallAxNeg) 
+			{
+				StopCoroutine("StartCheckReset");
+				speedStack += 1f * Time.deltaTime;
+				mod.x += currSpeed;
+				_anims.playAnimation(_anims._CURR);
+			}
+			
+			if (Input.GetAxisRaw("7th axis") > smallAxPos) 
+			{
+				StopCoroutine("StartCheckReset");
+				speedStack += 1f * Time.deltaTime;
+				mod.y += currSpeed;
+				_anims.playAnimation(_anims._CURR);
+			}
+			
+			if (Input.GetAxisRaw("6th axis") > smallAxPos ) 
+			{
+				speedStack += 1f * Time.deltaTime;
+				StopCoroutine("StartCheckReset");
+				mod.x -= currSpeed;
+				_anims.playAnimation(_anims._CURR);
+			}
+			
+			if (Input.GetAxisRaw("7th axis") < smallAxNeg ) 
+			{
+				speedStack += 1f * Time.deltaTime;
+				StopCoroutine("StartCheckReset");
+				mod.y -= currSpeed;
+				_anims.playAnimation(_anims._CURR);
+			}
+
+			if (Input.GetAxisRaw("7th axis") > smallAxPos  && Input.GetAxisRaw("6th axis") > smallAxPos )
+			{
+				mod.y = (currSpeed) * 1f;
+				mod.x = (currSpeed) * -1f;
+			}
+			else if (Input.GetAxisRaw("7th axis") < smallAxNeg  && Input.GetAxisRaw("6th axis") < smallAxNeg )
+			{
+				mod.y = (currSpeed) * -1f;
+				mod.x = (currSpeed) * 1f;
+			}
+			else if (Input.GetAxisRaw("7th axis") > smallAxPos  && Input.GetAxisRaw("6th axis") < smallAxNeg )
+			{
+				mod.y = (currSpeed) * 1f;
+				mod.x = (currSpeed) * 1f;
+			}
+			else if (Input.GetAxisRaw("7th axis") < smallAxNeg  && Input.GetAxisRaw("6th axis") > smallAxPos )
+			{
+				mod.y = (currSpeed) * -1f;
+				mod.x = (currSpeed) * -1f;
+			}
 		}
-		else
+
+
+		print ("X" + Input.GetAxisRaw("X axis"));
+		print ("Y" + Input.GetAxisRaw("Y axis" ));
+//				print ("//////");
+//				print ("X" + Input.GetAxisRaw("7th axis"));
+//				print ("Y" + Input.GetAxisRaw("6th axis"));
+	}
+
+	private void noMoveChecker()
+	{
+		if (Mathf.Abs(Input.GetAxisRaw("X axis")) < 0.1f && Mathf.Abs(Input.GetAxisRaw("Y axis" )) < 0.1f )
 		{
-			return true;
+			if ( Mathf.Abs(Input.GetAxisRaw("7th axis")) < 0.1f  && Mathf.Abs(Input.GetAxisRaw("6th axis")) < 0.1f )
+			{
+				if (Input.GetKey (InputMan.KeyRight) == false && Input.GetKey (InputMan.KeyDown) == false && Input.GetKey (InputMan.KeyUp) == false && Input.GetKey (InputMan.KeyLeft) == false)
+				{
+					_anims.playAnimation(_anims._STATIC);
+				}
+			}
 		}
 	}
 
