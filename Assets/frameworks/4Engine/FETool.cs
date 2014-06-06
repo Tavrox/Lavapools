@@ -22,7 +22,7 @@ public class FETool : MonoBehaviour {
 		}
 	}
 
-	public static GameObject createGameObject(string _name, Component _compo = null, GameObject giveParent = null)
+	public static GameObject createGameObject(string _name, GameObject giveParent = null)
 	{
 		GameObject Gameo = new GameObject(_name);
 		Gameo.transform.parent = giveParent.transform;

@@ -40,6 +40,7 @@ public class LevelManager : MonoBehaviour {
 	// GAME MODES
 	[HideInInspector] public LinearStepTrigger linearTrigger;
 	[HideInInspector] public VerticalScroller VerticalManager;
+	[HideInInspector] public Procedural ProcMana;
 	
 
 	// Use this for initialization
@@ -78,8 +79,7 @@ public class LevelManager : MonoBehaviour {
 		InputMan = Instantiate(Resources.Load("Tuning/InputManager")) as InputManager;
 		CurrentLevelInfo = Instantiate(Resources.Load("Tuning/Levels/" + NAME)) as LevelInfo;
 
-		string pathSetup = GAMETYPE.ToString();
-		LocalTuning = Instantiate(Resources.Load( pathSetup + "/" + NAME + "/Setup")) as LevelParameters;
+		LocalTuning = Instantiate(Resources.Load("Maps/" + NAME + "/Setup")) as LevelParameters;
 		LocalTuning.initScript();
 		if (GAMETYPE != LocalTuning.levelType)
 		{
@@ -88,42 +88,37 @@ public class LevelManager : MonoBehaviour {
 		GAMETYPE = LocalTuning.levelType;
 		switch (GAMETYPE)
 		{
-			case LevelParameters.levelTypeList.Debuggin :
-			{
-			pathSetup = "Linear";
+		case LevelParameters.levelTypeList.Debuggin :
+		{
 			linearTrigger = gameObject.AddComponent<LinearStepTrigger>();
 			linearTrigger.Setup(this);
 			break;
-			}
-			case LevelParameters.levelTypeList.Linear :
+		}
+		case LevelParameters.levelTypeList.Linear :
 		{
-			pathSetup = "Linear";
 			linearTrigger = gameObject.AddComponent<LinearStepTrigger>();
 			linearTrigger.Setup(this);
 			break;
-			}
-			case LevelParameters.levelTypeList.Maze :
-			{
-			pathSetup = "Maze";
-			break;
-			}
-			case LevelParameters.levelTypeList.Procedural :
-			{
-			pathSetup = "Procedural";
-			break;
-			}
-			case LevelParameters.levelTypeList.Vertical :
+		}
+		case LevelParameters.levelTypeList.Maze :
 		{
-			pathSetup = "Vertical";
+			break;
+		}
+		case LevelParameters.levelTypeList.Procedural :
+		{
+			GameObject gameo = FETool.createGameObject("ProceduralManager", gameObject);
+			ProcMana = gameo.AddComponent<Procedural>();
+			break;
+		}
+		case LevelParameters.levelTypeList.Vertical :
+		{
 			GameObject vm = new GameObject("VerticalManager");
 			VerticalManager = vm.AddComponent<VerticalScroller>();
 			vm.transform.parent = this.transform;
 			VerticalManager.Setup(this);
 			break;
-			}
 		}
-
-
+		}
 		
 		GameObject OutSpw = new GameObject("OuterSpawn");
 		OuterSpawn = OutSpw;

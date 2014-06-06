@@ -14,5 +14,5 @@ public class LinearLevelSetup : ScriptableObject
 		get { return _ListBricks; }
 		set { _ListBricks = value; }
 	}
-	public List<LinearStep> Procedural_Steps;
+	public List<LinearStep> LinearSteps;
 }

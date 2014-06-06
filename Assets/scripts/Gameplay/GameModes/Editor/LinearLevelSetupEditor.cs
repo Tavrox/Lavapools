@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,13 +30,13 @@ public class LinearLevelSetupEditor : Editor
 
 		if (GUILayout.Button("LoadSteps", GUILayout.ExpandWidth(true)))
 		{
-			LinearStep[] listSteps = Resources.LoadAll<LinearStep>("Linear/" + step.LvlParam.NAME +"/Steps/");
-			step.Procedural_Steps.Clear();
+			LinearStep[] listSteps = Resources.LoadAll<LinearStep>("Maps/" + step.LvlParam.NAME +"/Steps/");
+			step.LinearSteps.Clear();
 			foreach (LinearStep stp in listSteps)
 			{
-				step.Procedural_Steps.Add(stp);
+				step.LinearSteps.Add(stp);
 			}
-			step.Procedural_Steps.Sort(delegate (LinearStep x, LinearStep y)
+			step.LinearSteps.Sort(delegate (LinearStep x, LinearStep y)
 			                           {
 				if (x.stepID < y.stepID) return -1;
 				if (x.stepID > y.stepID) return 1;
@@ -44,14 +44,13 @@ public class LinearLevelSetupEditor : Editor
 			});
 		}
 		
-		if (step.Procedural_Steps.Count > 0)
+		if (step.LinearSteps.Count > 0)
 		{
 			
 			EditorGUILayout.BeginVertical(GUILayout.Width(maxSize)); 
 			displayStepHeader();
-			displayStepInfo(step.Procedural_Steps);
+			displayStepInfo(step.LinearSteps);
 			EditorGUILayout.EndVertical();
-
 		}
 
 		if (step.ListBricks.Count > 0)
@@ -96,7 +95,7 @@ public class LinearLevelSetupEditor : Editor
 			{
 				step.ListBricks = new List<BrickStepParam>();
 			}
-			AssetDatabase.CreateAsset(brpm , "Assets/Resources/Linear/" + step.LvlParam.NAME + "/Parameters/" + Random.Range(0,1000000).ToString() +".asset");
+			AssetDatabase.CreateAsset(brpm , "Assets/Resources/Maps/" + step.LvlParam.NAME + "/Parameters/" + Random.Range(0,1000000).ToString() +".asset");
 			EditorUtility.SetDirty(brpm);
 			step.ListBricks.Add(brpm);
 		}

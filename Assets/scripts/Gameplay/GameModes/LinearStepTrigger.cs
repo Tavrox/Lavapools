@@ -8,8 +8,8 @@ public class LinearStepTrigger : MonoBehaviour {
 	public LinearStep _CURRENTSTEP;
 
 	public LevelParameters LevelSetup;
-	[HideInInspector] public LevelParameters InitLevelSetup;
-	[HideInInspector] public LinearLevelSetup LinearSetup;
+	public LevelParameters InitLevelSetup;
+	public LinearLevelSetup LinearSetup;
 	public List<LinearStep> _listSteps;
 
 	[HideInInspector] public BrickStepParam currParam;
@@ -19,13 +19,13 @@ public class LinearStepTrigger : MonoBehaviour {
 	public void Setup (LevelManager _lev) 
 	{
 		levMan = _lev;
-		string path = "Linear/" + levMan.NAME + "/Steps/";
-		string mainPath = "Linear/" + levMan.NAME + "/";
+		string path = "Maps/" + levMan.NAME + "/Steps/";
+		string mainPath = "Maps/" + levMan.NAME + "/";
 
 		InitLevelSetup = Instantiate(Resources.Load(mainPath + "Setup")) as LevelParameters;
 		LevelSetup = InitLevelSetup;
 		LinearSetup = Instantiate(Resources.Load(mainPath + "Linear")) as LinearLevelSetup;
-		_listSteps = LinearSetup.Procedural_Steps;
+		_listSteps = LinearSetup.LinearSteps;
 		untriggerSteps();
 
 		_CURRENTSTEP = _listSteps[0];
@@ -312,7 +312,7 @@ public class LinearStepTrigger : MonoBehaviour {
 		if (this != null)
 		{
 			untriggerSteps();
-			_listSteps = LinearSetup.Procedural_Steps;
+			_listSteps = LinearSetup.LinearSteps;
 			LevelSetup = InitLevelSetup;
 			levMan.tools.disableAllBrick();
 			triggerStep(_listSteps[0]);

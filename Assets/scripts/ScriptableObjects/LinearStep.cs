@@ -41,6 +41,7 @@ public class LinearStep : ScriptableObject {
 	public float Crab_SpeedMultiplier = 1f;
 	public float Enemies_SpeedMultiplier = 1f;
 	public bool Triggered;
+	public List<BrickStepParam> LinkedParam = new List<BrickStepParam>();
 
 	// EDITOR TOOLS
 	public LevelInfo LevelToUnlock;
