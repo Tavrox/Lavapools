@@ -148,22 +148,20 @@
         </struct>
         <key>fileList</key>
         <array>
-            <filename>player00static.png</filename>
-            <filename>player01static.png</filename>
-            <filename>player02static.png</filename>
-            <filename>player03static.png</filename>
-            <filename>player04static.png</filename>
-            <filename>player05static.png</filename>
             <filename>player06walk.png</filename>
             <filename>player07walk.png</filename>
             <filename>player08walk.png</filename>
             <filename>player09walk.png</filename>
-            <filename>player10walk.png</filename>
-            <filename>player11walk.png</filename>
+            <filename>player10walkMax.png</filename>
+            <filename>player11walkMax.png</filename>
             <filename>player12walkmax.png</filename>
             <filename>player13walkmax.png</filename>
-            <filename>player14walkmax.png</filename>
-            <filename>player15walkmax.png</filename>
+            <filename>player00static.png</filename>
+            <filename>player01static.png</filename>
+            <filename>player02static.png</filename>
+            <filename>player03static.png</filename>
+            <filename>player04walk.png</filename>
+            <filename>player05walk.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>
