@@ -142,7 +142,7 @@ public class Player : MonoBehaviour {
 			if (speedStack > playerSteps.y  && speedStack < playerSteps.z)
 			{
 				currSpeed = medSpeed;
-				_anims._CURR = _anims._WALK;
+				_anims._CURR = _anims._WALKFASTER;
 				_anims.changeAnimSpeed(_anims._CURR, 1f);
 			}
 			if (speedStack > playerSteps.z)

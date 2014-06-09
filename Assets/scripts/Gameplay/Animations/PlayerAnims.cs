@@ -8,6 +8,7 @@ public class PlayerAnims : MonoBehaviour {
 
 	public string _STATIC;
 	public string _WALK;
+	public string _WALKFASTER;
 	public string _MAXWALK;
 	public string _CURR;
 
@@ -19,6 +20,7 @@ public class PlayerAnims : MonoBehaviour {
 		_animSprite = GetComponentInChildren<OTAnimatingSprite>();
 		_STATIC = "static";
 		_WALK = "walk";
+		_WALKFASTER = "walkfaster";
 		_MAXWALK = "maxwalk";
 		_CURR = "walk";
 	}

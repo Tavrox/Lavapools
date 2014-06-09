@@ -148,20 +148,34 @@
         </struct>
         <key>fileList</key>
         <array>
-            <filename>player06walk.png</filename>
-            <filename>player07walk.png</filename>
-            <filename>player08walk.png</filename>
-            <filename>player09walk.png</filename>
-            <filename>player10walkMax.png</filename>
-            <filename>player11walkMax.png</filename>
-            <filename>player12walkmax.png</filename>
-            <filename>player13walkmax.png</filename>
-            <filename>player00static.png</filename>
-            <filename>player01static.png</filename>
-            <filename>player02static.png</filename>
-            <filename>player03static.png</filename>
-            <filename>player04walk.png</filename>
-            <filename>player05walk.png</filename>
+            <filename>player_static_00.png</filename>
+            <filename>player_static_01.png</filename>
+            <filename>player_static_02.png</filename>
+            <filename>player_static_03.png</filename>
+            <filename>player_walk_04.png</filename>
+            <filename>player_walk_05.png</filename>
+            <filename>player_walk_06.png</filename>
+            <filename>player_walk_07.png</filename>
+            <filename>player_walk_08.png</filename>
+            <filename>player_walk_09.png</filename>
+            <filename>player_walk_10.png</filename>
+            <filename>player_walk_11.png</filename>
+            <filename>player_walkfaster_12.png</filename>
+            <filename>player_walkfaster_13.png</filename>
+            <filename>player_walkfaster_14.png</filename>
+            <filename>player_walkfaster_15.png</filename>
+            <filename>player_walkfaster_16.png</filename>
+            <filename>player_walkfaster_17.png</filename>
+            <filename>player_walkfaster_18.png</filename>
+            <filename>player_walkfaster_19.png</filename>
+            <filename>player_walkmax_20.png</filename>
+            <filename>player_walkmax_21.png</filename>
+            <filename>player_walkmax_22.png</filename>
+            <filename>player_walkmax_23.png</filename>
+            <filename>player_walkmax_24.png</filename>
+            <filename>player_walkmax_25.png</filename>
+            <filename>player_walkmax_26.png</filename>
+            <filename>player_walkmax_27.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>
