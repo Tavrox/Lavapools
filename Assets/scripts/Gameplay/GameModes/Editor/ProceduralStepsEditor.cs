@@ -116,6 +116,7 @@ public class ProceduralStepsEditor : Editor
 					_stp.LinkedParam.Remove(pbrpm);
 				}
 				_stp.triggerSum += pbrpm.chanceToTrigger;
+				EditorUtility.SetDirty(pbrpm);
 				EditorGUILayout.EndHorizontal();
 			}
 
