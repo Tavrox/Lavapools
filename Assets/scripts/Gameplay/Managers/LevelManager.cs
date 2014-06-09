@@ -108,6 +108,7 @@ public class LevelManager : MonoBehaviour {
 		{
 			GameObject gameo = FETool.createGameObject("ProceduralManager", gameObject);
 			ProcMana = gameo.AddComponent<Procedural>();
+			ProcMana.Setup(this);
 			break;
 		}
 		case LevelParameters.levelTypeList.Vertical :

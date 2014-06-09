@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class GUIEditorSkin : ScriptableObject {
 
@@ -8,5 +9,6 @@ public class GUIEditorSkin : ScriptableObject {
 	public Color col3 = Color.white;
 	public Color col4 = Color.white;
 	public Color col5 = Color.white;
+	public List<Color> colorList = new List<Color>();
 
 }

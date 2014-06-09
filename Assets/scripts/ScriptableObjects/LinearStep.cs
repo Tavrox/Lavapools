@@ -41,7 +41,18 @@ public class LinearStep : ScriptableObject {
 	public float Crab_SpeedMultiplier = 1f;
 	public float Enemies_SpeedMultiplier = 1f;
 	public bool Triggered;
-	public List<BrickStepParam> LinkedParam = new List<BrickStepParam>();
+
+	// PROCEDURAL PARAMETERS
+	public List<ProceduralBrickParam> LinkedParam = new List<ProceduralBrickParam>();
+	[HideInInspector] public bool editorDisplayParam;
+	public int triggerSum;
+	public enum procTrigger
+	{
+		BrickByBrick,
+		Mixed
+	};
+	public procTrigger procType;
+	public int nbBricksToTrigger;
 
 	// EDITOR TOOLS
 	public LevelInfo LevelToUnlock;

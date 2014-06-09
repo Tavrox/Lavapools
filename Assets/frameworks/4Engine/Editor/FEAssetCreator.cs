@@ -74,5 +74,16 @@ public class FEAssetCreator {
 	{
 		ScriptableObjectUtility.CreateAsset<VerticalLevelSetup>();
 	}
+	[MenuItem("Assets/Create/ProceduralBrickParam")]
+	public static void CreateProceduralBrickParam ()
+	{
+		ScriptableObjectUtility.CreateAsset<ProceduralBrickParam>();
+	}
+	[MenuItem("Assets/Create/ProceduralLevelSetup")]
+	public static void CreateProceduralLevelSetup ()
+	{
+		ScriptableObjectUtility.CreateAsset<ProceduralLevelSetup>();
+	}
+
 
 }

@@ -4,13 +4,18 @@ using System.Collections.Generic;
 
 public class ProceduralBrickParam : ScriptableObject
 {
-	[SerializeField] public LevelBrick.typeList Brick;
-	[SerializeField] public int stepID = 1;
-	[SerializeField] public int ID = 1;
-	[SerializeField] public string giveWPM = "A";
-	[SerializeField] public bool tryEnable = true;
-	[SerializeField] public bool tryDisable = false;
-	[SerializeField] public string changeDirections = "UDLR";
-	[SerializeField] public int addLength = 4;
-	[SerializeField] public bool tryInvert = false;
+	public bool forceTrigger;
+	[Range (0f, 100f)] public int chanceToTrigger;
+	public LevelBrick.typeList Brick;
+	public int stepID = 1;
+	public int ID = 1;
+	public string giveWPM = "A";
+	public bool tryEnable = true;
+	public bool tryDisable = false;
+	public bool Toggle;
+	public string changeDirections = "UDLR";
+	public int addLength = 4;
+	public int maxLength;
+	public bool tryInvert = false;
+	public bool hasbeenInverted = false;
 }
