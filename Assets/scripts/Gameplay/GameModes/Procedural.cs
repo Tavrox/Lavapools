@@ -141,81 +141,84 @@ public class Procedural : MonoBehaviour {
 
 	private void enableBrick()
 	{
-		currModBrick.enableBrick();
-	}
-
-	/*
-	
-	private void attributeWaypoint()
-	{
-		if (currModBrick.GetComponent<PatrolBrick>() != null && currParam.WaypointsAttributed != "")
-		{
-			string typeToFetch = currParam.Brick.ToString();
-			string idToFetch = "_" + currParam.WaypointsAttributed.ToUpper();
-			currModBrick.GetComponent<PatrolBrick>().brickPath = levMan.wpDirector.waypointsMan.Find((WaypointManager mana) => mana.name == typeToFetch + idToFetch);
-			currModBrick.GetComponent<PatrolBrick>().brickPath.type = currModBrick.type;
-		}
-	}
-	private void enableBrick()
-	{
-		if (currParam.Enable == true && currParam.ID != 0)
+		if (currParam.tryEnable == true && currParam.ID != 0)
 		{
 			if (currModBrick.type == LevelBrick.typeList.BladeTower)
 			{
-				currModBrick.GetComponent<BladeTower>().setupBladePart(currParam.TowerLength);
+				currModBrick.GetComponent<BladeTower>().setupBladePart(currParam.addLength, false);
 			}
 			currModBrick.enableBrick();
 		}
 	}
 	private void disableBrick()
 	{
-		if (currParam.Disable == true && currParam.ID != 0)
+		if (currParam.tryDisable == true && currParam.ID != 0)
 		{
 			currModBrick.disableBrick();
 		}
 	}
+
+	private void toggleBrick()
+	{
+
+	}
+	
+	private void attributeWaypoint()
+	{
+		if (currModBrick.GetComponent<PatrolBrick>() != null && currParam.giveWPM != "")
+		{
+			string typeToFetch = currParam.Brick.ToString();
+			string idToFetch = "_" + currParam.giveWPM.ToUpper();
+			currModBrick.GetComponent<PatrolBrick>().brickPath = levMan.wpDirector.waypointsMan.Find((WaypointManager mana) => mana.name == typeToFetch + idToFetch);
+			currModBrick.GetComponent<PatrolBrick>().brickPath.type = currModBrick.type;
+		}
+	}
+
+	
 	private void giveDirections()
 	{
 		if (currModBrick.type == LevelBrick.typeList.BladeTower || currModBrick.type == LevelBrick.typeList.ArrowTower)
 		{
-			currParam.Directions.ToUpper();
-			if (currParam.Directions.Contains("U") || currParam.Directions.Contains("D") ||
-			    currParam.Directions.Contains("L") || currParam.Directions.Contains("R") )
+			currParam.changeDirections.ToUpper();
+			if (currParam.changeDirections.Contains("U") || currParam.changeDirections.Contains("D") ||
+			    currParam.changeDirections.Contains("L") || currParam.changeDirections.Contains("R") )
 			{
-				currModBrick.GetComponent<OppTower>().setupDirectionList(currParam.Directions);
+				currModBrick.GetComponent<OppTower>().setupDirectionList(currParam.changeDirections);
 				if (currModBrick.type == LevelBrick.typeList.ArrowTower)
 				{
-					currModBrick.GetComponent<ArrowTower>().displayDirections(currParam.Directions);
+					currModBrick.GetComponent<ArrowTower>().displayDirections(currParam.changeDirections);
 				}
 			}
 		}
 	}
+
+
 	private void setupTowerLength()
 	{
-		if (currModBrick.type == LevelBrick.typeList.BladeTower && currParam.TowerLength > 0)
+		if (currModBrick.type == LevelBrick.typeList.BladeTower && currParam.addLength > 0)
 		{
-			currModBrick.GetComponent<BladeTower>().setupBladePart(currParam.TowerLength);
+			currModBrick.GetComponent<BladeTower>().setupBladePart(currParam.addLength, false);
 		}
 	}
 	private void swapTowerRotation()
 	{
-		if (currParam.Invert == true)
+		if (currParam.tryInvert == true)
 		{
 			if (currModBrick.type == LevelBrick.typeList.BladeTower)
 			{
-				currModBrick.GetComponent<BladeTower>().swapRotation(currParam.Invert);
+				currModBrick.GetComponent<BladeTower>().swapRotation(currParam.tryInvert);
 			}
 			if (currModBrick.type == LevelBrick.typeList.Chainsaw || currModBrick.type == LevelBrick.typeList.Bird )
 			{
 				string typeToFetch = currParam.Brick.ToString();
-				string idToFetch = "_" + currParam.WaypointsAttributed.ToUpper();
+				string idToFetch = "_" + currParam.giveWPM.ToUpper();
 				WaypointManager manplz = levMan.wpDirector.waypointsMan.Find((WaypointManager mana) => mana.name == typeToFetch + idToFetch);
 				manplz.invertWaypoints();
 				
 			}
 		}
 	}
-	*/
+
 	
 	private void untriggerSteps()
 	{

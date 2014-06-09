@@ -27,6 +27,8 @@ public class BladeTower : OppTower {
 	private Vector3 moveMarRight;
 	private float currRot;
 
+	private int towerLength;
+
 
 	// Use this for initialization
 	public void Setup () 
@@ -66,13 +68,15 @@ public class BladeTower : OppTower {
 		CancelInvoke("pivotHead");
 	}
 
-	public void setupBladePart(int _length)
+	public void setupBladePart(int _length = 0, bool _additionMode = false)
 	{
+//		_additionMode = true ? towerLength = _length : towerLength += _length ; 
+		towerLength = (_additionMode) ? _length: towerLength + _length;
 		destroyAllBladePart(FbList);
-//		print ("tr" + enabledDirection[0]);
+
 		foreach (LevelTools.DirectionList dirChosen in enabledDirection)
 		{
-			createBladePart(_length, dirChosen);
+			createBladePart(towerLength, dirChosen);
 		}
 		FbDirList.Add(FbListLeft);
 		FbDirList.Add(FbListDown);

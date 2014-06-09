@@ -319,7 +319,7 @@
             <key>player_walkmax_24.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{431,133},{66,59}}</string>
+                <string>{{218,197},{66,59}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -332,7 +332,7 @@
             <key>player_walkmax_25.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{5,197},{66,59}}</string>
+                <string>{{289,197},{66,59}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -345,7 +345,7 @@
             <key>player_walkmax_26.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{76,197},{66,59}}</string>
+                <string>{{360,197},{66,59}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -358,7 +358,7 @@
             <key>player_walkmax_27.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{147,197},{66,59}}</string>
+                <string>{{431,197},{66,59}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -378,7 +378,7 @@
             <key>size</key>
             <string>{512,512}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:bac705ce8b50c2abd137bbe163a34d1b:1/1$</string>
+            <string>$TexturePacker:SmartUpdate:3078559639b800870c1aa90e38783f42:1/1$</string>
             <key>textureFileName</key>
             <string>player.png</string>
         </dict>
