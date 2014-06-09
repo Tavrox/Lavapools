@@ -4,7 +4,7 @@
     <dict>
         <key>frames</key>
         <dict>
-            <key>player00static.png</key>
+            <key>player_static_00.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{5,5},{66,59}}</string>
@@ -17,7 +17,7 @@
                 <key>sourceSize</key>
                 <string>{66,59}</string>
             </dict>
-            <key>player01static.png</key>
+            <key>player_static_01.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{76,5},{66,59}}</string>
@@ -30,7 +30,7 @@
                 <key>sourceSize</key>
                 <string>{66,59}</string>
             </dict>
-            <key>player02static.png</key>
+            <key>player_static_02.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{147,5},{66,59}}</string>
@@ -43,7 +43,59 @@
                 <key>sourceSize</key>
                 <string>{66,59}</string>
             </dict>
-            <key>player03static.png</key>
+            <key>player_static_03.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{218,5},{66,59}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{66,59}}</string>
+                <key>sourceSize</key>
+                <string>{66,59}</string>
+            </dict>
+            <key>player_walk_04.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{289,5},{66,59}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{66,59}}</string>
+                <key>sourceSize</key>
+                <string>{66,59}</string>
+            </dict>
+            <key>player_walk_05.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{360,5},{66,59}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{66,59}}</string>
+                <key>sourceSize</key>
+                <string>{66,59}</string>
+            </dict>
+            <key>player_walk_06.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{431,5},{66,59}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{66,59}}</string>
+                <key>sourceSize</key>
+                <string>{66,59}</string>
+            </dict>
+            <key>player_walk_07.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{5,69},{66,59}}</string>
@@ -56,135 +108,265 @@
                 <key>sourceSize</key>
                 <string>{66,59}</string>
             </dict>
-            <key>player04walk.png</key>
+            <key>player_walk_08.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{76,69},{68,70}}</string>
+                <string>{{76,69},{66,59}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{68,70}}</string>
+                <string>{{0,0},{66,59}}</string>
                 <key>sourceSize</key>
-                <string>{68,70}</string>
+                <string>{66,59}</string>
             </dict>
-            <key>player05walk.png</key>
+            <key>player_walk_09.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{149,69},{68,70}}</string>
+                <string>{{147,69},{66,59}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{68,70}}</string>
+                <string>{{0,0},{66,59}}</string>
                 <key>sourceSize</key>
-                <string>{68,70}</string>
+                <string>{66,59}</string>
             </dict>
-            <key>player06walk.png</key>
+            <key>player_walk_10.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{5,144},{68,70}}</string>
+                <string>{{218,69},{66,59}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{68,70}}</string>
+                <string>{{0,0},{66,59}}</string>
                 <key>sourceSize</key>
-                <string>{68,70}</string>
+                <string>{66,59}</string>
             </dict>
-            <key>player07walk.png</key>
+            <key>player_walk_11.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{78,144},{68,70}}</string>
+                <string>{{289,69},{66,59}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{68,70}}</string>
+                <string>{{0,0},{66,59}}</string>
                 <key>sourceSize</key>
-                <string>{68,70}</string>
+                <string>{66,59}</string>
             </dict>
-            <key>player08walk.png</key>
+            <key>player_walkfaster_12.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{151,144},{68,70}}</string>
+                <string>{{360,69},{66,59}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{68,70}}</string>
+                <string>{{0,0},{66,59}}</string>
                 <key>sourceSize</key>
-                <string>{68,70}</string>
+                <string>{66,59}</string>
             </dict>
-            <key>player09walk.png</key>
+            <key>player_walkfaster_13.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{5,219},{68,70}}</string>
+                <string>{{431,69},{66,59}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{68,70}}</string>
+                <string>{{0,0},{66,59}}</string>
                 <key>sourceSize</key>
-                <string>{68,70}</string>
+                <string>{66,59}</string>
             </dict>
-            <key>player10walkMax.png</key>
+            <key>player_walkfaster_14.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{78,219},{68,70}}</string>
+                <string>{{5,133},{66,59}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{68,70}}</string>
+                <string>{{0,0},{66,59}}</string>
                 <key>sourceSize</key>
-                <string>{68,70}</string>
+                <string>{66,59}</string>
             </dict>
-            <key>player11walkMax.png</key>
+            <key>player_walkfaster_15.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{151,219},{68,70}}</string>
+                <string>{{76,133},{66,59}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{68,70}}</string>
+                <string>{{0,0},{66,59}}</string>
                 <key>sourceSize</key>
-                <string>{68,70}</string>
+                <string>{66,59}</string>
             </dict>
-            <key>player12walkmax.png</key>
+            <key>player_walkfaster_16.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{5,294},{68,70}}</string>
+                <string>{{147,133},{66,59}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{68,70}}</string>
+                <string>{{0,0},{66,59}}</string>
                 <key>sourceSize</key>
-                <string>{68,70}</string>
+                <string>{66,59}</string>
             </dict>
-            <key>player13walkmax.png</key>
+            <key>player_walkfaster_17.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{78,294},{68,70}}</string>
+                <string>{{218,133},{66,59}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{68,70}}</string>
+                <string>{{0,0},{66,59}}</string>
                 <key>sourceSize</key>
-                <string>{68,70}</string>
+                <string>{66,59}</string>
+            </dict>
+            <key>player_walkfaster_18.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{289,133},{66,59}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{66,59}}</string>
+                <key>sourceSize</key>
+                <string>{66,59}</string>
+            </dict>
+            <key>player_walkfaster_19.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{360,133},{66,59}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{66,59}}</string>
+                <key>sourceSize</key>
+                <string>{66,59}</string>
+            </dict>
+            <key>player_walkmax_20.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{431,133},{66,59}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{66,59}}</string>
+                <key>sourceSize</key>
+                <string>{66,59}</string>
+            </dict>
+            <key>player_walkmax_21.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{5,197},{66,59}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{66,59}}</string>
+                <key>sourceSize</key>
+                <string>{66,59}</string>
+            </dict>
+            <key>player_walkmax_22.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{76,197},{66,59}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{66,59}}</string>
+                <key>sourceSize</key>
+                <string>{66,59}</string>
+            </dict>
+            <key>player_walkmax_23.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{147,197},{66,59}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{66,59}}</string>
+                <key>sourceSize</key>
+                <string>{66,59}</string>
+            </dict>
+            <key>player_walkmax_24.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{431,133},{66,59}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{66,59}}</string>
+                <key>sourceSize</key>
+                <string>{66,59}</string>
+            </dict>
+            <key>player_walkmax_25.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{5,197},{66,59}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{66,59}}</string>
+                <key>sourceSize</key>
+                <string>{66,59}</string>
+            </dict>
+            <key>player_walkmax_26.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{76,197},{66,59}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{66,59}}</string>
+                <key>sourceSize</key>
+                <string>{66,59}</string>
+            </dict>
+            <key>player_walkmax_27.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{147,197},{66,59}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{66,59}}</string>
+                <key>sourceSize</key>
+                <string>{66,59}</string>
             </dict>
         </dict>
         <key>metadata</key>
@@ -194,9 +376,9 @@
             <key>realTextureFileName</key>
             <string>player.png</string>
             <key>size</key>
-            <string>{256,512}</string>
+            <string>{512,512}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:3d0fa3f5af0f6242cd0427b87bb2be70:1/1$</string>
+            <string>$TexturePacker:SmartUpdate:bac705ce8b50c2abd137bbe163a34d1b:1/1$</string>
             <key>textureFileName</key>
             <string>player.png</string>
         </dict>
