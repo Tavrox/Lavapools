@@ -147,6 +147,8 @@ public class LevelManager : MonoBehaviour {
 		}
 		}
 
+		wpDirector.affectRelatedBricks(bricksMan.BricksList);
+
 		if (LocalTuning.levelType != LevelParameters.levelTypeList.Debuggin)
 		{
 			if (GameObject.Find("UI") == null)

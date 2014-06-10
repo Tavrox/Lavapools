@@ -139,6 +139,7 @@ public class LevelBrick : MonoBehaviour {
 		if (this != null)
 		{
 			gameObject.transform.position = initPos;
+			disableBrick();
 		}
 	}
 }

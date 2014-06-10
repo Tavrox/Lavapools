@@ -101,6 +101,7 @@ public class Procedural : MonoBehaviour {
 	{
 		foreach (ProceduralBrickParam _parameter in _list)
 		{
+			print (_parameter.name);
 			currParam = _parameter;
 			currModBrick = findBrick();
 			enableBrick();
@@ -127,7 +128,7 @@ public class Procedural : MonoBehaviour {
 		{
 			foreach (ProceduralBrickParam prm in _list)
 			{
-				int randNb = Random.Range(0,100);
+				int randNb = Random.Range(1,100);
 				if (randNb <= prm.chanceToTrigger)
 				{
 					paramToTrigger.Add(prm);
@@ -179,7 +180,17 @@ public class Procedural : MonoBehaviour {
 
 	private void toggleBrick()
 	{
-
+		if (currParam.Toggle == true)
+		{
+			if (currModBrick.isEnabled == true)
+			{
+				currModBrick.disableBrick();
+			}
+			else
+			{
+				currModBrick.enableBrick();
+			}
+		}
 	}
 	
 	private void attributeWaypoint()

@@ -18,6 +18,14 @@ public class WaypointDirector : MonoBehaviour {
 			waypointsMan.Add(wpm);
 			wpm.Setup(_lm);
 		}
-	
+	}
+
+	public void affectRelatedBricks(List<LevelBrick> _listBricks)
+	{
+		foreach (WaypointManager mana in waypointsMan)
+		{
+			mana.relatedBrick = _listBricks.FindAll((LevelBrick obj) => obj.GetComponent<PatrolBrick>().brickPath == mana);
+
+		}
 	}
 }
