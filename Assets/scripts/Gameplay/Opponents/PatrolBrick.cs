@@ -2,9 +2,9 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class PatrolBrick : LevelBrick {
+public class PatrolBrick : LevelBrick 
+{
 
-	[HideInInspector] public string brickPathId;
 	[HideInInspector] public bool debug;
 	public Waypoint currentWP;
 
@@ -25,7 +25,7 @@ public class PatrolBrick : LevelBrick {
 		if (brickPath == null)
 		{
 			Debug.Log("The path on " +name+ " is missing");
-			assignPath(_levMan.wpDirector.waypointsMan.Find( (WaypointManager wpm) => wpm.type == typeList.Bird));
+			Debug.Break();
 		}
 
 		GameEventManager.GameStart += GameStart;
@@ -89,7 +89,7 @@ public class PatrolBrick : LevelBrick {
 
 	void Update () {
 			
-		if (GameEventManager.gameOver != true)
+		if (GameEventManager.gameOver != true && isEnabled == true)
 		{
 			pos = gameObject.transform.position;
 			Debug.DrawLine(pos,  (pos + new Vector3 ( (speed * direction.x) * 50f, (speed * direction.y) * 50f, 0f)), Color.blue);

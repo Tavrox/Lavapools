@@ -31,26 +31,20 @@ public class Waypoint : MonoBehaviour {
 
 	void OnTriggerEnter(Collider _other)
 	{
-		if (activated && _other.GetComponent<PatrolBrick>() != null)
+		if (activated && _other.GetComponent<PatrolBrick>() != null && linkedManager.relatedBrick != null && linkedManager.relatedBrick.Contains(_other.GetComponent<LevelBrick>()) )
 		{
 			PatrolBrick _collBrick = _other.GetComponent<PatrolBrick>();
-			if (linkedManager.relatedBrick != null)
+			if (_collBrick.type == LevelBrick.typeList.Carpet && _collBrick.GetComponent<Carpet>().Stopped == false)
 			{
-				if (_collBrick.type == linkedManager.relatedBrick.type && _collBrick.brickPathId == linkedManager.id)
-				{
-					if (_collBrick.type == LevelBrick.typeList.Carpet && _collBrick.GetComponent<Carpet>().Stopped == false)
-					{
-						_collBrick.GetComponent<Carpet>().ReachAndStop();
-					}
-					passedUpon = true;
-					StartCoroutine("delayRetrigger");
-					Waypoint findWp = linkedManager.findNextWaypoint(this);
-					_collBrick.GoToWaypoint(findWp);
-					if (_collBrick.type == LevelBrick.typeList.Bird)
-					{
-						_collBrick.GetComponent<Bird>().rotateTowardMouse(findWp.transform.position, _collBrick.transform);
-					}
-				}
+				_collBrick.GetComponent<Carpet>().ReachAndStop();
+			}
+			passedUpon = true;
+			StartCoroutine("delayRetrigger");
+			Waypoint findWp = linkedManager.findNextWaypoint(this);
+			_collBrick.GoToWaypoint(findWp);
+			if (_collBrick.type == LevelBrick.typeList.Bird)
+			{
+				_collBrick.GetComponent<Bird>().rotateTowardMouse(findWp.transform.position, _collBrick.transform);
 			}
 		}
 	}

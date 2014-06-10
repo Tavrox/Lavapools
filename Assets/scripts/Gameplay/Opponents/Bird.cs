@@ -19,8 +19,7 @@ public class Bird : PatrolBrick {
 		GameEventManager.Respawn += Respawn;
 		if (brickPath != null)
 		{
-			brickPath.relatedBrick = this;
-			brickPathId = brickPath.id;
+			brickPath.relatedBrick.Add(this);
 		}
 		else
 		{

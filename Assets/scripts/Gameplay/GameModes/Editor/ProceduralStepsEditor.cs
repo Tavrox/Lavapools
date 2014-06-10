@@ -66,60 +66,77 @@ public class ProceduralStepsEditor : Editor
 			EditorGUILayout.HelpBox( "STEP " + _stp.stepID, MessageType.Info, true);
 			_stp.triggerSum = 0;
 			
-			displayStepHeader();
-			EditorGUILayout.BeginHorizontal(GUILayout.Width(maxSize));
-			_stp.stepID 				= EditorGUILayout.IntField("", _stp.stepID, GUILayout.Width(stepSize));
-			_stp.procType				= (LinearStep.procTrigger)System.Enum.Parse(typeof(LinearStep.procTrigger) , EditorGUILayout.EnumPopup("", _stp.procType, GUILayout.Width(stepSize)).ToString());
-			_stp.MusicSource			= (AudioClip) EditorGUILayout.ObjectField(_stp.MusicSource, typeof(AudioClip),false, GUILayout.Width(stepSize));
-			_stp.ScoreCondition			= EditorGUILayout.FloatField("", _stp.ScoreCondition, GUILayout.Width(stepSize));
-			_stp.Crab_SpeedMultiplier	= EditorGUILayout.FloatField("", _stp.Crab_SpeedMultiplier, GUILayout.Width(stepSize));
-			_stp.Enemies_SpeedMultiplier= EditorGUILayout.FloatField("", _stp.Enemies_SpeedMultiplier, GUILayout.Width(stepSize));
-			EditorGUILayout.EndHorizontal();
+			displayStepHeader(_stp);
+			modifyStep(_stp);
+			displayProcHeader(_stp);
 
-			displayProcHeader();
-			foreach (ProceduralBrickParam pbrpm in _stp.LinkedParam)
+			if (_stp.LinkedParam != null)
 			{
-				EditorGUILayout.BeginHorizontal(GUILayout.Width(maxSize));
-				pbrpm.forceTrigger 		= EditorGUILayout.Toggle("", pbrpm.forceTrigger, GUILayout.Width(boxSize));
-				if (_stp.procType == LinearStep.procTrigger.BrickByBrick)
+				foreach (ProceduralBrickParam pbrpm in _stp.LinkedParam)
 				{
-					pbrpm.chanceToTrigger	= EditorGUILayout.IntField("", pbrpm.chanceToTrigger, GUILayout.Width(boxSize));
-					if (pbrpm.forceTrigger == true)
+					if (pbrpm != null)
 					{
-						pbrpm.chanceToTrigger = 100;
+						EditorGUILayout.BeginHorizontal(GUILayout.Width(maxSize));
+
+						pbrpm.forceTrigger 		= EditorGUILayout.Toggle("", pbrpm.forceTrigger, GUILayout.Width(boxSize));
+						if (_stp.procType == LinearStep.procTrigger.BrickByBrick)
+						{
+							pbrpm.chanceToTrigger	= EditorGUILayout.IntField("", pbrpm.chanceToTrigger, GUILayout.Width(boxSize));
+							if (pbrpm.forceTrigger == true)
+							{
+								pbrpm.chanceToTrigger = 100;
+							}
+						}
+						pbrpm.Brick 			= (LevelBrick) EditorGUILayout.ObjectField(pbrpm.Brick, typeof(LevelBrick), true, GUILayout.Width(boxSize));
+						pbrpm.stepID 			= _stp.stepID;
+						pbrpm.giveWPM 			= (WaypointManager) EditorGUILayout.ObjectField(pbrpm.giveWPM, typeof(WaypointManager), true, GUILayout.Width(boxSize));
+						pbrpm.tryEnable 		= EditorGUILayout.Toggle("", pbrpm.tryEnable, GUILayout.Width(boxSize));
+						pbrpm.tryDisable 		= EditorGUILayout.Toggle("", pbrpm.tryDisable, GUILayout.Width(boxSize));
+						pbrpm.Toggle 			= EditorGUILayout.Toggle("", pbrpm.Toggle, GUILayout.Width(boxSize));
+
+						if (pbrpm.Brick != null)
+						{
+							if (pbrpm.Brick.type == LevelBrick.typeList.ArrowTower || pbrpm.Brick.type == LevelBrick.typeList.BladeTower)
+							{
+								pbrpm.changeDirections = EditorGUILayout.TextField("", pbrpm.changeDirections, GUILayout.Width(boxSize));
+							}
+							else
+							{
+								GUI.color = Color.clear;
+								GUILayout.Box("", GUILayout.Width(boxSize));
+								GUI.color = customSkin.colorList[_stpList.IndexOf(_stp)];
+							}
+
+							
+							if ( pbrpm.Brick.type == LevelBrick.typeList.BladeTower)
+							{
+								pbrpm.addLength 	= EditorGUILayout.IntField("", pbrpm.addLength, GUILayout.Width(boxSize));
+								pbrpm.maxLength 	= EditorGUILayout.IntField("", pbrpm.maxLength, GUILayout.Width(boxSize));
+							}
+							else
+							{
+								GUI.color = Color.clear;
+								GUILayout.Box("", GUILayout.Width(boxSize));
+								GUILayout.Box("", GUILayout.Width(boxSize));
+								GUI.color = customSkin.colorList[_stpList.IndexOf(_stp)];
+							}
+						}
+
+
+						pbrpm.tryInvert 		= EditorGUILayout.Toggle("", pbrpm.tryInvert, GUILayout.Width(boxSize));
+
+						if (GUILayout.Button("Remove", GUILayout.Width(boxSize)))
+						{
+							AssetDatabase.DeleteAsset(AssetDatabase.GetAssetPath(pbrpm));
+							setup.ListProcParam.Remove(pbrpm);
+							_stp.LinkedParam.Remove(pbrpm);
+						}
+						_stp.triggerSum += pbrpm.chanceToTrigger;
+						EditorUtility.SetDirty(pbrpm);
+						EditorGUILayout.EndHorizontal();
 					}
 				}
-				pbrpm.Brick				= (LevelBrick.typeList)System.Enum.Parse(typeof(LevelBrick.typeList) , EditorGUILayout.EnumPopup("", pbrpm.Brick, GUILayout.Width(boxSize)).ToString());
-				pbrpm.stepID 			= _stp.stepID;
-				pbrpm.ID 				= EditorGUILayout.IntField("", pbrpm.ID, GUILayout.Width(boxSize));
-				pbrpm.giveWPM 			= EditorGUILayout.TextField("", pbrpm.giveWPM, GUILayout.Width(boxSize));
-				pbrpm.tryEnable 		= EditorGUILayout.Toggle("", pbrpm.tryEnable, GUILayout.Width(boxSize));
-				pbrpm.tryDisable 		= EditorGUILayout.Toggle("", pbrpm.tryDisable, GUILayout.Width(boxSize));
-				pbrpm.Toggle 			= EditorGUILayout.Toggle("", pbrpm.Toggle, GUILayout.Width(boxSize));
-
-				if (pbrpm.Brick == LevelBrick.typeList.ArrowTower || pbrpm.Brick == LevelBrick.typeList.BladeTower)
-				{
-					pbrpm.changeDirections = EditorGUILayout.TextField("", pbrpm.changeDirections, GUILayout.Width(boxSize));
-				}
-				if ( pbrpm.Brick == LevelBrick.typeList.BladeTower)
-				{
-					pbrpm.addLength 	= EditorGUILayout.IntField("", pbrpm.addLength, GUILayout.Width(boxSize));
-					pbrpm.maxLength 	= EditorGUILayout.IntField("", pbrpm.maxLength, GUILayout.Width(boxSize));
-				}
-
-				pbrpm.tryInvert 		= EditorGUILayout.Toggle("", pbrpm.tryInvert, GUILayout.Width(boxSize));
-
-				if (GUILayout.Button("Remove", GUILayout.Width(boxSize)))
-				{
-					AssetDatabase.DeleteAsset(AssetDatabase.GetAssetPath(pbrpm));
-					setup.ListProcParam.Remove(pbrpm);
-					_stp.LinkedParam.Remove(pbrpm);
-				}
-				_stp.triggerSum += pbrpm.chanceToTrigger;
-				EditorUtility.SetDirty(pbrpm);
-				EditorGUILayout.EndHorizontal();
 			}
-
 			// Add a brick and asset in the directory
 			if (GUILayout.Button("Add Procedural Brick", GUILayout.Width(200f)))
 			{
@@ -128,21 +145,35 @@ public class ProceduralStepsEditor : Editor
 				setup.ListProcParam.Add(brpm);
 				AssetDatabase.CreateAsset(brpm , "Assets/Resources/Maps/" + setup.lvlParam.NAME + "/ProcParam/" + Random.Range(0,1000000).ToString() +".asset");
 				EditorUtility.SetDirty(brpm);
-			}
 
+			}
 			EditorUtility.SetDirty(setup);
 			EditorGUILayout.Separator();
 			EditorGUILayout.Separator();
 			EditorGUILayout.Separator();
 		}
 	}
+
+	private void modifyStep(LinearStep _stp)
+	{
+		EditorGUILayout.BeginHorizontal(GUILayout.Width(maxSize));
+		_stp.stepID 				= EditorGUILayout.IntField("", _stp.stepID, GUILayout.Width(stepSize));
+		_stp.procType				= (LinearStep.procTrigger)System.Enum.Parse(typeof(LinearStep.procTrigger) , EditorGUILayout.EnumPopup("", _stp.procType, GUILayout.Width(stepSize)).ToString());
+		_stp.allowRetrigger			= EditorGUILayout.Toggle("", _stp.allowRetrigger, GUILayout.Width(stepSize));
+		_stp.MusicSource			= (AudioClip) EditorGUILayout.ObjectField(_stp.MusicSource, typeof(AudioClip),false, GUILayout.Width(stepSize));
+		_stp.ScoreCondition			= EditorGUILayout.FloatField("", _stp.ScoreCondition, GUILayout.Width(stepSize));
+		_stp.Crab_SpeedMultiplier	= EditorGUILayout.FloatField("", _stp.Crab_SpeedMultiplier, GUILayout.Width(stepSize));
+		_stp.Enemies_SpeedMultiplier= EditorGUILayout.FloatField("", _stp.Enemies_SpeedMultiplier, GUILayout.Width(stepSize));
+		EditorGUILayout.EndHorizontal();
+	}
 	
 	
-	private void displayStepHeader()
+	private void displayStepHeader(LinearStep _stp)
 	{
 		EditorGUILayout.BeginHorizontal(GUILayout.Width(maxSize));
 		GUILayout.Box("StepID",GUILayout.Width(stepSize));
 		GUILayout.Box("ProcType",GUILayout.Width(stepSize));
+		GUILayout.Box("AllowRetrigger",GUILayout.Width(stepSize));
 		GUILayout.Box("Music",GUILayout.Width(stepSize));
 		GUILayout.Box("Condition",GUILayout.Width(stepSize));
 		GUILayout.Box("CrabSpeed",GUILayout.Width(stepSize));
@@ -150,14 +181,16 @@ public class ProceduralStepsEditor : Editor
 		EditorGUILayout.EndHorizontal();
 	}
 
-	private void displayProcHeader()
+	private void displayProcHeader(LinearStep _stp)
 	{
 		EditorGUILayout.BeginHorizontal(GUILayout.Width(maxSize));
 		GUILayout.Box("Force",GUILayout.Width(boxSize));
-		GUILayout.Box("Chances",GUILayout.Width(boxSize));
-		GUILayout.Box("Type",GUILayout.Width(boxSize));
-		GUILayout.Box("BrkID",GUILayout.Width(boxSize));
-		GUILayout.Box("GiveWPM",GUILayout.Width(boxSize));
+		if (_stp.procType != LinearStep.procTrigger.Mixed)
+		{
+			GUILayout.Box("Chances",GUILayout.Width(boxSize));
+		}
+		GUILayout.Box("Brick",GUILayout.Width(boxSize));
+		GUILayout.Box("WPM",GUILayout.Width(boxSize));
 		GUILayout.Box("tryEnable",GUILayout.Width(boxSize));
 		GUILayout.Box("tryDisable",GUILayout.Width(boxSize));
 		GUILayout.Box("Toggle",GUILayout.Width(boxSize));

@@ -6,10 +6,9 @@ public class ProceduralBrickParam : ScriptableObject
 {
 	public bool forceTrigger;
 	[Range (0f, 100f)] public int chanceToTrigger;
-	public LevelBrick.typeList Brick;
+	public LevelBrick Brick;
 	public int stepID = 1;
-	public int ID = 1;
-	public string giveWPM = "A";
+	public WaypointManager giveWPM;
 	public bool tryEnable = true;
 	public bool tryDisable = false;
 	public bool Toggle;
@@ -18,4 +17,6 @@ public class ProceduralBrickParam : ScriptableObject
 	public int maxLength;
 	public bool tryInvert = false;
 	public bool hasbeenInverted = false;
+
+	public bool isTriggered;
 }

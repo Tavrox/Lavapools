@@ -6,9 +6,8 @@ public class WaypointManager : MonoBehaviour {
 	
 	[HideInInspector] public LevelManager _levMan;
 
-	[HideInInspector] public string id;
-	public LevelBrick.typeList type;
-	public LevelBrick relatedBrick;
+	public string id;
+	public List<LevelBrick> relatedBrick = new List<LevelBrick>();
 	public List<Waypoint> relatedWaypoints = new List<Waypoint>();
 	[HideInInspector] public Waypoint lastWp;
 	public bool inverted = false;
@@ -18,7 +17,6 @@ public class WaypointManager : MonoBehaviour {
 	{
 		transform.position = new Vector3(transform.position.x, transform.position.y, 0f);
 		relatedWaypoints = GetWpList();
-		type = parseWpmName(gameObject.name.Split('_')[0]);
 		id = gameObject.name.Split('_')[1];
 		_levMan = man;
 	}
@@ -114,10 +112,16 @@ public class WaypointManager : MonoBehaviour {
 	public bool invertWaypoints()
 	{
 //		relatedBrick.GetComponent<PatrolBrick>().set
-		if (relatedBrick.GetComponent<Chainsaw>() != null)
+
+		List<LevelBrick> brk = relatedBrick.FindAll((LevelBrick obj) => obj.type == LevelBrick.typeList.Chainsaw);
+		if (brk.Count > 0)
 		{
-			relatedBrick.GetComponent<Chainsaw>().launchInvertAnim();
+			foreach (LevelBrick brick in brk)
+			{
+				brick.GetComponent<Chainsaw>().launchInvertAnim();
+			}
 		}
+
 		
 		if (inverted == true)
 		{
@@ -161,4 +165,10 @@ public class WaypointManager : MonoBehaviour {
 	{
 		return relatedWaypoints[Random.Range(0,relatedWaypoints.Count)];
 	}	
+
+	void OnDrawGizmosSelected()
+	{
+		GetWpList();
+		id = gameObject.name.Split('_')[1];
+	}
 }

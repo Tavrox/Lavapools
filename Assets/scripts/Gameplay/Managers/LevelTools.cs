@@ -43,21 +43,6 @@ public class LevelTools : MonoBehaviour {
 		GameEventManager.TriggerGameOver(_kl);
 	}
 
-	public WaypointManager findWpManager(LevelBrick.typeList _type)
-	{
-		WaypointManager res = null;
-		res = _levMan.wpDirector.waypointsMan.Find( delegate(WaypointManager obj) 
-		{
-			return obj.relatedBrick.type == _type;
-		});
-		return res;
-	}
-	public WaypointManager pickRandomWP(LevelBrick.typeList _type)
-	{
-		List<WaypointManager> _wpm  = _levMan.wpDirector.waypointsMan.FindAll((WaypointManager obj) => obj.type == _type);
-		return _wpm[Random.Range(0,_wpm.Count)];
-	}
-
 	public void CollectObject(Collectible _thing)
 	{
 		switch (_thing.typeCollectible)

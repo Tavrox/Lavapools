@@ -111,10 +111,13 @@ public class LinearStepTrigger : MonoBehaviour {
 	{
 		if (currModBrick.GetComponent<PatrolBrick>() != null && currParam.WaypointsAttributed != "")
 		{
+			if (currModBrick.GetComponent<PatrolBrick>().brickPath.id != currParam.WaypointsAttributed)
+			{
+				Debug.Log("Init waypoint & Code Waypoint attribution is different");
+			}
 			string typeToFetch = currParam.Brick.ToString();
 			string idToFetch = "_" + currParam.WaypointsAttributed.ToUpper();
 			currModBrick.GetComponent<PatrolBrick>().brickPath = levMan.wpDirector.waypointsMan.Find((WaypointManager mana) => mana.name == typeToFetch + idToFetch);
-			currModBrick.GetComponent<PatrolBrick>().brickPath.type = currModBrick.type;
 		}
 	}
 	private void enableBrick()

@@ -13,6 +13,11 @@ public class Procedural : MonoBehaviour {
 	public LevelParameters InitLevelSetup;
 	public ProceduralLevelSetup ProcSetup;
 	public List<LinearStep> _listSteps;
+	
+	public List<ProceduralBrickParam> paramlist = new List<ProceduralBrickParam>();
+	public List<ProceduralBrickParam> paramToTrigger = new List<ProceduralBrickParam>();
+	public List<ProceduralBrickParam> forcedParams = new List<ProceduralBrickParam>();
+
 
 	
 	private LevelBrick currModBrick;
@@ -28,6 +33,8 @@ public class Procedural : MonoBehaviour {
 		ProcSetup = Instantiate(Resources.Load(mainPath + "Procedural")) as ProceduralLevelSetup;
 		_listSteps = ProcSetup.LinearSteps;
 		untriggerSteps();
+
+		checkBrickSetup();
 		
 		_CURRENTSTEP = _listSteps[0];
 		
@@ -48,7 +55,6 @@ public class Procedural : MonoBehaviour {
 	public void triggerStep(LinearStep _step)
 	{
 		_CURRENTSTEP = _step;
-		_step.Triggered = true;
 		triggerList();
 		
 		levMan._player.lowSpeed = levMan._player.lowSpeed * _CURRENTSTEP.Crab_SpeedMultiplier;
@@ -66,7 +72,6 @@ public class Procedural : MonoBehaviour {
 		{
 			MasterAudio.TriggerPlaylistClip(_CURRENTSTEP.MusicSource.name);
 		}
-		
 		if (_CURRENTSTEP.LevelToUnlock != null)
 		{
 			levMan.tools.UnlockLevel(_CURRENTSTEP.LevelToUnlock);
@@ -77,62 +82,76 @@ public class Procedural : MonoBehaviour {
 	{
 		if (ProcSetup.ListProcParam != null)
 		{
-			List<ProceduralBrickParam> paramlist = ProcSetup.ListProcParam.FindAll((ProceduralBrickParam para) => para.stepID == _CURRENTSTEP.stepID);
-			List<ProceduralBrickParam> paramToTrigger = new List<ProceduralBrickParam>();
-			List<ProceduralBrickParam> forcedParams = paramlist.FindAll((ProceduralBrickParam obj) => obj.forceTrigger == true);
+			paramlist = ProcSetup.ListProcParam.FindAll((ProceduralBrickParam para) => para.stepID == _CURRENTSTEP.stepID && para.isTriggered == false);
+
+			// Take Forced Params and add them to the trigger list by default
+			forcedParams = paramlist.FindAll((ProceduralBrickParam obj) => obj.forceTrigger == true);
 			foreach (ProceduralBrickParam prm in forcedParams)
 			{
 				paramlist.Remove(prm);
 				paramToTrigger.Add(prm);
 			}
 
-			switch (_CURRENTSTEP.procType)
-			{
-			case LinearStep.procTrigger.BrickByBrick :
-			{
-				foreach (ProceduralBrickParam prm in paramlist)
-				{
-					int randNb = Random.Range(0,100);
-					if (randNb <= prm.chanceToTrigger)
-					{
-						paramToTrigger.Add(prm);
-						print ("Added" + prm.name);
-					}
-				}
-				break;
-			}
-			case LinearStep.procTrigger.Mixed :
-			{
-				paramToTrigger.Add(paramlist[Random.Range(0, paramlist.Count)]);
-				break;
-			}
-			}
+			generateTriggerList(paramlist);
+			activateBrick(paramToTrigger);
+			_CURRENTSTEP.Triggered = true;
+		}
+	}
 
-			foreach (ProceduralBrickParam _parameter in paramToTrigger)
+	private void activateBrick(List<ProceduralBrickParam> _list)
+	{
+		foreach (ProceduralBrickParam _parameter in _list)
+		{
+			print (_parameter.name);
+			currParam = _parameter;
+			currModBrick = findBrick();
+			enableBrick();
+			disableBrick();
+			toggleBrick();
+			attributeWaypoint();
+			giveDirections();
+			setupTowerLength();
+			swapTowerRotation();
+			_parameter.isTriggered = true;
+		}
+	}
+
+	private void generateTriggerList(List<ProceduralBrickParam> _list)
+	{
+		if (_list.Count == 0)
+		{
+			return;
+		}
+
+		switch (_CURRENTSTEP.procType)
+		{
+		case LinearStep.procTrigger.BrickByBrick :
+		{
+			foreach (ProceduralBrickParam prm in _list)
 			{
-				print (_parameter.name);
-				currParam = _parameter;
-				currModBrick = findBrick();
-				enableBrick();
-//				attributeWaypoint();
-//				giveDirections();
-//				enableBrick();
-//				disableBrick();
-//				setupTowerLength();
-//				swapTowerRotation();
+				int randNb = Random.Range(0,100);
+				if (randNb <= prm.chanceToTrigger)
+				{
+					paramToTrigger.Add(prm);
+				}
 			}
+			break;
+		}
+		case LinearStep.procTrigger.Mixed :
+		{
+			paramToTrigger.Add(_list[Random.Range(0, _list.Count)]);
+			break;
+		}
 		}
 	}
 	
 	private LevelBrick findBrick()
 	{
 		LevelBrick res = null;
-		string typeToFetch = currParam.Brick.ToString();
-		string idToFetch = "_" + currParam.ID.ToString();
-		currModBrick = levMan.bricksMan.BricksList.Find ((LevelBrick obj) => obj.name == typeToFetch + idToFetch);
+		currModBrick = currParam.Brick;
 		if (currModBrick == null)
 		{
-			Debug.LogError("The brick " + typeToFetch + idToFetch + " hasn't been found");
+			Debug.LogError("The brick is NULL");
 			Debug.Break();
 		}
 		res = currModBrick;
@@ -141,7 +160,7 @@ public class Procedural : MonoBehaviour {
 
 	private void enableBrick()
 	{
-		if (currParam.tryEnable == true && currParam.ID != 0)
+		if (currParam.tryEnable == true && currParam.Brick != null)
 		{
 			if (currModBrick.type == LevelBrick.typeList.BladeTower)
 			{
@@ -152,7 +171,7 @@ public class Procedural : MonoBehaviour {
 	}
 	private void disableBrick()
 	{
-		if (currParam.tryDisable == true && currParam.ID != 0)
+		if (currParam.tryDisable == true && currParam.Brick != null)
 		{
 			currModBrick.disableBrick();
 		}
@@ -165,12 +184,9 @@ public class Procedural : MonoBehaviour {
 	
 	private void attributeWaypoint()
 	{
-		if (currModBrick.GetComponent<PatrolBrick>() != null && currParam.giveWPM != "")
+		if (currModBrick.GetComponent<PatrolBrick>() != null && currParam.giveWPM != null)
 		{
-			string typeToFetch = currParam.Brick.ToString();
-			string idToFetch = "_" + currParam.giveWPM.ToUpper();
-			currModBrick.GetComponent<PatrolBrick>().brickPath = levMan.wpDirector.waypointsMan.Find((WaypointManager mana) => mana.name == typeToFetch + idToFetch);
-			currModBrick.GetComponent<PatrolBrick>().brickPath.type = currModBrick.type;
+			currModBrick.GetComponent<PatrolBrick>().brickPath = currParam.giveWPM;
 		}
 	}
 
@@ -210,9 +226,7 @@ public class Procedural : MonoBehaviour {
 			}
 			if (currModBrick.type == LevelBrick.typeList.Chainsaw || currModBrick.type == LevelBrick.typeList.Bird )
 			{
-				string typeToFetch = currParam.Brick.ToString();
-				string idToFetch = "_" + currParam.giveWPM.ToUpper();
-				WaypointManager manplz = levMan.wpDirector.waypointsMan.Find((WaypointManager mana) => mana.name == typeToFetch + idToFetch);
+				WaypointManager manplz = currParam.giveWPM;
 				manplz.invertWaypoints();
 				
 			}
@@ -225,6 +239,21 @@ public class Procedural : MonoBehaviour {
 		foreach (LinearStep stp in _listSteps)
 		{
 			stp.Triggered = false;
+			foreach (ProceduralBrickParam brpm in stp.LinkedParam)
+			{
+				brpm.isTriggered = false;
+			}
+		}
+	}
+
+	private void checkBrickSetup()
+	{
+		foreach (ProceduralBrickParam prm in ProcSetup.ListProcParam)
+		{
+			if (prm.Brick == null)
+			{
+				Debug.Break();
+			}
 		}
 	}
 	

@@ -16,7 +16,7 @@ public class LevelBrick : MonoBehaviour {
 	public float speed;
 	[HideInInspector] public float initSpeed;
 	[HideInInspector] public LevelManager _levMan;
-	[HideInInspector] public int brickId;
+	public int brickId;
 	[HideInInspector] public Vector3 direction;
 	[HideInInspector] public Vector3 target;
 	[HideInInspector] public Vector3 pos;
@@ -57,6 +57,7 @@ public class LevelBrick : MonoBehaviour {
 		GameEventManager.Respawn += Respawn;
 		GameEventManager.EndGame += EndGame;
 
+
 		speed = getSpeed(this, _bricksSpeed);
 		initSpeed = speed;
 
@@ -69,15 +70,22 @@ public class LevelBrick : MonoBehaviour {
 	public float getSpeed(LevelBrick _brick, Dictionary<LevelBrick.typeList, float> _dico)
 	{
 		float res = 0f;
-		if (_dico.ContainsKey(_brick.type) == false)
+		if (speed == 0)
 		{
-			Debug.LogError("Couldn't find " + type.ToString() + " speed");
-			Debug.Break();
+			if (_dico.ContainsKey(_brick.type) == false)
+			{
+				Debug.LogError("Couldn't find " + type.ToString() + " speed");
+				Debug.Break();
+			}
+			res = _dico[_brick.type];
+			if (res == 0)
+			{
+				Debug.Log("Might be an error with" + type.ToString() + "speed");
+			}
 		}
-		res = _dico[_brick.type];
-		if (res == 0)
+		else
 		{
-			Debug.Log("Might be an error with" + type.ToString() + "speed");
+			res = speed;
 		}
 		return res;
 	}
@@ -96,7 +104,6 @@ public class LevelBrick : MonoBehaviour {
 	virtual public void disableBrick()
 	{
 		isEnabled = false;
-		speed = 0;
 	}
 
 	private void GameStart()

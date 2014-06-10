@@ -53,18 +53,8 @@ public class LinearStep : ScriptableObject {
 	};
 	public procTrigger procType;
 	public int nbBricksToTrigger;
+	public bool allowRetrigger = true;
 
 	// EDITOR TOOLS
 	public LevelInfo LevelToUnlock;
-	/* Foreach brick added, you must add in the [dictionnary , brick manager , typelist ]*/
-
-	void Update()
-	{
-		stepID = int.Parse(name);
-	}
-
-	public void addParam()
-	{
-
-	}
 }

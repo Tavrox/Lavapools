@@ -17,8 +17,7 @@ public class Carpet : PatrolBrick {
 
 		if (brickPath != null)
 		{
-			brickPath.relatedBrick = this;
-			brickPathId = brickPath.id;
+			brickPath.relatedBrick.Add(this);
 		}
 		else
 		{

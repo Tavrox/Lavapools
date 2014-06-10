@@ -12,8 +12,7 @@ public class Chainsaw : PatrolBrick {
 		base.Setup();			
 		if (brickPath != null)
 		{
-			brickPath.relatedBrick = this;
-			brickPathId = brickPath.id;
+			brickPath.relatedBrick.Add(this);
 		}
 		else
 		{
