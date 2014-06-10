@@ -6,7 +6,7 @@ public class WaypointDirector : MonoBehaviour {
 
 
 	private LevelManager _lm;
-	[HideInInspector] public List<WaypointManager> waypointsMan = new List<WaypointManager>();
+	public List<WaypointManager> waypointsMan = new List<WaypointManager>();
 
 	// Use this for initialization
 	public void Setup (LevelManager _levMan)

@@ -20,6 +20,7 @@ public class BricksManager : MonoBehaviour {
 			if (_brick.GetComponent<Chainsaw>() != null)
 			{
 				_brick.GetComponent<Chainsaw>().Setup();
+				_brick.GetComponent<Chainsaw>().LateSetup();
 			}
 			if (_brick.GetComponent<ArrowTower>() != null)
 			{
@@ -35,11 +36,6 @@ public class BricksManager : MonoBehaviour {
 			}
 			_brick.disableBrick();
 		}
-	}
-
-	public void findBrick()
-	{
-
 	}
 }
 

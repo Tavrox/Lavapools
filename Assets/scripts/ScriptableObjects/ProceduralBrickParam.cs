@@ -1,20 +1,22 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 
 public class ProceduralBrickParam : ScriptableObject
 {
 	public bool forceTrigger;
-	[Range (0f, 100f)] public int chanceToTrigger;
-	public LevelBrick Brick;
-	public int stepID = 1;
-	public WaypointManager giveWPM;
+	[Range (0, 100)] public int chanceToTrigger = 50;
+	public LevelBrick.typeList Brick;
+	[Range (0, 20)] public int ID = 1;
+	[Range (0, 20)] public int stepID = 1;
+	public string giveWPM = "A";
 	public bool tryEnable = true;
 	public bool tryDisable = false;
-	public bool Toggle;
+	public bool Toggle = true;
 	public string changeDirections = "UDLR";
-	public int addLength = 4;
-	public int maxLength;
+	[Range (0, 15)] public int addLength = 4;
+	public int maxLength = 15;
 	public bool tryInvert = false;
 	public bool hasbeenInverted = false;
 

@@ -81,6 +81,32 @@ public class LevelManager : MonoBehaviour {
 
 		LocalTuning = Instantiate(Resources.Load("Maps/" + NAME + "/Setup")) as LevelParameters;
 		LocalTuning.initScript();
+		
+		GameObject OutSpw = new GameObject("OuterSpawn");
+		OuterSpawn = OutSpw;
+		OuterSpawn.transform.parent = FETool.findWithinChildren(this.gameObject, "Enviro").transform;
+		OuterSpawn.transform.position = new Vector3(0f, -7.5f, 0f);
+
+		tools = gameObject.AddComponent<LevelTools>();
+		tools._levMan = this;
+		TranslateAllInScene();
+
+
+		CollectiblePlaces[] collecPla = FETool.findWithinChildren(this.gameObject, "Enviro/CollectiblePlaces").GetComponentsInChildren<CollectiblePlaces>();
+		foreach (CollectiblePlaces cpl in collecPla)
+		{
+			collecPlaces.Add(cpl);
+		}
+		Gate = GameObject.FindGameObjectWithTag("SpaceGate").GetComponent<SpaceGate>();
+		Gate.Setup(this);
+
+		wpDirector = GetComponentInChildren<WaypointDirector>();
+		wpDirector.Setup(this);
+		
+		bricksMan = FETool.findWithinChildren(this.gameObject, "LevelBricks/Bricks").GetComponent<BricksManager>();
+		bricksMan.Setup();
+
+		
 		if (GAMETYPE != LocalTuning.levelType)
 		{
 			Debug.Log("Type of LevelMana & Setup scrip arent't the same");
@@ -120,30 +146,6 @@ public class LevelManager : MonoBehaviour {
 			break;
 		}
 		}
-		
-		GameObject OutSpw = new GameObject("OuterSpawn");
-		OuterSpawn = OutSpw;
-		OuterSpawn.transform.parent = FETool.findWithinChildren(this.gameObject, "Enviro").transform;
-		OuterSpawn.transform.position = new Vector3(0f, -7.5f, 0f);
-
-		tools = gameObject.AddComponent<LevelTools>();
-		tools._levMan = this;
-		TranslateAllInScene();
-
-
-		CollectiblePlaces[] collecPla = FETool.findWithinChildren(this.gameObject, "Enviro/CollectiblePlaces").GetComponentsInChildren<CollectiblePlaces>();
-		foreach (CollectiblePlaces cpl in collecPla)
-		{
-			collecPlaces.Add(cpl);
-		}
-		Gate = GameObject.FindGameObjectWithTag("SpaceGate").GetComponent<SpaceGate>();
-		Gate.Setup(this);
-
-		wpDirector = GetComponentInChildren<WaypointDirector>();
-		wpDirector.Setup(this);
-
-		bricksMan = FETool.findWithinChildren(this.gameObject, "LevelBricks/Bricks").GetComponent<BricksManager>();
-		bricksMan.Setup();
 
 		if (LocalTuning.levelType != LevelParameters.levelTypeList.Debuggin)
 		{

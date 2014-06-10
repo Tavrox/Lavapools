@@ -44,6 +44,7 @@ public class ProceduralStepsEditor : Editor
 				else return 0;
 			});
 		}
+		renameButton();
 
 		if (setup.LinearSteps.Count > 0)
 		{
@@ -87,16 +88,19 @@ public class ProceduralStepsEditor : Editor
 								pbrpm.chanceToTrigger = 100;
 							}
 						}
-						pbrpm.Brick 			= (LevelBrick) EditorGUILayout.ObjectField(pbrpm.Brick, typeof(LevelBrick), true, GUILayout.Width(boxSize));
+						pbrpm.Brick 			= (LevelBrick.typeList)System.Enum.Parse(typeof(LevelBrick.typeList) , EditorGUILayout.EnumPopup("", pbrpm.Brick, GUILayout.Width(boxSize)).ToString());
+						pbrpm.ID				= EditorGUILayout.IntField("", pbrpm.ID, GUILayout.Width(boxSize));
 						pbrpm.stepID 			= _stp.stepID;
-						pbrpm.giveWPM 			= (WaypointManager) EditorGUILayout.ObjectField(pbrpm.giveWPM, typeof(WaypointManager), true, GUILayout.Width(boxSize));
+						pbrpm.giveWPM 			= EditorGUILayout.TextField("", pbrpm.giveWPM, GUILayout.Width(boxSize));
 						pbrpm.tryEnable 		= EditorGUILayout.Toggle("", pbrpm.tryEnable, GUILayout.Width(boxSize));
 						pbrpm.tryDisable 		= EditorGUILayout.Toggle("", pbrpm.tryDisable, GUILayout.Width(boxSize));
 						pbrpm.Toggle 			= EditorGUILayout.Toggle("", pbrpm.Toggle, GUILayout.Width(boxSize));
+						string newName = pbrpm.stepID + "/" + pbrpm.Brick.ToString() + "/" + pbrpm.ID + "/" + pbrpm.giveWPM; 
+						AssetDatabase.RenameAsset(pbrpm.name, newName);
 
 						if (pbrpm.Brick != null)
 						{
-							if (pbrpm.Brick.type == LevelBrick.typeList.ArrowTower || pbrpm.Brick.type == LevelBrick.typeList.BladeTower)
+							if (pbrpm.Brick == LevelBrick.typeList.ArrowTower || pbrpm.Brick == LevelBrick.typeList.BladeTower)
 							{
 								pbrpm.changeDirections = EditorGUILayout.TextField("", pbrpm.changeDirections, GUILayout.Width(boxSize));
 							}
@@ -108,7 +112,7 @@ public class ProceduralStepsEditor : Editor
 							}
 
 							
-							if ( pbrpm.Brick.type == LevelBrick.typeList.BladeTower)
+							if ( pbrpm.Brick == LevelBrick.typeList.BladeTower)
 							{
 								pbrpm.addLength 	= EditorGUILayout.IntField("", pbrpm.addLength, GUILayout.Width(boxSize));
 								pbrpm.maxLength 	= EditorGUILayout.IntField("", pbrpm.maxLength, GUILayout.Width(boxSize));
@@ -190,6 +194,7 @@ public class ProceduralStepsEditor : Editor
 			GUILayout.Box("Chances",GUILayout.Width(boxSize));
 		}
 		GUILayout.Box("Brick",GUILayout.Width(boxSize));
+		GUILayout.Box("ID",GUILayout.Width(boxSize));
 		GUILayout.Box("WPM",GUILayout.Width(boxSize));
 		GUILayout.Box("tryEnable",GUILayout.Width(boxSize));
 		GUILayout.Box("tryDisable",GUILayout.Width(boxSize));
@@ -200,5 +205,14 @@ public class ProceduralStepsEditor : Editor
 		GUILayout.Box("Invert",GUILayout.Width(boxSize));
 		EditorGUILayout.EndHorizontal();
 	}
+
+	private void renameButton()
+	{
+		if (GUILayout.Button("Rename proc Brick", GUILayout.Width(200f)))
+		{
+
+		}
+	}
+
 }
 

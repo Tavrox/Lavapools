@@ -30,9 +30,9 @@ public class LevelBrick : MonoBehaviour {
 
 	public void Setup()
 	{
-		if (gameObject.name.Contains("/"))
+		if (gameObject.name.Contains("_"))
 		{
-			brickId = int.Parse(gameObject.name.Split('/')[1]);
+			brickId = int.Parse(gameObject.name.Split('_')[1]);
 		}
 		if (GameObject.Find("Player") != null)
 		{

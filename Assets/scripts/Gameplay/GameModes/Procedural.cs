@@ -33,8 +33,7 @@ public class Procedural : MonoBehaviour {
 		ProcSetup = Instantiate(Resources.Load(mainPath + "Procedural")) as ProceduralLevelSetup;
 		_listSteps = ProcSetup.LinearSteps;
 		untriggerSteps();
-
-		checkBrickSetup();
+		giveBrickInitPath();
 		
 		_CURRENTSTEP = _listSteps[0];
 		
@@ -102,7 +101,6 @@ public class Procedural : MonoBehaviour {
 	{
 		foreach (ProceduralBrickParam _parameter in _list)
 		{
-			print (_parameter.name);
 			currParam = _parameter;
 			currModBrick = findBrick();
 			enableBrick();
@@ -148,10 +146,12 @@ public class Procedural : MonoBehaviour {
 	private LevelBrick findBrick()
 	{
 		LevelBrick res = null;
-		currModBrick = currParam.Brick;
+		string typeToFetch = currParam.Brick.ToString();
+		string idToFetch = "_" + currParam.ID.ToString();
+		currModBrick = levMan.bricksMan.BricksList.Find ((LevelBrick obj) => obj.name == typeToFetch + idToFetch);
 		if (currModBrick == null)
 		{
-			Debug.LogError("The brick is NULL");
+			Debug.LogError("The brick " + typeToFetch + idToFetch + " hasn't been found");
 			Debug.Break();
 		}
 		res = currModBrick;
@@ -160,7 +160,7 @@ public class Procedural : MonoBehaviour {
 
 	private void enableBrick()
 	{
-		if (currParam.tryEnable == true && currParam.Brick != null)
+		if (currParam.tryEnable == true && currParam.ID != 0)
 		{
 			if (currModBrick.type == LevelBrick.typeList.BladeTower)
 			{
@@ -171,7 +171,7 @@ public class Procedural : MonoBehaviour {
 	}
 	private void disableBrick()
 	{
-		if (currParam.tryDisable == true && currParam.Brick != null)
+		if (currParam.tryDisable == true && currParam.ID != 0)
 		{
 			currModBrick.disableBrick();
 		}
@@ -184,9 +184,11 @@ public class Procedural : MonoBehaviour {
 	
 	private void attributeWaypoint()
 	{
-		if (currModBrick.GetComponent<PatrolBrick>() != null && currParam.giveWPM != null)
+		if (currModBrick.GetComponent<PatrolBrick>() != null && currParam.giveWPM != "")
 		{
-			currModBrick.GetComponent<PatrolBrick>().brickPath = currParam.giveWPM;
+			string typeToFetch = currParam.Brick.ToString();
+			string idToFetch = "_" + currParam.giveWPM.ToUpper();
+			currModBrick.GetComponent<PatrolBrick>().brickPath = levMan.wpDirector.waypointsMan.Find((WaypointManager mana) => mana.name == typeToFetch + idToFetch);
 		}
 	}
 
@@ -226,11 +228,35 @@ public class Procedural : MonoBehaviour {
 			}
 			if (currModBrick.type == LevelBrick.typeList.Chainsaw || currModBrick.type == LevelBrick.typeList.Bird )
 			{
-				WaypointManager manplz = currParam.giveWPM;
+				string typeToFetch = currParam.Brick.ToString();
+				string idToFetch = "_" + currParam.giveWPM.ToUpper();
+				WaypointManager manplz = levMan.wpDirector.waypointsMan.Find((WaypointManager mana) => mana.name == typeToFetch + idToFetch);
 				manplz.invertWaypoints();
 				
 			}
 		}
+	}
+
+	private void giveBrickInitPath()
+	{
+		levMan.bricksMan.BricksList.ForEach(delegate(LevelBrick brk) 
+		{
+			if (brk.GetComponent<PatrolBrick>() != null)
+			{
+				PatrolBrick ptb = brk.GetComponent<PatrolBrick>();
+				// Take all param with type and id
+				ProceduralBrickParam prbm = ProcSetup.ListProcParam.Find((ProceduralBrickParam _pb) => _pb.Brick == ptb.type && _pb.ID == ptb.brickId);
+				// Take One with match previous ID > WPM
+				WaypointManager mana = levMan.wpDirector.waypointsMan.Find((WaypointManager obj) => obj.id == prbm.giveWPM);
+				ptb.brickPath = mana;
+				ptb.setupPath();
+				if (ptb.initWp != null && ptb.initWp.linkedManager != ptb.brickPath)
+				{
+					Debug.LogError(ptb.name + " Init doesn't fit attributed through proc");
+					Debug.Break();
+				}
+			}
+		});
 	}
 
 	
@@ -242,17 +268,6 @@ public class Procedural : MonoBehaviour {
 			foreach (ProceduralBrickParam brpm in stp.LinkedParam)
 			{
 				brpm.isTriggered = false;
-			}
-		}
-	}
-
-	private void checkBrickSetup()
-	{
-		foreach (ProceduralBrickParam prm in ProcSetup.ListProcParam)
-		{
-			if (prm.Brick == null)
-			{
-				Debug.Break();
 			}
 		}
 	}

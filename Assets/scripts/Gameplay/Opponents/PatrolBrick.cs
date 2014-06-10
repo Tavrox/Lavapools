@@ -22,12 +22,6 @@ public class PatrolBrick : LevelBrick
 	{
 		base.Setup();
 
-		if (brickPath == null)
-		{
-			Debug.Log("The path on " +name+ " is missing");
-			Debug.Break();
-		}
-
 		GameEventManager.GameStart += GameStart;
 		GameEventManager.GameOver += GameOver;
 		GameEventManager.Respawn += Respawn;
@@ -40,7 +34,16 @@ public class PatrolBrick : LevelBrick
 			Debug.Break();
 			Debug.LogError("Non-Random Brick hasn't his init WP setupped" + "[" + gameObject.name  +"]");
 		}
+	}
+
+	public void startTargetting()
+	{
 		InvokeRepeating("RecalculateTarget", 0f, 0.01f);
+	}
+
+	public void cancelTargetting()
+	{
+		CancelInvoke("RecalculateTarget");
 	}
 
 	public void setupPath()
@@ -148,7 +151,7 @@ public class PatrolBrick : LevelBrick
 	{
 		if (this != null)
 		{
-
+			cancelTargetting();
 		}
 	}
 	
@@ -157,7 +160,7 @@ public class PatrolBrick : LevelBrick
 		if (this != null)
 		{
 			setupPath();
-//			animSpr.Stop();
+			startTargetting();
 		}
 	}
 

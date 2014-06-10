@@ -5,11 +5,16 @@ public class Chainsaw : PatrolBrick {
 
 	public OTAnimatingSprite Invert;
 
-	public void Start () 
+	public void LateSetup () 
 	{
+		base.Setup();
+		transform.position = new Vector3(transform.position.x, transform.position.y, 0f);		
 		type = typeList.Chainsaw;
-		transform.position = new Vector3(transform.position.x, transform.position.y, 0f);
-		base.Setup();			
+		Invert = FETool.findWithinChildren(gameObject, "Inversion").GetComponentInChildren<OTAnimatingSprite>();
+	}
+
+	public void triggerByStep()
+	{
 		if (brickPath != null)
 		{
 			brickPath.relatedBrick.Add(this);
@@ -19,7 +24,6 @@ public class Chainsaw : PatrolBrick {
 			Debug.Log("The path of "+gameObject.name+" is missing.");
 		}
 		setupPath();
-		Invert = FETool.findWithinChildren(gameObject, "Inversion").GetComponentInChildren<OTAnimatingSprite>();
 	}
 
 	public void launchInvertAnim()
@@ -31,5 +35,10 @@ public class Chainsaw : PatrolBrick {
 	public void prepareBrick()
 	{
 		animSpr.Play();
+	}
+
+	void OnDrawGizmosSelected()
+	{
+		type = typeList.Chainsaw;
 	}
 }
