@@ -258,8 +258,20 @@ public class Procedural : MonoBehaviour {
 				// Take all param with type and id
 				ProceduralBrickParam prbm = ProcSetup.ListProcParam.Find((ProceduralBrickParam _pb) => _pb.Brick == ptb.type && _pb.ID == ptb.brickId);
 				// Take One with match previous ID > WPM
-				WaypointManager mana = levMan.wpDirector.waypointsMan.Find((WaypointManager obj) => obj.id == prbm.giveWPM);
-				ptb.brickPath = mana;
+
+				if (prbm != null)
+				{
+					WaypointManager mana = levMan.wpDirector.waypointsMan.Find((WaypointManager obj) => obj.id == prbm.giveWPM);
+					if (mana == null)
+					{
+						Debug.Log("The brick " + brk + " has no parameter with a path attributed. Care for bugs" );
+					}
+					ptb.brickPath = mana;
+				}
+				else
+				{
+					Debug.Log("Cant find an equivalent in procedural parameters, bugs might occur");
+				}
 				ptb.setupPath();
 				if (ptb.initWp != null && ptb.initWp.linkedManager != ptb.brickPath)
 				{

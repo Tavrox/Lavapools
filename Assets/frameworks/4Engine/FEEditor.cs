@@ -69,6 +69,11 @@ public class FEEditor : MonoBehaviour {
 		}
 	}
 
+	public void drawWPMLinks()
+	{
+
+	}
+
 	public void setupWPM()
 	{
 		WaypointManager[] mana = GameObject.FindObjectsOfType<WaypointManager>();

@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +14,12 @@ public class ProceduralStepsEditor : Editor
 	[SerializeField] private ProceduralBrickParam brpm;
 	private GUIEditorSkin customSkin;
 
+	// Parameters for RNG
+	[Range (1,100)] public int rngSteps;
+	[Range (1,15)] public int rngBrick;
+	public LevelBrick.typeList rngType;
+	public List<LevelBrick> ingameBricks;
+
 	private bool displayEachParam = false;
 	
 	public override void OnInspectorGUI()
@@ -22,33 +28,49 @@ public class ProceduralStepsEditor : Editor
 		boxSize = maxSize / 8 ;
 		stepSize = maxSize / 6;
 		customSkin = Resources.Load("Tools/Skins/LvlEditor") as GUIEditorSkin;
-
-		EditorGUILayout.HelpBox( "There are Two types of trigger : Brick by Brick and Mixed." +
-			"\n Mixed take all non-forced bricks in a step and take 1 / X (X = nb of bricks) chance to trigger one of them. Ex : 2 bricks = 50 / 50 each" +
-			"\n Brick by Brick take all brick and try to trigger it, according to the 'chance trigger' parameter ex : 2 bricks Can be spread for 80 / 20", MessageType.Info, true);
-
 		base.OnInspectorGUI();
 
-		if (GUILayout.Button("LoadSteps", GUILayout.ExpandWidth(true)))
+		Cleaner();
+		buttonLoadStep();
+
+		string gameBricks = "";
+		ingameBricks = setup.lvlParam.getBrickGameList();
+		foreach (LevelBrick _brick in ingameBricks)
 		{
-			LinearStep[] listSteps = Resources.LoadAll<LinearStep>("Maps/" + setup.lvlParam.NAME +"/Steps/");
-			setup.LinearSteps.Clear();
-			foreach (LinearStep stp in listSteps)
+			string parse = _brick.type.ToString() + " " + _brick.brickId ;
+			if (_brick.GetComponent<PatrolBrick>())
 			{
-				setup.LinearSteps.Add(stp);
+				parse += " ";
+				parse += _brick.GetComponent<PatrolBrick>().brickPath.id;
 			}
-			setup.LinearSteps.Sort(delegate (LinearStep x, LinearStep y)
-			                      {
-				if (x.stepID < y.stepID) return -1;
-				if (x.stepID > y.stepID) return 1;
-				else return 0;
-			});
+			parse += "\n";
+			gameBricks += parse;
 		}
-		renameButton();
+		EditorGUILayout.HelpBox(gameBricks, MessageType.Info,true);
+
+
+		GUILayout.Box("Box", GUILayout.Width(300f));
+		rngSteps = EditorGUILayout.IntField("RNG : Step number", rngSteps, GUILayout.Width(300f));
+		rngBrick = EditorGUILayout.IntField("RNG : Bricks Number", rngBrick, GUILayout.Width(300f));
+		rngType  = (LevelBrick.typeList)System.Enum.Parse(typeof(LevelBrick.typeList) , EditorGUILayout.EnumPopup("", rngType, GUILayout.Width(300f)).ToString());
+		GUILayout.Box("Box", GUILayout.Width(300f));
+
+
+		EditorUtility.SetDirty(this);
+		EditorGUILayout.HelpBox( " Random generation will generate for X steps, X bricks number with random parameters." +
+			"\n You may use auto attribute button afterwards." +
+			"\n The auto attribute button gives bricks their ingame path id," +
+			"\n then you don't have to fill them yourselves", MessageType.Info, true);
+
+		randomStepsButton(rngSteps, rngBrick);
+		autoAttributeWPM();
 
 		if (setup.LinearSteps.Count > 0)
-		{
-			
+		{			
+			EditorGUILayout.HelpBox( "There are Two types of trigger : Brick by Brick and Mixed." +
+			                        "\n Mixed take all non-forced bricks in a step and take 1 / X (X = nb of bricks) chance to trigger one of them. Ex : 2 bricks = 50 / 50 each" +
+			                        "\n Brick by Brick take all brick and try to trigger it, according to the 'chance trigger' parameter ex : 2 bricks Can be spread for 80 / 20", MessageType.Info, true);
+
 			EditorGUILayout.BeginVertical(GUILayout.Width(maxSize)); 
 			displayStepInfo(setup.LinearSteps);
 			EditorGUILayout.EndVertical();
@@ -144,12 +166,7 @@ public class ProceduralStepsEditor : Editor
 			// Add a brick and asset in the directory
 			if (GUILayout.Button("Add Procedural Brick", GUILayout.Width(200f)))
 			{
-				brpm = ProceduralBrickParam.CreateInstance("ProceduralBrickParam") as ProceduralBrickParam;
-				_stp.LinkedParam.Add(brpm);
-				setup.ListProcParam.Add(brpm);
-				AssetDatabase.CreateAsset(brpm , "Assets/Resources/Maps/" + setup.lvlParam.NAME + "/ProcParam/" + Random.Range(0,1000000).ToString() +".asset");
-				EditorUtility.SetDirty(brpm);
-
+				addNewParam(_stp, LevelBrick.typeList.Bird, 50);
 			}
 			EditorUtility.SetDirty(setup);
 			EditorGUILayout.Separator();
@@ -206,13 +223,81 @@ public class ProceduralStepsEditor : Editor
 		EditorGUILayout.EndHorizontal();
 	}
 
-	private void renameButton()
+	private ProceduralBrickParam addNewParam(LinearStep _stp, LevelBrick.typeList _tpl = LevelBrick.typeList.Bird, int _randChance = 50)
 	{
-		if (GUILayout.Button("Rename proc Brick", GUILayout.Width(200f)))
-		{
+		brpm = ProceduralBrickParam.CreateInstance("ProceduralBrickParam") as ProceduralBrickParam;
+		brpm.Brick = _tpl;
+		brpm.chanceToTrigger = _randChance;
+		_stp.LinkedParam.Add(brpm);
+		setup.ListProcParam.Add(brpm);
+		AssetDatabase.CreateAsset(brpm , "Assets/Resources/Maps/" + setup.lvlParam.NAME + "/ProcParam/" + Random.Range(0,1000000).ToString() +".asset");
+		EditorUtility.SetDirty(brpm);
+		return brpm;
+	}
 
+	private void randomStepsButton(int _randStep, int _randbrick)
+	{
+		if (GUILayout.Button("For " + _randStep + " steps, generate" + _randbrick + "random params", GUILayout.Width(200f)))
+		{
+			if (setup.LinearSteps.Count < _randStep)
+			{
+//				setup.LinearSteps.Add(new LinearStep());
+			}
+//			for (int i = 0; i < _randbrick; i++)
+//			{
+//			LinearStep currStp = setup.LinearSteps[i];
+			foreach (LinearStep _step in setup.LinearSteps)
+			{
+				for (int j = 0; j < _randbrick; j++)
+				{
+					addNewParam(_step, LevelBrick.typeList.Chainsaw, Random.Range(10,100));
+				}
+			}
+//			}
 		}
 	}
 
+	private void autoAttributeWPM()
+	{
+		if (GUILayout.Button("AutoAttributeWPM", GUILayout.Width(200f)))
+		{
+			foreach (ProceduralBrickParam prm in setup.ListProcParam)
+			{
+				if (prm.Brick == LevelBrick.typeList.Bird || prm.Brick == LevelBrick.typeList.Chainsaw)
+				{
+					LevelBrick brickToFind = ingameBricks.Find((LevelBrick obj) => obj.type == prm.Brick && obj.brickId == prm.ID);
+					prm.giveWPM = brickToFind.GetComponent<PatrolBrick>().brickPath.id;
+				}
+			}
+		}
+	}
+
+	private void buttonLoadStep()
+	{
+		if (GUILayout.Button("LoadSteps", GUILayout.Width(200f)))
+		{
+			LinearStep[] listSteps = Resources.LoadAll<LinearStep>("Maps/" + setup.lvlParam.NAME +"/Steps/");
+			setup.LinearSteps.Clear();
+			foreach (LinearStep stp in listSteps)
+			{
+				setup.LinearSteps.Add(stp);
+			}
+			setup.LinearSteps.Sort(delegate (LinearStep x, LinearStep y)
+			                      {
+				if (x.stepID < y.stepID) return -1;
+				if (x.stepID > y.stepID) return 1;
+				else return 0;
+			});
+		}
+	}
+
+	private void Cleaner()
+	{
+		setup.ListProcParam.RemoveAll((ProceduralBrickParam obj) => obj == null);
+		foreach (LinearStep lstp in setup.LinearSteps)
+		{
+			lstp.LinkedParam.RemoveAll((ProceduralBrickParam obj) => obj == null);
+		}
+	}
 }
 

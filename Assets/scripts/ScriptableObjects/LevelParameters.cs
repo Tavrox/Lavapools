@@ -32,6 +32,7 @@ public class LevelParameters : ScriptableObject
 //	public MazeLevelSetup		 	LinkedMaze;
 	public ProceduralLevelSetup 	LinkedProcedural;
 	public VerticalLevelSetup 		LinkedVertical;
+	public List<LevelBrick> gameBricks;
 	
 	public void initScript () 
 	{
@@ -40,5 +41,18 @@ public class LevelParameters : ScriptableObject
 		_dicoBricks.Add(LevelBrick.typeList.ArrowTower, Arrow_FireRate);
 		_dicoBricks.Add(LevelBrick.typeList.BladeTower, Blade_RotationSpeed);
 		_dicoBricks.Add(LevelBrick.typeList.Carpet, Carpet_Speed);
+	}
+
+	public List<LevelBrick> getBrickGameList()
+	{
+		List<LevelBrick> bricklist = new List<LevelBrick>();
+		
+		LevelBrick[] brkList = GameObject.FindObjectsOfType(typeof(LevelBrick)) as LevelBrick[];
+		bricklist.Clear();
+		foreach (LevelBrick br in brkList)
+		{
+			bricklist.Add(br);
+		}
+		return (bricklist);
 	}
 }

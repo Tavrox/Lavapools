@@ -142,4 +142,12 @@ public class LevelBrick : MonoBehaviour {
 			disableBrick();
 		}
 	}
+
+	private void OnDrawGizmosSelected()
+	{
+		if (gameObject.name.Contains("_"))
+		{
+			brickId = int.Parse(gameObject.name.Split('_')[1]);
+		}
+	}
 }

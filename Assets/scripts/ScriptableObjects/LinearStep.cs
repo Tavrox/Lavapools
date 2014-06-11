@@ -57,4 +57,9 @@ public class LinearStep : ScriptableObject {
 
 	// EDITOR TOOLS
 	public LevelInfo LevelToUnlock;
+
+	public static void createNewLevel(string _path)
+	{
+
+	}
 }

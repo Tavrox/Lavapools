@@ -164,20 +164,24 @@ public class PatrolBrick : LevelBrick
 		}
 	}
 
-//	void OnDrawGizmos()
-//	{
-//		if (brickPath != null)
-//		{
-//			if (initWp != null)
-//			{
-////				Gizmos.color = Color.yellow;
-////				Gizmos.DrawLine( gameObject.transform.position, initWp.transform.position);
-//			}
-//			else
-//			{
-////				Gizmos.color = Color.blue;
-////				Gizmos.DrawLine( gameObject.transform.position, brickPath.relatedWaypoints[0].transform.position);
-//			}
-//		}
-//	}
+	void OnDrawGizmos()
+	{
+		if (brickPath != null)
+		{
+			if (initWp != null)
+			{
+				Gizmos.color = Color.yellow;
+				Gizmos.DrawLine( gameObject.transform.position, initWp.transform.position);
+			}
+			else
+			{
+				Gizmos.color = Color.blue;
+				Gizmos.DrawLine( gameObject.transform.position, brickPath.relatedWaypoints[0].transform.position);
+			}
+		}
+		if (gameObject.name.Contains("_"))
+		{
+			brickId = int.Parse(gameObject.name.Split('_')[1]);
+		}
+	}
 }
