@@ -969,72 +969,72 @@
             <key>pathExit00active.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{569,1525},{121,75}}</string>
+                <string>{{569,1525},{148,97}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{121,75}}</string>
+                <string>{{0,0},{148,97}}</string>
                 <key>sourceSize</key>
-                <string>{121,75}</string>
+                <string>{148,97}</string>
             </dict>
             <key>pathExit01active.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{695,1525},{121,75}}</string>
+                <string>{{722,1525},{148,97}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{121,75}}</string>
+                <string>{{0,0},{148,97}}</string>
                 <key>sourceSize</key>
-                <string>{121,75}</string>
+                <string>{148,97}</string>
             </dict>
             <key>pathExit02active.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{821,1525},{121,75}}</string>
+                <string>{{5,1677},{148,97}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{121,75}}</string>
+                <string>{{0,0},{148,97}}</string>
                 <key>sourceSize</key>
-                <string>{121,75}</string>
+                <string>{148,97}</string>
             </dict>
             <key>pathExit03active.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{5,1677},{121,75}}</string>
+                <string>{{158,1677},{148,97}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{121,75}}</string>
+                <string>{{0,0},{148,97}}</string>
                 <key>sourceSize</key>
-                <string>{121,75}</string>
+                <string>{148,97}</string>
             </dict>
             <key>pathGate.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{131,1677},{72,74}}</string>
+                <string>{{311,1677},{72,76}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{72,74}}</string>
+                <string>{{0,0},{72,76}}</string>
                 <key>sourceSize</key>
-                <string>{72,74}</string>
+                <string>{72,76}</string>
             </dict>
             <key>supportGate.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{208,1677},{208,65}}</string>
+                <string>{{388,1677},{208,65}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -1054,7 +1054,7 @@
             <key>size</key>
             <string>{1024,2048}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:43d0b136b8364e0fa87e0ad818aee50e:d1713d6dbe5bbbdf005f107993d5f9a6:e54609b0fc87cb18de0a50e9036b418b$</string>
+            <string>$TexturePacker:SmartUpdate:9c076af7e2d4b6e08b199607ec610962:4c0ec973a0e90bb047739dd9e5b94852:e54609b0fc87cb18de0a50e9036b418b$</string>
             <key>textureFileName</key>
             <string>spacegate.png</string>
         </dict>
