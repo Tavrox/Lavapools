@@ -4,9 +4,9 @@
         <key>fileFormatVersion</key>
         <int>3</int>
         <key>texturePackerVersion</key>
-        <string>3.3.1</string>
+        <string>3.3.2</string>
         <key>fileName</key>
-        <string>C:/Users/Tavrox/Documents/GitHub/Lavapools/Assets/prod/gameplay/chainsaw.tps</string>
+        <string>C:/Users/repstyle/Documents/GitHub/Lavapools/Assets/prod/gameplay/chainsaw.tps</string>
         <key>autoSDSettings</key>
         <array>
             <struct type="AutoSDSettings">
@@ -172,6 +172,8 @@
             <enum type="SpriteSettings::TrimMode">None</enum>
             <key>heuristicMask</key>
             <false/>
+            <key>pivotPoint</key>
+            <enum type="SpriteSettings::PivotPoint">Center</enum>
         </struct>
         <key>fileList</key>
         <array>
@@ -190,13 +192,6 @@
             <filename>chainsaw02rotate.png</filename>
             <filename>chainsaw03rotate.png</filename>
             <filename>chainsaw04rotate.png</filename>
-            <filename>chainsaw05rotate.png</filename>
-            <filename>chainsaw06rotate.png</filename>
-            <filename>chainsaw07rotate.png</filename>
-            <filename>chainsaw08rotate.png</filename>
-            <filename>chainsaw09rotate.png</filename>
-            <filename>chainsaw10rotate.png</filename>
-            <filename>chainsaw11rotate.png</filename>
             <filename>ch00invert.png</filename>
         </array>
         <key>ignoreFileList</key>
