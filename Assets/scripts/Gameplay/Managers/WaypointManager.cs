@@ -166,9 +166,9 @@ public class WaypointManager : MonoBehaviour {
 		return relatedWaypoints[Random.Range(0,relatedWaypoints.Count)];
 	}	
 
-//	void OnDrawGizmosSelected()
-//	{
-//		GetWpList();
-//		id = gameObject.name.Split('_')[1];
-//	}
+	void OnDrawGizmosSelected()
+	{
+		GetWpList();
+		id = gameObject.name.Split('_')[1];
+	}
 }

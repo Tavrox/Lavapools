@@ -1,8 +1,8 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEditor;
+using System.Linq;
 
 [CustomEditor(typeof(ProceduralLevelSetup))]
 public class ProceduralStepsEditor : Editor
@@ -15,10 +15,17 @@ public class ProceduralStepsEditor : Editor
 	private GUIEditorSkin customSkin;
 
 	// Parameters for RNG
-	[Range (1,100)] public int rngSteps;
-	[Range (1,15)] public int rngBrick;
+	public int rngSteps;
+	public int rngBrick;
+	[Tooltip("Remove toggle within RNG")] public bool restrainToggle;
+	[Tooltip("Remove disable within in RNG!")] public bool restrainDisable;
+	[Tooltip("Remove invert within RNG!")] public bool restrainInvert;
+	public int minChances;
+	public int maxChances;
 	public LevelBrick.typeList rngType;
 	public List<LevelBrick> ingameBricks;
+	
+	Vector2 vec = new Vector2(100f,100f);
 
 	private bool displayEachParam = false;
 	
@@ -28,48 +35,47 @@ public class ProceduralStepsEditor : Editor
 		boxSize = maxSize / 8 ;
 		stepSize = maxSize / 6;
 		customSkin = Resources.Load("Tools/Skins/LvlEditor") as GUIEditorSkin;
+		GUI.skin = customSkin.skin;
+		GUI.skin.toggle = customSkin.skin.toggle;
 		base.OnInspectorGUI();
 
-		Cleaner();
+		
+		GUILayout.Box("Tools", customSkin.skin.textField  , GUILayout.ExpandWidth(true));
+
 		buttonLoadStep();
-
-		string gameBricks = "";
-		ingameBricks = setup.lvlParam.getBrickGameList();
-		foreach (LevelBrick _brick in ingameBricks)
-		{
-			string parse = _brick.type.ToString() + " " + _brick.brickId ;
-			if (_brick.GetComponent<PatrolBrick>())
-			{
-				parse += " ";
-				parse += _brick.GetComponent<PatrolBrick>().brickPath.id;
-			}
-			parse += "\n";
-			gameBricks += parse;
-		}
-		EditorGUILayout.HelpBox(gameBricks, MessageType.Info,true);
-
-
-		GUILayout.Box("Box", GUILayout.Width(300f));
-		rngSteps = EditorGUILayout.IntField("RNG : Step number", rngSteps, GUILayout.Width(300f));
-		rngBrick = EditorGUILayout.IntField("RNG : Bricks Number", rngBrick, GUILayout.Width(300f));
-		rngType  = (LevelBrick.typeList)System.Enum.Parse(typeof(LevelBrick.typeList) , EditorGUILayout.EnumPopup("", rngType, GUILayout.Width(300f)).ToString());
-		GUILayout.Box("Box", GUILayout.Width(300f));
-
-
-		EditorUtility.SetDirty(this);
-		EditorGUILayout.HelpBox( " Random generation will generate for X steps, X bricks number with random parameters." +
-			"\n You may use auto attribute button afterwards." +
-			"\n The auto attribute button gives bricks their ingame path id," +
-			"\n then you don't have to fill them yourselves", MessageType.Info, true);
-
-		randomStepsButton(rngSteps, rngBrick);
-		autoAttributeWPM();
 
 		if (setup.LinearSteps.Count > 0)
 		{			
-			EditorGUILayout.HelpBox( "There are Two types of trigger : Brick by Brick and Mixed." +
-			                        "\n Mixed take all non-forced bricks in a step and take 1 / X (X = nb of bricks) chance to trigger one of them. Ex : 2 bricks = 50 / 50 each" +
-			                        "\n Brick by Brick take all brick and try to trigger it, according to the 'chance trigger' parameter ex : 2 bricks Can be spread for 80 / 20", MessageType.Info, true);
+			ingameBricks = setup.lvlParam.getBrickGameList();
+			Cleaner();
+			
+			string gameBricks = "Ingame defined bricks \n";
+			foreach (LevelBrick _brick in ingameBricks)
+			{
+				string parse = _brick.type.ToString() + " " + _brick.brickId ;
+				if (_brick.GetComponent<PatrolBrick>())
+				{
+					parse += " ";
+					parse += _brick.GetComponent<PatrolBrick>().brickPath.id;
+				}
+				parse += "\n";
+				gameBricks += parse;
+			}
+			EditorGUILayout.HelpBox(gameBricks, MessageType.Info,true);
+			randomStepParameters();
+			randomStepsButton(rngSteps, rngBrick);
+			autoAttributeWPM();
+			buttonRemoveAll();
+			buttonCheckSame();
+			GUILayout.Label("How to use dat tool" +
+							"\nThere are Two types of trigger : Brick by Brick and Mixed." +
+			                "\n-Mixed take all non-forced bricks in a step and divides to calc chance. Ex : 2 bricks = 50 / 50 each" +
+			                "\n-Brick by Brick take all brick and try to trigger it and use Chances parameter" +
+			                "\n\nRandom generation will generate for X steps, X bricks number with random parameters." +
+			                "\n-You may use auto attribute button afterwards." +
+			                "\n-The auto attribute button gives bricks their ingame path id," +
+			                "then you don't have to fill them yourselves", customSkin.skin.label, GUILayout.Width(500f));
+
 
 			EditorGUILayout.BeginVertical(GUILayout.Width(maxSize)); 
 			displayStepInfo(setup.LinearSteps);
@@ -84,9 +90,8 @@ public class ProceduralStepsEditor : Editor
 		foreach (LinearStep _stp in _stpList)
 		{
 			EditorGUILayout.Separator();
-			EditorGUILayout.Separator();
 			GUI.color = customSkin.colorList[_stpList.IndexOf(_stp)];
-			EditorGUILayout.HelpBox( "STEP " + _stp.stepID, MessageType.Info, true);
+			GUILayout.Box("Step" + _stp.stepID, customSkin.skin.textField  , GUILayout.ExpandWidth(true));
 			_stp.triggerSum = 0;
 			
 			displayStepHeader(_stp);
@@ -101,7 +106,7 @@ public class ProceduralStepsEditor : Editor
 					{
 						EditorGUILayout.BeginHorizontal(GUILayout.Width(maxSize));
 
-						pbrpm.forceTrigger 		= EditorGUILayout.Toggle("", pbrpm.forceTrigger, GUILayout.Width(boxSize));
+						pbrpm.forceTrigger 		= EditorGUILayout.Toggle("", pbrpm.forceTrigger, customSkin.skin.toggle ,GUILayout.Width(boxSize));
 						if (_stp.procType == LinearStep.procTrigger.BrickByBrick)
 						{
 							pbrpm.chanceToTrigger	= EditorGUILayout.IntField("", pbrpm.chanceToTrigger, GUILayout.Width(boxSize));
@@ -114,11 +119,9 @@ public class ProceduralStepsEditor : Editor
 						pbrpm.ID				= EditorGUILayout.IntField("", pbrpm.ID, GUILayout.Width(boxSize));
 						pbrpm.stepID 			= _stp.stepID;
 						pbrpm.giveWPM 			= EditorGUILayout.TextField("", pbrpm.giveWPM, GUILayout.Width(boxSize));
-						pbrpm.tryEnable 		= EditorGUILayout.Toggle("", pbrpm.tryEnable, GUILayout.Width(boxSize));
-						pbrpm.tryDisable 		= EditorGUILayout.Toggle("", pbrpm.tryDisable, GUILayout.Width(boxSize));
-						pbrpm.Toggle 			= EditorGUILayout.Toggle("", pbrpm.Toggle, GUILayout.Width(boxSize));
-						string newName = pbrpm.stepID + "/" + pbrpm.Brick.ToString() + "/" + pbrpm.ID + "/" + pbrpm.giveWPM; 
-						AssetDatabase.RenameAsset(pbrpm.name, newName);
+						pbrpm.tryEnable 		= EditorGUILayout.Toggle("", pbrpm.tryEnable, customSkin.skin.toggle , GUILayout.Width(boxSize));
+						pbrpm.tryDisable 		= EditorGUILayout.Toggle("", pbrpm.tryDisable, customSkin.skin.toggle, GUILayout.Width(boxSize));
+						pbrpm.Toggle 			= EditorGUILayout.Toggle("", pbrpm.Toggle, customSkin.skin.toggle, GUILayout.Width(boxSize));
 
 						if (pbrpm.Brick != null)
 						{
@@ -166,12 +169,9 @@ public class ProceduralStepsEditor : Editor
 			// Add a brick and asset in the directory
 			if (GUILayout.Button("Add Procedural Brick", GUILayout.Width(200f)))
 			{
-				addNewParam(_stp, LevelBrick.typeList.Bird, 50);
+				addNewParam(_stp, ingameBricks[0], 50);
 			}
 			EditorUtility.SetDirty(setup);
-			EditorGUILayout.Separator();
-			EditorGUILayout.Separator();
-			EditorGUILayout.Separator();
 		}
 	}
 
@@ -194,11 +194,11 @@ public class ProceduralStepsEditor : Editor
 		EditorGUILayout.BeginHorizontal(GUILayout.Width(maxSize));
 		GUILayout.Box("StepID",GUILayout.Width(stepSize));
 		GUILayout.Box("ProcType",GUILayout.Width(stepSize));
-		GUILayout.Box("AllowRetrigger",GUILayout.Width(stepSize));
+		GUILayout.Box("Allow\nRetrigger",GUILayout.Width(stepSize));
 		GUILayout.Box("Music",GUILayout.Width(stepSize));
 		GUILayout.Box("Condition",GUILayout.Width(stepSize));
 		GUILayout.Box("CrabSpeed",GUILayout.Width(stepSize));
-		GUILayout.Box("EnnmySpeed",GUILayout.Width(stepSize) );
+		GUILayout.Box("Ennemies\nSpeed",GUILayout.Width(stepSize) );
 		EditorGUILayout.EndHorizontal();
 	}
 
@@ -213,21 +213,62 @@ public class ProceduralStepsEditor : Editor
 		GUILayout.Box("Brick",GUILayout.Width(boxSize));
 		GUILayout.Box("ID",GUILayout.Width(boxSize));
 		GUILayout.Box("WPM",GUILayout.Width(boxSize));
-		GUILayout.Box("tryEnable",GUILayout.Width(boxSize));
-		GUILayout.Box("tryDisable",GUILayout.Width(boxSize));
+		GUILayout.Box("try\nEnable",GUILayout.Width(boxSize));
+		GUILayout.Box("try\nDisable",GUILayout.Width(boxSize));
 		GUILayout.Box("Toggle",GUILayout.Width(boxSize));
 		GUILayout.Box("TwDir",GUILayout.Width(boxSize));
-		GUILayout.Box("+Length",GUILayout.Width(boxSize));
-		GUILayout.Box("maxLength",GUILayout.Width(boxSize));
+		GUILayout.Box("add\nLength",GUILayout.Width(boxSize));
+		GUILayout.Box("max\nLength",GUILayout.Width(boxSize));
 		GUILayout.Box("Invert",GUILayout.Width(boxSize));
 		EditorGUILayout.EndHorizontal();
 	}
 
-	private ProceduralBrickParam addNewParam(LinearStep _stp, LevelBrick.typeList _tpl = LevelBrick.typeList.Bird, int _randChance = 50)
+	private ProceduralBrickParam addNewParam(LinearStep _stp, LevelBrick  _brick, int _randChance = 50)
 	{
+		// Création de l'instance
 		brpm = ProceduralBrickParam.CreateInstance("ProceduralBrickParam") as ProceduralBrickParam;
-		brpm.Brick = _tpl;
+
+		// Attribution des paramètres
+
+//		_stp.Enemies_SpeedMultiplier = 1f;
+//		int speedRand = Random.Range(0,10);
+//		_stp.Enemies_SpeedMultiplier = (speedRand < 5 && _stp.stepID > 3) ?  1.1f : 1f;
+
+		brpm.Brick = _brick.type;
 		brpm.chanceToTrigger = _randChance;
+		if (_brick.GetComponent<PatrolBrick>() != null)
+		{
+			brpm.giveWPM = _brick.GetComponent<PatrolBrick>().brickPath.id;
+		}
+		brpm.ID = _brick.brickId;
+		
+		int enableRand = Random.Range(0,10);
+		brpm.tryEnable = (enableRand <= 5) ? true : false;
+
+		int disableRand = Random.Range(0,10);
+		brpm.tryDisable = (disableRand <= 5 && brpm.tryEnable == false && restrainDisable == false) ? true : false;
+
+		brpm.Toggle = false;
+		if (brpm.tryEnable == false && brpm.tryDisable == false)
+		{
+			int toggleRand = Random.Range(0,10);
+			brpm.Toggle = (toggleRand <= 5 && restrainToggle == false) ? true : false;
+		}
+
+		brpm.addLength = Random.Range(1, 4);
+
+		int changeDirRand = Random.Range(0, 10);
+		string randDir = "";
+		randDir += (changeDirRand <= 5) ?"U" : "";
+		randDir += (changeDirRand <= 5) ?""  : "D";
+		randDir += (changeDirRand <= 5) ?""  : "L";
+		randDir += (changeDirRand <= 5) ?"R" : "";
+		brpm.changeDirections = randDir;
+
+		int invertRand = Random.Range(0,10);
+		brpm.tryInvert = (invertRand <= 2 && _stp.stepID > 3 && restrainInvert == false) ? true : false;
+
+		// Ajout dans les listes
 		_stp.LinkedParam.Add(brpm);
 		setup.ListProcParam.Add(brpm);
 		AssetDatabase.CreateAsset(brpm , "Assets/Resources/Maps/" + setup.lvlParam.NAME + "/ProcParam/" + Random.Range(0,1000000).ToString() +".asset");
@@ -237,23 +278,17 @@ public class ProceduralStepsEditor : Editor
 
 	private void randomStepsButton(int _randStep, int _randbrick)
 	{
-		if (GUILayout.Button("For " + _randStep + " steps, generate" + _randbrick + "random params", GUILayout.Width(200f)))
+//		LevelBrick currBrick = ingameBricks[0];
+//		LevelBrick prevBrick = ingameBricks[0];
+		if (GUILayout.Button(_randStep + " steps, generate" + _randbrick + "random bricks", GUILayout.Width(200f)))
 		{
-			if (setup.LinearSteps.Count < _randStep)
-			{
-//				setup.LinearSteps.Add(new LinearStep());
-			}
-//			for (int i = 0; i < _randbrick; i++)
-//			{
-//			LinearStep currStp = setup.LinearSteps[i];
 			foreach (LinearStep _step in setup.LinearSteps)
 			{
 				for (int j = 0; j < _randbrick; j++)
 				{
-					addNewParam(_step, LevelBrick.typeList.Chainsaw, Random.Range(10,100));
+					addNewParam(_step, ingameBricks[Random.Range(0, ingameBricks.Count)], Random.Range(1,10) * 10);
 				}
 			}
-//			}
 		}
 	}
 
@@ -298,6 +333,47 @@ public class ProceduralStepsEditor : Editor
 		{
 			lstp.LinkedParam.RemoveAll((ProceduralBrickParam obj) => obj == null);
 		}
+	}
+
+	private void buttonRemoveAll()
+	{
+		if (GUILayout.Button("Remove All", GUILayout.Width(200f)))
+		{
+			foreach (ProceduralBrickParam prm in setup.ListProcParam)
+			{
+				AssetDatabase.DeleteAsset(AssetDatabase.GetAssetPath(prm));
+			}
+			setup.ListProcParam.Clear();
+			foreach (LinearStep lstp in setup.LinearSteps)
+			{
+				lstp.LinkedParam.Clear();
+			}
+		}
+	}
+
+	private void randomStepParameters()
+	{
+		// RANDOM GENERATION SECTION
+		EditorGUILayout.BeginVertical(GUILayout.Width(500f));
+		GUILayout.Box("Random Generation", customSkin.skin.textField  , GUILayout.ExpandWidth(true));
+		rngSteps = EditorGUILayout.IntField("RNG : Step number", rngSteps, GUILayout.ExpandWidth(true));
+		rngBrick = EditorGUILayout.IntField("RNG : Bricks Number", rngBrick, GUILayout.ExpandWidth(true));
+		restrainToggle = EditorGUILayout.Toggle("RNG : Restrain Toggle", restrainToggle, GUILayout.ExpandWidth(true));
+		restrainDisable = EditorGUILayout.Toggle("RNG : Restrain Disable", restrainDisable, GUILayout.ExpandWidth(true));
+		restrainInvert = EditorGUILayout.Toggle("RNG : Restrain Invert", restrainInvert, GUILayout.ExpandWidth(true));
+		EditorGUILayout.EndVertical();
+	}
+
+	private void buttonCheckSame()
+	{
+//		if (GUILayout.Button("Remove similar", GUILayout.Width(200f)))
+//		{
+//			foreach (LinearStep _stp in setup.LinearSteps)
+//			{
+//
+//			}
+//
+//		}
 	}
 }
 

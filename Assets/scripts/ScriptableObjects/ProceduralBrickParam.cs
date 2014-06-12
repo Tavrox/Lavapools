@@ -10,7 +10,7 @@ public class ProceduralBrickParam : ScriptableObject
 	[Range (0, 20)] public int ID = 1;
 	[Range (0, 20)] public int stepID = 1;
 	public string giveWPM = "A";
-	public bool tryEnable = true;
+	public bool tryEnable = false;
 	public bool tryDisable = false;
 	public bool Toggle = true;
 	public string changeDirections = "UDLR";

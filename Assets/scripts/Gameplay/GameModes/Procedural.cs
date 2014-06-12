@@ -180,7 +180,7 @@ public class Procedural : MonoBehaviour {
 
 	private void toggleBrick()
 	{
-		if (currParam.Toggle == true)
+		if (currParam.Toggle == true && currParam.tryEnable == false && currParam.tryDisable == false)
 		{
 			if (currModBrick.isEnabled == true)
 			{
@@ -316,6 +316,7 @@ public class Procedural : MonoBehaviour {
 	{
 		if (this != null)
 		{
+			paramToTrigger.Clear();
 			untriggerSteps();
 			_listSteps = ProcSetup.LinearSteps;
 			LevelSetup = InitLevelSetup;

@@ -10,5 +10,6 @@ public class GUIEditorSkin : ScriptableObject {
 	public Color col4 = Color.white;
 	public Color col5 = Color.white;
 	public List<Color> colorList = new List<Color>();
+	public GUISkin skin;
 
 }
