@@ -4,7 +4,7 @@
   <image source="tileset.png" width="1024" height="1024"/>
  </tileset>
  <tileset firstgid="170" name="rails" tilewidth="75" tileheight="75">
-  <image source="rails.png" width="256" height="256"/>
+  <image source="rails.png" width="256" height="512"/>
  </tileset>
  <layer name="Layout" width="16" height="9">
   <data>
@@ -161,10 +161,10 @@
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
-   <tile gid="170"/>
+   <tile gid="178"/>
    <tile gid="176"/>
    <tile gid="176"/>
-   <tile gid="170"/>
+   <tile gid="177"/>
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
@@ -191,16 +191,16 @@
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="174"/>
-   <tile gid="170"/>
+   <tile gid="181"/>
+   <tile gid="176"/>
+   <tile gid="183"/>
+   <tile gid="176"/>
+   <tile gid="176"/>
+   <tile gid="183"/>
    <tile gid="176"/>
    <tile gid="170"/>
    <tile gid="176"/>
-   <tile gid="176"/>
-   <tile gid="170"/>
-   <tile gid="176"/>
-   <tile gid="170"/>
-   <tile gid="176"/>
-   <tile gid="170"/>
+   <tile gid="177"/>
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
@@ -223,7 +223,7 @@
    <tile gid="0"/>
    <tile gid="171"/>
    <tile gid="0"/>
-   <tile gid="170"/>
+   <tile gid="184"/>
    <tile gid="176"/>
    <tile gid="172"/>
    <tile gid="0"/>
@@ -232,14 +232,14 @@
    <tile gid="0"/>
    <tile gid="175"/>
    <tile gid="0"/>
-   <tile gid="170"/>
+   <tile gid="184"/>
    <tile gid="172"/>
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
-   <tile gid="170"/>
+   <tile gid="184"/>
    <tile gid="176"/>
-   <tile gid="170"/>
+   <tile gid="182"/>
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
@@ -254,31 +254,31 @@
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="175"/>
-   <tile gid="170"/>
+   <tile gid="178"/>
    <tile gid="170"/>
    <tile gid="176"/>
    <tile gid="176"/>
-   <tile gid="170"/>
+   <tile gid="177"/>
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
-   <tile gid="170"/>
+   <tile gid="184"/>
    <tile gid="176"/>
-   <tile gid="170"/>
+   <tile gid="182"/>
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
+   <tile gid="179"/>
    <tile gid="170"/>
-   <tile gid="170"/>
-   <tile gid="170"/>
+   <tile gid="183"/>
    <tile gid="176"/>
    <tile gid="176"/>
    <tile gid="170"/>
    <tile gid="176"/>
    <tile gid="176"/>
    <tile gid="176"/>
-   <tile gid="170"/>
+   <tile gid="182"/>
    <tile gid="0"/>
    <tile gid="175"/>
    <tile gid="0"/>
@@ -286,11 +286,11 @@
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
-   <tile gid="170"/>
+   <tile gid="179"/>
    <tile gid="176"/>
    <tile gid="176"/>
    <tile gid="176"/>
-   <tile gid="170"/>
+   <tile gid="180"/>
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
