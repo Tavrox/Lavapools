@@ -54,9 +54,9 @@
         <key>maxTextureSize</key>
         <QSize>
             <key>width</key>
-            <int>1024</int>
+            <int>256</int>
             <key>height</key>
-            <int>1024</int>
+            <int>256</int>
         </QSize>
         <key>fixedTextureSize</key>
         <QSize>

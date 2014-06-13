@@ -55,7 +55,7 @@ public class ProceduralStepsEditor : Editor
 			foreach (LevelBrick _brick in ingameBricks)
 			{
 				string parse = _brick.type.ToString() + " " + _brick.brickId ;
-				if (_brick.GetComponent<PatrolBrick>())
+				if (_brick.GetComponent<PatrolBrick>() && _brick.GetComponent<PatrolBrick>().brickPath.id != null)
 				{
 					parse += " ";
 					parse += _brick.GetComponent<PatrolBrick>().brickPath.id;
@@ -69,6 +69,7 @@ public class ProceduralStepsEditor : Editor
 			autoAttributeWPM();
 			buttonRemoveAll();
 			buttonCheckSame();
+			buttonTryStep();
 			GUILayout.Label("How to use dat tool" +
 							"\nThere are Two types of trigger : Brick by Brick and Mixed." +
 			                "\n-Mixed take all non-forced bricks in a step and divides to calc chance. Ex : 2 bricks = 50 / 50 each" +
@@ -370,6 +371,17 @@ public class ProceduralStepsEditor : Editor
 			foreach (LinearStep lstp in setup.LinearSteps)
 			{
 				lstp.LinkedParam.Clear();
+			}
+		}
+	}
+
+	private void buttonTryStep()
+	{
+		if (GUILayout.Button("Gen TryStep", GUILayout.Width(200f)))
+		{
+			for (int i = 0; i < ingameBricks.Count; i++)
+			{
+				addNewParam(setup.LinearSteps[0], ingameBricks[i], 100);
 			}
 		}
 	}
