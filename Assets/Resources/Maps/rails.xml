@@ -95,6 +95,110 @@
                 <key>sourceSize</key>
                 <string>{75,75}</string>
             </dict>
+            <key>rails_08.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{75,150},{75,75}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{75,75}}</string>
+                <key>sourceSize</key>
+                <string>{75,75}</string>
+            </dict>
+            <key>rails_09.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{150,150},{75,75}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{75,75}}</string>
+                <key>sourceSize</key>
+                <string>{75,75}</string>
+            </dict>
+            <key>rails_10.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{0,225},{75,75}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{75,75}}</string>
+                <key>sourceSize</key>
+                <string>{75,75}</string>
+            </dict>
+            <key>rails_11.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{75,225},{75,75}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{75,75}}</string>
+                <key>sourceSize</key>
+                <string>{75,75}</string>
+            </dict>
+            <key>rails_12.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{150,225},{75,75}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{75,75}}</string>
+                <key>sourceSize</key>
+                <string>{75,75}</string>
+            </dict>
+            <key>rails_13.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{0,300},{75,75}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{75,75}}</string>
+                <key>sourceSize</key>
+                <string>{75,75}</string>
+            </dict>
+            <key>rails_14.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{75,300},{75,75}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{75,75}}</string>
+                <key>sourceSize</key>
+                <string>{75,75}</string>
+            </dict>
+            <key>rails_15.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{150,300},{75,75}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{75,75}}</string>
+                <key>sourceSize</key>
+                <string>{75,75}</string>
+            </dict>
         </dict>
         <key>metadata</key>
         <dict>
@@ -103,9 +207,9 @@
             <key>realTextureFileName</key>
             <string>rails.png</string>
             <key>size</key>
-            <string>{256,256}</string>
+            <string>{256,512}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:b3bed180beaa5a3c1bac0ab05e2b4b19:5b20663724cb32e0b513fa8ecff0e2a8:78ce2a9e3a0f1ac04b6ac54ef1f32a4c$</string>
+            <string>$TexturePacker:SmartUpdate:c1d1bc4bfb706c45f37945cda56b6116:b0e7cb2ce5062adbaf7ff5a8d631dc41:78ce2a9e3a0f1ac04b6ac54ef1f32a4c$</string>
             <key>textureFileName</key>
             <string>rails.png</string>
         </dict>
