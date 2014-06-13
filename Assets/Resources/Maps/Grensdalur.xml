@@ -3,6 +3,9 @@
  <tileset firstgid="1" name="tileset" tilewidth="75" tileheight="75">
   <image source="tileset.png" width="1024" height="1024"/>
  </tileset>
+ <tileset firstgid="170" name="rails" tilewidth="75" tileheight="75">
+  <image source="rails.png" width="256" height="512"/>
+ </tileset>
  <layer name="Layout" width="10" height="6">
   <data>
    <tile gid="0"/>
