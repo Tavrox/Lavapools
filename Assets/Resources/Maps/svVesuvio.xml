@@ -13,7 +13,7 @@
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
-   <tile gid="17"/>
+   <tile gid="10"/>
    <tile gid="16"/>
    <tile gid="17"/>
    <tile gid="23"/>
@@ -110,7 +110,7 @@
    <tile gid="50"/>
    <tile gid="18"/>
    <tile gid="18"/>
-   <tile gid="43"/>
+   <tile gid="49"/>
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
@@ -305,8 +305,8 @@
  <objectgroup name="Collider_0" width="16" height="9">
   <object x="103" y="395" width="165" height="170"/>
   <object x="164" y="466" width="338" height="176"/>
-  <object x="396" y="16" width="255" height="157"/>
-  <object x="764" y="171" width="188" height="323"/>
+  <object x="396" y="16" width="244" height="170"/>
+  <object x="764" y="171" width="187" height="316"/>
   <object x="174" y="171" width="768" height="24"/>
   <object x="240" y="197" width="35" height="266"/>
   <object x="470" y="196" width="34" height="447"/>
