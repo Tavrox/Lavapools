@@ -37,11 +37,12 @@ public class Lootstack : MonoBehaviour {
 			pl.lootStack(stackValue);
 			pl._levMan.tools.lootStack(stackValue);
 			pl._levMan.tools.checkLevelCompletion();
+			pl.triggerNotification(stackValue * 1);
 			Fade();
 		}
 	}
 
-	private void Fade()
+	public void Fade()
 	{
 		spr = GetComponentInChildren<OTSprite>();
 		new OTTween(spr, 1f).Tween("alpha", 0f);

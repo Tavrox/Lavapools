@@ -38,6 +38,7 @@ public class Player : MonoBehaviour {
 	private Notification _notif;
 	private PlayerAnims _anims;
 	private float speedStack = 0f;
+	public OTSprite dialBubble;
 
 	public float bigAxNeg;
 	public float bigAxPos;
@@ -88,7 +89,7 @@ public class Player : MonoBehaviour {
 		_anims = gameObject.AddComponent<PlayerAnims>() as PlayerAnims;
 		_anims.Setup();
 		_notif = GetComponentInChildren<Notification>();
-		_notif.color = Color.white;
+		dialBubble = FETool.findWithinChildren(gameObject, "Bubble").GetComponentInChildren<OTSprite>();
 
 		startPos = gameObject.transform.position;
 		friction.x = LevelManager.GlobTuning.Player_Friction.x;
@@ -103,7 +104,6 @@ public class Player : MonoBehaviour {
 
 	void Update () 
 	{	
-//		_notif.color = Color.white;
 		if (_state == playerState.Alive)
 		{
 			pos = gameObject.transform.position;
@@ -387,14 +387,17 @@ public class Player : MonoBehaviour {
 	public void triggerNotification(float _value)
 	{
 		_notif.text = "+" + _value.ToString();
-//		_notif.makeFadeIn();
-//		StartCoroutine(WaitFadeSec(2f));
+		_notif.makeFadeIn();
+		dialBubble.alpha = 1f;
+		StopCoroutine("WaitFadeSec");
+		StartCoroutine(WaitFadeSec(2f));
 	}
 
 	IEnumerator WaitFadeSec(float _time)
 	{
 		yield return new WaitForSeconds(_time);
 		_notif.makeFadeOut();
+		dialBubble.alpha = 0f;
 	}
 
 	private void GameStart()
@@ -411,6 +414,7 @@ public class Player : MonoBehaviour {
 			new OTTween(spr, 0.5f).Tween("alpha", 1f);
 			new OTTween(spr, 0.5f).Tween("size", new Vector2(originalSize.x,originalSize.y));
 			_notif.makeFadeOut();
+			dialBubble.alpha = 0f;
 		}
 	}
 	
@@ -428,6 +432,7 @@ public class Player : MonoBehaviour {
 			new OTTween(spr, 0.5f).Tween("alpha", 0f);
 			new OTTween(spr, 0.5f).Tween("size", new Vector2(0.25f,0.25f));
 			_notif.makeFadeOut();
+			dialBubble.alpha = 0f;
 		}
 	}
 	
@@ -446,6 +451,7 @@ public class Player : MonoBehaviour {
 			new OTTween(spr, 0.5f).Tween("alpha", 1f);
 			new OTTween(spr, 0.5f).Tween("size", new Vector2(originalSize.x,originalSize.y));
 			_notif.makeFadeOut();
+			dialBubble.alpha = 0f;
 		}
 	}
 

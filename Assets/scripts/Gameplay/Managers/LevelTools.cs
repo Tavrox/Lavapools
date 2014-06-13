@@ -79,6 +79,10 @@ public class LevelTools : MonoBehaviour {
 	{
 		checkLevelCompletion();
 		stk.stackValue = Mathf.FloorToInt((_levMan.score * LevelManager.GlobTuning.percentageLootStack));
+		if (stk.stackValue == 0)
+		{
+			stk.Fade();
+		}
 		stk.transform.position = _levMan._player.transform.position;
 //		List<LinearStep> stpList = _levMan.proc._listSteps.Find( (LinearStep obj) => obj.ScoreCondition < stk.stackValue);
 		return stk;
