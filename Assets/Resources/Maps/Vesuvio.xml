@@ -302,7 +302,7 @@
    <tile gid="0"/>
   </data>
  </layer>
- <objectgroup name="Collider_0" width="16" height="9" visible="0">
+ <objectgroup name="Collider_0" width="16" height="9">
   <object x="103" y="395" width="165" height="170"/>
   <object x="164" y="466" width="338" height="176"/>
   <object x="396" y="16" width="244" height="170"/>
