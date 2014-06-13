@@ -270,7 +270,7 @@ public class Procedural : MonoBehaviour {
 				}
 				else
 				{
-					Debug.Log("Cant find an equivalent in procedural parameters, bugs might occur");
+					Debug.Log("Cant find an equivalent to " + ptb.type.ToString() +""+ ptb.brickId + ", bugs might occur");
 				}
 				ptb.setupPath();
 				if (ptb.initWp != null && ptb.initWp.linkedManager != ptb.brickPath)
