@@ -22,6 +22,8 @@ public class ProceduralStepsEditor : Editor
 	[Tooltip("Remove invert within RNG!")] public bool restrainInvert;
 	public int minChances;
 	public int maxChances;
+	public int minAddLength;
+	public int maxAddLength;
 	public LevelBrick.typeList rngType;
 	public List<LevelBrick> ingameBricks;
 	
@@ -169,7 +171,17 @@ public class ProceduralStepsEditor : Editor
 			// Add a brick and asset in the directory
 			if (GUILayout.Button("Add Procedural Brick", GUILayout.Width(200f)))
 			{
-				addNewParam(_stp, ingameBricks[0], 50);
+				addNewParam(_stp, ingameBricks[Random.Range(0, ingameBricks.Count)], Random.Range(1,10) * 10);
+			}
+			if (GUILayout.Button("Remove Brick Steps", GUILayout.Width(200f)))
+			{
+				removeBrickStep(_stp);
+			}
+			if (GUILayout.Button("Add " + rngBrick + " new bricks", GUILayout.Width(200f)))
+			{
+				addNewParam(_stp, ingameBricks[Random.Range(0, ingameBricks.Count)], Random.Range(1,10) * 10);
+				addNewParam(_stp, ingameBricks[Random.Range(0, ingameBricks.Count)], Random.Range(1,10) * 10);
+				addNewParam(_stp, ingameBricks[Random.Range(0, ingameBricks.Count)], Random.Range(1,10) * 10);
 			}
 			EditorUtility.SetDirty(setup);
 		}
@@ -255,7 +267,7 @@ public class ProceduralStepsEditor : Editor
 			brpm.Toggle = (toggleRand <= 5 && restrainToggle == false) ? true : false;
 		}
 
-		brpm.addLength = Random.Range(1, 4);
+		brpm.addLength = Random.Range(3, 10);
 
 		int changeDirRand = Random.Range(0, 10);
 		string randDir = "";
@@ -333,6 +345,17 @@ public class ProceduralStepsEditor : Editor
 		{
 			lstp.LinkedParam.RemoveAll((ProceduralBrickParam obj) => obj == null);
 		}
+	}
+
+	private void removeBrickStep(LinearStep _stp)
+	{
+		List<ProceduralBrickParam> prm = setup.ListProcParam.FindAll((ProceduralBrickParam obj) => obj.stepID == _stp.stepID);
+		foreach (ProceduralBrickParam _par in prm)
+		{
+			AssetDatabase.DeleteAsset(AssetDatabase.GetAssetPath(_par));
+		}
+		setup.ListProcParam.RemoveAll((ProceduralBrickParam obj) => obj.stepID == _stp.stepID);
+		_stp.LinkedParam.RemoveAll((ProceduralBrickParam obj) => obj.stepID == _stp.stepID);
 	}
 
 	private void buttonRemoveAll()

@@ -27,7 +27,7 @@ public class ColliderKiller : MonoBehaviour {
 				}
 				if (_parent.type == LevelBrick.typeList.BladeTower)
 				{
-					_parent._levMan.tools.tryDeath(LevelTools.KillerList.Fireball);
+					_parent._levMan.tools.tryDeath(LevelTools.KillerList.BladePart);
 				}
 				if (_parent.type == LevelBrick.typeList.ArrowTower)
 				{

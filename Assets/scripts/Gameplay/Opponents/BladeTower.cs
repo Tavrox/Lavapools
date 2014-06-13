@@ -204,7 +204,7 @@ public class BladeTower : OppTower {
 	{
 		foreach (BladePart pt in _listpt)
 		{
-			pt.GetComponent<ColliderKiller>().Setup(this);
+			pt.startKiller();
 		}
 	}
 

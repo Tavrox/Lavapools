@@ -13,7 +13,7 @@ public class LevelTools : MonoBehaviour {
 		GameBorders,
 		LevelManager,
 		Arrow,
-		Fireball,
+		BladePart,
 		VerticalSlider
 	};
 	public enum DirectionList

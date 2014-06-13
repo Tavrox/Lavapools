@@ -24,7 +24,17 @@ public class WaypointDirector : MonoBehaviour {
 	{
 		foreach (WaypointManager mana in waypointsMan)
 		{
-			mana.relatedBrick = _listBricks.FindAll((LevelBrick obj) => obj.GetComponent<PatrolBrick>().brickPath == mana);
+			mana.relatedBrick = _listBricks.FindAll(delegate(LevelBrick obj) 
+	        {
+			if (obj.GetComponent<PatrolBrick>() != null && obj.GetComponent<PatrolBrick>().brickPath == mana)
+			{
+				return obj;
+			}
+				else
+				{
+					return false;
+				}
+			});
 		}
 	}
 }

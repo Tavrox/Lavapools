@@ -13,9 +13,11 @@ public class ChainsawEditor : Editor
 	{
 		brick = (Chainsaw)target;
 
+
 		if (brick.initWp != null)
 		{
 			EditorGUILayout.HelpBox("Init Waypoints is linked to manager" + brick.initWp.linkedManager.name, MessageType.Warning);
+			brick.brickPath = brick.initWp.linkedManager;
 		}
 		base.OnInspectorGUI();
 	}

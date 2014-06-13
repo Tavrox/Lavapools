@@ -12,6 +12,7 @@ public class LinearLevelSetupEditor : Editor
 	private float boxSize;
 	private float stepSize;
 	private GUIStyle style;
+	public List<LevelBrick> ingameBricks;
 	[SerializeField] private BrickStepParam brpm;
 	
 	public override void OnInspectorGUI()
@@ -28,6 +29,24 @@ public class LinearLevelSetupEditor : Editor
 			Debug.Log("Check for parameters in setups");
 		}
 
+		// GET INGAME BRICKS THANKS TO MAGIC
+		ingameBricks = step.LvlParam.getBrickGameList();
+		string gameBricks = "Ingame defined bricks \n";
+		foreach (LevelBrick _brick in ingameBricks)
+		{
+			string parse = _brick.type.ToString() + " " + _brick.brickId ;
+			if (_brick.GetComponent<PatrolBrick>())
+			{
+				parse += " ";
+				parse += _brick.GetComponent<PatrolBrick>().brickPath.id;
+			}
+			parse += "\n";
+			gameBricks += parse;
+		}
+		EditorGUILayout.HelpBox(gameBricks, MessageType.Info,true);
+		autoAttributeWPM();
+
+		// LOAD STEPS
 		if (GUILayout.Button("LoadSteps", GUILayout.ExpandWidth(true)))
 		{
 			LinearStep[] listSteps = Resources.LoadAll<LinearStep>("Maps/" + step.LvlParam.NAME +"/Steps/");
@@ -45,8 +64,7 @@ public class LinearLevelSetupEditor : Editor
 		}
 		
 		if (step.LinearSteps.Count > 0)
-		{
-			
+		{			
 			EditorGUILayout.BeginVertical(GUILayout.Width(maxSize)); 
 			displayStepHeader();
 			displayStepInfo(step.LinearSteps);
@@ -119,6 +137,28 @@ public class LinearLevelSetupEditor : Editor
 		GUILayout.Box("Directio", GUILayout.Width(boxSize));
 		GUILayout.Box("Length", GUILayout.Width(boxSize));
 		GUILayout.Box("Invert", GUILayout.Width(boxSize));
+	}
+
+	private void autoAttributeWPM()
+	{
+		if (GUILayout.Button("AutoAttributeWPM", GUILayout.Width(200f)))
+		{
+			foreach (BrickStepParam prm in step.ListBricks)
+			{
+				if (prm.Brick == LevelBrick.typeList.Bird || prm.Brick == LevelBrick.typeList.Chainsaw)
+				{
+					LevelBrick brickToFind = ingameBricks.Find((LevelBrick obj) => obj.type == prm.Brick && obj.brickId == prm.ID);
+					if (brickToFind != null)
+					{
+						prm.WaypointsAttributed = brickToFind.GetComponent<PatrolBrick>().brickPath.id;
+					}
+					else
+					{
+						Debug.Log ("The brick" + prm.Brick.ToString() + prm.ID + "hasnt been setupped in linear steps");
+					}
+				}
+			}
+		}
 	}
 	
 	private void displayBrickInfo(BrickStepParam _prm)
