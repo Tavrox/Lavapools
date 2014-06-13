@@ -3,6 +3,9 @@
  <tileset firstgid="1" name="tileset" tilewidth="75" tileheight="75">
   <image source="tileset.png" width="1024" height="1024"/>
  </tileset>
+ <tileset firstgid="170" name="rails" tilewidth="75" tileheight="75">
+  <image source="rails.png" width="256" height="256"/>
+ </tileset>
  <layer name="Layout" width="16" height="9">
   <data>
    <tile gid="0"/>
@@ -151,7 +154,155 @@
    <tile gid="0"/>
   </data>
  </layer>
- <objectgroup name="Collider_0" width="16" height="9">
+ <layer name="Rails" width="16" height="9">
+  <data>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="170"/>
+   <tile gid="176"/>
+   <tile gid="176"/>
+   <tile gid="170"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="175"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="175"/>
+   <tile gid="0"/>
+   <tile gid="171"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="174"/>
+   <tile gid="170"/>
+   <tile gid="176"/>
+   <tile gid="170"/>
+   <tile gid="176"/>
+   <tile gid="176"/>
+   <tile gid="170"/>
+   <tile gid="176"/>
+   <tile gid="170"/>
+   <tile gid="176"/>
+   <tile gid="170"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="175"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="175"/>
+   <tile gid="0"/>
+   <tile gid="175"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="171"/>
+   <tile gid="0"/>
+   <tile gid="170"/>
+   <tile gid="176"/>
+   <tile gid="172"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="175"/>
+   <tile gid="0"/>
+   <tile gid="170"/>
+   <tile gid="172"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="170"/>
+   <tile gid="176"/>
+   <tile gid="170"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="175"/>
+   <tile gid="0"/>
+   <tile gid="175"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="175"/>
+   <tile gid="170"/>
+   <tile gid="170"/>
+   <tile gid="176"/>
+   <tile gid="176"/>
+   <tile gid="170"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="170"/>
+   <tile gid="176"/>
+   <tile gid="170"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="170"/>
+   <tile gid="170"/>
+   <tile gid="170"/>
+   <tile gid="176"/>
+   <tile gid="176"/>
+   <tile gid="170"/>
+   <tile gid="176"/>
+   <tile gid="176"/>
+   <tile gid="176"/>
+   <tile gid="170"/>
+   <tile gid="0"/>
+   <tile gid="175"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="170"/>
+   <tile gid="176"/>
+   <tile gid="176"/>
+   <tile gid="176"/>
+   <tile gid="170"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="173"/>
+   <tile gid="0"/>
+   <tile gid="173"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+  </data>
+ </layer>
+ <objectgroup name="Collider_0" width="16" height="9" visible="0">
   <object x="103" y="395" width="165" height="170"/>
   <object x="164" y="466" width="338" height="176"/>
   <object x="396" y="16" width="244" height="170"/>
