@@ -101,6 +101,7 @@ public class Procedural : MonoBehaviour {
 	{
 		foreach (ProceduralBrickParam _parameter in _list)
 		{
+			_parameter.Rename();
 			print (_parameter.name);
 			currParam = _parameter;
 			currModBrick = findBrick();
@@ -113,6 +114,7 @@ public class Procedural : MonoBehaviour {
 			swapTowerRotation();
 			_parameter.isTriggered = true;
 		}
+		_list.Clear();
 	}
 
 	private void generateTriggerList(List<ProceduralBrickParam> _list)
@@ -138,10 +140,44 @@ public class Procedural : MonoBehaviour {
 		}
 		case LinearStep.procTrigger.Mixed :
 		{
-			paramToTrigger.Add(_list[Random.Range(0, _list.Count)]);
+			insideLoop(_list);
 			break;
 		}
 		}
+	}
+
+	private void insideLoop(List<ProceduralBrickParam> _list)
+	{
+		ProceduralBrickParam randParam = findRandomParam(_list);
+		if (randParam == null)
+		{
+			return;
+		}
+		_list.Remove(randParam);
+		if (currModBrick.isEnabled == true && currParam.tryEnable == true && _CURRENTSTEP.allowRetrigger == true)
+		{
+			insideLoop(_list);
+		}
+		if (currModBrick.isEnabled == false && currParam.tryDisable == true && _CURRENTSTEP.allowRetrigger == true)
+		{
+			insideLoop(_list);
+		}
+		else
+		{
+			paramToTrigger.Add(randParam);
+		}
+	}
+
+	private ProceduralBrickParam findRandomParam(List<ProceduralBrickParam> _list)
+	{
+		if (_list.Count == 0)
+		{
+			return null;
+		}
+		int rand = Random.Range(0, _list.Count);
+		currParam = _list[rand];
+		currModBrick = findBrick();
+		return currParam;
 	}
 	
 	private LevelBrick findBrick()

@@ -28,4 +28,14 @@ public class ProceduralBrickParam : ScriptableObject
 	public paramTypeList paramType;
 
 	public bool isTriggered;
+
+	public void Rename()
+	{
+		name = stepID + "_" + Brick +"_" + ID +"_" + giveWPM;
+		if (Brick != LevelBrick.typeList.Chainsaw || Brick != LevelBrick.typeList.Bird)
+		{
+			name += "_" + changeDirections +"_" + addLength +"_";
+		}
+		name += "_"  + tryInvert;
+	}
 }
