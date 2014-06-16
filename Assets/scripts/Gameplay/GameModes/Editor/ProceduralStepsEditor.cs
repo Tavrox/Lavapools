@@ -17,9 +17,9 @@ public class ProceduralStepsEditor : Editor
 	// Parameters for RNG
 	public int rngSteps;
 	public int rngBrick;
-	[Tooltip("Remove toggle within RNG")] public bool restrainToggle;
-	[Tooltip("Remove disable within in RNG!")] public bool restrainDisable;
-	[Tooltip("Remove invert within RNG!")] public bool restrainInvert;
+	public bool restrainToggle;
+	public bool restrainDisable;
+	public bool restrainInvert;
 	public int minChances;
 	public int maxChances;
 	public int minAddLength;
