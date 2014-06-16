@@ -1021,20 +1021,20 @@
             <key>pathGate.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{311,1677},{72,76}}</string>
+                <string>{{311,1677},{75,75}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{72,76}}</string>
+                <string>{{0,0},{75,75}}</string>
                 <key>sourceSize</key>
-                <string>{72,76}</string>
+                <string>{75,75}</string>
             </dict>
             <key>supportGate.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{388,1677},{208,65}}</string>
+                <string>{{391,1677},{208,65}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -1054,7 +1054,7 @@
             <key>size</key>
             <string>{1024,2048}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:acfa37dc152a0f814cfce8fd753ef1c4:5f3950bb58c72888c679c48138da1958:e54609b0fc87cb18de0a50e9036b418b$</string>
+            <string>$TexturePacker:SmartUpdate:e8e8866d1db08776429fbf06f91a705a:7c1a8d4b4cbbbc14da8f7b9e3d43d294:e54609b0fc87cb18de0a50e9036b418b$</string>
             <key>textureFileName</key>
             <string>spacegate.png</string>
         </dict>
