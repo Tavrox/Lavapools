@@ -1275,7 +1275,7 @@
             <key>size</key>
             <string>{1024,1024}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:2d5b5bccaf903f85ab8b76f61efcd8fb:8e6aeda977210783ea8ca511663af36c:ebc4127a1218a446a350092a03ede7bb$</string>
+            <string>$TexturePacker:SmartUpdate:9c535f168d4c33d99fa42313620a41c0:5c3c562c076ec8e8fe060f30bcced48e:ebc4127a1218a446a350092a03ede7bb$</string>
             <key>textureFileName</key>
             <string>tileset.png</string>
         </dict>
