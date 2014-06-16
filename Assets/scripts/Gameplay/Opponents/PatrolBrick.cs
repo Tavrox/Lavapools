@@ -55,6 +55,7 @@ public class PatrolBrick : LevelBrick
 		else
 		{
 			currentWP = brickPath.pickRandomWP();
+			initWp = currentWP;
 		}
 
 		if (type == typeList.Chainsaw && isRandomSpawn == true)

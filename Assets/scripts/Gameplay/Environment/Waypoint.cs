@@ -44,7 +44,7 @@ public class Waypoint : MonoBehaviour {
 			_collBrick.GoToWaypoint(findWp);
 			if (_collBrick.type == LevelBrick.typeList.Bird)
 			{
-				_collBrick.GetComponent<Bird>().rotateTowardWp(findWp.transform.position, _collBrick.transform);
+//				_collBrick.GetComponent<Bird>().rotateTowardWp(findWp.transform.position, _collBrick.transform);
 			}
 		}
 	}

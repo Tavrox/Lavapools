@@ -4,10 +4,16 @@ using System.Collections;
 public class Bird : PatrolBrick {
 
 	private float displayWaveTime = 0.5f;
+	private GameObject Waves;
 	private OTAnimatingSprite WavesSpr;
 	public float _diffX = 0f;
 	public float _diffY = 0f;
 	public float _angle = 0f;
+	public float distToWp;
+	private GameObject sprite;
+	private Vector2 myPos;
+	private Vector2 wpPos;
+	private Waypoint prevPoint;
 
 	public void Setup () 
 	{
@@ -28,8 +34,29 @@ public class Bird : PatrolBrick {
 		setupPath();
 		if ( FETool.findWithinChildren(gameObject, "Waves") != null)
 		{
-			WavesSpr = FETool.findWithinChildren(gameObject, "Waves").GetComponentInChildren<OTAnimatingSprite>();
+			Waves = FETool.findWithinChildren(gameObject, "Waves");
+			WavesSpr = Waves.GetComponentInChildren<OTAnimatingSprite>();
 			WavesSpr.alpha = 0f;
+		}
+		InvokeRepeating("turnUpdate", 0f, 0.1f);
+		sprite = FETool.findWithinChildren(gameObject, "Sprite");
+	}
+
+	private void turnUpdate()
+	{
+		prevPoint = currentWP.linkedManager.findPreviousWaypoints(currentWP);
+		myPos = transform.position;
+		wpPos = prevPoint.transform.position;
+		distToWp = Vector2.Distance(myPos, wpPos);
+		
+		rotateTowardWp(prevPoint.transform.position, sprite.transform);
+		if (distToWp < 3f)
+		{
+			rotateTowardWp(currentWP.transform.position, Waves.transform);
+		}
+		else
+		{
+			rotateTowardWp(prevPoint.transform.position, Waves.transform);
 		}
 	}
 
@@ -46,13 +73,12 @@ public class Bird : PatrolBrick {
 	
 	public void fadeDelay()
 	{
-		new OTTween(WavesSpr, LevelManager.GlobTuning.fadeAfterDelay).Tween("alpha", 0f);
+//		new OTTween(WavesSpr, LevelManager.GlobTuning.fadeAfterDelay).Tween("alpha", 0f);
 	}
 
 	public override void enableBrick ()
 	{
 		base.enableBrick();
-		rotateTowardWp(currentWP.transform.position, transform);
 		fadeDelay();
 	}
 	
@@ -77,6 +103,13 @@ public class Bird : PatrolBrick {
 		if (this != null)
 		{
 			WavesSpr.alpha = 1f;
+		}
+	}
+	private void OnDrawGizmosSelected()
+	{
+		if (distToWp < 2f)
+		{
+			Gizmos.DrawWireSphere(this.transform.position, distToWp);
 		}
 	}
 }
