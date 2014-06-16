@@ -281,6 +281,7 @@ public class ProceduralStepsEditor : Editor
 		int invertRand = Random.Range(0,10);
 		brpm.tryInvert = (invertRand <= 2 && _stp.stepID > 3 && restrainInvert == false) ? true : false;
 
+		brpm.name = brpm.stepID + "|" + brpm.Brick + brpm.ID + brpm.giveWPM + brpm.changeDirections + brpm.addLength + brpm.tryInvert;
 		// Ajout dans les listes
 		_stp.LinkedParam.Add(brpm);
 		setup.ListProcParam.Add(brpm);

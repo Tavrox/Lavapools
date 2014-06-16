@@ -15,6 +15,7 @@ public class LPTuning : ScriptableObject {
 	public float finishThirdStep = 25f;
 	public float fadeAfterDelay = 4f;
 	public float percentageLootStack;
+	public float areaOfUntrigger;
 
 	public Color ColPlayer;
 	public Color ColRank;
@@ -25,4 +26,5 @@ public class LPTuning : ScriptableObject {
 	[HideInInspector] public float CapturePoint_Score = 600f;
 	[HideInInspector] public float CaptureSpeed = 1f;
 	[HideInInspector] public float ScoreOverTime = 5f;
+
 }

@@ -39,6 +39,7 @@ public class Player : MonoBehaviour {
 	private PlayerAnims _anims;
 	private float speedStack = 0f;
 	public OTSprite dialBubble;
+	public float gpUntriggerArea;
 
 	public float bigAxNeg;
 	public float bigAxPos;
@@ -75,6 +76,7 @@ public class Player : MonoBehaviour {
 		lowSpeed = LevelManager.LocalTuning.Player_Speed_low;
 		medSpeed = LevelManager.LocalTuning.Player_Speed_med;
 		highSpeed = LevelManager.LocalTuning.Player_Speed_high;
+		gpUntriggerArea = LevelManager.GlobTuning.areaOfUntrigger;
 		initLowSpeed = lowSpeed;
 		initMedSpeed = medSpeed;
 		initHighSpeed = highSpeed;
@@ -388,7 +390,7 @@ public class Player : MonoBehaviour {
 	{
 		_notif.text = "+" + _value.ToString();
 		_notif.makeFadeIn();
-		dialBubble.alpha = 1f;
+		new OTTween(dialBubble, 0.5f).Tween("alpha", 1f);
 		StopCoroutine("WaitFadeSec");
 		StartCoroutine(WaitFadeSec(2f));
 	}
@@ -397,7 +399,7 @@ public class Player : MonoBehaviour {
 	{
 		yield return new WaitForSeconds(_time);
 		_notif.makeFadeOut();
-		dialBubble.alpha = 0f;
+		new OTTween(dialBubble, 0.5f).Tween("alpha", 0f);
 	}
 
 	private void GameStart()
@@ -432,7 +434,7 @@ public class Player : MonoBehaviour {
 			new OTTween(spr, 0.5f).Tween("alpha", 0f);
 			new OTTween(spr, 0.5f).Tween("size", new Vector2(0.25f,0.25f));
 			_notif.makeFadeOut();
-			dialBubble.alpha = 0f;
+			new OTTween(dialBubble, 0.5f).Tween("alpha", 0f);
 		}
 	}
 	
@@ -458,5 +460,10 @@ public class Player : MonoBehaviour {
 	private void EndGame()
 	{
 //		transform.position = new Vector3(transform.position.x, transform.position.y, 200f);
+	}
+
+	private void OnDrawGizmosSelected()
+	{
+		Gizmos.DrawWireSphere(this.transform.position, gpUntriggerArea);
 	}
 }

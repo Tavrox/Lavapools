@@ -36,6 +36,10 @@ public class BladeTower : OppTower {
 		base.Setup();
 		type = typeList.BladeTower;
 
+		GameEventManager.GameStart += GameStart;
+		GameEventManager.GameOver += GameOver;
+		GameEventManager.Respawn += Respawn;
+
 		FbHead = FETool.findWithinChildren(gameObject, "Head");
 		parUp = FETool.findWithinChildren(gameObject, "Head/Blades/up");
 		parLeft = FETool.findWithinChildren(gameObject, "Head/Blades/left");
@@ -205,6 +209,32 @@ public class BladeTower : OppTower {
 		foreach (BladePart pt in _listpt)
 		{
 			pt.startKiller();
+		}
+	}
+	
+	
+	private void GameStart()
+	{
+		if (this != null)
+		{
+			
+		}
+	}
+	
+	private void GameOver()
+	{
+		if (this != null)
+		{
+			MasterAudio.StopAllPlaylists();
+			CancelInvoke("checkScore");
+		}
+	}
+	
+	private void Respawn()
+	{
+		if (this != null)
+		{
+			towerLength = 0;
 		}
 	}
 

@@ -34,7 +34,7 @@ public class Bird : PatrolBrick {
 	}
 
 
-	public void rotateTowardMouse(Vector3 targ ,Transform _trsf)
+	public void rotateTowardWp(Vector3 targ ,Transform _trsf)
 	{
 		_diffX = targ.x - _trsf.transform.position.x;
 		_diffY = _trsf.transform.position.y - targ.y;
@@ -52,6 +52,7 @@ public class Bird : PatrolBrick {
 	public override void enableBrick ()
 	{
 		base.enableBrick();
+		rotateTowardWp(currentWP.transform.position, transform);
 		fadeDelay();
 	}
 	

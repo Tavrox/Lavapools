@@ -110,6 +110,7 @@ public class LevelTools : MonoBehaviour {
 				if (x.distToPlayer > y.distToPlayer) return 1;
 				else return 0;
 			});
+			PlacesToSpawn.RemoveAll((CollectiblePlaces collec) => collec.distToPlayer < _levMan._player.gpUntriggerArea);
 			if (PlacesToSpawn.Count <= 0)
 			{
 				Debug.LogError("Places To spawn setupped too high");
