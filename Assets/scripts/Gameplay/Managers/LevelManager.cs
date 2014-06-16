@@ -174,11 +174,6 @@ public class LevelManager : MonoBehaviour {
 
 	void Setup()
 	{
-		
-		GameEventManager.GameStart += GameStart;
-		GameEventManager.GameOver += GameOver;
-		GameEventManager.Respawn += Respawn;
-		GameEventManager.EndGame += EndGame;
 
 		if (GAMESTATE == GameEventManager.GameState.MainMenu)
 		{
@@ -189,6 +184,11 @@ public class LevelManager : MonoBehaviour {
 
 		InvokeRepeating("updateTime", 0f, 0.01f);
 		InvokeRepeating("UpdateScoreOverTime", 0f, 0.1f);
+		
+		GameEventManager.GameStart += GameStart;
+		GameEventManager.GameOver += GameOver;
+		GameEventManager.Respawn += Respawn;
+		GameEventManager.EndGame += EndGame;
 	}
 
 	// Update is called once per frame

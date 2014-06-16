@@ -13,18 +13,17 @@ public class Lootstack : MonoBehaviour {
 	};
 	public StateList State;
 	private BoxCollider coll;
-	private OTSprite spr;
-	public List<BrickStepParam> paramToTrigger;
+	private OTAnimatingSprite spr;
 	
 	// Use this for initialization
 	public void Setup (LevelManager _lev) 
 	{
 		levMan = _lev;
-		paramToTrigger = new List<BrickStepParam>();
-		spr = GetComponentInChildren<OTSprite>();
+		spr = GetComponentInChildren<OTAnimatingSprite>();
 		GameEventManager.GameStart += GameStart;
 		GameEventManager.GameOver += GameOver;
 		GameEventManager.Respawn += Respawn;
+		print ("setup");
 	}
 	
 	// Update is called once per frame
@@ -44,9 +43,11 @@ public class Lootstack : MonoBehaviour {
 
 	public void Fade()
 	{
-		spr = GetComponentInChildren<OTSprite>();
-		new OTTween(spr, 1f).Tween("alpha", 0f);
+		spr.Play("taken");
+		spr.speed = 0.3f;
+		new OTTween(spr, 2f).Tween("alpha", 0f);
 		GetComponent<BoxCollider>().enabled = false;
+		spr.looping = false;
 	}
 
 	private void GameStart()
@@ -73,6 +74,9 @@ public class Lootstack : MonoBehaviour {
 			State = StateList.Unpicked;
 			GetComponent<BoxCollider>().enabled = true;
 			spr.alpha = 1f;
+			spr.speed = 1f;
+			spr.looping = true;
+			spr.Play("static");
 		}
 	}
 }
