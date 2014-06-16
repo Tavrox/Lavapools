@@ -19,5 +19,13 @@ public class ProceduralBrickParam : ScriptableObject
 	public bool tryInvert = false;
 	public bool hasbeenInverted = false;
 
+	public enum paramTypeList
+	{
+		EarlySetup,
+		MiddleTrigger,
+		LateRandom
+	};
+	public paramTypeList paramType;
+
 	public bool isTriggered;
 }

@@ -290,6 +290,29 @@ public class ProceduralStepsEditor : Editor
 		return brpm;
 	}
 
+	private void buildEarlyParam()
+	{
+
+
+	}
+
+	private void buildMiddleParam()
+	{
+
+	}
+
+	private void buildLateParam()
+	{
+
+	}
+
+	private void buildGameChangerParam()
+	{
+
+
+	}
+
+
 	private void randomStepsButton(int _randStep, int _randbrick)
 	{
 //		LevelBrick currBrick = ingameBricks[0];

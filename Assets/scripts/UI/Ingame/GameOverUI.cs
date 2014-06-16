@@ -27,19 +27,24 @@ public class GameOverUI : SubMenu {
 		_RespawnUI = transform.parent.GetComponentInChildren<RespawnUI>();
 		_RespawnUI.Setup(this);
 
-		lbInitpos = _LeaderboardUI.transform.localPosition;
-		lbOutPos = new Vector3 (lbInitpos.x, lbInitpos.y-5f, lbInitpos.z);
+		lbInitpos = _LeaderboardUI.transform.position;
+		lbOutPos = _menuMan.BottomPos.position;
 		
-		respInitpos = _RespawnUI.transform.localPosition;
-		respOutPos = new Vector3 (respInitpos.x-20f, respInitpos.y, respInitpos.z);
+		respInitpos = _RespawnUI.transform.position;
+		respOutPos = _menuMan.BottomPos.position;
+		
+		new OTTween(_RespawnUI.gameObject.transform, 0.3f, OTEasing.QuadIn ).Tween("position", respInitpos);
+		new OTTween(_LeaderboardUI.gameObject.transform, 0.3f).Tween("position", lbInitpos);
+
+
 	}
 
 	public void GameStart()
 	{
 		if (this != null)
 		{
-			new OTTween(_RespawnUI.gameObject.transform, 0.3f, OTEasing.QuadIn ).Tween("localPosition", respOutPos);
-			new OTTween(_LeaderboardUI.gameObject.transform, 0.3f, OTEasing.QuadIn ).Tween("localPosition", lbOutPos);
+			new OTTween(_RespawnUI.gameObject.transform, 0.3f, OTEasing.QuadIn ).Tween("position", respOutPos);
+			new OTTween(_LeaderboardUI.gameObject.transform, 0.3f, OTEasing.QuadIn ).Tween("position", lbOutPos);
 		}
 	}
 	public void GameOver()
@@ -48,8 +53,8 @@ public class GameOverUI : SubMenu {
 		{
 			_RespawnUI.appearAll();
 			_LeaderboardUI.appearAll();
-			new OTTween(_RespawnUI.gameObject.transform, 0.3f, OTEasing.QuadIn ).Tween("localPosition", respInitpos);
-			new OTTween(_LeaderboardUI.gameObject.transform, 0.3f).Tween("localPosition", lbInitpos);
+			new OTTween(_RespawnUI.gameObject.transform, 0.3f, OTEasing.QuadIn ).Tween("position", respInitpos);
+			new OTTween(_LeaderboardUI.gameObject.transform, 0.3f).Tween("position", lbInitpos);
 		}
 	}
 	public void Respawn()
@@ -59,8 +64,8 @@ public class GameOverUI : SubMenu {
 			_RespawnUI.clearAll();
 			_LeaderboardUI.clearAll();
 			_lb.GatherScores(LevelManager.CurrentLevelInfo.levelID);
-			new OTTween(_RespawnUI.gameObject.transform, 0.3f, OTEasing.QuadIn ).Tween("localPosition", respOutPos);
-			new OTTween(_LeaderboardUI.gameObject.transform, 0.3f, OTEasing.QuadIn ).Tween("localPosition", lbOutPos);
+			new OTTween(_RespawnUI.gameObject.transform, 0.3f, OTEasing.QuadIn ).Tween("position", respOutPos);
+			new OTTween(_LeaderboardUI.gameObject.transform, 0.3f, OTEasing.QuadIn ).Tween("position", lbOutPos);
 		}
 	}
 }

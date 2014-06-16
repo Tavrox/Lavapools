@@ -12,6 +12,9 @@ public class MainMenu : ParentMenu {
 	[HideInInspector] public EntryUI _EntryUI;
 	[HideInInspector] public EndGameUI _EndGameUI;
 
+	public Transform BottomPos;
+	public Transform TopPos;
+
 	public Vector3 IngamePlaceDemo = new Vector3(0f,1.37f, 0f);
 	public Vector3 LeaderboardPlaceDemo = new Vector3(-3.8f, -4.71f, -10f);
 
@@ -30,6 +33,8 @@ public class MainMenu : ParentMenu {
 		_GameOverUI = FETool.findWithinChildren(this.gameObject, "GameOver").GetComponent<GameOverUI>();
 		_EntryUI = FETool.findWithinChildren(this.gameObject, "EntryMenu").GetComponent<EntryUI>();
 		_EndGameUI = FETool.findWithinChildren(this.gameObject, "EndGame").GetComponent<EndGameUI>();
+		BottomPos = FETool.findWithinChildren(gameObject, "BottomPos").transform;
+		TopPos = FETool.findWithinChildren(gameObject, "TopPos").transform;
 
 		_IngameUI.SetupSub(this);
 		_IngameUI.Setup();

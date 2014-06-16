@@ -84,6 +84,11 @@ public class FEAssetCreator {
 	{
 		ScriptableObjectUtility.CreateAsset<ProceduralLevelSetup>();
 	}
+	[MenuItem("Assets/Create/ProceduralGeneratorType")]
+	public static void CreateProceduralGeneratorType ()
+	{
+		ScriptableObjectUtility.CreateAsset<ProceduralGeneratorType>();
+	}
 
 
 }
