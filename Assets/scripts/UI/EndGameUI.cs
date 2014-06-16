@@ -84,8 +84,8 @@ public class EndGameUI : SubMenu {
 	{
 		if (this != null)
 		{
-			new OTTween(_RespawnUI.gameObject.transform, 0.3f, OTEasing.QuadIn ).Tween("position", respOutPos);
-			new OTTween(_LeaderboardUI.gameObject.transform, 0.3f, OTEasing.QuadIn ).Tween("position", lbOutPos);
+//			new OTTween(_RespawnUI.gameObject.transform, 0.3f, OTEasing.QuadIn ).Tween("position", respOutPos);
+//			new OTTween(_LeaderboardUI.gameObject.transform, 0.3f, OTEasing.QuadIn ).Tween("position", lbOutPos);
 			new OTTween(Succeed, 0.3f, OTEasing.QuadIn ).Tween("color", Color.clear);
 			new OTTween(CurrLvl, 0.3f, OTEasing.QuadIn ).Tween("color", Color.clear);
 		}
