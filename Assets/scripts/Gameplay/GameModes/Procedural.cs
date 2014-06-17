@@ -165,6 +165,10 @@ public class Procedural : MonoBehaviour {
 		else
 		{
 			paramToTrigger.Add(randParam);
+			if (paramToTrigger.Count < _CURRENTSTEP.nbBricksToTrigger)
+			{
+				insideLoop(_list);
+			}
 		}
 	}
 

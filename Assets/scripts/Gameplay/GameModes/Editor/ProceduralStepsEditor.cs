@@ -187,31 +187,42 @@ public class ProceduralStepsEditor : Editor
 			EditorUtility.SetDirty(setup);
 		}
 	}
-
-	private void modifyStep(LinearStep _stp)
-	{
-		EditorGUILayout.BeginHorizontal(GUILayout.Width(maxSize));
-		_stp.stepID 				= EditorGUILayout.IntField("", _stp.stepID, GUILayout.Width(stepSize));
-		_stp.procType				= (LinearStep.procTrigger)System.Enum.Parse(typeof(LinearStep.procTrigger) , EditorGUILayout.EnumPopup("", _stp.procType, GUILayout.Width(stepSize)).ToString());
-		_stp.allowRetrigger			= EditorGUILayout.Toggle("", _stp.allowRetrigger, GUILayout.Width(stepSize));
-		_stp.MusicSource			= (AudioClip) EditorGUILayout.ObjectField(_stp.MusicSource, typeof(AudioClip),false, GUILayout.Width(stepSize));
-		_stp.ScoreCondition			= EditorGUILayout.FloatField("", _stp.ScoreCondition, GUILayout.Width(stepSize));
-		_stp.Crab_SpeedMultiplier	= EditorGUILayout.FloatField("", _stp.Crab_SpeedMultiplier, GUILayout.Width(stepSize));
-		_stp.Enemies_SpeedMultiplier= EditorGUILayout.FloatField("", _stp.Enemies_SpeedMultiplier, GUILayout.Width(stepSize));
-		EditorGUILayout.EndHorizontal();
-	}
 	
-	
+	// STEP DISPLAY AND MODIFICATION
 	private void displayStepHeader(LinearStep _stp)
 	{
 		EditorGUILayout.BeginHorizontal(GUILayout.Width(maxSize));
 		GUILayout.Box("StepID",GUILayout.Width(stepSize));
 		GUILayout.Box("ProcType",GUILayout.Width(stepSize));
-		GUILayout.Box("Allow\nRetrigger",GUILayout.Width(stepSize));
+		if (_stp.procType == LinearStep.procTrigger.Mixed)
+		{
+			GUILayout.Box("Allow\nRetrigger",GUILayout.Width(stepSize));
+			GUILayout.Box("MinimumNb\nTrigger",GUILayout.Width(stepSize));
+		}
 		GUILayout.Box("Music",GUILayout.Width(stepSize));
-		GUILayout.Box("Condition",GUILayout.Width(stepSize));
-		GUILayout.Box("CrabSpeed",GUILayout.Width(stepSize));
 		GUILayout.Box("Ennemies\nSpeed",GUILayout.Width(stepSize) );
+		EditorGUILayout.EndHorizontal();
+	}
+	private void modifyStep(LinearStep _stp)
+	{
+		EditorGUILayout.BeginHorizontal(GUILayout.Width(maxSize));
+		_stp.stepID 				= EditorGUILayout.IntField("", _stp.stepID, GUILayout.Width(stepSize));
+		_stp.procType				= (LinearStep.procTrigger)System.Enum.Parse(typeof(LinearStep.procTrigger) , EditorGUILayout.EnumPopup("", _stp.procType, GUILayout.Width(stepSize)).ToString());
+		if (_stp.procType == LinearStep.procTrigger.Mixed)
+		{
+			_stp.allowRetrigger			= EditorGUILayout.Toggle("", _stp.allowRetrigger, GUILayout.Width(stepSize));
+			_stp.nbBricksToTrigger		= EditorGUILayout.IntField("", _stp.nbBricksToTrigger, GUILayout.Width(stepSize));
+			if (_stp.nbBricksToTrigger < 1)
+			{
+				_stp.nbBricksToTrigger = 1;
+			}
+			if (_stp.nbBricksToTrigger > _stp.LinkedParam.Count)
+			{
+				_stp.nbBricksToTrigger = _stp.LinkedParam.Count;
+			}
+		}
+		_stp.MusicSource			= (AudioClip) EditorGUILayout.ObjectField(_stp.MusicSource, typeof(AudioClip),false, GUILayout.Width(stepSize));
+		_stp.Enemies_SpeedMultiplier= EditorGUILayout.FloatField("", _stp.Enemies_SpeedMultiplier, GUILayout.Width(stepSize));
 		EditorGUILayout.EndHorizontal();
 	}
 
