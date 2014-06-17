@@ -94,7 +94,6 @@ public class ProceduralStepsEditor : Editor
 		{
 			EditorGUILayout.Separator();
 			GUI.color = customSkin.colorList[_stpList.IndexOf(_stp)];
-			GUILayout.Box("Step" + _stp.stepID, customSkin.skin.textField  , GUILayout.ExpandWidth(true));
 			_stp.triggerSum = 0;
 			
 			displayStepHeader(_stp);
@@ -170,6 +169,8 @@ public class ProceduralStepsEditor : Editor
 				}
 			}
 			// Add a brick and asset in the directory
+			
+			EditorGUILayout.BeginHorizontal(GUILayout.Width(maxSize));
 			if (GUILayout.Button("Add Procedural Brick", GUILayout.Width(200f)))
 			{
 				addNewParam(_stp, ingameBricks[Random.Range(0, ingameBricks.Count)], Random.Range(1,10) * 10);
@@ -184,6 +185,7 @@ public class ProceduralStepsEditor : Editor
 				addNewParam(_stp, ingameBricks[Random.Range(0, ingameBricks.Count)], Random.Range(1,10) * 10);
 				addNewParam(_stp, ingameBricks[Random.Range(0, ingameBricks.Count)], Random.Range(1,10) * 10);
 			}
+			EditorGUILayout.EndHorizontal();
 			EditorUtility.SetDirty(setup);
 		}
 	}
@@ -206,7 +208,7 @@ public class ProceduralStepsEditor : Editor
 	private void modifyStep(LinearStep _stp)
 	{
 		EditorGUILayout.BeginHorizontal(GUILayout.Width(maxSize));
-		_stp.stepID 				= EditorGUILayout.IntField("", _stp.stepID, GUILayout.Width(stepSize));
+		GUILayout.TextField(_stp.stepID.ToString(),GUILayout.Width(stepSize));
 		_stp.procType				= (LinearStep.procTrigger)System.Enum.Parse(typeof(LinearStep.procTrigger) , EditorGUILayout.EnumPopup("", _stp.procType, GUILayout.Width(stepSize)).ToString());
 		if (_stp.procType == LinearStep.procTrigger.Mixed)
 		{
@@ -396,6 +398,7 @@ public class ProceduralStepsEditor : Editor
 
 	private void buttonRemoveAll()
 	{
+		EditorGUILayout.BeginVertical();
 		if (GUILayout.Button("Remove All", GUILayout.Width(200f)))
 		{
 			foreach (ProceduralBrickParam prm in setup.ListProcParam)
@@ -408,6 +411,7 @@ public class ProceduralStepsEditor : Editor
 				lstp.LinkedParam.Clear();
 			}
 		}
+		EditorGUILayout.EndVertical();
 	}
 
 	private void buttonTryStep()
