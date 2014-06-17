@@ -203,6 +203,10 @@ public class Procedural : MonoBehaviour {
 			{
 				currModBrick.GetComponent<BladeTower>().setupBladePart(currParam.addLength, false);
 			}
+			if (currModBrick.GetComponent<PatrolBrick>() != null)
+			{
+				currModBrick.GetComponent<PatrolBrick>().PatrolType = PatrolBrick.PatrolTypeList.Normal;
+			}
 			currModBrick.enableBrick();
 		}
 	}
@@ -210,7 +214,14 @@ public class Procedural : MonoBehaviour {
 	{
 		if (currParam.tryDisable == true && currParam.ID != 0)
 		{
-			currModBrick.disableBrick();
+			if (currModBrick.GetComponent<PatrolBrick>() != null)
+			{
+				currModBrick.GetComponent<PatrolBrick>().PatrolType = PatrolBrick.PatrolTypeList.ReachBreakPoint;
+			}
+			else
+			{
+				currModBrick.disableBrick();
+			}
 		}
 	}
 

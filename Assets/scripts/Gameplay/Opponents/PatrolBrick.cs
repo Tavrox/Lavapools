@@ -4,7 +4,12 @@ using System.Collections.Generic;
 
 public class PatrolBrick : LevelBrick 
 {
-
+	public enum PatrolTypeList
+	{
+		Normal,
+		ReachBreakPoint
+	};
+	public PatrolTypeList PatrolType;
 	[HideInInspector] public bool debug;
 	public Waypoint currentWP;
 

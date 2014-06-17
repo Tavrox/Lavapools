@@ -7,8 +7,7 @@ public class Waypoint : MonoBehaviour {
 	public enum TypeList
 	{
 		Normal,
-		Initial,
-		GoToAndStop
+		Breakpoint
 	};
 	public TypeList WPType;
 	[HideInInspector] public int id;
@@ -45,6 +44,10 @@ public class Waypoint : MonoBehaviour {
 			if (_collBrick.type == LevelBrick.typeList.Bird)
 			{
 //				_collBrick.GetComponent<Bird>().rotateTowardWp(findWp.transform.position, _collBrick.transform);
+			}
+			if (WPType == TypeList.Breakpoint && _collBrick.PatrolType == PatrolBrick.PatrolTypeList.ReachBreakPoint)
+			{
+				_collBrick.disableBrick();
 			}
 		}
 	}

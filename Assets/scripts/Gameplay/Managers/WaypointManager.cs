@@ -12,6 +12,7 @@ public class WaypointManager : MonoBehaviour {
 	[HideInInspector] public Waypoint lastWp;
 	public bool inverted = false;
 	[HideInInspector] public bool debug = false;
+	public bool hasBreakpoint = false;
 
 	public void Setup(LevelManager man)
 	{
@@ -19,6 +20,13 @@ public class WaypointManager : MonoBehaviour {
 		relatedWaypoints = GetWpList();
 		id = gameObject.name.Split('_')[1];
 		_levMan = man;
+
+		if (hasBreakpoint == false)
+		{
+			Debug.LogError("This waypoint manager had no breakpoint ! Random attribution.");
+			Waypoint wp = relatedWaypoints[Random.Range(0, relatedWaypoints.Count)];
+			wp.WPType = Waypoint.TypeList.Breakpoint;
+		}
 	}
 
 	public Waypoint findNextWaypoint( Waypoint _wpSource)
