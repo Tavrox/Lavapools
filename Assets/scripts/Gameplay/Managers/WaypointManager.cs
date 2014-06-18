@@ -23,7 +23,7 @@ public class WaypointManager : MonoBehaviour {
 
 		if (hasBreakpoint == false)
 		{
-			Debug.LogError("This waypoint manager had no breakpoint ! Random attribution.");
+			Debug.LogWarning("This waypoint manager had no breakpoint ! Random attribution.");
 			Waypoint wp = relatedWaypoints[Random.Range(0, relatedWaypoints.Count)];
 			wp.WPType = Waypoint.TypeList.Breakpoint;
 		}

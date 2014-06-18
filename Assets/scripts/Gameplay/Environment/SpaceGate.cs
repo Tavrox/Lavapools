@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class SpaceGate : MonoBehaviour {
 
@@ -17,6 +18,8 @@ public class SpaceGate : MonoBehaviour {
 	private OTSprite[] spriteFirstStep = new OTSprite[0];
 	private OTSprite[] spriteSecondStep = new OTSprite[0];
 	private OTSprite[] spriteThirdStep = new OTSprite[0];
+	public List<GameObject> slotList = new List<GameObject>();
+	public GameObject defaultSlot;
 
 	public OTAnimatingSprite Vortex;
 
@@ -38,6 +41,12 @@ public class SpaceGate : MonoBehaviour {
 		fadeSprites(spriteFirstStep, 0f);
 		fadeSprites(spriteSecondStep, 0f);
 		fadeSprites(spriteThirdStep, 0f);
+
+		for (int i = 0 ; i < 24 ; i++)
+		{
+			slotList.Add(FETool.findWithinChildren(gameObject, "Slots/" + (i+1).ToString()));
+		}
+		defaultSlot = FETool.findWithinChildren(gameObject, "Slots/Default");
 
 		Vortex = FETool.findWithinChildren(gameObject, "Vortex").GetComponentInChildren<OTAnimatingSprite>();
 	}
@@ -83,6 +92,7 @@ public class SpaceGate : MonoBehaviour {
 			}
 			case 3:
 			{
+			print ("play this");
 				thirdStepTrigg = _isEnabled;
 				thirdStep.GetComponent<BoxCollider>().enabled = _isEnabled;
 				fadeSprites(spriteThirdStep, _toAlpha);

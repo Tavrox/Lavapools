@@ -21,31 +21,16 @@ public class Collectible : MonoBehaviour {
 	public CollectiblePlaces _relatedPlace;
 	public bool picked = false;
 	public bool busy = false;
-	public OTSprite _spr;
 	public OTAnimatingSprite _animSpr;
 
 	// Use this for initialization
 	public void Setup (LevelManager lm) {
 
 		_levMan = lm;
-		if (GetComponentInChildren<OTSprite>() != null)
-		{
-			_spr = GetComponentInChildren<OTSprite>();
-		}
-		if (GetComponentInChildren<OTAnimatingSprite>() != null)
-		{
-			_animSpr = GetComponentInChildren<OTAnimatingSprite>();
-		}
-		_spr.alpha = 0f;
-	
 	}
 
 	public void Pop()
 	{
-		if (_spr != null)
-		{
-			new OTTween(_spr, 1f).Tween("alpha", 1f);
-		}
 		if (_animSpr != null)
 		{
 			new OTTween(_animSpr, 1f).Tween("alpha", 1f);
@@ -58,20 +43,10 @@ public class Collectible : MonoBehaviour {
 		{
 			picked = true;
 
-			if (_spr != null)
-			{
-				new OTTween(_spr, 1f).Tween("alpha", 0f).Wait(1f);
-				new OTTween(_spr, 0.5f, OTEasing.BackOut).Tween("depth", -15f);
-			}
-
 			if (_animSpr != null)
 			{
 				new OTTween(_animSpr, 1f).Tween("alpha", 0f).Wait(1f);
 				new OTTween(_animSpr, 0.5f, OTEasing.BackOut).Tween("depth", -15f);
-			}
-
-			if (_animSpr != null || _spr != null)
-			{
 				
 				switch (PlaceCollectibleToGo)
 				{
@@ -85,8 +60,15 @@ public class Collectible : MonoBehaviour {
 				case PlacesCollect.Stargate :
 				{
 					GameObject StargatePlace = GameObject.FindGameObjectWithTag("SpaceGate");
-					new OTTween(gameObject.transform, 1.5f, OTEasing.BackOut).Tween("localScale", new Vector3(1.5f, 1.5f, 1f)).PingPong();
-					new OTTween(gameObject.transform, 1.5f, OTEasing.BackIn).Tween("position", StargatePlace.transform.position);
+					new OTTween(gameObject.transform, 1.5f).Tween("localScale", new Vector3(1.5f, 1.5f, 1f)).PingPong();
+					if (_levMan.score < 25)
+					{
+						new OTTween(gameObject.transform, 1.5f, OTEasing.ExpoOut).Tween("position", StargatePlace.GetComponent<SpaceGate>().slotList[Mathf.FloorToInt(_levMan.score)].transform.position);
+					}
+					else
+					{
+						new OTTween(gameObject.transform, 1.5f, OTEasing.QuadIn).Tween("position", StargatePlace.GetComponent<SpaceGate>().defaultSlot.transform.position);
+					}
 					break;
 				}
 				}

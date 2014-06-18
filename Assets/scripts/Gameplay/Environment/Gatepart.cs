@@ -10,6 +10,7 @@ public class Gatepart : Collectible {
 		Recup
 	};
 	public partType thisType;
+	public OTAnimatingSprite Taken;
 	
 	// Use this for initialization
 	public void Setup (LevelManager _lm, CollectiblePlaces _place) 
@@ -17,7 +18,11 @@ public class Gatepart : Collectible {
 		base.Setup(_lm);
 		thisType = partType.Spawner;
 		collPlace = _place;
+		name = "Gatepart|" + collPlace.name + Random.Range(0,100).ToString();
 		PlaceCollectibleToGo = PlacesCollect.Stargate;
+		_animSpr = FETool.findWithinChildren(this.gameObject, "Part").GetComponentInChildren<OTAnimatingSprite>();
+		Taken = FETool.findWithinChildren(this.gameObject, "Taken").GetComponentInChildren<OTAnimatingSprite>();
+		Taken.alpha = 0f;
 		Pop();
 	}
 	
@@ -32,6 +37,7 @@ public class Gatepart : Collectible {
 				_levMan.triggerSpawnGem(collPlace);
 				MasterAudio.PlaySound("door_piece_pick");
 				Vanish();
+				Taken.alpha = 1f;
 			}
 			else
 			{
@@ -39,27 +45,5 @@ public class Gatepart : Collectible {
 				Vanish();
 			}
 		}
-	}
-
-	public void fadeAfterFail(float _time)
-	{
-		thisType = partType.Recup;
-		busy = true;
-		StartCoroutine(Unbusy(_time));
-	}
-
-	IEnumerator Unbusy(float _time)
-	{
-		yield return new WaitForSeconds(_time);
-		if (_spr != null)
-		{
-			new OTTween(this._spr, _time * 4f).Tween("alpha", 0f);
-		}
-		else if (_animSpr != null)
-		{
-			new OTTween(this._animSpr, _time * 4f).Tween("alpha", 0f);
-		}
-		busy = false;
-		Destroy(gameObject, _time * 3f);
 	}
 }

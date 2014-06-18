@@ -120,7 +120,7 @@ public class ProceduralStepsEditor : Editor
 						pbrpm.Brick 			= (LevelBrick.typeList)System.Enum.Parse(typeof(LevelBrick.typeList) , EditorGUILayout.EnumPopup("", pbrpm.Brick, GUILayout.Width(boxSize)).ToString());
 						pbrpm.ID				= EditorGUILayout.IntField("", pbrpm.ID, GUILayout.Width(boxSize));
 						pbrpm.stepID 			= _stp.stepID;
-						pbrpm.giveWPM 			= EditorGUILayout.TextField("", pbrpm.giveWPM, GUILayout.Width(boxSize));
+						pbrpm.giveWPM 			= EditorGUILayout.TextField("", pbrpm.giveWPM, GUILayout.Width(boxSize)).ToUpper();
 						pbrpm.tryEnable 		= EditorGUILayout.Toggle("", pbrpm.tryEnable, customSkin.skin.toggle , GUILayout.Width(boxSize));
 						pbrpm.tryDisable 		= EditorGUILayout.Toggle("", pbrpm.tryDisable, customSkin.skin.toggle, GUILayout.Width(boxSize));
 						pbrpm.Toggle 			= EditorGUILayout.Toggle("", pbrpm.Toggle, customSkin.skin.toggle, GUILayout.Width(boxSize));
@@ -295,6 +295,7 @@ public class ProceduralStepsEditor : Editor
 		brpm.tryInvert = (invertRand <= 2 && _stp.stepID > 3 && restrainInvert == false) ? true : false;
 
 		brpm.name = brpm.stepID + "|" + brpm.Brick + brpm.ID + brpm.giveWPM + brpm.changeDirections + brpm.addLength + brpm.tryInvert;
+
 		// Ajout dans les listes
 		_stp.LinkedParam.Add(brpm);
 		setup.ListProcParam.Add(brpm);

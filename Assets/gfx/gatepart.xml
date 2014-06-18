@@ -4,330 +4,330 @@
     <dict>
         <key>frames</key>
         <dict>
-            <key>BigGem05bounce.png</key>
+            <key>gatePart00.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{5,5},{40,49}}</string>
+                <string>{{5,5},{26,36}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{40,49}}</string>
+                <string>{{0,0},{26,36}}</string>
                 <key>sourceSize</key>
-                <string>{40,49}</string>
+                <string>{26,36}</string>
             </dict>
-            <key>BigGem06bounce.png</key>
+            <key>gatePart01.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{50,5},{40,49}}</string>
+                <string>{{36,5},{26,36}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{40,49}}</string>
+                <string>{{0,0},{26,36}}</string>
                 <key>sourceSize</key>
-                <string>{40,49}</string>
+                <string>{26,36}</string>
             </dict>
-            <key>BigGem07bounce.png</key>
+            <key>gatePart02.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{95,5},{40,49}}</string>
+                <string>{{67,5},{26,36}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{40,49}}</string>
+                <string>{{0,0},{26,36}}</string>
                 <key>sourceSize</key>
-                <string>{40,49}</string>
+                <string>{26,36}</string>
             </dict>
-            <key>BigGem08bounce.png</key>
+            <key>gatePart03.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{140,5},{40,49}}</string>
+                <string>{{98,5},{26,36}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{40,49}}</string>
+                <string>{{0,0},{26,36}}</string>
                 <key>sourceSize</key>
-                <string>{40,49}</string>
+                <string>{26,36}</string>
             </dict>
-            <key>BigGem09bounce.png</key>
+            <key>gatePart04.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{140,5},{40,49}}</string>
+                <string>{{129,5},{26,36}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{40,49}}</string>
+                <string>{{0,0},{26,36}}</string>
                 <key>sourceSize</key>
-                <string>{40,49}</string>
+                <string>{26,36}</string>
             </dict>
-            <key>BigGem10bounce.png</key>
+            <key>gatePart05.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{185,5},{40,49}}</string>
+                <string>{{160,5},{26,36}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{40,49}}</string>
+                <string>{{0,0},{26,36}}</string>
                 <key>sourceSize</key>
-                <string>{40,49}</string>
+                <string>{26,36}</string>
             </dict>
-            <key>BigGem11bounce.png</key>
+            <key>gatePart06.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{5,59},{40,49}}</string>
+                <string>{{191,5},{26,36}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{40,49}}</string>
+                <string>{{0,0},{26,36}}</string>
                 <key>sourceSize</key>
-                <string>{40,49}</string>
+                <string>{26,36}</string>
             </dict>
-            <key>BigGem12bounce.png</key>
+            <key>gatePart07.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{5,59},{40,49}}</string>
+                <string>{{222,5},{26,36}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{40,49}}</string>
+                <string>{{0,0},{26,36}}</string>
                 <key>sourceSize</key>
-                <string>{40,49}</string>
+                <string>{26,36}</string>
             </dict>
-            <key>BigGem13bounce.png</key>
+            <key>gatePart08.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{5,59},{40,49}}</string>
+                <string>{{5,46},{26,36}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{40,49}}</string>
+                <string>{{0,0},{26,36}}</string>
                 <key>sourceSize</key>
-                <string>{40,49}</string>
+                <string>{26,36}</string>
             </dict>
-            <key>BigGem14bounce.png</key>
+            <key>gatePart09.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{185,5},{40,49}}</string>
+                <string>{{36,46},{26,36}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{40,49}}</string>
+                <string>{{0,0},{26,36}}</string>
                 <key>sourceSize</key>
-                <string>{40,49}</string>
+                <string>{26,36}</string>
             </dict>
-            <key>BigGem15bounce.png</key>
+            <key>gatePart10.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{140,5},{40,49}}</string>
+                <string>{{67,46},{26,36}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{40,49}}</string>
+                <string>{{0,0},{26,36}}</string>
                 <key>sourceSize</key>
-                <string>{40,49}</string>
+                <string>{26,36}</string>
             </dict>
-            <key>BigGem16bounce.png</key>
+            <key>gatePart11.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{95,5},{40,49}}</string>
+                <string>{{98,46},{26,36}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{40,49}}</string>
+                <string>{{0,0},{26,36}}</string>
                 <key>sourceSize</key>
-                <string>{40,49}</string>
+                <string>{26,36}</string>
             </dict>
-            <key>BigGem17bounce.png</key>
+            <key>gatePart12.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{50,5},{40,49}}</string>
+                <string>{{129,46},{26,36}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{40,49}}</string>
+                <string>{{0,0},{26,36}}</string>
                 <key>sourceSize</key>
-                <string>{40,49}</string>
+                <string>{26,36}</string>
             </dict>
-            <key>BigGem18bounce.png</key>
+            <key>gatePart13.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{5,5},{40,49}}</string>
+                <string>{{160,46},{26,36}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{40,49}}</string>
+                <string>{{0,0},{26,36}}</string>
                 <key>sourceSize</key>
-                <string>{40,49}</string>
+                <string>{26,36}</string>
             </dict>
-            <key>BigGem19bounce.png</key>
+            <key>gatePart14.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{5,5},{40,49}}</string>
+                <string>{{191,46},{26,36}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{40,49}}</string>
+                <string>{{0,0},{26,36}}</string>
                 <key>sourceSize</key>
-                <string>{40,49}</string>
+                <string>{26,36}</string>
             </dict>
-            <key>BigGem20bounce.png</key>
+            <key>gatePart15.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{50,59},{40,49}}</string>
+                <string>{{222,46},{26,36}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{40,49}}</string>
+                <string>{{0,0},{26,36}}</string>
                 <key>sourceSize</key>
-                <string>{40,49}</string>
+                <string>{26,36}</string>
             </dict>
-            <key>BigGem21bounce.png</key>
+            <key>gatePart16.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{95,59},{40,49}}</string>
+                <string>{{5,87},{26,36}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{40,49}}</string>
+                <string>{{0,0},{26,36}}</string>
                 <key>sourceSize</key>
-                <string>{40,49}</string>
+                <string>{26,36}</string>
             </dict>
-            <key>BigGem22bounce.png</key>
+            <key>gatePart17.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{140,59},{40,49}}</string>
+                <string>{{36,87},{26,36}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{40,49}}</string>
+                <string>{{0,0},{26,36}}</string>
                 <key>sourceSize</key>
-                <string>{40,49}</string>
+                <string>{26,36}</string>
             </dict>
-            <key>BigGem23bounce.png</key>
+            <key>gatePart18.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{185,59},{40,49}}</string>
+                <string>{{67,87},{26,36}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{40,49}}</string>
+                <string>{{0,0},{26,36}}</string>
                 <key>sourceSize</key>
-                <string>{40,49}</string>
+                <string>{26,36}</string>
             </dict>
-            <key>BigGem24bounce.png</key>
+            <key>gatePart19.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{185,59},{40,49}}</string>
+                <string>{{98,87},{26,36}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{40,49}}</string>
+                <string>{{0,0},{26,36}}</string>
                 <key>sourceSize</key>
-                <string>{40,49}</string>
+                <string>{26,36}</string>
             </dict>
-            <key>biggem00bounce.png</key>
+            <key>gatepart_taken_00.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{185,59},{40,49}}</string>
+                <string>{{129,87},{100,97}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{40,49}}</string>
+                <string>{{0,0},{100,97}}</string>
                 <key>sourceSize</key>
-                <string>{40,49}</string>
+                <string>{100,97}</string>
             </dict>
-            <key>biggem01bounce.png</key>
+            <key>gatepart_taken_01.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{140,59},{40,49}}</string>
+                <string>{{5,189},{100,97}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{40,49}}</string>
+                <string>{{0,0},{100,97}}</string>
                 <key>sourceSize</key>
-                <string>{40,49}</string>
+                <string>{100,97}</string>
             </dict>
-            <key>biggem02bounce.png</key>
+            <key>gatepart_taken_02.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{95,59},{40,49}}</string>
+                <string>{{110,189},{100,97}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{40,49}}</string>
+                <string>{{0,0},{100,97}}</string>
                 <key>sourceSize</key>
-                <string>{40,49}</string>
+                <string>{100,97}</string>
             </dict>
-            <key>biggem03bounce.png</key>
+            <key>gatepart_taken_03.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{95,59},{40,49}}</string>
+                <string>{{5,291},{100,97}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{40,49}}</string>
+                <string>{{0,0},{100,97}}</string>
                 <key>sourceSize</key>
-                <string>{40,49}</string>
+                <string>{100,97}</string>
             </dict>
-            <key>biggem04bounce.png</key>
+            <key>gatepart_taken_04.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{50,59},{40,49}}</string>
+                <string>{{110,291},{100,97}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{40,49}}</string>
+                <string>{{0,0},{100,97}}</string>
                 <key>sourceSize</key>
-                <string>{40,49}</string>
+                <string>{100,97}</string>
             </dict>
         </dict>
         <key>metadata</key>
@@ -335,13 +335,13 @@
             <key>format</key>
             <integer>2</integer>
             <key>realTextureFileName</key>
-            <string>biggem.png</string>
+            <string>gatepart.png</string>
             <key>size</key>
-            <string>{256,128}</string>
+            <string>{256,512}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:92784637439ea8b5195fa78ee673a447:1/1$</string>
+            <string>$TexturePacker:SmartUpdate:925afee9e03f59b520406da4611b742a:1/1$</string>
             <key>textureFileName</key>
-            <string>biggem.png</string>
+            <string>gatepart.png</string>
         </dict>
     </dict>
 </plist>
